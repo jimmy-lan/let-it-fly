@@ -84,7 +84,7 @@ This error is not caused by our code, and can be solved by simply running
 the command (i.e. `skaffold dev`) again.
 
 ### Common Setup Problems
-After running `skaffold dev` and navigating to letitfly.dev in your browser,
+**Problem:** After running `skaffold dev` and navigating to letitfly.dev in your browser,
 you will see a big warning saying **"Your Connection is Not Private"**. 
 This is because `https` is used in the setup of the load balancer, but `localhost`
 cannot be accessed using `https`.
@@ -95,3 +95,37 @@ thisisunsafe
 ```
 
 Note that there are no spaces between the words above.
+
+## Contributing
+
+Please follow our workflow when contributing to the codebase.
+A typical workflow and important conventions will be briefly introduced here.
+
+### Branch Naming Convention
+
+Please come up with 4 unique characters (using your name as a starting point is recommended) and add them 
+to the beginning of your branch name. Following the 4 characters with a `/` character, then add the feature
+that you are working on in this branch. For example, `lany/set-up` would be a good branch name.
+
+For the second part of the branch name (i.e. after the `/` character), use the following prefixes:
+* `bugfix-` for fixing a bug
+* `hotfix-` for hot fixes
+* `release-` for release branches
+
+If you are naming a feature branch, do not add a prefix to the branch name.
+
+### Pull Requests
+
+Because this project was initially setup by CSC309 course team, we have no access to settings where we can
+implement CI/CD or change the default branch. Therefore, we will eliminate `develop` branch and allow everyone
+to merge directly into the `master` branch.
+
+Before you merge your branch, please create a pull request. This way, your code can potentially be reviewed by 
+other people, and so the overall code quality may be improved.
+
+### Writing Documentation
+
+Please write documentation when needed for your components. The folder `/docs` is used for more detailed
+documentation files.
+
+**Have fun!**
