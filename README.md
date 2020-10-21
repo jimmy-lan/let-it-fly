@@ -24,6 +24,15 @@ the `/infra/k8s` folder.
 If you are new to this project, please follow the following steps to run 
 a development copy.
 
+### Install `Docker`
+
+Please ensure that you have **Docker** installed.
+You might find the following link useful: https://www.docker.com/products/docker-desktop.
+Also, please ensure that Kubernetes is enabled.
+
+In the context of **Docker Desktop**, go to settings, select **Kubernetes** from the menu,
+check **Enable Kubernetes**, then click Apply & Restart.
+
 ### Install `skaffold`, `kubectl`, and `ingress nginx` 
 Please ensure that you have a working copy of `skaffold`, which you can find at
 https://skaffold.dev/.
@@ -39,12 +48,6 @@ route forwarding. Please apply the following configuration to `kubectl`:
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.2/deploy/static/provider/cloud/deploy.yaml
-```
-
-or 
-
-```
-minikube addons enable ingress
 ```
 
 You can find the full installation guide for `ingress nginx` here: https://kubernetes.github.io/ingress-nginx/deploy/.
@@ -83,7 +86,10 @@ when you run the above command.
 This error is not caused by our code, and can be solved by simply running 
 the command (i.e. `skaffold dev`) again.
 
-### Common Setup Problems
+### Navigating to the App
+
+Open your browser, type `letitfly.dev` in the address bar in order to access the app.
+
 **Problem:** After running `skaffold dev` and navigating to letitfly.dev in your browser,
 you will see a big warning saying **"Your Connection is Not Private"**. 
 This is because `https` is used in the setup of the load balancer, but `localhost`
@@ -128,4 +134,4 @@ other people, and so the overall code quality may be improved.
 Please write documentation when needed for your components. The folder `/docs` is used for more detailed
 documentation files.
 
-**Have fun!**
+* **Have fun!**
