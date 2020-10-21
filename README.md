@@ -17,7 +17,7 @@ That is, going into each directory ("service") and set up that service
 using `npm install` and `npm start`.
 
 To view all components at once in development, we strongly recommend
-using `skaffold`.
+you to use `skaffold`.
 To have a big picture, you can find the application infrastructure in
 the `/infra/k8s` folder.
 
@@ -26,9 +26,9 @@ a development copy.
 
 ### Install `skaffold`, `kubectl`, and `ingress nginx` 
 Please ensure that you have a working copy of `skaffold`, which you can find at
-`https://skaffold.dev/`.
+https://skaffold.dev/.
 If the link stops working, please do a quick Google search
-on "skaffold".
+using keyword "skaffold".
 You can read more about `skaffold` on the official website.
 
 Also, you will need `kubectl`. Please find the installation guide here: 
@@ -47,7 +47,7 @@ or
 minikube addons enable ingress
 ```
 
-You can find the installation guide for `ingress nginx` here: https://kubernetes.github.io/ingress-nginx/deploy/.
+You can find the full installation guide for `ingress nginx` here: https://kubernetes.github.io/ingress-nginx/deploy/.
 
 ### Simulate a Web Page
 You need to update your `hosts` file on your machine to 
@@ -82,3 +82,16 @@ an error may be thrown causing the process to exit for the first time
 when you run the above command.
 This error is not caused by our code, and can be solved by simply running 
 the command (i.e. `skaffold dev`) again.
+
+### Common Setup Problems
+After running `skaffold dev` and navigating to letitfly.dev in your browser,
+you will see a big warning saying **"Your Connection is Not Private"**. 
+This is because `https` is used in the setup of the load balancer, but `localhost`
+cannot be accessed using `https`.
+
+**Solution:** Stay on the page, and type the string
+```
+thisisunsafe
+```
+
+Note that there are no spaces between the words above.
