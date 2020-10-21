@@ -86,7 +86,7 @@ when you run the above command.
 This error is not caused by our code, and can be solved by simply running 
 the command (i.e. `skaffold dev`) again.
 
-### Navigating to the App
+### Navigate to the App
 
 Open your browser, type `letitfly.dev` in the address bar in order to access the app.
 
