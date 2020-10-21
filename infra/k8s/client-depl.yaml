@@ -7,14 +7,14 @@ spec:
   selector:
     matchLabels:
       app: client
-    template:
-      metadata:
-        labels:
-          app: client
-      spec:
-        containers:
-          - name: client
-            image: lanyanxi/client-lif
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: lanyanxi/client
 ---
 apiVersion: v1
 kind: Service
