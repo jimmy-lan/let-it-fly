@@ -7,10 +7,12 @@
  */
 
 import { createSlice } from "@reduxjs/toolkit";
+import { UserRole } from "../serverApi";
 
-interface UserState {
+export interface UserState {
   isAuthenticated: boolean;
   email?: string;
+  role?: UserRole.user;
   avatarLink?: string;
 }
 
