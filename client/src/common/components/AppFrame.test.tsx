@@ -4,17 +4,45 @@
  */
 
 import React from "react";
-import Enzyme, { shallow } from "enzyme";
+import Enzyme, { shallow, ShallowWrapper } from "enzyme";
 // @ts-ignore
 import EnzymeAdapter from "@wojtekmaj/enzyme-adapter-react-17";
 import { AppFrame } from "./AppFrame";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe("app frame", () => {
+const findByTestAttr = (wrapper: ShallowWrapper, value: string) =>
+  wrapper.find(`[data-test='${value}']`);
+
+describe("rendering of <AppFrame />", () => {
+  let wrapper: ShallowWrapper;
+
+  /**
+   * Create an <AppFrame> component and return it as shallow wrapper.
+   */
+  beforeEach(() => {
+    wrapper = shallow(<AppFrame />);
+  });
+
   test("renders without exploding", () => {
-    const wrapper = shallow(<AppFrame />);
-    const appFrame = wrapper.find("[data-test='component-app-frame']");
-    expect(appFrame.length).toEqual(1);
+    const appFrame = findByTestAttr(wrapper, "component-app-frame");
+    expect(appFrame).toHaveLength(1);
+  });
+
+  test("renders app bar and header", () => {
+    const appBar = findByTestAttr(wrapper, "component-app-bar");
+    const appHeader = findByTestAttr(wrapper, "component-app-header");
+    expect(appBar).toHaveLength(1);
+    expect(appHeader).toHaveLength(1);
+  });
+
+  test("renders app header 'Let It Fly'", () => {
+    const headerText = findByTestAttr(wrapper, "component-app-header").text();
+    expect(headerText).toBe("Let It Fly");
+  });
+
+  test("renders side menu", () => {
+    const sideMenu = findByTestAttr(wrapper, "component-side-menu");
+    expect(sideMenu).toHaveLength(1);
   });
 });

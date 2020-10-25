@@ -64,6 +64,7 @@ const AppFrame: FunctionComponent<Props> = ({
         className={clsx(classes.appBar, {
           [classes.navShift]: sideBarState === SideBarState.Expanded,
         })}
+        data-test="component-app-bar"
       >
         <Toolbar>
           <IconButton
@@ -76,8 +77,8 @@ const AppFrame: FunctionComponent<Props> = ({
             <MenuIcon />
           </IconButton>
 
-          <Typography variant="h6" noWrap>
-            <p>Let It Fly</p>
+          <Typography variant="h6" noWrap data-test="component-app-header">
+            Let It Fly
           </Typography>
         </Toolbar>
       </AppBar>
@@ -98,12 +99,13 @@ const AppFrame: FunctionComponent<Props> = ({
             [classes.closedSideBar]: sideBarState === SideBarState.Closed,
           }),
         }}
+        data-test="component-side-menu"
       >
         <div className={classes.sideBarContent}>
           <div>
             <div
               className={clsx(classes.sideBarTool, classes.sideBarTopTool)}
-            ></div>
+            />
 
             {/*<List>*/}
             {/*  {[*/}
