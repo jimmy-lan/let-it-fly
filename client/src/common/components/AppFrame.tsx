@@ -4,19 +4,21 @@
  * Description: Main frame for app pages.
  */
 
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, PropsWithChildren, useState } from "react";
 import clsx from "clsx";
 import {
   AppBar,
-  createStyles,
   Divider,
-  Theme,
   Typography,
   Drawer,
   IconButton,
   Toolbar,
+  List,
+  ListItem,
+  ListItemText,
+  CssBaseline,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import {
   Menu as MenuIcon,
   ChevronLeft as LeftArrowIcon,
@@ -41,17 +43,10 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
     },
     appBarIconButton: {
-      marginRight: theme.spacing(3),
-    },
-    toolbar: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
+      marginRight: theme.spacing(2),
     },
     navShift: {
-      width: `calc(100% - ${sideBarWidth}px`,
+      width: `calc(100% - ${sideBarWidth}px)`,
       marginLeft: sideBarWidth,
       transition: theme.transitions.create(["margin", "width"], {
         duration: theme.transitions.duration.enteringScreen,
@@ -77,82 +72,148 @@ const useStyles = makeStyles((theme: Theme) =>
     compactSideBar: {
       width: theme.spacing(9) + 1,
       overflowX: "hidden",
-      transition: theme.transitions.create(
-        "width" +
-          {
-            duration: theme.transitions.duration.leavingScreen,
-            easing: theme.transitions.easing.easeOut,
-          }
-      ),
+      transition: theme.transitions.create("width", {
+        duration: theme.transitions.duration.leavingScreen,
+        easing: theme.transitions.easing.easeOut,
+      }),
+    },
+    closedSideBar: {
+      width: 0,
+      overflowX: "hidden",
+      transition: theme.transitions.create("width", {
+        duration: theme.transitions.duration.leavingScreen,
+        easing: theme.transitions.easing.easeOut,
+      }),
+    },
+    sideBarContent: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      height: "100%",
+    },
+    sideBarTool: {
+      display: "flex",
+      alignItems: "center",
+      padding: theme.spacing(0, 1),
+      ...theme.mixins.toolbar,
+    },
+    sideBarTopTool: {
+      justifyContent: "flex-start",
+    },
+    sideBarBottomTool: {
+      justifyContent: "flex-end",
+    },
+    belowAppBar: {
+      ...theme.mixins.toolbar,
     },
   })
 );
 
-const AppFrame: FunctionComponent<Props> = (props) => {
+const AppFrame: FunctionComponent<Props> = ({
+  children,
+}: PropsWithChildren<Props>) => {
+  enum SideBarState {
+    Expanded,
+    Compacted,
+    Closed,
+  }
+
   const classes = useStyles();
-  const [isExpanded, setExpanded] = useState(true);
+  const [sideBarState, setSideBarState] = useState(SideBarState.Expanded);
+
+  const handleMenuIconClicked = (): void => {
+    sideBarState === SideBarState.Expanded
+      ? setSideBarState(SideBarState.Compacted)
+      : setSideBarState(SideBarState.Expanded);
+  };
+
+  const handleCloseIconClicked = (): void => {
+    setSideBarState(SideBarState.Closed);
+  };
 
   return (
     <div className={classes.root}>
+      <CssBaseline />
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.navShift]: isExpanded,
+          [classes.navShift]: sideBarState === SideBarState.Expanded,
         })}
       >
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="open side bar"
+            aria-label="toggle side bar"
             edge="start"
             className={classes.appBarIconButton}
+            onClick={handleMenuIconClicked}
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" noWrap>
-            Let It Fly
+            <p>Let It Fly</p>
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
         variant="permanent"
+        open={false}
         className={clsx(classes.sideBar, {
-          [classes.compactSideBar]: !isExpanded,
-          [classes.expandedSideBar]: isExpanded,
+          [classes.expandedSideBar]: sideBarState === SideBarState.Expanded,
+          [classes.compactSideBar]: sideBarState === SideBarState.Compacted,
+          [classes.closedSideBar]: sideBarState === SideBarState.Closed,
         })}
         // Override the default paper behaviour to
         // completely hide overflow
         classes={{
           paper: clsx({
-            [classes.compactSideBar]: !isExpanded,
-            [classes.expandedSideBar]: isExpanded,
+            [classes.expandedSideBar]: sideBarState === SideBarState.Expanded,
+            [classes.compactSideBar]: sideBarState === SideBarState.Compacted,
+            [classes.closedSideBar]: sideBarState === SideBarState.Closed,
           }),
         }}
       >
-        <div className={classes.toolbar}>
-          <IconButton>
-            <LeftArrowIcon />
-          </IconButton>
+        <div className={classes.sideBarContent}>
+          <div>
+            <div
+              className={clsx(classes.sideBarTool, classes.sideBarTopTool)}
+            ></div>
+
+            {/*<List>*/}
+            {/*  {[*/}
+            {/*    "Inbox Inbox",*/}
+            {/*    "Starred Starred",*/}
+            {/*    "Send email Starred",*/}
+            {/*    "Drafts Starred",*/}
+            {/*  ].map((text, index) => (*/}
+            {/*    <ListItem button key={text}>*/}
+            {/*      <ListItemText primary={text} />*/}
+            {/*    </ListItem>*/}
+            {/*  ))}*/}
+            {/*</List>*/}
+          </div>
+          <div>
+            <Divider />
+            <div
+              className={clsx(classes.sideBarTool, classes.sideBarBottomTool)}
+            >
+              <IconButton
+                color="inherit"
+                aria-label="close side bar"
+                edge="start"
+                onClick={handleCloseIconClicked}
+              >
+                <LeftArrowIcon />
+              </IconButton>
+            </div>
+          </div>
         </div>
-        <Divider />
       </Drawer>
       <main className={classes.main}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
+        <div className={classes.belowAppBar} />
+        {/*Render components inside frame*/}
+        {children}
       </main>
     </div>
   );
