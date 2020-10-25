@@ -14,6 +14,7 @@ export interface UserState {
   email?: string;
   role?: UserRole;
   avatarLink?: string;
+  coins?: number;
 }
 
 const initialState: UserState = {
