@@ -8,6 +8,7 @@ import Enzyme, { shallow, ShallowWrapper } from "enzyme";
 // @ts-ignore
 import EnzymeAdapter from "@wojtekmaj/enzyme-adapter-react-17";
 import { AppFrame } from "./AppFrame";
+import { createShallow } from "@material-ui/core/test-utils";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -55,17 +56,4 @@ describe("rendering of <AppFrame />", () => {
     const button = findByTestAttr(wrapper, "close-menu-button");
     expect(button).toHaveLength(1);
   });
-});
-
-describe("function of <AppFrame />", () => {
-  let wrapper: ShallowWrapper;
-
-  /**
-   * Create an <AppFrame> component and return it as shallow wrapper.
-   */
-  beforeEach(() => {
-    wrapper = shallow(<AppFrame />);
-  });
-
-  test("closes menu when closed button is clicked", () => {});
 });
