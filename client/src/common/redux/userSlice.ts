@@ -12,6 +12,7 @@ import {
   AuthResponse,
   signIn as signInRequest,
   signUp as signUpRequest,
+  signOut as signOutRequest,
 } from "../serverApi";
 import { AppThunk } from "../../app/store";
 
@@ -54,6 +55,9 @@ const userSlice = createSlice({
       state.avatarLink = avatarLink;
       state.coins = coins;
     },
+    signOut: (state: UserState) => {
+      return initialState;
+    },
     setError: (
       state: UserState,
       { payload: { message } }: PayloadAction<{ message: string }>
@@ -66,7 +70,12 @@ const userSlice = createSlice({
   },
 });
 
-export const { authenticate, setError, clearError } = userSlice.actions;
+export const {
+  authenticate,
+  setError,
+  clearError,
+  signOut,
+} = userSlice.actions;
 
 export const authenticateAsync = (
   email: string,
@@ -89,6 +98,18 @@ export const authenticateAsync = (
         );
       }
     }
+  } catch (error) {
+    console.error(error);
+    dispatch(
+      setError({ message: "Sorry, we cannot handle your request right now." })
+    );
+  }
+};
+
+export const signOutAsync = (): AppThunk => async (dispatch) => {
+  try {
+    await signOutRequest();
+    dispatch(signOut());
   } catch (error) {
     console.error(error);
     dispatch(
