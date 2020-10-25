@@ -57,7 +57,7 @@ const AppFrame: FunctionComponent<Props> = ({
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-test="component-app-frame">
       <CssBaseline />
       <AppBar
         position="fixed"
