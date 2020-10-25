@@ -45,4 +45,27 @@ describe("rendering of <AppFrame />", () => {
     const sideMenu = findByTestAttr(wrapper, "component-side-menu");
     expect(sideMenu).toHaveLength(1);
   });
+
+  test("renders toggle menu button", () => {
+    const button = findByTestAttr(wrapper, "toggle-menu-button");
+    expect(button).toHaveLength(1);
+  });
+
+  test("renders close menu button", () => {
+    const button = findByTestAttr(wrapper, "close-menu-button");
+    expect(button).toHaveLength(1);
+  });
+});
+
+describe("function of <AppFrame />", () => {
+  let wrapper: ShallowWrapper;
+
+  /**
+   * Create an <AppFrame> component and return it as shallow wrapper.
+   */
+  beforeEach(() => {
+    wrapper = shallow(<AppFrame />);
+  });
+
+  test("closes menu when closed button is clicked", () => {});
 });

@@ -73,6 +73,7 @@ const AppFrame: FunctionComponent<Props> = ({
             edge="start"
             className={classes.appBarIconButton}
             onClick={handleMenuIconClicked}
+            data-test="toggle-menu-button"
           >
             <MenuIcon />
           </IconButton>
@@ -130,6 +131,7 @@ const AppFrame: FunctionComponent<Props> = ({
                 aria-label="close side bar"
                 edge="start"
                 onClick={handleCloseIconClicked}
+                data-test="close-menu-button"
               >
                 <LeftArrowIcon />
               </IconButton>
