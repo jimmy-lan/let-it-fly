@@ -73,3 +73,14 @@ export const requestPassword = (email: string) => {
   };
   return getFakeServerCall(response, 0.5);
 };
+
+/**
+ * Send sign out request to server. Using cookie-based authentication,
+ * this function should not require any parameters.
+ */
+export const signOut = () => {
+  const response: ServerResponse = {
+    success: true,
+  };
+  return getFakeServerCall(response, 0.5);
+};
