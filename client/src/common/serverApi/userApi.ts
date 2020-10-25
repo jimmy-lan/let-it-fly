@@ -9,7 +9,7 @@ import { ServerResponse, UserRole } from "../models";
 /**
  * A response returned from sign in or sign up actions
  */
-export interface AuthenticationResponse extends ServerResponse {
+export interface AuthResponse extends ServerResponse {
   data: {
     token: string;
     email: string;
@@ -31,7 +31,7 @@ const fakeToken =
  * @param password user password
  */
 export const signIn = (email: string, password: string) => {
-  const response: AuthenticationResponse = {
+  const response: AuthResponse = {
     success: true,
     data: {
       token: fakeToken,
@@ -49,8 +49,8 @@ export const signIn = (email: string, password: string) => {
  * @param email user email
  * @param password user password
  */
-export const SignUp = (email: string, password: string) => {
-  const response: AuthenticationResponse = {
+export const signUp = (email: string, password: string) => {
+  const response: AuthResponse = {
     success: true,
     data: {
       token: fakeToken,
