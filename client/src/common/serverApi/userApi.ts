@@ -19,9 +19,17 @@ export interface AuthenticationResponse extends ServerResponse {
   };
 }
 
+/**
+ * A fake token generated with "sub" equal to "user@user.com"
+ */
 const fakeToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHVzZXIuY29tIiwibmFtZSI6IldpbGxpYW0gSm95Y2UiLCJpYXQiOjE1MTYyMzkwMjJ9.gSBKHwOWcwi3Lgz_ONbckfnf83Jv1tGi9XFvjqbuaBA";
 
+/**
+ * Send sign in request to server
+ * @param email user email
+ * @param password user password
+ */
 export const signIn = (email: string, password: string) => {
   const response: AuthenticationResponse = {
     success: true,
@@ -36,6 +44,11 @@ export const signIn = (email: string, password: string) => {
   return getFakeServerCall(response, 0.5);
 };
 
+/**
+ * Send sign up request to server
+ * @param email user email
+ * @param password user password
+ */
 export const SignUp = (email: string, password: string) => {
   const response: AuthenticationResponse = {
     success: true,
@@ -50,6 +63,10 @@ export const SignUp = (email: string, password: string) => {
   return getFakeServerCall(response, 0.5);
 };
 
+/**
+ * Send request password request to server
+ * @param email user email
+ */
 export const requestPassword = (email: string) => {
   const response: ServerResponse = {
     success: true,
