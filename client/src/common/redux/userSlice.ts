@@ -68,12 +68,13 @@ const userSlice = createSlice({
 
 export const { authenticate, setError, clearError } = userSlice.actions;
 
-export const signInAsync = (
+export const authenticateAsync = (
   email: string,
-  password: string
+  password: string,
+  authFunc: typeof signInRequest | typeof signUpRequest
 ): AppThunk => async (dispatch) => {
   try {
-    const response: AuthResponse = await signInRequest(email, password);
+    const response: AuthResponse = await authFunc(email, password);
     if (response.success) {
       dispatch(authenticate(response.data));
       dispatch(clearError());
