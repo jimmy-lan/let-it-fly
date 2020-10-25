@@ -4,22 +4,7 @@
  * Description: Common server call helpers and structures
  */
 
-/**
- * A common response coming back from the server.
- */
-export interface ServerResponse {
-  success: boolean;
-  time?: string;
-  data: object;
-}
-
-/**
- * Role of a user using the app.
- */
-export enum UserRole {
-  user = "user",
-  admin = "admin",
-}
+import { ServerResponse } from "../models";
 
 /**
  * Utility function to fake a response from server.
