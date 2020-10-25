@@ -21,7 +21,7 @@ describe("rendering of <AppFrame />", () => {
   /**
    * Create an <AppFrame> component and return it as shallow wrapper.
    */
-  beforeEach(() => {
+  beforeAll(() => {
     wrapper = shallow(<AppFrame />);
   });
 
