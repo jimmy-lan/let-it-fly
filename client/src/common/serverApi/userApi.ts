@@ -11,6 +11,7 @@ import { ServerResponse, UserRole } from "../models";
  */
 export interface AuthenticationResponse extends ServerResponse {
   data: {
+    token: string;
     email: string;
     role: UserRole;
     avatarLink: string;
@@ -18,15 +19,40 @@ export interface AuthenticationResponse extends ServerResponse {
   };
 }
 
+const fakeToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHVzZXIuY29tIiwibmFtZSI6IldpbGxpYW0gSm95Y2UiLCJpYXQiOjE1MTYyMzkwMjJ9.gSBKHwOWcwi3Lgz_ONbckfnf83Jv1tGi9XFvjqbuaBA";
+
 export const signIn = (email: string, password: string) => {
   const response: AuthenticationResponse = {
     success: true,
     data: {
-      email: email,
+      token: fakeToken,
+      email,
       role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
       avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
       coins: 1000,
     },
+  };
+  return getFakeServerCall(response, 0.5);
+};
+
+export const SignUp = (email: string, password: string) => {
+  const response: AuthenticationResponse = {
+    success: true,
+    data: {
+      token: fakeToken,
+      email,
+      role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
+      avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
+      coins: 1000,
+    },
+  };
+  return getFakeServerCall(response, 0.5);
+};
+
+export const requestPassword = (email: string) => {
+  const response: ServerResponse = {
+    success: true,
   };
   return getFakeServerCall(response, 0.5);
 };

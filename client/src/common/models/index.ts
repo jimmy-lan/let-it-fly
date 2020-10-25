@@ -10,7 +10,7 @@
 export interface ServerResponse {
   success: boolean;
   time?: string;
-  data: object;
+  data?: object;
 }
 
 /**
