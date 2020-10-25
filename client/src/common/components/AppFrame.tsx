@@ -20,9 +20,7 @@ import {
   List,
   ListItem,
   ListItemText,
-  CssBaseline,
 } from "@material-ui/core";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import {
   Menu as MenuIcon,
   ChevronLeft as LeftArrowIcon,
@@ -58,7 +56,6 @@ const AppFrame: FunctionComponent<Props> = ({
 
   return (
     <div className={classes.root} data-test="component-app-frame">
-      <CssBaseline />
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
