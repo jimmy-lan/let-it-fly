@@ -3,7 +3,8 @@
  * Creation Date: 2020-10-25
  * Description: Server APIs for user-related queries
  */
-import { getFakeServerCall, UserRole } from "./common";
+import { getFakeServerCall } from "./helpers";
+import { UserRole } from "../models";
 
 export const login = () => {
   return getFakeServerCall(
