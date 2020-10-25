@@ -4,11 +4,29 @@
  * Description: Server APIs for user-related queries
  */
 import { getFakeServerCall } from "./helpers";
-import { UserRole } from "../models";
+import { ServerResponse, UserRole } from "../models";
 
-export const login = () => {
-  return getFakeServerCall(
-    { success: true, data: { email: "user@user.com", role: UserRole.user } },
-    0.5
-  );
+/**
+ * A response returned from sign in or sign up actions
+ */
+export interface AuthenticationResponse extends ServerResponse {
+  data: {
+    email: string;
+    role: UserRole;
+    avatarLink: string;
+    coins: number;
+  };
+}
+
+export const signIn = (email: string, password: string) => {
+  const response: AuthenticationResponse = {
+    success: true,
+    data: {
+      email: email,
+      role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
+      avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
+      coins: 1000,
+    },
+  };
+  return getFakeServerCall(response, 0.5);
 };
