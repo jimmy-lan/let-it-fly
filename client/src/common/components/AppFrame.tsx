@@ -1,7 +1,11 @@
 /**
  * Created by Jimmy Lan
  * Creation Date: 2020-10-24
- * Description: Main frame for app pages.
+ * Description:
+ *    Main frame for app pages. This component includes the app bar and the
+ *    side bar of the app. Anything passed as children to this component will be
+ *    rendered inside the app frame (i.e. with menu on the left and app bar
+ *    on the top).
  */
 
 import React, { FunctionComponent, PropsWithChildren, useState } from "react";
@@ -24,90 +28,11 @@ import {
   ChevronLeft as LeftArrowIcon,
 } from "@material-ui/icons";
 
+import { useStyles } from "./AppFrame.style";
+
 interface OwnProps {}
 
 type Props = OwnProps;
-
-const sideBarWidth = 240;
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: "flex",
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create(["margin", "width"], {
-        duration: theme.transitions.duration.leavingScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    appBarIconButton: {
-      marginRight: theme.spacing(2),
-    },
-    navShift: {
-      width: `calc(100% - ${sideBarWidth}px)`,
-      marginLeft: sideBarWidth,
-      transition: theme.transitions.create(["margin", "width"], {
-        duration: theme.transitions.duration.enteringScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    main: {
-      flexGrow: 1,
-      padding: theme.spacing(2),
-    },
-    sideBar: {
-      width: sideBarWidth,
-      flexShrink: 0,
-      whiteSpace: "nowrap",
-    },
-    expandedSideBar: {
-      width: sideBarWidth,
-      transition: theme.transitions.create("width", {
-        duration: theme.transitions.duration.enteringScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    compactSideBar: {
-      width: theme.spacing(9) + 1,
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        duration: theme.transitions.duration.leavingScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    closedSideBar: {
-      width: 0,
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        duration: theme.transitions.duration.leavingScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    sideBarContent: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      height: "100%",
-    },
-    sideBarTool: {
-      display: "flex",
-      alignItems: "center",
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
-    },
-    sideBarTopTool: {
-      justifyContent: "flex-start",
-    },
-    sideBarBottomTool: {
-      justifyContent: "flex-end",
-    },
-    belowAppBar: {
-      ...theme.mixins.toolbar,
-    },
-  })
-);
 
 const AppFrame: FunctionComponent<Props> = ({
   children,
