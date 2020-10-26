@@ -42,13 +42,13 @@ export interface RouteEntry {
   /**
    * The component to render in this route.
    */
-  Component: typeof Component;
+  Component: typeof Component | FunctionComponent;
   /**
    * Children routes for this route. Children routes should
    * only be specified when the rendering of children depends
    * on the rendering of parent.
    */
-  children: RouteEntry[];
+  children?: RouteEntry[];
 }
 ```
 ### Rendering of Components

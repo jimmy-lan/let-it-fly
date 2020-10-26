@@ -3,15 +3,14 @@
  * Creation Date: 2020-10-26
  */
 
-import { Component } from "react";
+import { Component, FunctionComponent } from "react";
 
 import { userRoutes } from "./user";
 import { adminRoutes } from "./admin";
 import { authRoutes } from "./auth";
 import { UserRole } from "../models";
 
-const routes: RouteEntry[] = [];
-routes.concat(userRoutes, adminRoutes, authRoutes);
+const routes: RouteEntry[] = [...authRoutes, ...userRoutes, ...adminRoutes];
 export { routes };
 
 /**
@@ -41,11 +40,11 @@ export interface RouteEntry {
   /**
    * The component to render in this route.
    */
-  Component: typeof Component;
+  Component: typeof Component | FunctionComponent;
   /**
    * Children routes for this route. Children routes should
    * only be specified when the rendering of children depends
    * on the rendering of parent.
    */
-  children: RouteEntry[];
+  children?: RouteEntry[];
 }

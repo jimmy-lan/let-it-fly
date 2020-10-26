@@ -5,5 +5,11 @@
  */
 
 import { RouteEntry } from "./index";
+import { AppFrame } from "../common/components";
 
-export const userRoutes: RouteEntry[] = [];
+export const userRoutes: RouteEntry[] = [
+  {
+    path: "/",
+    Component: AppFrame,
+  },
+];
