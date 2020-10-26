@@ -4,13 +4,14 @@
 >
 > Creation Date: 2020-10-26
 
-To configure routes, go to one of the existing files and add your route, 
+To configure routes, go to one of the existing files and add your route,
 or start a new configuration file by exporting an array of `RouteEntry`.
-If you are starting a new route configuration file, make sure to add your 
-array to the `routes` array in `index.ts` so that your route is properly 
+If you are starting a new route configuration file, make sure to add your
+array to the `routes` array in `index.ts` so that your route is properly
 exported to the processor.
 
 ### Route Entry
+
 The following is a detailed explanation of each attribute that you can specify.
 You can also find this object in `index.ts`.
 
@@ -55,6 +56,7 @@ export interface RouteEntry {
   children: RouteEntry[];
 }
 ```
+
 ### Rendering of Components
 
 For a given path, or url, **only** the first route entry matched
@@ -71,13 +73,10 @@ at the end of the big `routes` object.
 ### Notes on Children Routes
 
 You should only specify a list of children routes when the rendering of
-children components *depends* on the rendering of parent component.
+children components _depends_ on the rendering of parent component.
 That is, the child component cannot be independently rendered on the screen
 without some render of the parent component.
 
 When you specify children routes, you will receive a prop `routes` in your parent
 component, and a React hook `useRenderChildren` is provided to you for your convenience.
 More examples to come.
-
-
-
