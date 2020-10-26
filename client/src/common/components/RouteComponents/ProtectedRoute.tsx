@@ -11,7 +11,7 @@ import { Route, RouteProps, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../../../app/store";
-import { useConfig } from "../../../config";
+import { index } from "../../../config";
 
 interface OwnProps extends RouteProps {
   /**
@@ -40,7 +40,7 @@ const ProtectedRoute: FunctionComponent<Props> = ({
   const isAuthenticated = !!token;
 
   const { location } = useHistory();
-  const { unauthRedirectRoute } = useConfig();
+  const { unauthRedirectRoute } = index();
 
   return (
     <Route {...otherProps}>

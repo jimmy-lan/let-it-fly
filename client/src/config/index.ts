@@ -1,2 +1,2 @@
-export * from "./useConfig";
+export * from "../hooks/useConfig";
 export * from "./config";

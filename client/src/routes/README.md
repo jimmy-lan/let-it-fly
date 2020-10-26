@@ -28,9 +28,11 @@ export interface RouteEntry {
    */
   exact?: boolean;
   /**
-   * Use route protection. Defaults to false.
+   * Use route protection so that this route is only exposed to users
+   * with the specified roles. If set to undefined, no route protection
+   * is enabled. Defaults to undefined.
    */
-  isProtected?: boolean;
+  isProtected?: UserRole[] | undefined;
   /**
    * Url to redirect user if the user is not authenticated.
    * Defaults to undefined, where the redirect url in config object will
@@ -40,13 +42,7 @@ export interface RouteEntry {
   /**
    * The component to render in this route.
    */
-  component: Component;
-  /**
-   * Hide app frame for this path. Defaults to false,
-   * where an app frame will be rendered. This attribute
-   * can only be set at the top-level, not in children routes.
-   */
-  hideAppFrame?: boolean;
+  Component: typeof Component;
   /**
    * Children routes for this route. Children routes should
    * only be specified when the rendering of children depends

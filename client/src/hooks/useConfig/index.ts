@@ -3,8 +3,8 @@
  * Creation Date: 2020-10-26
  */
 
-import { config } from "./config";
+import { config } from "../../config";
 
-export const useConfig = () => {
+export const index = () => {
   return config;
 };
