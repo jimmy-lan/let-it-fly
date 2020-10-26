@@ -1,15 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "./store";
 import { AppFrame } from "../common/components";
 import { CssBaseline, Typography } from "@material-ui/core";
 
 function App() {
-  const placeholder = useSelector(
-    (state: RootState) => state.placeholder.value
-  );
-
   return (
     <>
       <CssBaseline />
