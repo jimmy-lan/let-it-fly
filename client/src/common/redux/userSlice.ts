@@ -7,13 +7,13 @@
  */
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserRole } from "../models";
+import { UserRole } from "../../models";
 import {
   AuthResponse,
   signIn as signInRequest,
   signUp as signUpRequest,
   signOut as signOutRequest,
-} from "../serverApi";
+} from "../../services/serverApi";
 import { AppThunk } from "../../app/store";
 
 export interface UserState {
