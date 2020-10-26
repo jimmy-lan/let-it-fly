@@ -11,10 +11,10 @@ array to the `routes` array in `index.ts` so that your route is properly
 exported to the processor.
 
 ### Route Entry
-The following is a detailed explanation of each attribute that you can specify.
+The following is a detailed explanation for each attribute that you can specify.
 You can also find this object in `index.ts`.
 
-```language=typescript
+```typescript
 /**
  * An entry in the route configuration object.
  */
