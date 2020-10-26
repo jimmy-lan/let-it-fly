@@ -3,7 +3,7 @@
  * Creation Date: 2020-10-26
  */
 
-import { Component, FunctionComponent } from "react";
+import { Component, ComponentElement, FunctionComponent } from "react";
 
 import { userRoutes } from "./user";
 import { adminRoutes } from "./admin";
@@ -40,7 +40,7 @@ export interface RouteEntry {
   /**
    * The component to render in this route.
    */
-  Component: typeof Component | FunctionComponent;
+  Component: FunctionComponent<any>;
   /**
    * Children routes for this route. Children routes should
    * only be specified when the rendering of children depends

@@ -27,8 +27,12 @@ import {
 } from "@material-ui/icons";
 
 import { useStyles } from "./AppFrame.style";
+import { RouteEntry } from "../../../routes";
+import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
 
-interface OwnProps {}
+interface OwnProps {
+  routes: RouteEntry[];
+}
 
 type Props = OwnProps;
 
@@ -40,9 +44,11 @@ export enum SideBarState {
 
 const AppFrame: FunctionComponent<Props> = ({
   children,
+  routes,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
   const [sideBarState, setSideBarState] = useState(SideBarState.Expanded);
+  const { renderRoutes } = useRenderRoutes();
 
   const handleMenuIconClicked = (): void => {
     sideBarState === SideBarState.Expanded
@@ -140,6 +146,7 @@ const AppFrame: FunctionComponent<Props> = ({
         <div className={classes.belowAppBar} />
         {/*Render components inside frame*/}
         {children}
+        {renderRoutes(routes)}
       </main>
     </div>
   );
