@@ -3,7 +3,7 @@
  * Creation Date: 2020-10-25
  */
 
-export const routeConfig = {
+export const config = {
   /**
    * If the user is unauthenticated and tries to access a protected route, the user
    * will be directed to this address.
@@ -11,4 +11,4 @@ export const routeConfig = {
   unauthRedirectRoute: "/login",
 };
 
-export type RouteConfig = typeof routeConfig;
+export type Config = typeof config;

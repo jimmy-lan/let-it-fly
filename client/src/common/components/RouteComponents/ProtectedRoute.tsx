@@ -11,13 +11,13 @@ import { Route, RouteProps, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../../../app/store";
-import { routeConfig } from "../../../config/routeConfig";
+import { useConfig } from "../../../config";
 
 interface OwnProps extends RouteProps {
   /**
    * Route url to redirect user if user is not authenticated.
    * If this prop is specified, this prop will be used. If this
-   * prop is empty, routeConfig.unauthRedirectRoute attribute will be
+   * prop is empty, config.unauthRedirectRoute attribute will be
    * used.
    */
   redirectUrl?: string;
@@ -40,6 +40,7 @@ const ProtectedRoute: FunctionComponent<Props> = ({
   const isAuthenticated = !!token;
 
   const { location } = useHistory();
+  const { unauthRedirectRoute } = useConfig();
 
   return (
     <Route {...otherProps}>
@@ -48,7 +49,7 @@ const ProtectedRoute: FunctionComponent<Props> = ({
       ) : (
         <Redirect
           to={{
-            pathname: redirectUrl || routeConfig.unauthRedirectRoute,
+            pathname: redirectUrl || unauthRedirectRoute,
             state: { from: location },
           }}
         />
