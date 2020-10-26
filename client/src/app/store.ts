@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import placeholderReducer from "../features/placeholder/placeholderSlice";
+import userAuthReducer from "../common/redux/userSlice";
 
 export const store = configureStore({
   reducer: {
-    placeholder: placeholderReducer,
+    userAuth: userAuthReducer,
   },
 });
 

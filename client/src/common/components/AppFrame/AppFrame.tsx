@@ -32,15 +32,15 @@ interface OwnProps {}
 
 type Props = OwnProps;
 
+export enum SideBarState {
+  Expanded,
+  Compacted,
+  Closed,
+}
+
 const AppFrame: FunctionComponent<Props> = ({
   children,
 }: PropsWithChildren<Props>) => {
-  enum SideBarState {
-    Expanded,
-    Compacted,
-    Closed,
-  }
-
   const classes = useStyles();
   const [sideBarState, setSideBarState] = useState(SideBarState.Expanded);
 
