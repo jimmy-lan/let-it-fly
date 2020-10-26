@@ -1,0 +1,83 @@
+## Route Configurations
+
+> Author: Jimmy Lan
+>
+> Creation Date: 2020-10-26
+
+To configure routes, go to one of the existing files and add your route, 
+or start a new configuration file by exporting an array of `RouteEntry`.
+If you are starting a new route configuration file, make sure to add your 
+array to the `routes` array in `index.ts` so that your route is properly 
+exported to the processor.
+
+### Route Entry
+The following is a detailed explanation of each attribute that you can specify.
+You can also find this object in `index.ts`.
+
+```language=typescript
+/**
+ * An entry in the route configuration object.
+ */
+export interface RouteEntry {
+  /**
+   * Path name to render the component
+   */
+  path: string;
+  /**
+   * Use exact route match. Defaults to false.
+   */
+  exact?: boolean;
+  /**
+   * Use route protection. Defaults to false.
+   */
+  isProtected?: boolean;
+  /**
+   * Url to redirect user if the user is not authenticated.
+   * Defaults to undefined, where the redirect url in config object will
+   * be used. Ignored if isProtected is false.
+   */
+  redirectUrl?: string;
+  /**
+   * The component to render in this route.
+   */
+  component: Component;
+  /**
+   * Hide app frame for this path. Defaults to false,
+   * where an app frame will be rendered. This attribute
+   * can only be set at the top-level, not in children routes.
+   */
+  hideAppFrame?: boolean;
+  /**
+   * Children routes for this route. Children routes should
+   * only be specified when the rendering of children depends
+   * on the rendering of parent.
+   */
+  children: RouteEntry[];
+}
+```
+### Rendering of Components
+
+For a given path, or url, **only** the first route entry matched
+will be rendered. That is, routes that come after it, although
+that route may match, will not be rendered.
+
+Remember we are referring to the big `routes` object found in `index.ts`
+in this directory. Therefore, the way that you concat the routes can have
+an effect on what route will be rendered on the screen.
+
+To create a fallback `404` route, add a route that matches everything
+at the end of the big `routes` object.
+
+### Notes on Children Routes
+
+You should only specify a list of children routes when the rendering of
+children components *depends* on the rendering of parent component.
+That is, the child component cannot be independently rendered on the screen
+without some render of the parent component.
+
+When you specify children routes, you will receive a prop `routes` in your parent
+component, and a React hook `useRenderChildren` is provided to you for your convenience.
+More examples to come.
+
+
+
