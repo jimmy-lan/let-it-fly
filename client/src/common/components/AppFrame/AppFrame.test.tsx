@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import Enzyme, { shallow, ShallowWrapper } from "enzyme";
+import Enzyme, { ShallowWrapper } from "enzyme";
 // @ts-ignore
 import EnzymeAdapter from "@wojtekmaj/enzyme-adapter-react-17";
 import { AppFrame } from "./AppFrame";
@@ -22,7 +22,7 @@ describe("rendering of <AppFrame />", () => {
    * Create an <AppFrame> component and return it as shallow wrapper.
    */
   beforeAll(() => {
-    wrapper = shallow(<AppFrame />);
+    wrapper = createShallow()(<AppFrame />);
   });
 
   test("renders without exploding", () => {
