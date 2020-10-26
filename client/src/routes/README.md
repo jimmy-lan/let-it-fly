@@ -72,8 +72,37 @@ That is, the child component cannot be independently rendered on the screen
 without some render of the parent component.
 
 When you specify children routes, you will receive a prop `routes` in your parent
-component, and a React hook `useRenderChildren` is provided to you for your convenience.
-More examples to come.
+component, and a React hook `useRenderRoutes` is provided to you 
+for your convenience.
+
+**Example of `useRenderRoutes`**
+
+```typescript
+interface OwnProps {
+  /**
+   * You will receive this prop if you specified children in the
+   * route config file.
+   */
+  routes: RouteEntry[];
+}
+
+type Props = OwnProps;
+
+const Example: FunctionComponent<Props> = (props) => {
+  const { renderRoutes } = useRenderRoutes();
+  return (
+    <div>
+      <h1>My fancy parent component</h1>
+      {/*Call renderRoutes with the passed in
+       routes at the place where
+       you want to render children routes.*/}
+      {renderRoutes(props.routes)}
+    </div>
+  );
+};
+```
+
+
 
 
 
