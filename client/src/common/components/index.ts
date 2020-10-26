@@ -3,4 +3,4 @@
  * Creation Date: 2020-10-24
  */
 
-export { AppFrame } from "./AppFrame";
+export { AppFrame } from "./AppFrame/AppFrame";
