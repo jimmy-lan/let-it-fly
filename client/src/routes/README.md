@@ -59,7 +59,7 @@ For a given path, or url, **only** the first route entry matched
 will be rendered. That is, routes that come after it, although
 that route may match, will not be rendered.
 
-Remember we are referring to the big `routes` object found in `models.ts`
+Remember we are referring to the big `routes` object found in `index.ts`
 in this directory. Therefore, the way that you concat the routes can have
 an effect on what route will be rendered on the screen.
 
