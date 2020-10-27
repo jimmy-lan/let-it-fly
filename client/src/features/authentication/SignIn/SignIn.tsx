@@ -23,6 +23,9 @@ const useStyles = makeStyles(
       height: "100vh",
       backgroundColor: "#1a2038",
     },
+    card: {
+      width: 500,
+    },
   })
 );
 
@@ -31,7 +34,10 @@ const SignIn: FunctionComponent<Props> = (props) => {
 
   return (
     <Paper className={classes.root}>
-      <GridImageCard imageSrc="https://via.placeholder.com/150" />
+      <GridImageCard
+        imageSrc="https://via.placeholder.com/150"
+        className={classes.card}
+      />
     </Paper>
   );
 };

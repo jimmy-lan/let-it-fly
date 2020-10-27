@@ -7,11 +7,18 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren } from "react";
-import { Card, CardContent, Grid } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  Grid,
+  CardProps,
+  GridSpacing,
+} from "@material-ui/core";
 
-interface OwnProps {
+interface OwnProps extends CardProps {
   imageSrc: string;
   imageAlt?: string;
+  gridSpacing?: GridSpacing;
 }
 
 type Props = OwnProps;
@@ -20,11 +27,13 @@ const GridImageCard: FunctionComponent<Props> = ({
   children,
   imageSrc,
   imageAlt,
+  gridSpacing,
+  ...otherProps
 }: PropsWithChildren<Props>) => {
   return (
-    <Card>
+    <Card {...otherProps}>
       <CardContent>
-        <Grid container>
+        <Grid container spacing={gridSpacing ? gridSpacing : 2}>
           <Grid item md={7}>
             {children}
           </Grid>
