@@ -6,10 +6,18 @@
 
 import { RouteEntry } from "./index";
 import { AppFrame } from "../common/components";
+import { DummyText } from "../features/testComponent/DummyText";
 
 export const userRoutes: RouteEntry[] = [
   {
     path: "/",
     Component: AppFrame,
+    children: [
+      {
+        path: "/",
+        Component: DummyText,
+        exact: true,
+      },
+    ],
   },
 ];
