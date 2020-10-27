@@ -7,7 +7,7 @@
 To configure routes, go to one of the existing files and add your route,
 or start a new configuration file by exporting an array of `RouteEntry`.
 If you are starting a new route configuration file, make sure to add your
-array to the `routes` array in `models.ts` so that your route is properly
+array to the `routes` array in `index.ts` so that your route is properly
 exported to the processor.
 
 ### Route Entry
