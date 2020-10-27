@@ -7,13 +7,13 @@
 To configure routes, go to one of the existing files and add your route,
 or start a new configuration file by exporting an array of `RouteEntry`.
 If you are starting a new route configuration file, make sure to add your
-array to the `routes` array in `index.ts` so that your route is properly
+array to the `routes` array in `models.ts` so that your route is properly
 exported to the processor.
 
 ### Route Entry
 
 The following is a detailed explanation for each attribute that you can specify.
-You can also find this object in `index.ts`.
+You can also find this object in `models.ts`.
 
 ```typescript
 /**
@@ -59,7 +59,7 @@ For a given path, or url, **only** the first route entry matched
 will be rendered. That is, routes that come after it, although
 that route may match, will not be rendered.
 
-Remember we are referring to the big `routes` object found in `index.ts`
+Remember we are referring to the big `routes` object found in `models.ts`
 in this directory. Therefore, the way that you concat the routes can have
 an effect on what route will be rendered on the screen.
 

@@ -7,7 +7,7 @@
  */
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserRole } from "../../models";
+import { UserRole } from "../../services/serverApi/models";
 import {
   AuthResponse,
   signIn as signInRequest,

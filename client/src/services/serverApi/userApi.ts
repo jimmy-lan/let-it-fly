@@ -4,7 +4,7 @@
  * Description: Server APIs for user-related queries
  */
 import { getFakeServerCall } from "./helpers";
-import { ServerResponse, UserRole } from "../../models";
+import { ServerResponse, UserRole } from "./models";
 
 /**
  * A response returned from sign in or sign up actions
