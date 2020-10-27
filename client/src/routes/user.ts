@@ -7,11 +7,13 @@
 import { RouteEntry } from "./index";
 import { AppFrame } from "../common/components";
 import { DummyText } from "../features/testComponent/DummyText";
+import { UserRole } from "../services/serverApi";
 
 export const userRoutes: RouteEntry[] = [
   {
     path: "/",
     Component: AppFrame,
+    isProtected: [UserRole.user],
     children: [
       {
         path: "/",

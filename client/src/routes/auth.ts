@@ -5,5 +5,11 @@
  */
 
 import { RouteEntry } from "./index";
+import { SignIn } from "../features";
 
-export const authRoutes: RouteEntry[] = [];
+export const authRoutes: RouteEntry[] = [
+  {
+    path: "/login",
+    Component: SignIn,
+  },
+];
