@@ -5,6 +5,6 @@
 
 import { config } from "../../config";
 
-export const index = () => {
+export const useConfig = () => {
   return config;
 };
