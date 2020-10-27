@@ -4,7 +4,7 @@
 >
 > Creation Date: 2020-10-26
 
-Server APIs folder keeps track of a set of files that send requests to 
+Server APIs folder keeps track of a set of files that send requests to
 server. The purpose of this directory is to create a separate of concern
 between side effects (in this case, this means the async server calls) and
 the actual components that we write.
@@ -20,10 +20,10 @@ You can get a fake server call by using the utility function `getFakeServerCall`
 in `helpers.ts`. For example,
 
 ```typescript
-getFakeServerCall({success: true, data: { hi: "there" }}, 1)
+getFakeServerCall({ success: true, data: { hi: "there" } }, 1);
 ```
 
-would return a promise which will resolve in 1 second with the object 
+would return a promise which will resolve in 1 second with the object
 `{success: true, data: { hi: "there" }}`.
 
 ### Server Response Interface
