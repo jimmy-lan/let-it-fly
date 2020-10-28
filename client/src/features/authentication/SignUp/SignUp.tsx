@@ -17,6 +17,8 @@ import {
 } from "@material-ui/core";
 import { Link } from "../../../common/components/RouteComponents";
 import { GrayOutArea } from "../components/GridImageCard";
+import { useHistory } from "../../../hooks/useHistory";
+import { ControlButtons } from "../components/ControlButtons";
 
 interface OwnProps {}
 
@@ -24,6 +26,12 @@ type Props = OwnProps;
 
 const SignUp: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleSignInClick = () => {
+    history.push("/login");
+  };
+
   return (
     <AuthPageContainer grayOutArea={GrayOutArea.right}>
       <form autoComplete="off" className={classes.signUpForm}>
@@ -47,22 +55,12 @@ const SignUp: FunctionComponent<Props> = (props) => {
           label="I have read and agree to User Agreement."
           className={classes.userAgreementCheckbox}
         />
-        <div className={classes.controlsContainer}>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.controlsContainerButton}
-          >
-            <Hidden smDown>Sign Up to Let It Fly</Hidden>
-            <Hidden smUp>Sign Up</Hidden>
-          </Button>
-          <Typography variant="body1" className={classes.controlsContainerText}>
-            or
-          </Typography>
-          <Link to="/login">
-            <Button className={classes.controlsContainerButton}>Sign In</Button>
-          </Link>
-        </div>
+        <ControlButtons
+          primaryButtonText="Sign Up to Let It Fly"
+          primaryButtonTextMobile="Sign Up"
+          secondaryButtonText="Sign In"
+          handleSecondaryButtonClick={handleSignInClick}
+        />
       </form>
     </AuthPageContainer>
   );

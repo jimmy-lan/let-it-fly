@@ -19,6 +19,8 @@ import { useStyles } from "./SignIn.style";
 import clsx from "clsx";
 import { Link } from "../../../common";
 import { AuthPageContainer } from "../components/AuthPageContainer";
+import { ControlButtons } from "../components/ControlButtons";
+import { useHistory } from "../../../hooks/useHistory";
 
 interface OwnProps {}
 
@@ -26,6 +28,11 @@ type Props = OwnProps;
 
 const SignIn: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleSignUpClick = () => {
+    history.push("/signup");
+  };
 
   return (
     <AuthPageContainer grayOutArea={GrayOutArea.left}>
@@ -53,31 +60,15 @@ const SignIn: FunctionComponent<Props> = (props) => {
           label="I have read and agree to User Agreement."
           className={classes.userAgreementCheckbox}
         />
-        <div className={classes.controlsContainer}>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.controlsContainerButton}
-          >
-            <Hidden smDown>Sign In to Enter Application</Hidden>
-            <Hidden smUp>Sign In</Hidden>
-          </Button>
-          <Typography variant="body1" className={classes.controlsContainerText}>
-            or
-          </Typography>
-          <Link to="/signup">
-            <Button className={classes.controlsContainerButton}>Sign Up</Button>
-          </Link>
-        </div>
+        <ControlButtons
+          primaryButtonText="Sign In to Enter Application"
+          primaryButtonTextMobile="Sign In"
+          secondaryButtonText="Sign Up"
+          handleSecondaryButtonClick={handleSignUpClick}
+        />
         <div>
           <Link to="/forgot-password">
-            <Button
-              color="primary"
-              className={clsx(
-                classes.forgotPasswordButton,
-                classes.controlsContainerButton
-              )}
-            >
+            <Button color="primary" className={classes.forgotPasswordButton}>
               Forgot your password?
             </Button>
           </Link>

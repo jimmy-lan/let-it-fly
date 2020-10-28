@@ -19,20 +19,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     userAgreementCheckbox: {
       marginBottom: theme.spacing(2),
     },
-    controlsContainer: {
-      display: "flex",
-      alignItem: "center",
-      justifyContent: "flex-start",
-      marginBottom: theme.spacing(1),
-    },
-    controlsContainerText: {
-      alignSelf: "center",
-      marginLeft: theme.spacing(2),
-      marginRight: theme.spacing(1),
-    },
-    controlsContainerButton: {
-      textTransform: "none",
-    },
     forgotPasswordButton: {
       padding: theme.spacing(1),
     },
