@@ -7,14 +7,7 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren } from "react";
-import {
-  Card,
-  CardContent,
-  Grid,
-  CardProps,
-  GridSpacing,
-  Hidden,
-} from "@material-ui/core";
+import { Card, Grid, CardProps, Hidden } from "@material-ui/core";
 import { useStyles } from "./GridImageCard.style";
 import clsx from "clsx";
 

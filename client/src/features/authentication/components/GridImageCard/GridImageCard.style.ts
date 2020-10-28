@@ -9,8 +9,8 @@ export const useStyles = makeStyles(
       alignItems: "center",
     },
     grayBackgroundContainer: {
-      backgroundColor: "#eeeeee",
       width: "100%",
+      background: "#eeeeee",
     },
     image: {
       width: 240,

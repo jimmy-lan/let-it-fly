@@ -8,7 +8,9 @@ import React, { FunctionComponent } from "react";
 import {
   Button,
   Checkbox,
+  Divider,
   FormControlLabel,
+  Hidden,
   Paper,
   TextField,
   Typography,
@@ -30,6 +32,14 @@ const SignIn: FunctionComponent<Props> = (props) => {
       <GridImageCard imageSrc={authenticationImage} className={classes.card}>
         <div className={classes.signInFormContainer}>
           <form autoComplete="off" className={classes.signInForm}>
+            <Hidden smUp>
+              <div className={classes.mobileFormHeaderContainer}>
+                <Typography variant="h4" className={classes.mobileFormHeader}>
+                  Let It Fly!
+                </Typography>
+                <Divider />
+              </div>
+            </Hidden>
             <TextField
               label="Email"
               variant="outlined"
@@ -51,7 +61,8 @@ const SignIn: FunctionComponent<Props> = (props) => {
                 color="primary"
                 className={classes.controlsContainerButton}
               >
-                Sign In to Enter Application
+                <Hidden smDown>Sign In to Enter Application</Hidden>
+                <Hidden smUp>Sign In</Hidden>
               </Button>
               <Typography
                 variant="body1"
@@ -64,7 +75,13 @@ const SignIn: FunctionComponent<Props> = (props) => {
               </Button>
             </div>
             <div>
-              <Button color="primary" className={classes.forgotPasswordButton}>
+              <Button
+                color="primary"
+                className={clsx(
+                  classes.forgotPasswordButton,
+                  classes.controlsContainerButton
+                )}
+              >
                 Forgot your password?
               </Button>
             </div>
