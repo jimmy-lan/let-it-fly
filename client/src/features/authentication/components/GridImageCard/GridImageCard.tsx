@@ -16,11 +16,11 @@ import {
   Hidden,
 } from "@material-ui/core";
 import { useStyles } from "./GridImageCard.style";
+import clsx from "clsx";
 
 interface OwnProps extends CardProps {
   imageSrc: string;
   imageAlt?: string;
-  gridSpacing?: GridSpacing;
 }
 
 type Props = OwnProps;
@@ -29,20 +29,25 @@ const GridImageCard: FunctionComponent<Props> = ({
   children,
   imageSrc,
   imageAlt,
-  gridSpacing,
   ...otherProps
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
 
   return (
     <Card {...otherProps}>
-      <Grid container spacing={gridSpacing ? gridSpacing : 3}>
-        <Grid item md={7} sm={12} xs={12}>
+      <Grid container>
+        <Grid
+          item
+          md={7}
+          sm={12}
+          xs={12}
+          className={clsx(classes.container, classes.grayBackgroundContainer)}
+        >
           {children}
         </Grid>
         <Hidden smDown>
-          <Grid item md={5} className={classes.imageContainer}>
-            <img src={imageSrc} alt={imageAlt} />
+          <Grid item md={5} className={classes.container}>
+            <img className={classes.image} src={imageSrc} alt={imageAlt} />
           </Grid>
         </Hidden>
       </Grid>
