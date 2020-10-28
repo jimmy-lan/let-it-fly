@@ -70,15 +70,17 @@ const SignIn: FunctionComponent<Props> = (props) => {
           </Link>
         </div>
         <div>
-          <Button
-            color="primary"
-            className={clsx(
-              classes.forgotPasswordButton,
-              classes.controlsContainerButton
-            )}
-          >
-            Forgot your password?
-          </Button>
+          <Link to="/forgot-password">
+            <Button
+              color="primary"
+              className={clsx(
+                classes.forgotPasswordButton,
+                classes.controlsContainerButton
+              )}
+            >
+              Forgot your password?
+            </Button>
+          </Link>
         </div>
       </form>
     </AuthPageContainer>

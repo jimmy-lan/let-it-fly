@@ -5,7 +5,7 @@
  */
 
 import { RouteEntry } from "./index";
-import { SignIn, SignUp } from "../features";
+import { ForgotPassword, SignIn, SignUp } from "../features";
 
 export const authRoutes: RouteEntry[] = [
   {
@@ -15,5 +15,9 @@ export const authRoutes: RouteEntry[] = [
   {
     path: "/signup",
     Component: SignUp,
+  },
+  {
+    path: "/forgot-password",
+    Component: ForgotPassword,
   },
 ];
