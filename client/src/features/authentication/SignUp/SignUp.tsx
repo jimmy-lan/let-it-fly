@@ -58,7 +58,7 @@ const SignUp: FunctionComponent<Props> = (props) => {
           <Typography variant="body1" className={classes.controlsContainerText}>
             or
           </Typography>
-          <Link to="/signup">
+          <Link to="/login">
             <Button className={classes.controlsContainerButton}>Sign In</Button>
           </Link>
         </div>
