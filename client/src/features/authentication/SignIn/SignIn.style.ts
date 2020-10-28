@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     card: {
       width: "100%",
       maxWidth: 800,
-      borderRadius: 10,
+      borderRadius: 12,
     },
     signInForm: {
       display: "flex",
@@ -24,12 +24,24 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     signInFormContainer: {
       padding: theme.spacing(5),
+      width: "100%",
+      height: "100%",
+    },
+    emailField: {
+      marginBottom: theme.spacing(2.5),
+      width: "100%",
+    },
+    passwordField: {
+      marginBottom: theme.spacing(2),
+    },
+    userAgreementCheckbox: {
+      marginBottom: theme.spacing(2),
     },
     controlsContainer: {
       display: "flex",
       alignItem: "center",
       justifyContent: "flex-start",
-      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(1),
     },
     controlsContainerText: {
       alignSelf: "center",
@@ -38,6 +50,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     controlsContainerButton: {
       textTransform: "none",
+    },
+    forgotPasswordButton: {
+      padding: theme.spacing(1),
     },
   })
 );

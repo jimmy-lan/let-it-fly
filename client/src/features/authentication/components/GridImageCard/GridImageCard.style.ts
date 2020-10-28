@@ -13,7 +13,7 @@ export const useStyles = makeStyles(
       width: "100%",
     },
     image: {
-      width: 200,
+      width: 240,
     },
   })
 );

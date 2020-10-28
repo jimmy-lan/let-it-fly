@@ -16,6 +16,7 @@ import {
 import { GridImageCard } from "../components/GridImageCard";
 import { useStyles } from "./SignIn.style";
 import authenticationImage from "../../../images/authentication-image.jpg";
+import clsx from "clsx";
 
 interface OwnProps {}
 
@@ -29,11 +30,20 @@ const SignIn: FunctionComponent<Props> = (props) => {
       <GridImageCard imageSrc={authenticationImage} className={classes.card}>
         <div className={classes.signInFormContainer}>
           <form autoComplete="off" className={classes.signInForm}>
-            <TextField label="Email" variant="outlined" />
-            <TextField label="Password" variant="outlined" />
+            <TextField
+              label="Email"
+              variant="outlined"
+              className={classes.emailField}
+            />
+            <TextField
+              label="Password"
+              variant="outlined"
+              className={classes.passwordField}
+            />
             <FormControlLabel
               control={<Checkbox checked={true} />}
               label="I have read and agree to User Agreement."
+              className={classes.userAgreementCheckbox}
             />
             <div className={classes.controlsContainer}>
               <Button
@@ -51,6 +61,11 @@ const SignIn: FunctionComponent<Props> = (props) => {
               </Typography>
               <Button className={classes.controlsContainerButton}>
                 Sign Up
+              </Button>
+            </div>
+            <div>
+              <Button color="primary" className={classes.forgotPasswordButton}>
+                Forgot your password?
               </Button>
             </div>
           </form>
