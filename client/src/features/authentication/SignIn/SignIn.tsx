@@ -19,6 +19,7 @@ import { GridImageCard } from "../components/GridImageCard";
 import { useStyles } from "./SignIn.style";
 import authenticationImage from "../../../images/authentication-image.jpg";
 import clsx from "clsx";
+import { Link } from "../../../common";
 
 interface OwnProps {}
 
@@ -70,9 +71,11 @@ const SignIn: FunctionComponent<Props> = (props) => {
               >
                 or
               </Typography>
-              <Button className={classes.controlsContainerButton}>
-                Sign Up
-              </Button>
+              <Link to="/signup">
+                <Button className={classes.controlsContainerButton}>
+                  Sign Up
+                </Button>
+              </Link>
             </div>
             <div>
               <Button
