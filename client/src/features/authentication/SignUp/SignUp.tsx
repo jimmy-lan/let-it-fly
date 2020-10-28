@@ -16,6 +16,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Link } from "../../../common/components/RouteComponents";
+import { GrayOutArea } from "../components/GridImageCard";
 
 interface OwnProps {}
 
@@ -24,7 +25,7 @@ type Props = OwnProps;
 const SignUp: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   return (
-    <AuthPageContainer>
+    <AuthPageContainer grayOutArea={GrayOutArea.right}>
       <form autoComplete="off" className={classes.signUpForm}>
         <TextField
           variant="outlined"

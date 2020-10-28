@@ -11,13 +11,11 @@ import {
   Divider,
   FormControlLabel,
   Hidden,
-  Paper,
   TextField,
   Typography,
 } from "@material-ui/core";
-import { GridImageCard } from "../components/GridImageCard";
+import { GrayOutArea } from "../components/GridImageCard";
 import { useStyles } from "./SignIn.style";
-import authenticationImage from "../../../images/authentication-image.jpg";
 import clsx from "clsx";
 import { Link } from "../../../common";
 import { AuthPageContainer } from "../components/AuthPageContainer";
@@ -30,7 +28,7 @@ const SignIn: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
 
   return (
-    <AuthPageContainer>
+    <AuthPageContainer grayOutArea={GrayOutArea.left}>
       <form autoComplete="off" className={classes.signInForm}>
         <Hidden smUp>
           <div className={classes.mobileFormHeaderContainer}>

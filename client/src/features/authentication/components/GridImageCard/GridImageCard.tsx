@@ -14,32 +14,44 @@ import clsx from "clsx";
 interface OwnProps extends CardProps {
   imageSrc: string;
   imageAlt?: string;
+  grayOutArea: GrayOutArea;
 }
 
 type Props = OwnProps;
+
+export enum GrayOutArea {
+  left,
+  right,
+  none,
+}
 
 const GridImageCard: FunctionComponent<Props> = ({
   children,
   imageSrc,
   imageAlt,
+  grayOutArea,
   ...otherProps
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
 
+  // classes for left and right grid cell
+  const leftClasses = [
+    classes.container,
+    grayOutArea === GrayOutArea.left ? classes.grayBackgroundContainer : null,
+  ];
+  const rightClasses = [
+    classes.container,
+    grayOutArea === GrayOutArea.right ? classes.grayBackgroundContainer : null,
+  ];
+
   return (
     <Card {...otherProps}>
       <Grid container>
-        <Grid
-          item
-          md={7}
-          sm={12}
-          xs={12}
-          className={clsx(classes.container, classes.grayBackgroundContainer)}
-        >
+        <Grid item md={7} sm={12} xs={12} className={clsx(leftClasses)}>
           {children}
         </Grid>
         <Hidden smDown>
-          <Grid item md={5} className={classes.container}>
+          <Grid item md={5} className={clsx(rightClasses)}>
             <img className={classes.image} src={imageSrc} alt={imageAlt} />
           </Grid>
         </Hidden>

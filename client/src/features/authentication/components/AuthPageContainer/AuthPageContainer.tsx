@@ -8,21 +8,28 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { Paper } from "@material-ui/core";
 
-import { GridImageCard } from "../GridImageCard";
+import { GrayOutArea, GridImageCard } from "../GridImageCard";
 import authenticationImage from "../../../../images/authentication-image.jpg";
 import { useStyles } from "./AuthPageContainer.style";
 
-interface OwnProps {}
+interface OwnProps {
+  grayOutArea: GrayOutArea;
+}
 
 type Props = OwnProps;
 
 const AuthPageContainer: FunctionComponent<Props> = ({
+  grayOutArea,
   children,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
   return (
     <Paper className={classes.root}>
-      <GridImageCard imageSrc={authenticationImage} className={classes.card}>
+      <GridImageCard
+        grayOutArea={grayOutArea}
+        imageSrc={authenticationImage}
+        className={classes.card}
+      >
         <div className={classes.container}>{children}</div>
       </GridImageCard>
     </Paper>
