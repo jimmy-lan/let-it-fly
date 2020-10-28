@@ -8,6 +8,8 @@ import { AuthPageContainer } from "../components/AuthPageContainer";
 import { GrayOutArea } from "../components/GridImageCard";
 import { useStyles } from "./ForgotPassword.style";
 import { TextField, Typography } from "@material-ui/core";
+import { ControlButtons } from "../components/ControlButtons";
+import { useHistory } from "../../../hooks/useHistory";
 
 interface OwnProps {}
 
@@ -15,6 +17,12 @@ type Props = OwnProps;
 
 const ForgotPassword: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleSignInClick = () => {
+    history.push("/login");
+  };
+
   return (
     <AuthPageContainer grayOutArea={GrayOutArea.left}>
       <form autoComplete="off" className={classes.forgotPasswordForm}>
@@ -26,9 +34,14 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
           variant="outlined"
           className={classes.emailField}
         />
-        <Typography variant="body1">
+        <Typography variant="body1" className={classes.titleText}>
           An email with a password rest link will be sent to you shortly.
         </Typography>
+        <ControlButtons
+          primaryButtonText="Reset Password"
+          secondaryButtonText="Sign In"
+          handleSecondaryButtonClick={handleSignInClick}
+        />
       </form>
     </AuthPageContainer>
   );

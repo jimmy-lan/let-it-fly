@@ -20,6 +20,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(2),
     },
     forgotPasswordButton: {
+      textTransform: "none",
       padding: theme.spacing(1),
     },
     mobileFormHeaderContainer: {
