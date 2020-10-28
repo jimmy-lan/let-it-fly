@@ -5,29 +5,14 @@
  */
 
 import React, { FunctionComponent } from "react";
-import { createStyles, Paper } from "@material-ui/core";
+import { createStyles, Paper, Theme } from "@material-ui/core";
 import { GridImageCard } from "../components/GridImageCard";
 import { makeStyles } from "@material-ui/core/styles";
+import { useStyles } from "./SignIn.style";
 
 interface OwnProps {}
 
 type Props = OwnProps;
-
-const useStyles = makeStyles(
-  createStyles({
-    root: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "100vw",
-      height: "100vh",
-      backgroundColor: "#1a2038",
-    },
-    card: {
-      width: 500,
-    },
-  })
-);
 
 const SignIn: FunctionComponent<Props> = (props) => {
   const classes = useStyles();

@@ -3,7 +3,7 @@
  * Creation Date: 2020-10-27
  * Description:
  *    A card component with grid showing an image on the right with bigger screens,
- *    and showing an image on the top with smaller screens.
+ *    and hiding the image with smaller screens sizes.
  */
 
 import React, { FunctionComponent, PropsWithChildren } from "react";
@@ -13,7 +13,9 @@ import {
   Grid,
   CardProps,
   GridSpacing,
+  Hidden,
 } from "@material-ui/core";
+import { useStyles } from "./GridImageCard.style";
 
 interface OwnProps extends CardProps {
   imageSrc: string;
@@ -30,18 +32,20 @@ const GridImageCard: FunctionComponent<Props> = ({
   gridSpacing,
   ...otherProps
 }: PropsWithChildren<Props>) => {
+  const classes = useStyles();
+
   return (
     <Card {...otherProps}>
-      <CardContent>
-        <Grid container spacing={gridSpacing ? gridSpacing : 2}>
-          <Grid item md={7}>
-            {children}
-          </Grid>
-          <Grid item md={5}>
+      <Grid container spacing={gridSpacing ? gridSpacing : 3}>
+        <Grid item md={7} sm={12} xs={12}>
+          {children}
+        </Grid>
+        <Hidden smDown>
+          <Grid item md={5} className={classes.imageContainer}>
             <img src={imageSrc} alt={imageAlt} />
           </Grid>
-        </Grid>
-      </CardContent>
+        </Hidden>
+      </Grid>
     </Card>
   );
 };
