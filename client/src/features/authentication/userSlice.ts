@@ -7,7 +7,7 @@
  */
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserRole } from "../../services/serverApi/models";
+import { UserRole } from "../../services/serverApi";
 import {
   AuthResponse,
   signIn as signInRequest,
@@ -17,13 +17,28 @@ import {
 import { AppThunk } from "../../app/store";
 
 export interface UserState {
-  /** If token is null or empty, user is not authenticated */
-  token: string | null;
-  error: string | null;
-  email?: string;
+  /** If token or email is empty, user is not authenticated */
+  token: string;
+  email: string;
+  error?: UserErrorObject;
   role?: UserRole;
   avatarLink?: string;
   coins?: number;
+}
+
+export interface UserErrorObject {
+  /**
+   * Error coming from server
+   */
+  server?: string;
+  /**
+   * Error coming from client-side validation
+   */
+  validation?: {
+    emailField?: string;
+    passwordField?: string;
+    agreementField?: string;
+  };
 }
 
 export interface AuthPayload {
@@ -35,8 +50,8 @@ export interface AuthPayload {
 }
 
 const initialState: UserState = {
-  token: null,
-  error: null,
+  token: "",
+  email: "",
 };
 
 const userSlice = createSlice({
@@ -63,12 +78,12 @@ const userSlice = createSlice({
     },
     setError: (
       state: UserState,
-      { payload: { message } }: PayloadAction<{ message: string }>
+      { payload }: PayloadAction<UserErrorObject>
     ) => {
-      state.error = message;
+      state.error = payload;
     },
     clearError: (state: UserState) => {
-      state.error = null;
+      delete state.error;
     },
   },
 });
@@ -93,11 +108,11 @@ export const authenticateAsync = (
       dispatch(clearError());
     } else {
       if (response.errorMessage) {
-        dispatch(setError({ message: response.errorMessage }));
+        dispatch(setError({ server: response.errorMessage }));
       } else {
         dispatch(
           setError({
-            message: "Authentication not successful due to unknown error.",
+            server: "Authentication not successful due to unknown error.",
           })
         );
       }
@@ -105,7 +120,7 @@ export const authenticateAsync = (
   } catch (error) {
     console.error(error);
     dispatch(
-      setError({ message: "Sorry, we cannot handle your request right now." })
+      setError({ server: "Sorry, we cannot handle your request right now." })
     );
   }
 };
@@ -117,7 +132,7 @@ export const signOutAsync = (): AppThunk => async (dispatch) => {
   } catch (error) {
     console.error(error);
     dispatch(
-      setError({ message: "Sorry, we cannot handle your request right now." })
+      setError({ server: "Sorry, we cannot handle your request right now." })
     );
   }
 };

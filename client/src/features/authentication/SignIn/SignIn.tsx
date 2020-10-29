@@ -9,7 +9,9 @@ import {
   Button,
   Checkbox,
   Divider,
+  FormControl,
   FormControlLabel,
+  FormHelperText,
   Hidden,
   TextField,
   Typography,
@@ -22,7 +24,13 @@ import { ControlButtons } from "../components/ControlButtons";
 import { useHistory } from "../../../hooks/useHistory";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import { changeEmail } from "../userSlice";
+import {
+  changeEmail,
+  setError,
+  clearError,
+  UserErrorObject,
+} from "../userSlice";
+import { isEmailPattern } from "../../../common/util";
 
 interface OwnProps {}
 
@@ -40,8 +48,35 @@ const SignIn: FunctionComponent<Props> = (props) => {
   // (1) I don't want passwords to be persisted across browsing session, and
   // (2) passwords should be page-specific, this means the user should re-enter the password if
   // he or she goes to another page.
-  const [password, setPassword] = useState<string | undefined>(undefined);
-  const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(true);
+  const [password, setPassword] = useState<string>("");
+  const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(false);
+  const validationError = useSelector(
+    (state: RootState) => state.userAuth.error?.validation
+  );
+
+  const handleSignInClick = () => {
+    dispatch(clearError());
+    let errorObject: UserErrorObject = {};
+    errorObject.validation = {};
+
+    if (!isAgreeUserAgreement) {
+      errorObject.validation.agreementField =
+        "By using the Let It Fly website, you must agree to User Agreement.";
+    }
+
+    if (!email || !isEmailPattern(email)) {
+      errorObject.validation.emailField = "Please enter a valid email address.";
+    }
+
+    if (!password) {
+      errorObject.validation.passwordField = "Please enter a password string.";
+    }
+
+    if (errorObject.validation) {
+      dispatch(setError(errorObject));
+      return;
+    }
+  };
 
   const handleSignUpClick = () => {
     history.push("/signup");
@@ -74,6 +109,9 @@ const SignIn: FunctionComponent<Props> = (props) => {
           label="Email"
           type="email"
           variant="outlined"
+          // Display error if validationError?.emailField exists
+          error={!!validationError?.emailField}
+          helperText={validationError?.emailField}
           value={email}
           onChange={handleEmailChange}
           className={classes.emailField}
@@ -82,20 +120,31 @@ const SignIn: FunctionComponent<Props> = (props) => {
           label="Password"
           type="password"
           variant="outlined"
+          // Display error if validationError?.passwordField exists
+          error={!!validationError?.passwordField}
+          helperText={validationError?.passwordField}
           value={password}
           onChange={handlePasswordChange}
           className={classes.passwordField}
         />
-        <FormControlLabel
-          control={<Checkbox checked={isAgreeUserAgreement} />}
-          label="I have read and agree to User Agreement."
+        <FormControl
           className={classes.userAgreementCheckbox}
-          onClick={handleUserAgreementCheckboxClick}
-        />
+          // Display error if validationError?.agreementField exists
+          error={!!validationError?.agreementField}
+        >
+          <FormControlLabel
+            control={<Checkbox checked={isAgreeUserAgreement} />}
+            label="I have read and agree to User Agreement."
+            onClick={handleUserAgreementCheckboxClick}
+          />
+          <FormHelperText>{validationError?.agreementField}</FormHelperText>
+        </FormControl>
+
         <ControlButtons
           primaryButtonText="Sign In to Enter Application"
           primaryButtonTextMobile="Sign In"
           secondaryButtonText="Sign Up"
+          handlePrimaryButtonClick={handleSignInClick}
           handleSecondaryButtonClick={handleSignUpClick}
         />
         <div>

@@ -31,10 +31,8 @@ const SignUp: FunctionComponent<Props> = (props) => {
   // (1) I don't want passwords to be persisted across browsing session, and
   // (2) passwords should be page-specific, this means the user should re-enter the password if
   // he or she goes to another page.
-  const [password, setPassword] = useState<string | undefined>(undefined);
-  const [confirmedPassword, setConfirmedPassword] = useState<
-    string | undefined
-  >(undefined);
+  const [password, setPassword] = useState<string>("");
+  const [confirmedPassword, setConfirmedPassword] = useState<string>("");
 
   const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(true);
 
