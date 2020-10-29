@@ -11,12 +11,12 @@ import { UserRole } from "../services/serverApi";
 
 export const userRoutes: RouteEntry[] = [
   {
-    path: "/my",
+    path: "/",
     Component: AppFrame,
     isProtected: [UserRole.user],
     children: [
       {
-        path: "/my",
+        path: "/",
         Component: DummyText,
         exact: true,
       },

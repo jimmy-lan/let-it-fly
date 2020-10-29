@@ -4,18 +4,10 @@
  * Description: Sign up page for the app.
  */
 
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { AuthPageContainer } from "../components/AuthPageContainer";
 import { useStyles } from "./SignUp.style";
-import {
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Hidden,
-  TextField,
-  Typography,
-} from "@material-ui/core";
-import { Link } from "../../../common/components/RouteComponents";
+import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
 import { GrayOutArea } from "../components/GridImageCard";
 import { useHistory } from "../../../hooks/useHistory";
 import { ControlButtons } from "../components/ControlButtons";
@@ -27,9 +19,14 @@ type Props = OwnProps;
 const SignUp: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   const history = useHistory();
+  const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(false);
 
   const handleSignInClick = () => {
     history.push("/login");
+  };
+
+  const handleUserAgreementCheckboxClick = () => {
+    setAgreeUserAgreement(!isAgreeUserAgreement);
   };
 
   return (
@@ -38,22 +35,26 @@ const SignUp: FunctionComponent<Props> = (props) => {
         <TextField
           variant="outlined"
           label="Email"
+          type="email"
           className={classes.emailField}
         />
         <TextField
           variant="outlined"
           label="Password"
+          type="password"
           className={classes.passwordField}
         />
         <TextField
           variant="outlined"
           label="Confirm Password"
+          type="password"
           className={classes.confirmPasswordField}
         />
         <FormControlLabel
-          control={<Checkbox checked={true} />}
+          control={<Checkbox checked={isAgreeUserAgreement} />}
           label="I have read and agree to User Agreement."
           className={classes.userAgreementCheckbox}
+          onClick={handleUserAgreementCheckboxClick}
         />
         <ControlButtons
           primaryButtonText="Sign Up to Let It Fly"

@@ -4,7 +4,7 @@
  * Description: Sign in page of the app.
  */
 
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import {
   Button,
   Checkbox,
@@ -16,7 +16,6 @@ import {
 } from "@material-ui/core";
 import { GrayOutArea } from "../components/GridImageCard";
 import { useStyles } from "./SignIn.style";
-import clsx from "clsx";
 import { Link } from "../../../common";
 import { AuthPageContainer } from "../components/AuthPageContainer";
 import { ControlButtons } from "../components/ControlButtons";
@@ -29,9 +28,14 @@ type Props = OwnProps;
 const SignIn: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   const history = useHistory();
+  const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(false);
 
   const handleSignUpClick = () => {
     history.push("/signup");
+  };
+
+  const handleUserAgreementCheckboxClick = () => {
+    setAgreeUserAgreement(!isAgreeUserAgreement);
   };
 
   return (
@@ -48,15 +52,22 @@ const SignIn: FunctionComponent<Props> = (props) => {
         <TextField
           label="Email"
           variant="outlined"
+          type="email"
           className={classes.emailField}
         />
         <TextField
           label="Password"
           variant="outlined"
+          type="password"
           className={classes.passwordField}
         />
         <FormControlLabel
-          control={<Checkbox checked={true} />}
+          control={
+            <Checkbox
+              checked={isAgreeUserAgreement}
+              onClick={handleUserAgreementCheckboxClick}
+            />
+          }
           label="I have read and agree to User Agreement."
           className={classes.userAgreementCheckbox}
         />
