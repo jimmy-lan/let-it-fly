@@ -10,7 +10,7 @@ import { ServerResponse, UserRole } from "./models";
  * A response returned from sign in or sign up actions
  */
 export interface AuthResponse extends ServerResponse {
-  data: {
+  data?: {
     token: string;
     email: string;
     role: UserRole;
@@ -31,17 +31,21 @@ const fakeToken =
  * @param password user password
  */
 export const signIn = (email: string, password: string) => {
+  // const response: AuthResponse = {
+  //   success: true,
+  //   data: {
+  //     token: fakeToken,
+  //     email,
+  //     role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
+  //     avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
+  //     coins: 1000,
+  //   },
+  // };
   const response: AuthResponse = {
-    success: true,
-    data: {
-      token: fakeToken,
-      email,
-      role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
-      avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
-      coins: 1000,
-    },
+    success: false,
+    errorMessage: "You were banned from the server.",
   };
-  return getFakeServerCall(response, 0.5);
+  return getFakeServerCall(response, 2);
 };
 
 /**

@@ -23,6 +23,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       textTransform: "none",
       padding: theme.spacing(1),
     },
+    alertBox: {
+      marginBottom: theme.spacing(2),
+    },
     mobileFormHeaderContainer: {
       marginBottom: theme.spacing(2.5),
     },

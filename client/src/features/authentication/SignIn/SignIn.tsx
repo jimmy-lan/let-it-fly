@@ -29,8 +29,12 @@ import {
   setError,
   clearError,
   UserErrorObject,
+  authenticateAsync,
 } from "../userSlice";
 import { isEmailPattern } from "../../../common/util";
+import { signIn } from "../../../services/serverApi";
+import { useLocation } from "react-router-dom";
+import { Alert } from "@material-ui/lab";
 
 interface OwnProps {}
 
@@ -41,6 +45,11 @@ const SignIn: FunctionComponent<Props> = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  // location where the user was redirected from
+  const {
+    state: { from },
+  } = useLocation();
+
   // User email is sent to redux store because this syncs the email across
   // the different authentication pages: SignIn, SignUp, and ForgotPassword
   const email = useSelector((state: RootState) => state.userAuth.email);
@@ -50,11 +59,13 @@ const SignIn: FunctionComponent<Props> = (props) => {
   // he or she goes to another page.
   const [password, setPassword] = useState<string>("");
   const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(false);
-  const validationError = useSelector(
-    (state: RootState) => state.userAuth.error?.validation
-  );
 
-  const handleSignInClick = () => {
+  const error = useSelector((state: RootState) => state.userAuth.error);
+  const validationError = error?.validation;
+  const serverError = error?.server;
+
+  const handleSignInClick = async () => {
+    // validate inputs
     dispatch(clearError());
     let errorObject: UserErrorObject = {};
     errorObject.validation = {};
@@ -72,10 +83,17 @@ const SignIn: FunctionComponent<Props> = (props) => {
       errorObject.validation.passwordField = "Please enter a password string.";
     }
 
-    if (errorObject.validation) {
+    if (Object.keys(errorObject.validation).length > 0) {
       dispatch(setError(errorObject));
       return;
     }
+
+    // sign in user
+    await dispatch(authenticateAsync(email, password, signIn));
+
+    // If authentication fails, the user will be pushed back to log in by ProtectedRoute component,
+    // and serverError will be set to the correct error message
+    history.push(from || "/my");
   };
 
   const handleSignUpClick = () => {
@@ -105,6 +123,11 @@ const SignIn: FunctionComponent<Props> = (props) => {
             <Divider />
           </div>
         </Hidden>
+        {serverError ? (
+          <Alert severity="error" className={classes.alertBox}>
+            {serverError}
+          </Alert>
+        ) : null}
         <TextField
           label="Email"
           type="email"

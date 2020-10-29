@@ -17,7 +17,7 @@ import {
 import { AppThunk } from "../../app/store";
 
 export interface UserState {
-  /** If token or email is empty, user is not authenticated */
+  /** If token is empty, user is not authenticated */
   token: string;
   email: string;
   error?: UserErrorObject;
@@ -101,27 +101,29 @@ export const authenticateAsync = (
   password: string,
   authFunc: typeof signInRequest | typeof signUpRequest
 ): AppThunk => async (dispatch) => {
+  let response: AuthResponse;
   try {
-    const response: AuthResponse = await authFunc(email, password);
-    if (response.success) {
-      dispatch(authenticate(response.data));
-      dispatch(clearError());
-    } else {
-      if (response.errorMessage) {
-        dispatch(setError({ server: response.errorMessage }));
-      } else {
-        dispatch(
-          setError({
-            server: "Authentication not successful due to unknown error.",
-          })
-        );
-      }
-    }
+    response = await authFunc(email, password);
   } catch (error) {
     console.error(error);
     dispatch(
       setError({ server: "Sorry, we cannot handle your request right now." })
     );
+    return;
+  }
+  if (response.success) {
+    dispatch(authenticate(response.data!));
+    dispatch(clearError());
+  } else {
+    if (response.errorMessage) {
+      dispatch(setError({ server: response.errorMessage }));
+    } else {
+      dispatch(
+        setError({
+          server: "Authentication not successful due to unknown error.",
+        })
+      );
+    }
   }
 };
 
