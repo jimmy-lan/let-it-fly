@@ -9,7 +9,7 @@ import React, { FunctionComponent, PropsWithChildren } from "react";
 import { Paper } from "@material-ui/core";
 
 import { GrayOutArea, GridImageCard } from "../GridImageCard";
-import authenticationImage from "../../../../images/authentication-image.jpg";
+import authenticationImage from "../../../../images/authentication-image.png";
 import { useStyles } from "./AuthPageContainer.style";
 
 interface OwnProps {
