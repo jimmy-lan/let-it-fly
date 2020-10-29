@@ -3,13 +3,16 @@
  * Creation Date: 2020-10-28
  * Description: Forgot password page for the app.
  */
-import React, { FunctionComponent } from "react";
+import React, { ChangeEvent, FunctionComponent } from "react";
 import { AuthPageContainer } from "../components/AuthPageContainer";
 import { GrayOutArea } from "../components/GridImageCard";
 import { useStyles } from "./ForgotPassword.style";
 import { TextField, Typography } from "@material-ui/core";
 import { ControlButtons } from "../components/ControlButtons";
 import { useHistory } from "../../../hooks/useHistory";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../app/store";
+import { changeEmail } from "../userSlice";
 
 interface OwnProps {}
 
@@ -18,6 +21,13 @@ type Props = OwnProps;
 const ForgotPassword: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const email = useSelector((state: RootState) => state.userAuth.email);
+
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeEmail(e.target.value));
+  };
 
   const handleSignInClick = () => {
     history.push("/login");
@@ -32,6 +42,8 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
         <TextField
           label="Email"
           variant="outlined"
+          value={email}
+          onChange={handleEmailChange}
           className={classes.emailField}
         />
         <Typography variant="body1" className={classes.titleText}>

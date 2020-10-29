@@ -55,6 +55,9 @@ const userSlice = createSlice({
       state.avatarLink = avatarLink;
       state.coins = coins;
     },
+    changeEmail: (state: UserState, { payload }: PayloadAction<string>) => {
+      state.email = payload;
+    },
     signOut: (state: UserState) => {
       return initialState;
     },
@@ -72,6 +75,7 @@ const userSlice = createSlice({
 
 export const {
   authenticate,
+  changeEmail,
   setError,
   clearError,
   signOut,
