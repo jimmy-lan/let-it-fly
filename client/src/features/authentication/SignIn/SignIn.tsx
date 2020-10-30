@@ -23,11 +23,10 @@ import { AuthPageContainer } from "../components/AuthPageContainer";
 import { ControlButtons } from "../components/ControlButtons";
 import { useHistory } from "../../../hooks/useHistory";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
+import { RootState, store } from "../../../app/store";
 import {
   changeEmail,
   setError,
-  clearError,
   UserErrorObject,
   authenticateAsync,
 } from "../userSlice";
@@ -35,6 +34,7 @@ import { isEmailPattern } from "../../../common/util";
 import { signIn } from "../../../services/serverApi";
 import { useLocation } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
+import { useError } from "../hooks";
 
 interface OwnProps {}
 
@@ -55,11 +55,9 @@ const SignIn: FunctionComponent<Props> = (props) => {
   // (1) I don't want passwords to be persisted during the entire browsing session, and
   // (2) the user should re-enter the password if åhe or she goes to another page.
   const [password, setPassword] = useState<string>("");
-  const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(false);
+  const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(true);
 
-  const error = useSelector((state: RootState) => state.userAuth.error);
-  const validationError = error?.validation;
-  const serverError = error?.server;
+  const [validationError, serverError] = useError();
 
   // Determines whether the component is waiting for API response
   const [isLoading, setLoading] = useState(false);
@@ -97,8 +95,10 @@ const SignIn: FunctionComponent<Props> = (props) => {
 
     setLoading(false);
 
-    // If authentication fails, the user will be pushed back to log in by ProtectedRoute component,
-    // and serverError will be set to the correct error message
+    if (store.getState().userAuth.error?.server) {
+      return;
+    }
+
     history.push(state?.from || "/my");
   };
 
@@ -178,7 +178,11 @@ const SignIn: FunctionComponent<Props> = (props) => {
         />
         <div>
           <Link to="/forgot-password">
-            <Button color="primary" className={classes.forgotPasswordButton}>
+            <Button
+              color="primary"
+              className={classes.forgotPasswordButton}
+              disabled={isLoading}
+            >
               Forgot your password?
             </Button>
           </Link>

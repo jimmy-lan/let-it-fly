@@ -6,7 +6,13 @@
  *    and rendering purposes.
  */
 
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  PayloadAction,
+  ThunkDispatch,
+  Action,
+  CombinedState,
+} from "@reduxjs/toolkit";
 import { UserRole } from "../../services/serverApi";
 import {
   AuthResponse,
@@ -37,6 +43,7 @@ export interface UserErrorObject {
   validation?: {
     emailField?: string;
     passwordField?: string;
+    confirmPasswordField?: string;
     agreementField?: string;
   };
 }
@@ -96,6 +103,16 @@ export const {
   signOut,
 } = userSlice.actions;
 
+const handleServerError = (
+  dispatch: ThunkDispatch<CombinedState<unknown>, unknown, Action<string>>,
+  error: string
+) => {
+  console.error(error);
+  dispatch(
+    setError({ server: "Sorry, we cannot handle your request right now." })
+  );
+};
+
 export const authenticateAsync = (
   email: string,
   password: string,
@@ -105,15 +122,12 @@ export const authenticateAsync = (
   try {
     response = await authFunc(email, password);
   } catch (error) {
-    console.error(error);
-    dispatch(
-      setError({ server: "Sorry, we cannot handle your request right now." })
-    );
-    return;
+    handleServerError(dispatch, error);
+    return error;
   }
   if (response.success) {
-    dispatch(authenticate(response.data!));
     dispatch(clearError());
+    dispatch(authenticate(response.data!));
   } else {
     if (response.errorMessage) {
       dispatch(setError({ server: response.errorMessage }));
@@ -130,13 +144,12 @@ export const authenticateAsync = (
 export const signOutAsync = (): AppThunk => async (dispatch) => {
   try {
     await signOutRequest();
-    dispatch(signOut());
   } catch (error) {
-    console.error(error);
-    dispatch(
-      setError({ server: "Sorry, we cannot handle your request right now." })
-    );
+    handleServerError(dispatch, error);
+    return;
   }
+
+  dispatch(signOut());
 };
 
 export default userSlice.reducer;
