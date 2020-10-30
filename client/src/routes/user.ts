@@ -12,6 +12,7 @@ import { Home, DummyText } from "../features";
 export const userRoutes: RouteEntry[] = [
   {
     path: "/",
+    exact: true,
     Component: Home,
   },
   {
