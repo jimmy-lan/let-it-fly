@@ -6,8 +6,7 @@
 
 import { RouteEntry } from "./index";
 import { AppFrame } from "../common/components";
-import { DummyText } from "../features/testComponent/DummyText";
-import UserTbale1 from '../features/testComponent/UserTable1';
+import UserTbale1 from '../features/adminPage/UserTable1';
 import { UserRole } from "../services/serverApi";
 import { Home, DummyText } from "../features";
 
