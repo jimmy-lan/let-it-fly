@@ -10,21 +10,4 @@ import UserTable1 from '../features/adminPage/UserTable1';
 import { UserRole } from '../services/serverApi';
 import { Home, DummyText } from '../features';
 
-export const userRoutes: RouteEntry[] = [
-  {
-    path: "/",
-    Component: Home,
-  },
-  {
-    path: "/my",
-    Component: AppFrame,
-    isProtected: [UserRole.user],
-    children: [
-      {
-        path: "/my/table",
-        Component: UserTable1,
-        exact: true,
-      },
-    ],
-  },
-];
+export const userRoutes: RouteEntry[] = [];
