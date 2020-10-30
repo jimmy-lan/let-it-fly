@@ -5,8 +5,8 @@
 > Creation Date: 2020-10-26
 
 To configure routes, go to one of the existing files and add your route,
-or start a new configuration file by exporting an array of `RouteEntry`.
-If you are starting a new route configuration file, make sure to add your
+or create a new configuration file by exporting an array of `RouteEntry`.
+If you are creating a new route configuration file, make sure to add your
 array to the `routes` array in `index.ts` so that your route is properly
 exported to the processor.
 
@@ -57,23 +57,39 @@ export interface RouteEntry {
 
 For a given path, or url, **only** the first route entry matched
 will be rendered. That is, routes that come after it, although
-that route may match, will not be rendered.
+they may match, will not be rendered.
 
-Remember we are referring to the big `routes` object found in `index.ts`
-in this directory. Therefore, the way that you concat the routes can have
-an effect on what route will be rendered on the screen.
+Remember the processor will only concern about the big `routes` array found in `index.ts`
+in this directory. Therefore, the way that you concat the routes inside of the `routes` array
+can have an effect on what route will be rendered on the screen.
 
-To create a fallback `404` route, add a route that matches everything
-at the end of the big `routes` object.
+Route configuration supports ambiguous matches and generic matches. In particular, the following
+route entry
+```typescript
+{
+  path: "*",
+  Component: MatchesEverywhereComponent
+}
+```
+will match every path, and 
+```typescript
+{
+  path: "/friends/:friendId",
+  Component: FriendsComponent
+}
+```
+will match all routes going to `"/friends/..."`.
+You can obtain the path parameter using one of the provided hooks.
+More information on this to come.
 
 ### Notes on Children Routes
 
 You should only specify a list of children routes when the rendering of
 children components _depends_ on the rendering of parent component.
 That is, the child component cannot be independently rendered on the screen
-without some render of the parent component.
+without some rendering of the parent component.
 
-When you specify children routes, you will receive a prop `routes` in your parent
+When you configure children routes, you will receive a prop `routes` in your parent
 component, and a React hook `useRenderRoutes` is provided to you
 for your convenience.
 
@@ -91,15 +107,97 @@ interface OwnProps {
 type Props = OwnProps;
 
 const Example: FunctionComponent<Props> = (props) => {
-  const { renderRoutes } = useRenderRoutes();
+  const { renderRoutes } = useRenderRoutes(props.routes);
   return (
     <div>
       <h1>My fancy parent component</h1>
       {/*Call renderRoutes with the passed in
        routes at the place where
        you want to render children routes.*/}
-      {renderRoutes(props.routes)}
+      {renderRoutes()}
     </div>
   );
 };
 ```
+
+### Route Inheritance
+
+The `isProtected` attribute of route entries can inherit to children components.
+In particular, the inheritance follows the following rules:
+
+1. If the parent has a specified `isProtected` array, and the child does not have a
+`isProtected` associating with it, then the child inherits the `isProtected` property
+automatically from the parent component.
+
+**Example**
+```typescript
+{
+  path: "/parent",
+  Component: ParentComponent,
+  isProtected: [UserRole.admin]
+  children: [
+    {
+      path: "/parent/child",
+      Component: ChildComponent
+    }
+  ]
+}
+```
+
+In the above case, the child component is only accessible if the user is `UserRole.admin`.
+
+2. If the parent has a specified `isProtected` array, but the child also has a
+`isProtected` attribute associating with it, and the `isProtected` attribute overlaps
+with the parent `isProtected` array, then the children has an `isProtected` value to
+the overlapping roles.
+
+**Example**
+```typescript
+{
+  path: "/parent",
+  Component: ParentComponent,
+  isProtected: [UserRole.admin, UserRole.user]
+  children: [
+    {
+      path: "/parent/child",
+      Component: ChildComponent,
+      isProtected: [UserRole.user]
+    }
+  ]
+}
+```
+
+In the above case, the `ChildComponent` will only render if the user has role `UserRole.admin`.
+
+3. If the parent has a `isProtected` value set, but the child has a completely different
+`isProtected` array such that both `isProtected` arrays do not overlap.
+Then, the route entry corresponding to the child component is discarded and ignored.
+
+**Example**
+```typescript
+{
+  path: "/parent",
+  Component: ParentComponent,
+  isProtected: [UserRole.user]
+  children: [
+    {
+      path: "/parent/child",
+      Component: ChildComponent,
+      isProtected: [UserRole.admin]
+    }
+  ]
+}
+```
+
+In the above case, the configuration is equivalent to
+```typescript
+{
+  path: "/parent",
+  Component: ParentComponent,
+  isProtected: [UserRole.user]
+  children: []
+}
+```
+
+As you can see, the children entry is ignored and will not be rendered 
+on the screen.
