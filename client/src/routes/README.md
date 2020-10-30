@@ -107,14 +107,14 @@ interface OwnProps {
 type Props = OwnProps;
 
 const Example: FunctionComponent<Props> = (props) => {
-  const { renderRoutes } = useRenderRoutes();
+  const { renderRoutes } = useRenderRoutes(props.routes);
   return (
     <div>
       <h1>My fancy parent component</h1>
       {/*Call renderRoutes with the passed in
        routes at the place where
        you want to render children routes.*/}
-      {renderRoutes(props.routes)}
+      {renderRoutes()}
     </div>
   );
 };
