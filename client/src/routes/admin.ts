@@ -16,16 +16,16 @@ import { RouteEntry } from './index';
 
 export const adminRoutes: RouteEntry[] = [
   {
-    path: "/",
+    path: '/',
     Component: Home,
     isProtected: [UserRole.admin],
   },
   {
-    path: "/my",
+    path: '/my',
     Component: AppFrame,
     children: [
       {
-        path: "/my/table",
+        path: '/my/table',
         Component: UserTable1,
         exact: true,
       },
