@@ -7,6 +7,7 @@
 import { RouteEntry } from "./index";
 import { AppFrame } from "../common/components";
 import { DummyText } from "../features/testComponent/DummyText";
+import UserTbale1 from '../features/testComponent/UserTable1';
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -18,6 +19,11 @@ export const userRoutes: RouteEntry[] = [
         Component: DummyText,
         exact: true,
       },
+      {
+        path: "/letitfly/table",
+        Component: UserTbale1,
+        exact: true,
+      }
     ],
   },
 ];

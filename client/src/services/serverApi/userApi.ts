@@ -84,3 +84,14 @@ export const signOut = () => {
   };
   return getFakeServerCall(response, 0.5);
 };
+
+export const loadUsersTable = () =>{
+  const response: ServerResponse = {
+    success: true,
+      data:[
+        { nickname: 'Tim123', accounttype: 'Admin', email: '12213@mail.utoronto.ca', name:'Tim Kang', coins: 1200},
+        { nickname: 'TomHandsome', accounttype: 'Regular', email: '12315@mail.utoronto.ca', name:'Tom Clarsion', coins: 900},
+      ]
+  };
+  return getFakeServerCall(response, 0.5);
+}
