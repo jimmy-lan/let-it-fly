@@ -65,19 +65,23 @@ can have an effect on what route will be rendered on the screen.
 
 Route configuration supports ambiguous matches and generic matches. In particular, the following
 route entry
+
 ```typescript
 {
   path: "*",
   Component: MatchesEverywhereComponent
 }
 ```
-will match every path, and 
+
+will match every path, and
+
 ```typescript
 {
   path: "/friends/:friendId",
   Component: FriendsComponent
 }
 ```
+
 will match all routes going to `"/friends/..."`.
 You can obtain the path parameter using one of the provided hooks.
 More information on this to come.
@@ -126,10 +130,11 @@ The `isProtected` attribute of route entries can inherit to children components.
 In particular, the inheritance follows the following rules:
 
 1. If the parent has a specified `isProtected` array, and the child does not have a
-`isProtected` associating with it, then the child inherits the `isProtected` property
-automatically from the parent component.
+   `isProtected` associating with it, then the child inherits the `isProtected` property
+   automatically from the parent component.
 
 **Example**
+
 ```typescript
 {
   path: "/parent",
@@ -147,11 +152,12 @@ automatically from the parent component.
 In the above case, the child component is only accessible if the user is `UserRole.admin`.
 
 2. If the parent has a specified `isProtected` array, but the child also has a
-`isProtected` attribute associating with it, and the `isProtected` attribute overlaps
-with the parent `isProtected` array, then the children has an `isProtected` value to
-the overlapping roles.
+   `isProtected` attribute associating with it, and the `isProtected` attribute overlaps
+   with the parent `isProtected` array, then the children has an `isProtected` value to
+   the overlapping roles.
 
 **Example**
+
 ```typescript
 {
   path: "/parent",
@@ -170,10 +176,11 @@ the overlapping roles.
 In the above case, the `ChildComponent` will only render if the user has role `UserRole.admin`.
 
 3. If the parent has a `isProtected` value set, but the child has a completely different
-`isProtected` array such that both `isProtected` arrays do not overlap.
-Then, the route entry corresponding to the child component is discarded and ignored.
+   `isProtected` array such that both `isProtected` arrays do not overlap.
+   Then, the route entry corresponding to the child component is discarded and ignored.
 
 **Example**
+
 ```typescript
 {
   path: "/parent",
@@ -190,6 +197,7 @@ Then, the route entry corresponding to the child component is discarded and igno
 ```
 
 In the above case, the configuration is equivalent to
+
 ```typescript
 {
   path: "/parent",
@@ -199,5 +207,5 @@ In the above case, the configuration is equivalent to
 }
 ```
 
-As you can see, the children entry is ignored and will not be rendered 
+As you can see, the children entry is ignored and will not be rendered
 on the screen.
