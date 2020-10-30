@@ -25,38 +25,28 @@ export const adminRoutes: RouteEntry[] = [
     Component: AppFrame,
     children: [
       {
+        path: '/my',
+        Component: AdminHome,
+        exact: true,
+      },
+      {
         path: '/my/usersTable',
         Component: UserTable1,
         exact: true,
       },
       {
         path: '/my/storeTable',
-        Component: UserTable1,
-        exact: true,
-      },
-      {
-        path: '/my/logTable',
-        Component: UserTable1,
-        exact: true,
-      },
-      {
-        path: '/my/cranesTable',
-        Component: UserTable1,
-        exact: true,
-      },
-      {
-        path: "/my/papercranes",
-        Component: PaperCraneTable,
-        exact: true,
-      },
-      {
-        path: "/my/store",
         Component: StoreTable,
         exact: true,
       },
       {
-        path: "/my/activity",
+        path: '/my/logTable',
         Component: ActivityTable,
+        exact: true,
+      },
+      {
+        path: '/my/cranesTable',
+        Component: PaperCraneTable,
         exact: true,
       },
     ],
