@@ -20,7 +20,7 @@ export const userRoutes: RouteEntry[] = [
         exact: true,
       },
       {
-        path: "/letitfly/table",
+        path: "/table",
         Component: UserTbale1,
         exact: true,
       }
