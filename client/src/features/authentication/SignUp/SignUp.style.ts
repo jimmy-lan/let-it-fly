@@ -15,6 +15,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     passwordField: {
       marginBottom: theme.spacing(2.5),
     },
+    alertBox: {
+      marginBottom: theme.spacing(2),
+    },
     confirmPasswordField: {
       marginBottom: theme.spacing(2),
     },
