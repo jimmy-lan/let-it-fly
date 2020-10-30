@@ -5,12 +5,16 @@
  *    Provide theme object for the app.
  */
 import { createMuiTheme } from "@material-ui/core";
-import { deepPurple } from "@material-ui/core/colors";
+import { deepPurple, orange } from "@material-ui/core/colors";
 
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: deepPurple[500],
+      main: deepPurple["500"],
+    },
+    secondary: {
+      main: orange["A400"],
+      dark: "#b26500",
     },
   },
 });
