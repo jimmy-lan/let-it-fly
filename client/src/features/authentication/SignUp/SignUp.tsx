@@ -25,12 +25,11 @@ const SignUp: FunctionComponent<Props> = (props) => {
   const dispatch = useDispatch();
 
   // User email is sent to redux store because this syncs the email across
-  // the different authentication pages: SignIn, SignUp, and ForgotPassword
+  // different authentication pages: SignIn, SignUp, and ForgotPassword
   const email = useSelector((state: RootState) => state.userAuth.email);
   // User password is kept in state but not sent to redux store because
-  // (1) I don't want passwords to be persisted across browsing session, and
-  // (2) passwords should be page-specific, this means the user should re-enter the password if
-  // he or she goes to another page.
+  // (1) I don't want passwords to be persisted during the entire browsing session, and
+  // (2) the user should re-enter the password if åhe or she goes to another page.
   const [password, setPassword] = useState<string>("");
   const [confirmedPassword, setConfirmedPassword] = useState<string>("");
 

@@ -46,17 +46,14 @@ const SignIn: FunctionComponent<Props> = (props) => {
   const dispatch = useDispatch();
 
   // location where the user was redirected from
-  const {
-    state: { from },
-  } = useLocation();
+  const { state } = useLocation<{ from: string }>();
 
   // User email is sent to redux store because this syncs the email across
-  // the different authentication pages: SignIn, SignUp, and ForgotPassword
+  // different authentication pages: SignIn, SignUp, and ForgotPassword
   const email = useSelector((state: RootState) => state.userAuth.email);
   // User password is kept in state but not sent to redux store because
-  // (1) I don't want passwords to be persisted across browsing session, and
-  // (2) passwords should be page-specific, this means the user should re-enter the password if
-  // he or she goes to another page.
+  // (1) I don't want passwords to be persisted during the entire browsing session, and
+  // (2) the user should re-enter the password if åhe or she goes to another page.
   const [password, setPassword] = useState<string>("");
   const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(false);
 
@@ -64,9 +61,13 @@ const SignIn: FunctionComponent<Props> = (props) => {
   const validationError = error?.validation;
   const serverError = error?.server;
 
+  // Determines whether the component is waiting for API response
+  const [isLoading, setLoading] = useState(false);
+
   const handleSignInClick = async () => {
-    // validate inputs
-    dispatch(clearError());
+    setLoading(true);
+
+    // Validate inputs
     let errorObject: UserErrorObject = {};
     errorObject.validation = {};
 
@@ -83,17 +84,22 @@ const SignIn: FunctionComponent<Props> = (props) => {
       errorObject.validation.passwordField = "Please enter a password string.";
     }
 
+    // If no error exists, this clears the error
+    dispatch(setError(errorObject));
+
     if (Object.keys(errorObject.validation).length > 0) {
-      dispatch(setError(errorObject));
+      setLoading(false);
       return;
     }
 
-    // sign in user
+    // Sign in user
     await dispatch(authenticateAsync(email, password, signIn));
+
+    setLoading(false);
 
     // If authentication fails, the user will be pushed back to log in by ProtectedRoute component,
     // and serverError will be set to the correct error message
-    history.push(from || "/my");
+    history.push(state?.from || "/my");
   };
 
   const handleSignUpClick = () => {
@@ -101,7 +107,7 @@ const SignIn: FunctionComponent<Props> = (props) => {
   };
 
   const handleUserAgreementCheckboxClick = () => {
-    setAgreeUserAgreement(!isAgreeUserAgreement);
+    setAgreeUserAgreement((prevState: boolean) => !prevState);
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -162,13 +168,13 @@ const SignIn: FunctionComponent<Props> = (props) => {
           />
           <FormHelperText>{validationError?.agreementField}</FormHelperText>
         </FormControl>
-
         <ControlButtons
           primaryButtonText="Sign In to Enter Application"
           primaryButtonTextMobile="Sign In"
           secondaryButtonText="Sign Up"
           handlePrimaryButtonClick={handleSignInClick}
           handleSecondaryButtonClick={handleSignUpClick}
+          isLoading={isLoading}
         />
         <div>
           <Link to="/forgot-password">
