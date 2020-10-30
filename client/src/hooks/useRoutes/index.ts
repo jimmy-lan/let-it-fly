@@ -7,10 +7,10 @@
  *    Do not use this hook in SSR!
  */
 
-import { RouteEntry, routes } from "../../routes";
+import { RouteEntry } from "../../routes";
 import { store } from "../../app/store";
 
-export const useRoutes = () => {
+export const useRoutes = (routes: RouteEntry[]) => {
   const currentUser = store.getState().userAuth;
   // if currentUser is authenticated
   if (currentUser.token) {
