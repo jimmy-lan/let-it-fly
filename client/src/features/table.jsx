@@ -37,7 +37,7 @@ const tableIcons = {
   ViewColumn: ViewColumn,
 };
 
-export default function Usertable({ columns, getData }) {
+export default function Usertable({ columns, getData, title }) {
   const { useState } = React;
   /*
   const [columns, setColumns] = useState([
@@ -70,8 +70,8 @@ export default function Usertable({ columns, getData }) {
   return (
     <MaterialTable
       icons={tableIcons}
-      title="User info"
       columns={columns}
+      title={title}
       data={data}
       tableRef={ref}
       options={{ search: true }}
