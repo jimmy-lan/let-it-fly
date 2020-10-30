@@ -3,4 +3,7 @@
  * Creation Date: 2020-10-24
  */
 
-export { AppFrame } from "./AppFrame/AppFrame";
+export * from "./AppFrame";
+export * from "./AppRouter";
+export * from "./RouteComponents";
+export * from "./SideMenuList";

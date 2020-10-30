@@ -4,11 +4,10 @@
  */
 
 import React from "react";
-import Enzyme, { ShallowWrapper } from "enzyme";
+import Enzyme, { shallow, ShallowWrapper } from "enzyme";
 // @ts-ignore
 import EnzymeAdapter from "@wojtekmaj/enzyme-adapter-react-17";
 import { AppFrame } from "./AppFrame";
-import { createShallow } from "@material-ui/core/test-utils";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -22,7 +21,7 @@ describe("rendering of <AppFrame />", () => {
    * Create an <AppFrame> component and return it as shallow wrapper.
    */
   beforeAll(() => {
-    wrapper = createShallow()(<AppFrame />);
+    wrapper = shallow(<AppFrame routes={[]} />);
   });
 
   test("renders without exploding", () => {
