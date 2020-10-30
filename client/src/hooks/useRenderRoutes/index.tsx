@@ -6,13 +6,18 @@
 import { RouteEntry } from "../../routes";
 import { RouteWithSubRoutes } from "../../common/components/RouteComponents/RouteWithSubRoutes";
 import React from "react";
+import { useRoutes } from "../useRoutes";
 
-export const useRenderRoutes = () => ({
-  renderRoutes: (routes: RouteEntry[] = []) => (
-    <>
-      {routes.map((route: RouteEntry) => (
-        <RouteWithSubRoutes key={route.path} route={route} />
-      ))}
-    </>
-  ),
-});
+export const useRenderRoutes = (routes: RouteEntry[] = []) => {
+  const processedRoutes = useRoutes(routes);
+
+  return {
+    renderRoutes: () => (
+      <>
+        {processedRoutes.map((route: RouteEntry) => (
+          <RouteWithSubRoutes key={route.path} route={route} />
+        ))}
+      </>
+    ),
+  };
+};

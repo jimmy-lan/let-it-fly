@@ -26,8 +26,6 @@ const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }: Props) => {
     return route;
   });
 
-  console.log(childrenToRender);
-
   if (isProtected) {
     // @ts-ignore
     return (

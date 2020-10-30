@@ -6,10 +6,10 @@
  *    inside of the app.
  */
 
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
-import { RouteEntry } from "../../../routes";
-import { useRoutes } from "../../../hooks/useRoutes";
+import { routes } from "../../../routes";
+
 import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
 
 interface OwnProps {}
@@ -17,12 +17,11 @@ interface OwnProps {}
 type Props = OwnProps;
 
 const AppRouter: FunctionComponent<Props> = (props) => {
-  const routes: RouteEntry[] = useRoutes();
-  const { renderRoutes } = useRenderRoutes();
+  const { renderRoutes } = useRenderRoutes(routes);
 
   return (
     <Router>
-      <Switch>{renderRoutes(routes)}</Switch>
+      <Switch>{renderRoutes()}</Switch>
     </Router>
   );
 };

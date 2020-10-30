@@ -8,11 +8,19 @@
 import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
+import { DummyText } from "../features/DummyText";
 
 export const userRoutes: RouteEntry[] = [
   {
     path: "/my",
     Component: AppFrame,
     isProtected: [UserRole.user, UserRole.admin],
+    children: [
+      {
+        path: "/my",
+        Component: DummyText,
+        isProtected: [UserRole.admin],
+      },
+    ],
   },
 ];

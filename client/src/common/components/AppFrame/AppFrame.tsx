@@ -17,9 +17,6 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  List,
-  ListItem,
-  ListItemText,
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
@@ -48,7 +45,7 @@ const AppFrame: FunctionComponent<Props> = ({
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
   const [sideBarState, setSideBarState] = useState(SideBarState.Expanded);
-  const { renderRoutes } = useRenderRoutes();
+  const { renderRoutes } = useRenderRoutes(routes);
 
   const handleMenuIconClicked = (): void => {
     sideBarState === SideBarState.Expanded
@@ -146,7 +143,7 @@ const AppFrame: FunctionComponent<Props> = ({
         <div className={classes.belowAppBar} />
         {/*Render components inside frame*/}
         {children}
-        {renderRoutes(routes)}
+        {renderRoutes()}
       </main>
     </div>
   );
