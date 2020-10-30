@@ -26,6 +26,7 @@ import {
 import { useStyles } from "./AppFrame.style";
 import { RouteEntry } from "../../../routes";
 import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
+import { SideMenuList } from "../SideMenuList";
 
 interface OwnProps {
   routes: RouteEntry[];
@@ -107,19 +108,7 @@ const AppFrame: FunctionComponent<Props> = ({
             <div
               className={clsx(classes.sideBarTool, classes.sideBarTopTool)}
             />
-
-            {/*<List>*/}
-            {/*  {[*/}
-            {/*    "Inbox Inbox",*/}
-            {/*    "Starred Starred",*/}
-            {/*    "Send email Starred",*/}
-            {/*    "Drafts Starred",*/}
-            {/*  ].map((text, index) => (*/}
-            {/*    <ListItem button key={text}>*/}
-            {/*      <ListItemText primary={text} />*/}
-            {/*    </ListItem>*/}
-            {/*  ))}*/}
-            {/*</List>*/}
+            <SideMenuList />
           </div>
           <div>
             <Divider />
