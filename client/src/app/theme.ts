@@ -17,4 +17,16 @@ export const theme = createMuiTheme({
       dark: "#b26500",
     },
   },
+  typography: {
+    fontFamily: [
+      "Poppins",
+      "Roboto",
+      "Helvetica Neue",
+      "Segoe UI",
+      "sans-serif",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+    ].join(","),
+  },
 });
