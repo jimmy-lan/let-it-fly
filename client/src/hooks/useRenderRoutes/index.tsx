@@ -8,7 +8,7 @@ import { RouteWithSubRoutes } from "../../common/components/RouteComponents/Rout
 import React from "react";
 
 export const useRenderRoutes = () => ({
-  renderRoutes: (routes: RouteEntry[]) => (
+  renderRoutes: (routes: RouteEntry[] = []) => (
     <>
       {routes.map((route: RouteEntry) => (
         <RouteWithSubRoutes key={route.path} route={route} />
