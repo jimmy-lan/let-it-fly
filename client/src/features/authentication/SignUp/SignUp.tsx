@@ -23,7 +23,7 @@ import { GrayOutArea } from "../components/GridImageCard";
 import { useHistory } from "../../../hooks/useHistory";
 import { ControlButtons } from "../components/ControlButtons";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
+import { RootState, store } from "../../../app/store";
 import {
   authenticateAsync,
   changeEmail,
@@ -105,7 +105,7 @@ const SignUp: FunctionComponent<Props> = (props) => {
 
     setLoading(false);
 
-    if (serverError) {
+    if (store.getState().userAuth.error?.server) {
       return;
     }
 

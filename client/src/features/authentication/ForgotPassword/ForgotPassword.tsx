@@ -33,9 +33,11 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
   const dispatch = useDispatch();
 
   const email = useSelector((state: RootState) => state.userAuth.email);
-  const [isRequestSuccessful, setRequestSuccessful] = useState<boolean>(false);
+  const [isRequestSuccessful, setRequestSuccessful] = useState<
+    boolean | undefined
+  >(undefined);
 
-  const [validationError, serverError] = useError();
+  const [validationError] = useError();
 
   const [isLoading, setLoading] = useState(false);
 
@@ -75,9 +77,9 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
   return (
     <AuthPageContainer grayOutArea={GrayOutArea.left}>
       <form autoComplete="off" className={classes.forgotPasswordForm}>
-        {serverError ? (
+        {isRequestSuccessful === false ? (
           <Alert severity="error" className={classes.alertBox}>
-            {serverError}
+            Sorry, we can't process your request at this time.
           </Alert>
         ) : null}
         {isRequestSuccessful ? (
