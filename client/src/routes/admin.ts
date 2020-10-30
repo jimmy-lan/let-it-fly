@@ -22,7 +22,22 @@ export const adminRoutes: RouteEntry[] = [
     isProtected: [UserRole.admin],
     children: [
       {
-        path: '/my/table',
+        path: '/my/usersTable',
+        Component: UserTable1,
+        exact: true,
+      },
+      {
+        path: '/my/storeTable',
+        Component: UserTable1,
+        exact: true,
+      },
+      {
+        path: '/my/logTable',
+        Component: UserTable1,
+        exact: true,
+      },
+      {
+        path: '/my/cranesTable',
         Component: UserTable1,
         exact: true,
       },
