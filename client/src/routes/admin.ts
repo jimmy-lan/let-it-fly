@@ -7,7 +7,10 @@
 import { AppFrame } from '../common';
 import { DummyText, Home } from '../features';
 import AdminHome from '../features/AdminHome/AdminHome';
+import PaperCraneTable from '../features/adminPage/PaperCraneTable';
 import UserTable1 from '../features/adminPage/UserTable1';
+import StoreTable from '../features/adminPage/StoreTable';
+import ActivityTable from '../features/adminPage/ActivityTable';
 import { UserRole } from '../services/serverApi';
 import { RouteEntry } from './index';
 
@@ -15,11 +18,11 @@ export const adminRoutes: RouteEntry[] = [
   {
     path: '/',
     Component: Home,
+    isProtected: [UserRole.admin],
   },
   {
     path: '/my',
     Component: AppFrame,
-    isProtected: [UserRole.admin],
     children: [
       {
         path: '/my/usersTable',
@@ -42,8 +45,18 @@ export const adminRoutes: RouteEntry[] = [
         exact: true,
       },
       {
-        path: '/my',
-        Component: AdminHome,
+        path: "/my/papercranes",
+        Component: PaperCraneTable,
+        exact: true,
+      },
+      {
+        path: "/my/store",
+        Component: StoreTable,
+        exact: true,
+      },
+      {
+        path: "/my/activity",
+        Component: ActivityTable,
         exact: true,
       },
     ],

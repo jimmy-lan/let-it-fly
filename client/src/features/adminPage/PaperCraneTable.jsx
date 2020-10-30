@@ -1,17 +1,17 @@
-import React, { Component, useEffect } from 'react';
+import React from 'react';
 import Table from '../table';
-import { loadPaperCranesTable } from '../../services/serverApi/userApi';
-const UserTable1 = () => (
+import { loadPaperCraneTable } from '../../services/serverApi/userApi';
+const PaperCraneTable = () => (
   <Table
     columns={[
-      { title: 'Nickname', field: 'nickname' },
-      { title: 'Account Type', field: 'accounttype' },
-      { title: 'Email', field: 'email' },
-      { title: 'Name', field: 'name' },
-      { title: 'Coins', filed: 'coins', type: 'numeric' },
+      { title: 'From', field: 'from' },
+      { title: 'To', field: 'to' },
+      { title: 'Title', field: 'title' },
+      { title: 'Date', field: 'date' },
     ]}
-    getData={loadPaperCranesTable}
+    getData={loadPaperCraneTable}
+    title={"Paper Cranes"}
   />
 );
 
-export default UserTable1;
+export default PaperCraneTable;
