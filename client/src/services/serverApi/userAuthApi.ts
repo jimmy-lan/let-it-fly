@@ -3,8 +3,8 @@
  * Creation Date: 2020-10-25
  * Description: Server APIs for user-authentication related queries
  */
-import { getFakeServerCall } from "./helpers";
-import { ServerResponse, UserRole } from "./models";
+import { getFakeServerCall } from './helpers';
+import { ServerResponse, UserRole } from './models';
 
 /**
  * A response returned from sign in or sign up actions
@@ -23,7 +23,7 @@ export interface AuthResponse extends ServerResponse {
  * A fake token generated with "sub" equal to "user@user.com"
  */
 const fakeToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHVzZXIuY29tIiwibmFtZSI6IldpbGxpYW0gSm95Y2UiLCJpYXQiOjE1MTYyMzkwMjJ9.gSBKHwOWcwi3Lgz_ONbckfnf83Jv1tGi9XFvjqbuaBA";
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHVzZXIuY29tIiwibmFtZSI6IldpbGxpYW0gSm95Y2UiLCJpYXQiOjE1MTYyMzkwMjJ9.gSBKHwOWcwi3Lgz_ONbckfnf83Jv1tGi9XFvjqbuaBA';
 
 /**
  * Send sign in request to server
@@ -32,8 +32,8 @@ const fakeToken =
  */
 export const signIn = (email: string, password: string) => {
   const loginInfo = [
-    { email: "admin@admin.com", password: "admin", role: UserRole.admin },
-    { email: "user@user.com", password: "user", role: UserRole.user },
+    { email: 'admin@admin.com', password: 'admin', role: UserRole.admin },
+    { email: 'user@user.com', password: 'user', role: UserRole.user },
   ];
 
   const currentUser = loginInfo.filter(
@@ -45,7 +45,7 @@ export const signIn = (email: string, password: string) => {
   if (currentUser.length === 0) {
     response = {
       success: false,
-      errorMessage: "Incorrect email or password!",
+      errorMessage: 'Incorrect email or password!',
     };
   } else {
     response = {
@@ -53,8 +53,8 @@ export const signIn = (email: string, password: string) => {
       data: {
         token: fakeToken,
         email,
-        role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
-        avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
+        role: email === 'admin@admin.com' ? UserRole.admin : UserRole.user,
+        avatarLink: 'https://via.placeholder.com/150/0000FF/808080?Text=User',
         coins: 1000,
       },
     };
@@ -78,8 +78,8 @@ export const signUp = (email: string, password: string) => {
     data: {
       token: fakeToken,
       email,
-      role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
-      avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
+      role: email === 'admin@admin.com' ? UserRole.admin : UserRole.user,
+      avatarLink: 'https://via.placeholder.com/150/0000FF/808080?Text=User',
       coins: 1000,
     },
   };
@@ -108,13 +108,25 @@ export const signOut = () => {
   return getFakeServerCall(response, 0.5);
 };
 
-export const loadUsersTable = () =>{
+export const loadUsersTable = () => {
   const response: ServerResponse = {
     success: true,
-      data:[
-        { nickname: 'Tim123', accounttype: 'Admin', email: '12213@mail.utoronto.ca', name:'Tim Kang', coins: 1200},
-        { nickname: 'TomHandsome', accounttype: 'Regular', email: '12315@mail.utoronto.ca', name:'Tom Clarsion', coins: 900},
-      ]
+    data: [
+      {
+        nickname: 'Tim123',
+        accounttype: 'Admin',
+        email: '12213@mail.utoronto.ca',
+        name: 'Tim Kang',
+        coins: 1200,
+      },
+      {
+        nickname: 'TomHandsome',
+        accounttype: 'Regular',
+        email: '12315@mail.utoronto.ca',
+        name: 'Tom Clarsion',
+        coins: 900,
+      },
+    ],
   };
   return getFakeServerCall(response, 0.5);
-}
+};

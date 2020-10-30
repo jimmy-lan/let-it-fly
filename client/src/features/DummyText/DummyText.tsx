@@ -6,7 +6,7 @@
 import React, { FunctionComponent } from "react";
 import { Typography } from "@material-ui/core";
 
-interface OwnProps {}
+interface OwnProps { }
 
 type Props = OwnProps;
 
