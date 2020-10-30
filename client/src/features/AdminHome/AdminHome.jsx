@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 // import { useHistory } from '../../hooks/useHistory';
-import { Link } from 'react-router-dom';
+import { Link } from '../../common';
 import Button from '@material-ui/core/Button';
 import './style.css';
 
