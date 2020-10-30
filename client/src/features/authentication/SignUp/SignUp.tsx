@@ -109,6 +109,8 @@ const SignUp: FunctionComponent<Props> = (props) => {
       return;
     }
 
+    console.log("push");
+
     history.push(state?.from || "/my");
   };
 

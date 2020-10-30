@@ -4,12 +4,7 @@
  * Description: Sign in page of the app.
  */
 
-import React, {
-  ChangeEvent,
-  FunctionComponent,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEvent, FunctionComponent, useState } from "react";
 import {
   Button,
   Checkbox,
@@ -28,11 +23,10 @@ import { AuthPageContainer } from "../components/AuthPageContainer";
 import { ControlButtons } from "../components/ControlButtons";
 import { useHistory } from "../../../hooks/useHistory";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
+import { RootState, store } from "../../../app/store";
 import {
   changeEmail,
   setError,
-  clearError,
   UserErrorObject,
   authenticateAsync,
 } from "../userSlice";
@@ -101,7 +95,7 @@ const SignIn: FunctionComponent<Props> = (props) => {
 
     setLoading(false);
 
-    if (serverError) {
+    if (store.getState().userAuth.error?.server) {
       return;
     }
 

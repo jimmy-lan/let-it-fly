@@ -123,11 +123,11 @@ export const authenticateAsync = (
     response = await authFunc(email, password);
   } catch (error) {
     handleServerError(dispatch, error);
-    return;
+    return error;
   }
   if (response.success) {
-    dispatch(authenticate(response.data!));
     dispatch(clearError());
+    dispatch(authenticate(response.data!));
   } else {
     if (response.errorMessage) {
       dispatch(setError({ server: response.errorMessage }));
