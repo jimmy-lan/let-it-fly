@@ -17,17 +17,28 @@ type Props = OwnProps;
 
 const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }: Props) => {
   const { path, exact, Component, isProtected, redirectUrl, children } = route;
+  // Hotfix October 30, 2020
+  // Ensure <children> inherit isProtected property from parent if none is specified
+  const childrenToRender = children?.map((route) => {
+    if (!route.isProtected) {
+      route.isProtected = isProtected;
+    }
+    return route;
+  });
+
+  console.log(childrenToRender);
+
   if (isProtected) {
     // @ts-ignore
     return (
       <ProtectedRoute path={path} exact={exact} redirectUrl={redirectUrl}>
-        <Component routes={children} />
+        <Component routes={childrenToRender} />
       </ProtectedRoute>
     );
   } else {
     return (
       <PublicRoute path={path} exact={exact}>
-        <Component routes={children} />
+        <Component routes={childrenToRender} />
       </PublicRoute>
     );
   }
