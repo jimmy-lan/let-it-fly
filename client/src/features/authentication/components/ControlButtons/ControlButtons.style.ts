@@ -22,7 +22,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       textTransform: "none",
     },
     buttonWrapper: {
-      margin: theme.spacing(1),
       position: "relative",
     },
     loadingProgress: {
