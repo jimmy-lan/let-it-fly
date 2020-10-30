@@ -4,7 +4,12 @@
  * Description: Sign in page of the app.
  */
 
-import React, { ChangeEvent, FunctionComponent, useState } from "react";
+import React, {
+  ChangeEvent,
+  FunctionComponent,
+  useEffect,
+  useState,
+} from "react";
 import {
   Button,
   Checkbox,
@@ -35,6 +40,7 @@ import { isEmailPattern } from "../../../common/util";
 import { signIn } from "../../../services/serverApi";
 import { useLocation } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
+import { useError } from "../hooks";
 
 interface OwnProps {}
 
@@ -55,11 +61,9 @@ const SignIn: FunctionComponent<Props> = (props) => {
   // (1) I don't want passwords to be persisted during the entire browsing session, and
   // (2) the user should re-enter the password if åhe or she goes to another page.
   const [password, setPassword] = useState<string>("");
-  const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(false);
+  const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(true);
 
-  const error = useSelector((state: RootState) => state.userAuth.error);
-  const validationError = error?.validation;
-  const serverError = error?.server;
+  const [validationError, serverError] = useError();
 
   // Determines whether the component is waiting for API response
   const [isLoading, setLoading] = useState(false);
@@ -178,7 +182,11 @@ const SignIn: FunctionComponent<Props> = (props) => {
         />
         <div>
           <Link to="/forgot-password">
-            <Button color="primary" className={classes.forgotPasswordButton}>
+            <Button
+              color="primary"
+              className={classes.forgotPasswordButton}
+              disabled={isLoading}
+            >
               Forgot your password?
             </Button>
           </Link>

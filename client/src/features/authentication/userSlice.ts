@@ -37,6 +37,7 @@ export interface UserErrorObject {
   validation?: {
     emailField?: string;
     passwordField?: string;
+    confirmPasswordField?: string;
     agreementField?: string;
   };
 }

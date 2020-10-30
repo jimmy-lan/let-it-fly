@@ -4,16 +4,28 @@
  * Description: Sign up page for the app.
  */
 
-import React, { ChangeEvent, FunctionComponent, useState } from "react";
+import React, {
+  ChangeEvent,
+  FunctionComponent,
+  useEffect,
+  useState,
+} from "react";
 import { AuthPageContainer } from "../components/AuthPageContainer";
 import { useStyles } from "./SignUp.style";
-import { Checkbox, FormControlLabel, TextField } from "@material-ui/core";
+import {
+  Checkbox,
+  FormControlLabel,
+  TextField,
+  FormControl,
+  FormHelperText,
+} from "@material-ui/core";
 import { GrayOutArea } from "../components/GridImageCard";
 import { useHistory } from "../../../hooks/useHistory";
 import { ControlButtons } from "../components/ControlButtons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import { changeEmail } from "../userSlice";
+import { changeEmail, clearError } from "../userSlice";
+import { useError } from "../hooks";
 
 interface OwnProps {}
 
@@ -32,8 +44,11 @@ const SignUp: FunctionComponent<Props> = (props) => {
   // (2) the user should re-enter the password if åhe or she goes to another page.
   const [password, setPassword] = useState<string>("");
   const [confirmedPassword, setConfirmedPassword] = useState<string>("");
-
   const [isAgreeUserAgreement, setAgreeUserAgreement] = useState(true);
+
+  const [validationError, serverError] = useError();
+
+  const [isLoading, setLoading] = useState(false);
 
   const handleSignInClick = () => {
     history.push("/login");
@@ -62,6 +77,8 @@ const SignUp: FunctionComponent<Props> = (props) => {
           variant="outlined"
           label="Email"
           type="email"
+          error={!!validationError?.emailField}
+          helperText={validationError?.emailField}
           value={email}
           onChange={handleEmailChange}
           className={classes.emailField}
@@ -71,6 +88,8 @@ const SignUp: FunctionComponent<Props> = (props) => {
           label="Password"
           type="password"
           value={password}
+          error={!!validationError?.passwordField}
+          helperText={validationError?.passwordField}
           onChange={handlePasswordChange}
           className={classes.passwordField}
         />
@@ -78,16 +97,24 @@ const SignUp: FunctionComponent<Props> = (props) => {
           variant="outlined"
           label="Confirm Password"
           type="password"
+          error={!!validationError?.confirmPasswordField}
+          helperText={validationError?.confirmPasswordField}
           value={confirmedPassword}
           onChange={handleConfirmedPasswordChange}
           className={classes.confirmPasswordField}
         />
-        <FormControlLabel
-          control={<Checkbox checked={isAgreeUserAgreement} />}
-          label="I have read and agree to User Agreement."
+        <FormControl
+          error={!!validationError?.agreementField}
           className={classes.userAgreementCheckbox}
-          onClick={handleUserAgreementCheckboxClick}
-        />
+        >
+          <FormControlLabel
+            control={<Checkbox checked={isAgreeUserAgreement} />}
+            label="I have read and agree to User Agreement."
+            onClick={handleUserAgreementCheckboxClick}
+          />
+          <FormHelperText>{validationError?.agreementField}</FormHelperText>
+        </FormControl>
+
         <ControlButtons
           primaryButtonText="Sign Up to Let It Fly"
           primaryButtonTextMobile="Sign Up"
