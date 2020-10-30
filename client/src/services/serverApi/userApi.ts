@@ -31,21 +31,21 @@ const fakeToken =
  * @param password user password
  */
 export const signIn = (email: string, password: string) => {
-  // const response: AuthResponse = {
-  //   success: true,
-  //   data: {
-  //     token: fakeToken,
-  //     email,
-  //     role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
-  //     avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
-  //     coins: 1000,
-  //   },
-  // };
   const response: AuthResponse = {
-    success: false,
-    errorMessage: "You were banned from the server.",
+    success: true,
+    data: {
+      token: fakeToken,
+      email,
+      role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
+      avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
+      coins: 1000,
+    },
   };
-  return getFakeServerCall(response, 2);
+  // const response: AuthResponse = {
+  //   success: false,
+  //   errorMessage: "You were banned from the server.",
+  // };
+  return getFakeServerCall(response, 0.5);
 };
 
 /**

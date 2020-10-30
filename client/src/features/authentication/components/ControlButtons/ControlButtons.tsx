@@ -38,7 +38,7 @@ const ControlButtons: FunctionComponent<Props> = ({
         onClick={handlePrimaryButtonClick}
       >
         <Hidden smDown>{primaryButtonText}</Hidden>
-        <Hidden smUp>
+        <Hidden mdUp>
           {primaryButtonTextMobile
             ? primaryButtonTextMobile
             : primaryButtonText}
@@ -52,7 +52,7 @@ const ControlButtons: FunctionComponent<Props> = ({
         onClick={handleSecondaryButtonClick}
       >
         <Hidden smDown>{secondaryButtonText}</Hidden>
-        <Hidden smUp>
+        <Hidden mdUp>
           {secondaryButtonTextMobile
             ? secondaryButtonTextMobile
             : secondaryButtonText}

@@ -6,10 +6,14 @@
 
 import { RouteEntry } from "./index";
 import { AppFrame } from "../common/components";
-import { DummyText } from "../features/testComponent/DummyText";
 import { UserRole } from "../services/serverApi";
+import { Home, DummyText } from "../features";
 
 export const userRoutes: RouteEntry[] = [
+  {
+    path: "/",
+    Component: Home,
+  },
   {
     path: "/my",
     Component: AppFrame,
