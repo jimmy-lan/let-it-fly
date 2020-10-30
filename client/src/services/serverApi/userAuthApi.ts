@@ -176,12 +176,12 @@ export const loadStoreTable = () => {
     success: true,
     data: [
       {
-        itemID: 'bsdcieuwb73289ewbhdsbc',
+        itemId: 'bsdcieuwb73289ewbhdsbc',
         discription: 'PeachcolorPaper',
         price: 100,
       },
       {
-        itemID: 'ckjwbfy74928uhfrgyw8iu',
+        itemId: 'ckjwbfy74928uhfrgyw8iu',
         discription: 'PeachcolorPaper',
         price: 500,
       },
