@@ -6,7 +6,7 @@
 import React from "react";
 
 import { CssBaseline } from "@material-ui/core";
-import { AppRouter } from "../common";
+import { AppRouter } from "../common/components/AppRouter";
 
 function App() {
   return (

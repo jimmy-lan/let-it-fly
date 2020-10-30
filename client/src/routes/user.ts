@@ -12,17 +12,16 @@ import { Home, DummyText } from '../features';
 
 export const userRoutes: RouteEntry[] = [
   {
-    path: '/',
+    path: "/",
+    Component: Home,
+  },
+  {
+    path: "/my",
     Component: AppFrame,
     isProtected: [UserRole.user],
     children: [
       {
-        path: '/',
-        Component: DummyText,
-        exact: true,
-      },
-      {
-        path: '/table',
+        path: "/my/table",
         Component: UserTable1,
         exact: true,
       },
