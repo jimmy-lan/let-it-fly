@@ -14,6 +14,7 @@ export const userRoutes: RouteEntry[] = [
   {
     path: '/',
     Component: AppFrame,
+    isProtected: [UserRole.user],
     children: [
       {
         path: '/',

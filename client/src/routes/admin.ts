@@ -4,6 +4,10 @@
  * Description: Routes that an admin can use
  */
 
-import { RouteEntry } from "./index";
+import { AppFrame } from '../common';
+import { DummyText, Home } from '../features';
+import UserTable1 from '../features/adminPage/UserTable1';
+import { UserRole } from '../services/serverApi';
+import { RouteEntry } from './index';
 
 export const adminRoutes: RouteEntry[] = [];

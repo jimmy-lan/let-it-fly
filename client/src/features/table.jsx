@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useRef } from 'react';
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -57,11 +57,15 @@ export default function Usertable({ columns, getData }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      const { data: dataset } = await getData();
-      setData(dataset);
-    })();
+    if (getData) {
+      (async () => {
+        const { data: dataset } = await getData();
+        setData(dataset);
+      })();
+    }
   }, [getData]);
+
+  const ref = useRef();
 
   return (
     <MaterialTable
@@ -69,7 +73,7 @@ export default function Usertable({ columns, getData }) {
       title="User info"
       columns={columns}
       data={data}
-      tableRef={this.materialTableRef}
+      tableRef={ref}
       options={{ search: true }}
       editable={{
         onRowAdd: (newData) =>
