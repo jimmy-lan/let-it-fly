@@ -105,8 +105,10 @@ const SignUp: FunctionComponent<Props> = (props) => {
 
     setLoading(false);
 
-    // If authentication fails, the user will be pushed back to log in by ProtectedRoute component,
-    // and serverError will be set to the correct error message
+    if (serverError) {
+      return;
+    }
+
     history.push(state?.from || "/my");
   };
 
