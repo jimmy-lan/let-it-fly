@@ -11,6 +11,7 @@ const UserTable1 = () => (
       { title: 'Coins', filed: 'coins', type: 'numeric' },
     ]}
     getData={loadUsersTable}
+    title={"User Info"}
   />
 );
 

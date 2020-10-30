@@ -131,23 +131,59 @@ export const loadUsersTable = () => {
   return getFakeServerCall(response, 0.5);
 };
 
-export const loadPaperCranesTable = () => {
+export const loadPaperCraneTable = () => {
   const response: ServerResponse = {
     success: true,
     data: [
       {
-        nickname: 'Tim123',
-        accounttype: 'Admin',
-        email: '12213@mail.utoronto.ca',
-        name: 'Tim Kang',
-        coins: 1200,
+        from: '12213@mail.utoronto.ca',
+        to: '12213@mail.utoronto.ca',
+        title: 'Hello world',
+        date: '2020-05-15',
       },
       {
-        nickname: 'TomHandsome',
-        accounttype: 'Regular',
-        email: '12315@mail.utoronto.ca',
-        name: 'Tom Clarsion',
-        coins: 900,
+        from: '1223@mail.utoronto.ca',
+        to: '898913@mail.utoronto.ca',
+        title: 'Hello world',
+        date: '2020-05-15',
+      },
+    ],
+  };
+  return getFakeServerCall(response, 0.5);
+};
+
+export const loadActivityTable = () => {
+  const response: ServerResponse = {
+    success: true,
+    data: [
+      {
+        performedBy: '12213@mail.utoronto.ca',
+        discription: 'login',
+        date: '2020-05-15',
+      },
+      {
+        performedBy: '12213@mail.utoronto.ca',
+        discription: 'created accout',
+        date: '2020-05-15',
+      },
+    ],
+  };
+  return getFakeServerCall(response, 0.5);
+};
+
+export const loadStoreTable = () => {
+  const response: ServerResponse = {
+    success: true,
+    data: [
+      {
+        itemID: 'bsdcieuwb73289ewbhdsbc',
+        discription: 'PeachcolorPaper',
+        price: 100,
+      },
+      {
+        itemID: 'ckjwbfy74928uhfrgyw8iu',
+        discription: 'PeachcolorPaper',
+        price: 500,
       },
     ],
   };
