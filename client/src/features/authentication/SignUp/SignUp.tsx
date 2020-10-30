@@ -100,7 +100,7 @@ const SignUp: FunctionComponent<Props> = (props) => {
       return;
     }
 
-    // Sign in user
+    // Sign up user
     await dispatch(authenticateAsync(email, password, signUp));
 
     setLoading(false);

@@ -11,7 +11,9 @@ import {
   Typography,
   CircularProgress,
 } from "@material-ui/core";
-import { Link } from "../../../../common/components/RouteComponents";
+import clsx from "clsx";
+import { Check as CheckIcon } from "@material-ui/icons";
+
 import { useStyles } from "./ControlButtons.style";
 
 interface OwnProps {
@@ -22,6 +24,10 @@ interface OwnProps {
   handlePrimaryButtonClick?: () => void;
   handleSecondaryButtonClick?: () => void;
   isLoading?: boolean;
+  /**
+   * If set to true, primary button turns green
+   */
+  isSuccessful?: boolean;
 }
 
 type Props = OwnProps;
@@ -34,6 +40,7 @@ const ControlButtons: FunctionComponent<Props> = ({
   handlePrimaryButtonClick,
   handleSecondaryButtonClick,
   isLoading,
+  isSuccessful,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
   return (
@@ -42,10 +49,13 @@ const ControlButtons: FunctionComponent<Props> = ({
         <Button
           variant="contained"
           color="primary"
-          className={classes.controlsContainerButton}
+          className={clsx(classes.controlsContainerButton, {
+            [classes.buttonSuccess]: isSuccessful,
+          })}
           disabled={isLoading}
           onClick={handlePrimaryButtonClick}
         >
+          {isSuccessful ? <CheckIcon className={classes.iconSuccess} /> : null}
           <Hidden smDown>{primaryButtonText}</Hidden>
           <Hidden mdUp>
             {primaryButtonTextMobile

@@ -3,7 +3,7 @@
  * Creation Date: 2020-10-28
  * Description: Forgot password page for the app.
  */
-import React, { ChangeEvent, FunctionComponent } from "react";
+import React, { ChangeEvent, FunctionComponent, useState } from "react";
 import { AuthPageContainer } from "../components/AuthPageContainer";
 import { GrayOutArea } from "../components/GridImageCard";
 import { useStyles } from "./ForgotPassword.style";
@@ -12,9 +12,16 @@ import { ControlButtons } from "../components/ControlButtons";
 import { useHistory } from "../../../hooks/useHistory";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import { changeEmail } from "../userSlice";
+import {
+  authenticateAsync,
+  changeEmail,
+  setError,
+  UserErrorObject,
+} from "../userSlice";
 import { useError } from "../hooks";
 import { Alert } from "@material-ui/lab";
+import { isEmailPattern, isEqual } from "../../../common/util";
+import { requestPassword, signUp } from "../../../services/serverApi";
 
 interface OwnProps {}
 
@@ -26,8 +33,36 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
   const dispatch = useDispatch();
 
   const email = useSelector((state: RootState) => state.userAuth.email);
+  const [isRequestSuccessful, setRequestSuccessful] = useState<boolean>(false);
 
   const [validationError, serverError] = useError();
+
+  const [isLoading, setLoading] = useState(false);
+
+  const handleResetPasswordClick = async () => {
+    setLoading(true);
+
+    // Validate inputs
+    let errorObject: UserErrorObject = {};
+    errorObject.validation = {};
+
+    if (!isEmailPattern(email)) {
+      errorObject.validation.emailField = "Please enter a valid email address.";
+    }
+
+    // If no error exists, this clears the error
+    dispatch(setError(errorObject));
+
+    if (Object.keys(errorObject.validation).length > 0) {
+      setLoading(false);
+      return;
+    }
+
+    const response = await requestPassword(email);
+    setRequestSuccessful(response.success);
+
+    setLoading(false);
+  };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeEmail(e.target.value));
@@ -43,6 +78,11 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
         {serverError ? (
           <Alert severity="error" className={classes.alertBox}>
             {serverError}
+          </Alert>
+        ) : null}
+        {isRequestSuccessful ? (
+          <Alert severity="success" className={classes.alertBox}>
+            Please check your email inbox.
           </Alert>
         ) : null}
         <Typography variant="h6" className={classes.titleText}>
@@ -63,7 +103,10 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
         <ControlButtons
           primaryButtonText="Reset Password"
           secondaryButtonText="Sign In"
+          handlePrimaryButtonClick={handleResetPasswordClick}
           handleSecondaryButtonClick={handleSignInClick}
+          isLoading={isLoading}
+          isSuccessful={isRequestSuccessful}
         />
       </form>
     </AuthPageContainer>

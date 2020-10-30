@@ -4,6 +4,7 @@
  */
 import { createStyles, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +31,15 @@ export const useStyles = makeStyles((theme: Theme) =>
       left: "50%",
       marginLeft: -12,
       marginTop: -12,
+    },
+    iconSuccess: {
+      marginRight: theme.spacing(0.6),
+    },
+    buttonSuccess: {
+      backgroundColor: green["500"],
+      "&:hover": {
+        backgroundColor: green["700"],
+      },
     },
   })
 );

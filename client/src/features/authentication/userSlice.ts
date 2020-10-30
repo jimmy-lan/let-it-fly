@@ -6,7 +6,13 @@
  *    and rendering purposes.
  */
 
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  PayloadAction,
+  ThunkDispatch,
+  Action,
+  CombinedState,
+} from "@reduxjs/toolkit";
 import { UserRole } from "../../services/serverApi";
 import {
   AuthResponse,
@@ -97,6 +103,16 @@ export const {
   signOut,
 } = userSlice.actions;
 
+const handleServerError = (
+  dispatch: ThunkDispatch<CombinedState<unknown>, unknown, Action<string>>,
+  error: string
+) => {
+  console.error(error);
+  dispatch(
+    setError({ server: "Sorry, we cannot handle your request right now." })
+  );
+};
+
 export const authenticateAsync = (
   email: string,
   password: string,
@@ -106,10 +122,7 @@ export const authenticateAsync = (
   try {
     response = await authFunc(email, password);
   } catch (error) {
-    console.error(error);
-    dispatch(
-      setError({ server: "Sorry, we cannot handle your request right now." })
-    );
+    handleServerError(dispatch, error);
     return;
   }
   if (response.success) {
@@ -131,13 +144,12 @@ export const authenticateAsync = (
 export const signOutAsync = (): AppThunk => async (dispatch) => {
   try {
     await signOutRequest();
-    dispatch(signOut());
   } catch (error) {
-    console.error(error);
-    dispatch(
-      setError({ server: "Sorry, we cannot handle your request right now." })
-    );
+    handleServerError(dispatch, error);
+    return;
   }
+
+  dispatch(signOut());
 };
 
 export default userSlice.reducer;
