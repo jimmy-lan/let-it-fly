@@ -13,6 +13,8 @@ import { useHistory } from "../../../hooks/useHistory";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
 import { changeEmail } from "../userSlice";
+import { useError } from "../hooks";
+import { Alert } from "@material-ui/lab";
 
 interface OwnProps {}
 
@@ -25,6 +27,8 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
 
   const email = useSelector((state: RootState) => state.userAuth.email);
 
+  const [validationError, serverError] = useError();
+
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeEmail(e.target.value));
   };
@@ -36,6 +40,11 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
   return (
     <AuthPageContainer grayOutArea={GrayOutArea.left}>
       <form autoComplete="off" className={classes.forgotPasswordForm}>
+        {serverError ? (
+          <Alert severity="error" className={classes.alertBox}>
+            {serverError}
+          </Alert>
+        ) : null}
         <Typography variant="h6" className={classes.titleText}>
           Forgot your password? No worries.
         </Typography>
@@ -43,6 +52,8 @@ const ForgotPassword: FunctionComponent<Props> = (props) => {
           label="Email"
           variant="outlined"
           value={email}
+          error={!!validationError?.emailField}
+          helperText={validationError?.emailField}
           onChange={handleEmailChange}
           className={classes.emailField}
         />
