@@ -61,9 +61,13 @@ const SignIn: FunctionComponent<Props> = (props) => {
   const validationError = error?.validation;
   const serverError = error?.server;
 
+  // Determines whether the component is waiting for API response
+  const [isLoading, setLoading] = useState(false);
+
   const handleSignInClick = async () => {
-    // validate inputs
-    dispatch(clearError());
+    setLoading(true);
+
+    // Validate inputs
     let errorObject: UserErrorObject = {};
     errorObject.validation = {};
 
@@ -80,13 +84,18 @@ const SignIn: FunctionComponent<Props> = (props) => {
       errorObject.validation.passwordField = "Please enter a password string.";
     }
 
+    // If no error exists, this clears the error
+    dispatch(setError(errorObject));
+
     if (Object.keys(errorObject.validation).length > 0) {
-      dispatch(setError(errorObject));
+      setLoading(false);
       return;
     }
 
-    // sign in user
+    // Sign in user
     await dispatch(authenticateAsync(email, password, signIn));
+
+    setLoading(false);
 
     // If authentication fails, the user will be pushed back to log in by ProtectedRoute component,
     // and serverError will be set to the correct error message
@@ -98,7 +107,7 @@ const SignIn: FunctionComponent<Props> = (props) => {
   };
 
   const handleUserAgreementCheckboxClick = () => {
-    setAgreeUserAgreement(!isAgreeUserAgreement);
+    setAgreeUserAgreement((prevState: boolean) => !prevState);
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -159,13 +168,13 @@ const SignIn: FunctionComponent<Props> = (props) => {
           />
           <FormHelperText>{validationError?.agreementField}</FormHelperText>
         </FormControl>
-
         <ControlButtons
           primaryButtonText="Sign In to Enter Application"
           primaryButtonTextMobile="Sign In"
           secondaryButtonText="Sign Up"
           handlePrimaryButtonClick={handleSignInClick}
           handleSecondaryButtonClick={handleSignUpClick}
+          isLoading={isLoading}
         />
         <div>
           <Link to="/forgot-password">

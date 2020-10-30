@@ -21,5 +21,16 @@ export const useStyles = makeStyles((theme: Theme) =>
     controlsContainerButton: {
       textTransform: "none",
     },
+    buttonWrapper: {
+      margin: theme.spacing(1),
+      position: "relative",
+    },
+    loadingProgress: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      marginLeft: -12,
+      marginTop: -12,
+    },
   })
 );
