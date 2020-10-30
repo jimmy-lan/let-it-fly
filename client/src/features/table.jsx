@@ -1,5 +1,5 @@
-import React, { Component, useEffect } from 'react'
-import MaterialTable from 'material-table'
+import React, { Component, useEffect } from 'react';
+import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -18,29 +18,28 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import { get } from 'http';
 
 const tableIcons = {
-    Add: AddBox,
-    Check: Check,
-    Clear: Clear ,
-    Delete: DeleteOutline ,
-    DetailPanel: ChevronRight ,
-    Edit: Edit,
-    Export: SaveAlt,
-    Filter:FilterList,
-    FirstPage: FirstPage,
-    LastPage: LastPage,
-    NextPage: ChevronRight,
-    PreviousPage: ChevronLeft,
-    ResetSearch:Clear ,
-    Search: Search ,
-    SortArrow: ArrowDownward,
-    ThirdStateCheck: Remove,
-    ViewColumn: ViewColumn 
-  };
+  Add: AddBox,
+  Check: Check,
+  Clear: Clear,
+  Delete: DeleteOutline,
+  DetailPanel: ChevronRight,
+  Edit: Edit,
+  Export: SaveAlt,
+  Filter: FilterList,
+  FirstPage: FirstPage,
+  LastPage: LastPage,
+  NextPage: ChevronRight,
+  PreviousPage: ChevronLeft,
+  ResetSearch: Clear,
+  Search: Search,
+  SortArrow: ArrowDownward,
+  ThirdStateCheck: Remove,
+  ViewColumn: ViewColumn,
+};
 
-export default function Usertable({ columns, getData, }) {
-
+export default function Usertable({ columns, getData }) {
   const { useState } = React;
-/*
+  /*
   const [columns, setColumns] = useState([
     { title: 'Nickname', field: 'nickname' },
     { title: 'Account Type', field: 'accounttype' },
@@ -49,7 +48,7 @@ export default function Usertable({ columns, getData, }) {
     { title: "Coins", filed: 'coins', type:'numeric'}
   ]);
 */
-/*
+  /*
   const [data, setData] = useState([
     { nickname: 'Tim123', accounttype: 'Admin', email: '12213@mail.utoronto.ca', name:'Tim Kang', coins: 1200},
     { nickname: 'TomHandsome', accounttype: 'Regular', email: '12315@mail.utoronto.ca', name:'Tom Clarsion', coins: 900},
@@ -58,28 +57,28 @@ export default function Usertable({ columns, getData, }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    (async() => {
-        const { dataset: data } = await getData();
-        setData(dataset);
+    (async () => {
+      const { data: dataset } = await getData();
+      setData(dataset);
     })();
   }, [getData]);
 
   return (
     <MaterialTable
-    icons={tableIcons}
+      icons={tableIcons}
       title="User info"
       columns={columns}
       data={data}
       tableRef={this.materialTableRef}
-      options={{search: true}}
+      options={{ search: true }}
       editable={{
-        onRowAdd: newData =>
+        onRowAdd: (newData) =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
               setData([...data, newData]);
-              
+
               resolve();
-            }, 1000)
+            }, 1000);
           }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve, reject) => {
@@ -90,21 +89,20 @@ export default function Usertable({ columns, getData, }) {
               setData([...dataUpdate]);
 
               resolve();
-            }, 1000)
+            }, 1000);
           }),
-        onRowDelete: oldData =>
+        onRowDelete: (oldData) =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
               const dataDelete = [...data];
               const index = oldData.tableData.id;
               dataDelete.splice(index, 1);
               setData([...dataDelete]);
-              
-              resolve()
-            }, 1000)
+
+              resolve();
+            }, 1000);
           }),
       }}
     />
-  )
+  );
 }
-  
