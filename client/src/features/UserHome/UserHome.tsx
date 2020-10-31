@@ -5,6 +5,7 @@
  */
 import React, { FunctionComponent } from "react";
 import { useStyles } from "./UserHome.style";
+import { Paper } from "@material-ui/core";
 
 interface OwnProps {}
 
@@ -13,7 +14,11 @@ type Props = OwnProps;
 const UserHome: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
 
-  return <div className={classes.root}>Home</div>;
+  return (
+    <Paper elevation={0} className={classes.root}>
+      Home
+    </Paper>
+  );
 };
 
 export { UserHome };
