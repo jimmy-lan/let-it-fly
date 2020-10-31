@@ -81,6 +81,14 @@ export const useStyles = makeStyles((theme: Theme) => {
     },
     sideBarTopTool: {
       justifyContent: "flex-start",
+      paddingLeft: theme.spacing(3),
+    },
+    logo: {
+      color: theme.palette.primary.main,
+      marginRight: theme.spacing(3),
+    },
+    nameLabel: {
+      fontWeight: "bold",
     },
     sideBarBottomTool: {
       justifyContent: "flex-end",
