@@ -37,7 +37,8 @@ icon being rendered.
 }
 ```
 
-The above code specifies that for authenticated individual with role
+The above code, which is an example object of `SideMenuConfigGroup`,
+specifies that for authenticated individual with role
 `UserRole.user`, the menu will render an item with icon `HomeIcon`
 and text `Home`. In addition, the menu item will bring the user to url `/my` when
 the user clicks on it.
