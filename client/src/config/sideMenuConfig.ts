@@ -20,7 +20,7 @@ export interface SideMenuConfigEntry {
   url: string;
   Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
   /**
-   * Size, in px, of the icon displayed
+   * Size, in px, of the icon displayed on a menu link
    */
   size?: number;
 }
