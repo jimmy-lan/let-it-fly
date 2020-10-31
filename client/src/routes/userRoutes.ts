@@ -19,7 +19,8 @@ export const userRoutes: RouteEntry[] = [
       {
         path: "/my",
         Component: UserHome,
-        isProtected: [UserRole.admin],
+        exact: true,
+        isProtected: [UserRole.user],
       },
     ],
   },

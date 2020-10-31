@@ -27,6 +27,7 @@ import { useStyles } from "./AppFrame.style";
 import { RouteEntry } from "../../../routes";
 import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
 import { SideMenuList } from "../SideMenuList";
+import { blueGrey } from "@material-ui/core/colors";
 
 interface OwnProps {
   routes: RouteEntry[];
