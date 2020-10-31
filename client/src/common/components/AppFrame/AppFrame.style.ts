@@ -12,6 +12,8 @@ export const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
     root: {
       display: "flex",
+      height: "100vh",
+      width: "100vw",
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -32,7 +34,8 @@ export const useStyles = makeStyles((theme: Theme) => {
       }),
     },
     main: {
-      flexGrow: 1,
+      flex: 1,
+      background: "#eeeeee",
       padding: theme.spacing(2),
     },
     sideBar: {
