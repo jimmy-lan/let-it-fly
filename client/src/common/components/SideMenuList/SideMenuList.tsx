@@ -42,8 +42,8 @@ const SideMenuList: FunctionComponent<Props> = (props) => {
   };
 
   return (
-    <List>
-      {menuToRender.map(({ name, Icon, url }: SideMenuConfigEntry) => (
+    <List className={classes.root}>
+      {menuToRender.map(({ name, Icon, url, size }: SideMenuConfigEntry) => (
         <ListItem
           button
           className={classes.menuItem}
@@ -51,7 +51,7 @@ const SideMenuList: FunctionComponent<Props> = (props) => {
           onClick={() => handleMenuItemClick(url)}
         >
           <ListItemIcon>
-            <Icon />
+            <Icon style={{ fontSize: size }} />
           </ListItemIcon>
           <ListItemText primary={name} />
         </ListItem>
