@@ -4,6 +4,7 @@
  */
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { blueGrey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme: Theme) => {
   // Side bar width when fully expanded
@@ -12,6 +13,8 @@ export const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
     root: {
       display: "flex",
+      height: "100vh",
+      width: "100vw",
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -32,7 +35,8 @@ export const useStyles = makeStyles((theme: Theme) => {
       }),
     },
     main: {
-      flexGrow: 1,
+      flex: 1,
+      background: theme.palette.greyBackground.main,
       padding: theme.spacing(2),
     },
     sideBar: {
@@ -77,6 +81,14 @@ export const useStyles = makeStyles((theme: Theme) => {
     },
     sideBarTopTool: {
       justifyContent: "flex-start",
+      paddingLeft: theme.spacing(3),
+    },
+    logo: {
+      color: theme.palette.primary.main,
+      marginRight: theme.spacing(3),
+    },
+    nameLabel: {
+      fontWeight: "bold",
     },
     sideBarBottomTool: {
       justifyContent: "flex-end",

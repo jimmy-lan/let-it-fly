@@ -7,6 +7,15 @@
 import { createMuiTheme } from "@material-ui/core";
 import { deepPurple, orange } from "@material-ui/core/colors";
 
+declare module "@material-ui/core/styles/createPalette" {
+  interface Palette {
+    greyBackground: Palette["primary"];
+  }
+  interface PaletteOptions {
+    greyBackground: PaletteOptions["primary"];
+  }
+}
+
 export const theme = createMuiTheme({
   palette: {
     primary: {
@@ -15,6 +24,10 @@ export const theme = createMuiTheme({
     secondary: {
       main: orange["A400"],
       dark: "#b26500",
+    },
+    greyBackground: {
+      main: "#eee",
+      light: "#f7f7f7",
     },
   },
   typography: {
