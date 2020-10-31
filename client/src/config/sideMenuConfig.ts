@@ -23,6 +23,13 @@ export interface SideMenuConfigEntry {
    * Size, in px, of the icon displayed
    */
   size?: number;
+  /**
+   * Determine whether the menu item should highlight if this
+   * url matches exactly. Defaults to false, which indicates for
+   * all urls starting with the specified url, this menu item will
+   * be highlighted.
+   */
+  highlightExact?: boolean;
 }
 
 export interface SideMenuConfigGroup {
@@ -39,6 +46,7 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
         url: "/my",
         Icon: HomeIcon,
         size: 28,
+        highlightExact: true,
       },
       {
         name: "Account",
@@ -53,8 +61,8 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
         size: 25,
       },
       {
-        name: "Space",
-        url: "/my/space",
+        name: "Inbox",
+        url: "/my/space/inbox",
         Icon: SpaceIcon,
         size: 26,
       },
