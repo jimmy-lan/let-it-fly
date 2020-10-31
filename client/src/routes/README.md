@@ -63,6 +63,45 @@ Remember the processor will only concern about the big `routes` array found in `
 in this directory. Therefore, the way that you concat the routes inside of the `routes` array
 can have an effect on what route will be rendered on the screen.
 
+**Example**
+
+What is the problem with the route configuration below?
+
+```typescript
+[
+    {
+      path: "/my",
+      Component: MyComponent
+    },
+    {
+      path: "/my/dummyText",
+      Component: DummyText
+    }
+]
+```
+
+*Answer:* Since the first route entry for `MyComponent` does not have an `exact` attribute on it,
+the route entry will match every path starting with `/my`. Therefore, `/my/dummyText` will also be
+matched by the first route entry, so `MyComponent` will be displayed. The dummy text component will not
+be shown even if you navigate to `/my/dummyText`.
+
+A simple fix for this would be:
+```typescript
+[
+    {
+      path: "/my",
+      exact: true,
+      Component: MyComponent
+    },
+    {
+      path: "/my/dummyText",
+      Component: DummyText
+    }
+]
+```
+
+### Ambiguous Matches and Generic Matches
+
 Route configuration supports ambiguous matches and generic matches. In particular, the following
 route entry
 
@@ -173,7 +212,7 @@ In the above case, the child component is only accessible if the user is `UserRo
 }
 ```
 
-In the above case, the `ChildComponent` will only render if the user has role `UserRole.admin`.
+In the above case, the `ChildComponent` will only render if the user has role `UserRole.user`.
 
 3. If the parent has a `isProtected` value set, but the child has a completely different
    `isProtected` array such that both `isProtected` arrays do not overlap.
