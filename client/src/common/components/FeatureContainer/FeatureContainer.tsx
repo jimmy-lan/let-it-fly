@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren } from "react";
-import { Paper } from "@material-ui/core";
+import { Paper, Card, CardContent } from "@material-ui/core";
 import { useStyles } from "./FeatureContainer.style";
 import clsx from "clsx";
 
@@ -26,14 +26,13 @@ const FeatureContainer: FunctionComponent<Props> = ({
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
   return (
-    <Paper
-      elevation={0}
+    <Card
       className={clsx(classes.root, {
         [classes.fullHeightContainer]: fullHeight,
       })}
     >
-      {children}
-    </Paper>
+      <CardContent>{children}</CardContent>
+    </Card>
   );
 };
 

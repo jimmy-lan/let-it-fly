@@ -36,7 +36,7 @@ export const useStyles = makeStyles((theme: Theme) => {
     },
     main: {
       flex: 1,
-      background: theme.palette.greyBackground.main,
+      background: theme.palette.greyBackground.light,
       padding: theme.spacing(2),
     },
     sideBar: {
