@@ -8,8 +8,7 @@
 import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
-import { DummyText } from "../features/DummyText";
-import { SignIn } from "../features/authentication/SignIn";
+import { UserHome } from "../features/UserHome";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -19,7 +18,7 @@ export const userRoutes: RouteEntry[] = [
     children: [
       {
         path: "/my",
-        Component: DummyText,
+        Component: UserHome,
         isProtected: [UserRole.admin],
       },
     ],
