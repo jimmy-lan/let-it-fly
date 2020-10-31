@@ -7,6 +7,7 @@ import { SvgIconTypeMap } from "@material-ui/core";
 import { UserRole } from "../services/serverApi";
 import {
   HomeTwoTone as HomeIcon,
+  AccountCircleTwoTone as AccountIcon,
   SendTwoTone as SpaceIcon,
   LibraryAddTwoTone as ComposeIcon,
   StoreTwoTone as StoreIcon,
@@ -33,6 +34,11 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
         name: "Home",
         url: "/my",
         Icon: HomeIcon,
+      },
+      {
+        name: "Account",
+        url: "/my/account",
+        Icon: AccountIcon,
       },
       {
         name: "Compose",
