@@ -27,7 +27,7 @@ import {
 import { useStyles } from "./AppFrame.style";
 import { RouteEntry } from "../../../routes";
 import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
-import { SideMenuList } from "../SideMenuList";
+import { SideMenuList } from "./components/SideMenuList";
 
 interface OwnProps {
   routes: RouteEntry[];

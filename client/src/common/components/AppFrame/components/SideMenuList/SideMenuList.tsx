@@ -6,16 +6,16 @@
  */
 import React, { FunctionComponent } from "react";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { useSideMenuConfig } from "../../../hooks/useConfig";
+import { useSideMenuConfig } from "../../../../../hooks/useConfig";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
+import { RootState } from "../../../../../app/store";
 import {
   SideMenuConfigEntry,
   SideMenuConfigGroup,
-} from "../../../config/sideMenuConfig";
-import { Link } from "../RouteComponents";
+} from "../../../../../config/sideMenuConfig";
+import { Link } from "../../../RouteComponents";
 import { useStyles } from "./SideMenuList.style";
-import { useHistory } from "../../../hooks/useHistory";
+import { useHistory } from "../../../../../hooks/useHistory";
 import { useRouteMatch } from "react-router-dom";
 import { SideMenuItem } from "./SideMenuItem";
 

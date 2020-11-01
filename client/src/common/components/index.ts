@@ -6,5 +6,5 @@
 export * from "./AppFrame";
 export * from "./AppRouter";
 export * from "./RouteComponents";
-export * from "./SideMenuList";
+export * from "./AppFrame/components/SideMenuList";
 export * from "./FeatureContainer";
