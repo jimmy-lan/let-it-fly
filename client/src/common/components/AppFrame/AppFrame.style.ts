@@ -4,12 +4,8 @@
  */
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { blueGrey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme: Theme) => {
-  // Side bar width when fully expanded
-  const sideBarWidth = 240;
-
   return createStyles({
     root: {
       display: "flex",
@@ -27,8 +23,8 @@ export const useStyles = makeStyles((theme: Theme) => {
       marginRight: theme.spacing(2),
     },
     navShift: {
-      width: `calc(100% - ${sideBarWidth}px)`,
-      marginLeft: sideBarWidth,
+      width: `calc(100% - ${theme.settings.sideBarWidth}px)`,
+      marginLeft: theme.settings.sideBarWidth,
       transition: theme.transitions.create(["margin", "width"], {
         duration: theme.transitions.duration.enteringScreen,
         easing: theme.transitions.easing.easeOut,
@@ -40,58 +36,8 @@ export const useStyles = makeStyles((theme: Theme) => {
       padding: theme.spacing(2),
     },
     sideBar: {
-      width: sideBarWidth,
       flexShrink: 0,
       whiteSpace: "nowrap",
-    },
-    expandedSideBar: {
-      width: sideBarWidth,
-      transition: theme.transitions.create("width", {
-        duration: theme.transitions.duration.enteringScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    compactSideBar: {
-      width: theme.spacing(9) + 1,
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        duration: theme.transitions.duration.leavingScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    closedSideBar: {
-      width: 0,
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        duration: theme.transitions.duration.leavingScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    sideBarContent: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      height: "100%",
-    },
-    sideBarTool: {
-      display: "flex",
-      alignItems: "center",
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
-    },
-    sideBarTopTool: {
-      justifyContent: "flex-start",
-      paddingLeft: theme.spacing(3),
-    },
-    logo: {
-      color: theme.palette.primary.main,
-      marginRight: theme.spacing(3),
-    },
-    nameLabel: {
-      fontWeight: "bold",
-    },
-    sideBarBottomTool: {
-      justifyContent: "flex-end",
     },
     belowAppBar: {
       ...theme.mixins.toolbar,

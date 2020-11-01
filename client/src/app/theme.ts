@@ -16,6 +16,19 @@ declare module "@material-ui/core/styles/createPalette" {
   }
 }
 
+declare module "@material-ui/core/styles" {
+  interface Theme {
+    settings: {
+      sideBarWidth: number;
+    };
+  }
+  interface ThemeOptions {
+    settings: {
+      sideBarWidth: number;
+    };
+  }
+}
+
 export const theme = createMuiTheme({
   palette: {
     primary: {
@@ -41,5 +54,11 @@ export const theme = createMuiTheme({
       "Segoe UI Emoji",
       "Segoe UI Symbol",
     ].join(","),
+  },
+  settings: {
+    /**
+     * Side bar width when fully expanded
+     */
+    sideBarWidth: 240,
   },
 });

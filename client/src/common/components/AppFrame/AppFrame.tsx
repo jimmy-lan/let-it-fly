@@ -22,13 +22,14 @@ import {
 import {
   Menu as MenuIcon,
   ChevronLeft as LeftArrowIcon,
-  Send as PaperCraneIcon,
 } from "@material-ui/icons";
 
 import { useStyles } from "./AppFrame.style";
 import { RouteEntry } from "../../../routes";
 import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
-import { SideMenuList } from "./components/SideMenuList";
+import { SideMenuList } from "./components/SideMenu/SideMenuList";
+import { SideMenuGreetingCard } from "./components/SideMenu/SideMenuGreetingCard";
+import { SideMenu } from "./components/SideMenu/SideMenu";
 
 interface OwnProps {
   routes: RouteEntry[];
@@ -86,57 +87,11 @@ const AppFrame: FunctionComponent<Props> = ({
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        open={false}
-        className={clsx(classes.sideBar, {
-          [classes.expandedSideBar]: sideBarState === SideBarState.Expanded,
-          [classes.compactSideBar]: sideBarState === SideBarState.Compacted,
-          [classes.closedSideBar]: sideBarState === SideBarState.Closed,
-        })}
-        // Override the default paper behaviour to
-        // completely hide overflow
-        classes={{
-          paper: clsx({
-            [classes.expandedSideBar]: sideBarState === SideBarState.Expanded,
-            [classes.compactSideBar]: sideBarState === SideBarState.Compacted,
-            [classes.closedSideBar]: sideBarState === SideBarState.Closed,
-          }),
-        }}
-        data-test="component-side-menu"
-      >
-        <div className={classes.sideBarContent}>
-          <div>
-            <div className={clsx(classes.sideBarTool, classes.sideBarTopTool)}>
-              <PaperCraneIcon className={classes.logo} />
-              <div>
-                <Typography variant="subtitle2">Welcome,</Typography>
-                <Typography variant="subtitle1" className={classes.nameLabel}>
-                  William Joyce!
-                </Typography>
-              </div>
-            </div>
-            <Divider />
-            <SideMenuList />
-          </div>
-          <div>
-            <Divider />
-            <div
-              className={clsx(classes.sideBarTool, classes.sideBarBottomTool)}
-            >
-              <IconButton
-                color="inherit"
-                aria-label="close side bar"
-                edge="start"
-                onClick={handleCloseIconClicked}
-                data-test="close-menu-button"
-              >
-                <LeftArrowIcon />
-              </IconButton>
-            </div>
-          </div>
-        </div>
-      </Drawer>
+      <SideMenu
+        sideBarState={sideBarState}
+        className={classes.sideBar}
+        onCloseIconClick={handleCloseIconClicked}
+      />
       <Container className={classes.main}>
         <div className={classes.belowAppBar} />
         {/*Render components inside frame*/}
