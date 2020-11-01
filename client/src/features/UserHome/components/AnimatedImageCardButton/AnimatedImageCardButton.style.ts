@@ -4,7 +4,7 @@
  */
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-const animatedSpanDimension = 3;
+const animatedSpanDimension = 4;
 const animatedSpanColor = "#7e57c2";
 
 export const useStyles = makeStyles((theme: Theme) =>
@@ -69,8 +69,14 @@ export const useStyles = makeStyles((theme: Theme) =>
       opacity: 0.2,
     },
     image: {},
-    cardContent: {},
-    title: {},
+    cardContent: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    title: {
+      marginBottom: 0,
+    },
     // Span animations
     "@keyframes animateSpan1": {
       "0%": {

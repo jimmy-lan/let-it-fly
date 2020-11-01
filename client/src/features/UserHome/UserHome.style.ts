@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     imageCardButton: {
-      maxWidth: "80%",
+      maxWidth: "75%",
     },
   })
 );
