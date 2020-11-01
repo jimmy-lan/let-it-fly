@@ -9,15 +9,7 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren } from "react";
-import clsx from "clsx";
-import {
-  AppBar,
-  Typography,
-  IconButton,
-  Toolbar,
-  Container,
-} from "@material-ui/core";
-import { Menu as MenuIcon } from "@material-ui/icons";
+import { Container } from "@material-ui/core";
 
 import { useStyles } from "./AppFrame.style";
 import { RouteEntry } from "../../../routes";
@@ -26,6 +18,8 @@ import { SideMenu } from "./components/SideMenu/SideMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
 import { SideBarState, setSideBarState } from "./appFrameSlice";
+import { NavBar } from "./components/NavBar/NavBar";
+import clsx from "clsx";
 
 interface OwnProps {
   routes: RouteEntry[];
@@ -56,30 +50,12 @@ const AppFrame: FunctionComponent<Props> = ({
 
   return (
     <div className={classes.root} data-test="component-app-frame">
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
+      <NavBar
+        className={clsx(classes.navBar, {
           [classes.navShift]: sideBarState === SideBarState.Expanded,
         })}
-        data-test="component-app-bar"
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="toggle side bar"
-            edge="start"
-            className={classes.appBarIconButton}
-            onClick={handleMenuIconClicked}
-            data-test="toggle-menu-button"
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <Typography variant="h6" noWrap data-test="component-app-header">
-            Let It Fly
-          </Typography>
-        </Toolbar>
-      </AppBar>
+        onMenuItemClick={handleMenuIconClicked}
+      />
       <SideMenu
         sideBarState={sideBarState}
         className={classes.sideBar}

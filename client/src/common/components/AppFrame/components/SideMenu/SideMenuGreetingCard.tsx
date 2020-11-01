@@ -6,6 +6,7 @@
 import React, { FunctionComponent } from "react";
 import { Send as PaperCraneIcon } from "@material-ui/icons";
 import { Typography } from "@material-ui/core";
+
 import { useStyles } from "./SideMenu.style";
 
 interface OwnProps {

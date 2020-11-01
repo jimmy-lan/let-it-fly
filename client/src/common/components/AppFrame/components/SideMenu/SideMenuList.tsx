@@ -14,7 +14,6 @@ import {
   SideMenuConfigEntry,
   SideMenuConfigGroup,
 } from "../../../../../config";
-import { useStyles } from "./SideMenu.style";
 import { SideMenuItem } from "./SideMenuItem";
 
 interface OwnProps {
@@ -24,8 +23,6 @@ interface OwnProps {
 type Props = OwnProps;
 
 const SideMenuList: FunctionComponent<Props> = ({ className }: Props) => {
-  const classes = useStyles();
-
   const sideMenuConfig = useSideMenuConfig();
   const currentUserRole = useSelector(
     (state: RootState) => state.userAuth.role

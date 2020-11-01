@@ -4,10 +4,11 @@
  */
 import React, { FunctionComponent } from "react";
 import clsx from "clsx";
-import { SideMenuGreetingCard } from "./SideMenuGreetingCard";
-import { Divider, Drawer, IconButton } from "@material-ui/core";
-import { SideMenuList } from "./SideMenuList";
 import { ChevronLeft as LeftArrowIcon } from "@material-ui/icons";
+import { Divider, Drawer, IconButton } from "@material-ui/core";
+
+import { SideMenuGreetingCard } from "./SideMenuGreetingCard";
+import { SideMenuList } from "./SideMenuList";
 import { SideBarState } from "../../appFrameSlice";
 import { useStyles } from "./SideMenu.style";
 

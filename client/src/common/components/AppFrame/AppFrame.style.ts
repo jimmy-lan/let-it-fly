@@ -12,15 +12,12 @@ export const useStyles = makeStyles((theme: Theme) => {
       height: "100vh",
       width: "100vw",
     },
-    appBar: {
+    navBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(["margin", "width"], {
         duration: theme.transitions.duration.leavingScreen,
         easing: theme.transitions.easing.easeOut,
       }),
-    },
-    appBarIconButton: {
-      marginRight: theme.spacing(2),
     },
     navShift: {
       width: `calc(100% - ${theme.settings.sideBarWidth}px)`,
