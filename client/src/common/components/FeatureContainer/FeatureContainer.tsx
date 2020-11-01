@@ -16,6 +16,7 @@ interface OwnProps {
    * Determine whether the container fits entire <main> area
    */
   fullHeight?: boolean;
+  className?: string;
 }
 
 type Props = OwnProps;
@@ -23,11 +24,12 @@ type Props = OwnProps;
 const FeatureContainer: FunctionComponent<Props> = ({
   children,
   fullHeight,
+  className,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
   return (
     <Card
-      className={clsx(classes.root, {
+      className={clsx(className, {
         [classes.fullHeightContainer]: fullHeight,
       })}
     >
