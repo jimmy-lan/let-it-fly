@@ -8,7 +8,7 @@ import { SideMenuGreetingCard } from "./SideMenuGreetingCard";
 import { Divider, Drawer, IconButton } from "@material-ui/core";
 import { SideMenuList } from "./SideMenuList";
 import { ChevronLeft as LeftArrowIcon } from "@material-ui/icons";
-import { SideBarState } from "../../AppFrame";
+import { SideBarState } from "../../appFrameSlice";
 import { useStyles } from "./SideMenu.style";
 
 interface OwnProps {

@@ -8,28 +8,24 @@
  *    on the top).
  */
 
-import React, { FunctionComponent, PropsWithChildren, useState } from "react";
+import React, { FunctionComponent, PropsWithChildren } from "react";
 import clsx from "clsx";
 import {
   AppBar,
-  Divider,
   Typography,
-  Drawer,
   IconButton,
   Toolbar,
   Container,
 } from "@material-ui/core";
-import {
-  Menu as MenuIcon,
-  ChevronLeft as LeftArrowIcon,
-} from "@material-ui/icons";
+import { Menu as MenuIcon } from "@material-ui/icons";
 
 import { useStyles } from "./AppFrame.style";
 import { RouteEntry } from "../../../routes";
 import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
-import { SideMenuList } from "./components/SideMenu/SideMenuList";
-import { SideMenuGreetingCard } from "./components/SideMenu/SideMenuGreetingCard";
 import { SideMenu } from "./components/SideMenu/SideMenu";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../app/store";
+import { SideBarState, setSideBarState } from "./appFrameSlice";
 
 interface OwnProps {
   routes: RouteEntry[];
@@ -37,28 +33,25 @@ interface OwnProps {
 
 type Props = OwnProps;
 
-export enum SideBarState {
-  Expanded,
-  Compacted,
-  Closed,
-}
-
 const AppFrame: FunctionComponent<Props> = ({
   children,
   routes,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
-  const [sideBarState, setSideBarState] = useState(SideBarState.Expanded);
+  const dispatch = useDispatch();
+  const sideBarState = useSelector(
+    (state: RootState) => state.appFrame.sideBarState
+  );
   const { renderRoutes } = useRenderRoutes(routes);
 
   const handleMenuIconClicked = (): void => {
     sideBarState === SideBarState.Expanded
-      ? setSideBarState(SideBarState.Compacted)
-      : setSideBarState(SideBarState.Expanded);
+      ? dispatch(setSideBarState(SideBarState.Compacted))
+      : dispatch(setSideBarState(SideBarState.Expanded));
   };
 
   const handleCloseIconClicked = (): void => {
-    setSideBarState(SideBarState.Closed);
+    dispatch(setSideBarState(SideBarState.Closed));
   };
 
   return (
