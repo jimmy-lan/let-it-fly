@@ -15,6 +15,9 @@ import {
 } from "../../../config/sideMenuConfig";
 import { Link } from "../RouteComponents";
 import { useStyles } from "./SideMenuList.style";
+import { useHistory } from "../../../hooks/useHistory";
+import { useRouteMatch } from "react-router-dom";
+import { SideMenuItem } from "./SideMenuItem";
 
 interface OwnProps {}
 
@@ -22,6 +25,7 @@ type Props = OwnProps;
 
 const SideMenuList: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
+
   const sideMenuConfig = useSideMenuConfig();
   const currentUserRole = useSelector(
     (state: RootState) => state.userAuth.role
@@ -36,17 +40,18 @@ const SideMenuList: FunctionComponent<Props> = (props) => {
   }
 
   return (
-    <List>
-      {menuToRender.map(({ name, Icon, url }: SideMenuConfigEntry) => (
-        <Link to={url}>
-          <ListItem button className={classes.menuItem} key={`${name}${url}`}>
-            <ListItemIcon>
-              <Icon />
-            </ListItemIcon>
-            <ListItemText primary={name} />
-          </ListItem>
-        </Link>
-      ))}
+    <List className={classes.root}>
+      {menuToRender.map(
+        ({ name, Icon, url, size, highlightExact }: SideMenuConfigEntry) => (
+          <SideMenuItem
+            name={name}
+            Icon={Icon}
+            url={url}
+            size={size}
+            highlightExact={highlightExact}
+          />
+        )
+      )}
     </List>
   );
 };

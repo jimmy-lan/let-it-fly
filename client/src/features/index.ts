@@ -6,3 +6,4 @@
 export * from "./Home";
 export * from "./authentication";
 export * from "./DummyText";
+export * from "./UserHome";

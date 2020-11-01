@@ -21,6 +21,7 @@ import {
 import {
   Menu as MenuIcon,
   ChevronLeft as LeftArrowIcon,
+  Send as PaperCraneIcon,
 } from "@material-ui/icons";
 
 import { useStyles } from "./AppFrame.style";
@@ -105,9 +106,16 @@ const AppFrame: FunctionComponent<Props> = ({
       >
         <div className={classes.sideBarContent}>
           <div>
-            <div
-              className={clsx(classes.sideBarTool, classes.sideBarTopTool)}
-            />
+            <div className={clsx(classes.sideBarTool, classes.sideBarTopTool)}>
+              <PaperCraneIcon className={classes.logo} />
+              <div>
+                <Typography variant="subtitle2">Welcome,</Typography>
+                <Typography variant="subtitle1" className={classes.nameLabel}>
+                  William Joyce!
+                </Typography>
+              </div>
+            </div>
+            <Divider />
             <SideMenuList />
           </div>
           <div>
