@@ -11,3 +11,7 @@ export const isEmailPattern = (email: string) => {
 export const isEqual = (str1: string, str2: string) => {
   return str1 === str2;
 };
+
+export const formatNumber = (num: number) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};

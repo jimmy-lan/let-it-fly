@@ -6,6 +6,8 @@ import React, { FunctionComponent } from "react";
 import { IconButton, Toolbar, Typography, AppBar } from "@material-ui/core";
 import { Menu as MenuIcon } from "@material-ui/icons";
 import { useStyles } from "./NavBar.style";
+import clsx from "clsx";
+import { UserToolBar } from "../UserToolBar/UserToolBar";
 
 interface OwnProps {
   onMenuItemClick?: () => void;
@@ -19,7 +21,7 @@ const NavBar: FunctionComponent<Props> = ({ onMenuItemClick, className }) => {
   return (
     <AppBar
       position="fixed"
-      className={className}
+      className={clsx(classes.root, className)}
       data-test="component-app-bar"
     >
       <Toolbar>
@@ -37,6 +39,10 @@ const NavBar: FunctionComponent<Props> = ({ onMenuItemClick, className }) => {
         <Typography variant="h6" noWrap data-test="component-app-header">
           Let It Fly
         </Typography>
+
+        <div className={classes.grow} />
+
+        <UserToolBar />
       </Toolbar>
     </AppBar>
   );
