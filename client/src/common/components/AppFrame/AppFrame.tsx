@@ -17,6 +17,7 @@ import {
   Drawer,
   IconButton,
   Toolbar,
+  Container,
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
@@ -136,12 +137,12 @@ const AppFrame: FunctionComponent<Props> = ({
           </div>
         </div>
       </Drawer>
-      <main className={classes.main}>
+      <Container className={classes.main}>
         <div className={classes.belowAppBar} />
         {/*Render components inside frame*/}
         {children}
         {renderRoutes()}
-      </main>
+      </Container>
     </div>
   );
 };
