@@ -5,10 +5,21 @@
  *    Toolbar to display user avatar, coins remaining, and
  *    notifications icon button.
  */
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../app/store";
-import { Avatar, Badge, IconButton, Typography } from "@material-ui/core";
+import {
+  Avatar,
+  Badge,
+  IconButton,
+  Popper,
+  Typography,
+  Grow,
+  Paper,
+  ClickAwayListener,
+  MenuList,
+  MenuItem,
+} from "@material-ui/core";
 import {
   AccountCircleTwoTone as AccountIcon,
   Notifications as NotificationsIcon,
@@ -26,6 +37,20 @@ const UserToolBar: FunctionComponent<Props> = (props) => {
     (state: RootState) => state.userAuth
   );
   const classes = useStyles();
+  const [isUserMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuAnchorRef = useRef<HTMLButtonElement>(null);
+
+  const handleUserMenuToggle = () => {
+    setUserMenuOpen((prevOpen: boolean) => !prevOpen);
+  };
+
+  const handleUserMenuClose = (event: React.MouseEvent<EventTarget>) => {
+    if (userMenuAnchorRef.current?.contains(event.target as HTMLElement)) {
+      return;
+    }
+
+    setUserMenuOpen(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -40,7 +65,11 @@ const UserToolBar: FunctionComponent<Props> = (props) => {
           <NotificationsIcon />
         </Badge>
       </IconButton>
-      <IconButton color="inherit">
+      <IconButton
+        color="inherit"
+        onClick={handleUserMenuToggle}
+        ref={userMenuAnchorRef}
+      >
         {avatarLink ? (
           <Avatar
             alt="avatar"
@@ -51,6 +80,23 @@ const UserToolBar: FunctionComponent<Props> = (props) => {
           <AccountIcon className={classes.userProfileIcon} />
         )}
       </IconButton>
+      {/*User menu*/}
+      <Popper
+        open={isUserMenuOpen}
+        anchorEl={userMenuAnchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+      >
+        <Paper>
+          <ClickAwayListener onClickAway={handleUserMenuClose}>
+            <MenuList autoFocusItem={isUserMenuOpen}>
+              <MenuItem onClick={handleUserMenuClose}>Profile</MenuItem>
+              <MenuItem onClick={handleUserMenuClose}>Logout</MenuItem>
+            </MenuList>
+          </ClickAwayListener>
+        </Paper>
+      </Popper>
     </div>
   );
 };
