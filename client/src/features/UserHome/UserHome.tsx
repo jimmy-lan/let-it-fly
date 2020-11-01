@@ -26,7 +26,7 @@ const UserHome: FunctionComponent<Props> = (props) => {
           <ImageCardButton
             className={classes.imageCardButton}
             imageSrc={paperCraneSpaceImage}
-            imageAlt="Image showing girl folding a paper crane in front of a work station"
+            imageAlt="Girl folding a paper crane in front of a work station"
             title="Enter My Space"
           />
         </Grid>
@@ -34,7 +34,7 @@ const UserHome: FunctionComponent<Props> = (props) => {
           <ImageCardButton
             className={classes.imageCardButton}
             imageSrc={paperCraneComposeImage}
-            imageAlt="Image showing girl folding a paper crane in front of a work station"
+            imageAlt="Smiling boy putting a paper crane into a mailbox"
             title="Compose a Paper Crane"
           />
         </Grid>
