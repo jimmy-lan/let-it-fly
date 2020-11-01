@@ -4,3 +4,4 @@
  */
 
 export * from "./AppFrame";
+export * from "./appFrameSlice";

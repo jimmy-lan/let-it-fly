@@ -5,10 +5,10 @@
  */
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { useRouteMatch } from "react-router-dom";
-import { SideMenuConfigEntry } from "../../../config";
+import { SideMenuConfigEntry } from "../../../../../config";
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { useStyles } from "./SideMenuList.style";
-import { useHistory } from "../../../hooks/useHistory";
+import { useStyles } from "./SideMenu.style";
+import { useHistory } from "../../../../../hooks/useHistory";
 
 type Props = SideMenuConfigEntry;
 

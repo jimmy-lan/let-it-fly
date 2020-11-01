@@ -5,27 +5,24 @@
  *    A list rendered based on configured routes.
  */
 import React, { FunctionComponent } from "react";
-import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { useSideMenuConfig } from "../../../hooks/useConfig";
+import { List } from "@material-ui/core";
+
+import { useSideMenuConfig } from "../../../../../hooks/useConfig";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
+import { RootState } from "../../../../../app/store";
 import {
   SideMenuConfigEntry,
   SideMenuConfigGroup,
-} from "../../../config/sideMenuConfig";
-import { Link } from "../RouteComponents";
-import { useStyles } from "./SideMenuList.style";
-import { useHistory } from "../../../hooks/useHistory";
-import { useRouteMatch } from "react-router-dom";
+} from "../../../../../config";
 import { SideMenuItem } from "./SideMenuItem";
 
-interface OwnProps {}
+interface OwnProps {
+  className?: string;
+}
 
 type Props = OwnProps;
 
-const SideMenuList: FunctionComponent<Props> = (props) => {
-  const classes = useStyles();
-
+const SideMenuList: FunctionComponent<Props> = ({ className }: Props) => {
   const sideMenuConfig = useSideMenuConfig();
   const currentUserRole = useSelector(
     (state: RootState) => state.userAuth.role
@@ -40,7 +37,7 @@ const SideMenuList: FunctionComponent<Props> = (props) => {
   }
 
   return (
-    <List className={classes.root}>
+    <List className={className}>
       {menuToRender.map(
         ({ name, Icon, url, size, highlightExact }: SideMenuConfigEntry) => (
           <SideMenuItem
