@@ -69,35 +69,36 @@ What is the problem with the route configuration below?
 
 ```typescript
 [
-    {
-      path: "/my",
-      Component: MyComponent
-    },
-    {
-      path: "/my/dummyText",
-      Component: DummyText
-    }
-]
+  {
+    path: "/my",
+    Component: MyComponent,
+  },
+  {
+    path: "/my/dummyText",
+    Component: DummyText,
+  },
+];
 ```
 
-*Answer:* Since the first route entry for `MyComponent` does not have an `exact` attribute on it,
+_Answer:_ Since the first route entry for `MyComponent` does not have an `exact` attribute on it,
 the route entry will match every path starting with `/my`. Therefore, `/my/dummyText` will also be
 matched by the first route entry, so `MyComponent` will be displayed. The dummy text component will not
 be shown even if you navigate to `/my/dummyText`.
 
 A simple fix for this would be:
+
 ```typescript
 [
-    {
-      path: "/my",
-      exact: true,
-      Component: MyComponent
-    },
-    {
-      path: "/my/dummyText",
-      Component: DummyText
-    }
-]
+  {
+    path: "/my",
+    exact: true,
+    Component: MyComponent,
+  },
+  {
+    path: "/my/dummyText",
+    Component: DummyText,
+  },
+];
 ```
 
 ### Ambiguous Matches and Generic Matches
