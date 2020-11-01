@@ -32,5 +32,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       // fontWeight: "bold",
       cursor: "default",
     },
+    marginBottom: {
+      marginBottom: theme.spacing(0.5),
+    },
+    menuItemIcon: {
+      marginRight: theme.spacing(1),
+    },
   })
 );

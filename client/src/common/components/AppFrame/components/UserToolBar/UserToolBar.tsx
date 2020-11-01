@@ -14,16 +14,17 @@ import {
   IconButton,
   Popper,
   Typography,
-  Grow,
   Paper,
   ClickAwayListener,
   MenuList,
   MenuItem,
+  Divider,
 } from "@material-ui/core";
 import {
   AccountCircleTwoTone as AccountIcon,
   Notifications as NotificationsIcon,
   MonetizationOn as CoinIcon,
+  PowerSettingsNewTwoTone as SignOutIcon,
 } from "@material-ui/icons";
 import { useStyles } from "./UserToolBar.style";
 import { formatNumber } from "../../../../util";
@@ -80,6 +81,7 @@ const UserToolBar: FunctionComponent<Props> = (props) => {
           <AccountIcon className={classes.userProfileIcon} />
         )}
       </IconButton>
+
       {/*User menu*/}
       <Popper
         open={isUserMenuOpen}
@@ -91,8 +93,17 @@ const UserToolBar: FunctionComponent<Props> = (props) => {
         <Paper>
           <ClickAwayListener onClickAway={handleUserMenuClose}>
             <MenuList autoFocusItem={isUserMenuOpen}>
-              <MenuItem onClick={handleUserMenuClose}>Profile</MenuItem>
-              <MenuItem onClick={handleUserMenuClose}>Logout</MenuItem>
+              <div className={classes.marginBottom}>
+                <MenuItem onClick={handleUserMenuClose}>
+                  <AccountIcon className={classes.menuItemIcon} />
+                  Profile
+                </MenuItem>
+              </div>
+              <Divider className={classes.marginBottom} />
+              <MenuItem onClick={handleUserMenuClose}>
+                <SignOutIcon className={classes.menuItemIcon} />
+                Logout
+              </MenuItem>
             </MenuList>
           </ClickAwayListener>
         </Paper>
