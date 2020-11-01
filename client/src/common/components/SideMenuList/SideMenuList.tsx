@@ -49,6 +49,7 @@ const SideMenuList: FunctionComponent<Props> = (props) => {
             url={url}
             size={size}
             highlightExact={highlightExact}
+            key={`${name}${url}`}
           />
         )
       )}

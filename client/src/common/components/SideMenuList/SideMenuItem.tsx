@@ -35,7 +35,6 @@ const SideMenuItem: FunctionComponent<Props> = ({
       button
       selected={!!match}
       className={classes.menuItem}
-      key={`${name}${url}`}
       onClick={() => handleMenuItemClick(url)}
     >
       <ListItemIcon>
