@@ -61,7 +61,7 @@ const AppFrame: FunctionComponent<Props> = ({
         className={classes.sideBar}
         onCloseIconClick={handleCloseIconClicked}
       />
-      <Container className={classes.main}>
+      <Container className={classes.main} maxWidth={false}>
         <div className={classes.belowAppBar} />
         {/*Render components inside frame*/}
         {children}
