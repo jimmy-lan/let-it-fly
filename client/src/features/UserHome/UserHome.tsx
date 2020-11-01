@@ -8,9 +8,9 @@ import { Grid } from "@material-ui/core";
 
 import { useStyles } from "./UserHome.style";
 import { FeatureContainer } from "../../common/components/FeatureContainer";
-import { ImageCardButton } from "./components/ImageCardButton";
 import paperCraneComposeImage from "../../images/paper-crane-compose.jpg";
 import paperCraneSpaceImage from "../../images/paper-crane-space.jpg";
+import { AnimatedImageCardButton } from "./components/AnimatedImageCardButton";
 
 interface OwnProps {}
 
@@ -23,7 +23,7 @@ const UserHome: FunctionComponent<Props> = (props) => {
     <FeatureContainer fullHeight className={classes.root}>
       <Grid container className={classes.optionsGrid} spacing={0}>
         <Grid item md={6} sm={12} xs={12} className={classes.optionContainer}>
-          <ImageCardButton
+          <AnimatedImageCardButton
             className={classes.imageCardButton}
             imageSrc={paperCraneSpaceImage}
             imageAlt="Girl folding a paper crane in front of a work station"
@@ -31,7 +31,7 @@ const UserHome: FunctionComponent<Props> = (props) => {
           />
         </Grid>
         <Grid item md={6} sm={12} xs={12} className={classes.optionContainer}>
-          <ImageCardButton
+          <AnimatedImageCardButton
             className={classes.imageCardButton}
             imageSrc={paperCraneComposeImage}
             imageAlt="Smiling boy putting a paper crane into a mailbox"
