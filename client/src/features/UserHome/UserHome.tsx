@@ -19,6 +19,8 @@ type Props = OwnProps;
 
 const UserHome: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
+  // When one image card is being hovered over, I want to fade
+  // other image cards to create the visual effect.
   const [shouldImageCardFade, setShouldImageCardFade] = useState(false);
 
   const handleImageCardMouseEnter = () => {

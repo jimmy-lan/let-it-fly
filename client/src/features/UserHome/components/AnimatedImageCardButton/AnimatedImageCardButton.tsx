@@ -21,7 +21,10 @@ interface OwnProps {
   className?: string;
   /**
    * Determine whether the card should fade.
+   * This image card will fade if shouldFade is set to
+   * true AND it's not being hovered over.
    * This prop was created for animation purposes.
+   * Default to false.
    */
   shouldFade?: boolean;
   /**

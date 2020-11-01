@@ -27,6 +27,19 @@ export const useStyles = makeStyles((theme: Theme) =>
     card: {
       borderRadius: 0,
     },
+    fade: {
+      opacity: 0.2,
+    },
+    image: {},
+    cardContent: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    title: {
+      marginBottom: 0,
+    },
+    // Span styles
     topSpan: {
       position: "absolute",
       top: 0,
@@ -64,18 +77,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       background: `linear-gradient(to top, transparent, ${animatedSpanColor})`,
       animation: "$animateSpan4 2s linear infinite",
       animationDelay: "1s",
-    },
-    fade: {
-      opacity: 0.2,
-    },
-    image: {},
-    cardContent: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    title: {
-      marginBottom: 0,
     },
     // Span animations
     "@keyframes animateSpan1": {
