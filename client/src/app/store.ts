@@ -21,7 +21,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 
-import userAuthReducer from "../features/authentication/userSlice";
+import userAuthReducer from "../features/authentication/userAuthSlice";
 import appFrameReducer from "../common/components/AppFrame/appFrameSlice";
 
 const reducers = combineReducers({

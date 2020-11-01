@@ -29,7 +29,7 @@ import {
   changeEmail,
   setError,
   UserErrorObject,
-} from "../userSlice";
+} from "../userAuthSlice";
 import { useError } from "../hooks";
 import { isEmailPattern, isEqual } from "../../../common/util";
 import { signUp } from "../../../services/serverApi";

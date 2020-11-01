@@ -1,3 +1,3 @@
 export * from "./helpers";
-export * from "./userApi";
+export * from "./userAuthApi";
 export * from "./models";
