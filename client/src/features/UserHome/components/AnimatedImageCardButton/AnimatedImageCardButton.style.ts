@@ -4,7 +4,7 @@
  */
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-const animatedSpanDimension = 4;
+const animatedSpanDimension = 3;
 const animatedSpanColor = "#7e57c2";
 
 export const useStyles = makeStyles((theme: Theme) =>

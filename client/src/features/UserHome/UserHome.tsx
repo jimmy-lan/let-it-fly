@@ -37,7 +37,8 @@ const UserHome: FunctionComponent<Props> = (props) => {
       })}
     >
       <Grid container className={classes.optionsGrid} spacing={0}>
-        <Grid item md={6} sm={12} xs={12} className={classes.optionContainer}>
+        <Grid item md={1} />
+        <Grid item md={5} sm={12} xs={12} className={classes.optionContainer}>
           <AnimatedImageCardButton
             className={clsx(classes.imageCardButton, "animatedCard")}
             imageSrc={paperCraneSpaceImage}
@@ -48,17 +49,18 @@ const UserHome: FunctionComponent<Props> = (props) => {
             onMouseLeave={handleImageCardMouseLeave}
           />
         </Grid>
-        <Grid item md={6} sm={12} xs={12} className={classes.optionContainer}>
+        <Grid item md={5} sm={12} xs={12} className={classes.optionContainer}>
           <AnimatedImageCardButton
             className={clsx(classes.imageCardButton, "animatedCard")}
             imageSrc={paperCraneComposeImage}
             imageAlt="Smiling boy putting a paper crane into a mailbox"
-            title="Compose a Paper Crane"
+            title="Compose Paper Crane"
             shouldFade={shouldImageCardFade}
             onMouseEnter={handleImageCardMouseEnter}
             onMouseLeave={handleImageCardMouseLeave}
           />
         </Grid>
+        <Grid item md={1} />
       </Grid>
     </FeatureContainer>
   );
