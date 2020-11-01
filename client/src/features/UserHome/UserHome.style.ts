@@ -12,6 +12,18 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       padding: theme.spacing(2),
     },
-    optionsContainer: {},
+    optionsGrid: {
+      width: "100%",
+      height: "100%",
+      padding: theme.spacing(2),
+    },
+    optionContainer: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    imageCardButton: {
+      maxWidth: 450,
+    },
   })
 );

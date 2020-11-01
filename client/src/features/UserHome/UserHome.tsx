@@ -4,9 +4,13 @@
  * Description: Home page for regular user.
  */
 import React, { FunctionComponent } from "react";
+import { Grid } from "@material-ui/core";
+
 import { useStyles } from "./UserHome.style";
 import { FeatureContainer } from "../../common/components/FeatureContainer";
-import { Grid } from "@material-ui/core";
+import { ImageCardButton } from "./components/ImageCardButton";
+import paperCraneComposeImage from "../../images/paper-crane-compose.jpg";
+import paperCraneSpaceImage from "../../images/paper-crane-space.jpg";
 
 interface OwnProps {}
 
@@ -17,9 +21,23 @@ const UserHome: FunctionComponent<Props> = (props) => {
 
   return (
     <FeatureContainer fullHeight className={classes.root}>
-      <Grid container className={classes.optionsContainer}>
-        <Grid item>Space</Grid>
-        <Grid item>Compose</Grid>
+      <Grid container className={classes.optionsGrid} spacing={0}>
+        <Grid item md={6} sm={12} xs={12} className={classes.optionContainer}>
+          <ImageCardButton
+            className={classes.imageCardButton}
+            imageSrc={paperCraneSpaceImage}
+            imageAlt="Image showing girl folding a paper crane in front of a work station"
+            title="Enter My Space"
+          />
+        </Grid>
+        <Grid item md={6} sm={12} xs={12} className={classes.optionContainer}>
+          <ImageCardButton
+            className={classes.imageCardButton}
+            imageSrc={paperCraneComposeImage}
+            imageAlt="Image showing girl folding a paper crane in front of a work station"
+            title="Compose a Paper Crane"
+          />
+        </Grid>
       </Grid>
     </FeatureContainer>
   );

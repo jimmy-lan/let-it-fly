@@ -6,7 +6,10 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {},
+    container: {
+      height: "100%",
+      width: "100%",
+    },
     fullHeightContainer: {
       height: `calc(100% - 64px - ${theme.spacing(2)}px)`,
     },
