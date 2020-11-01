@@ -10,9 +10,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      transition: `all 0.5s ${theme.transitions.easing.easeInOut}`,
     },
     rootFade: {
-      backgroundColor: theme.palette.greyBackground.light,
+      backgroundColor: theme.palette.greyBackground.main,
     },
     optionsGrid: {
       width: "100%",

@@ -17,6 +17,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         opacity: 0,
         transition: "0.5s",
       },
+      transition: `all 0.5s ${theme.transitions.easing.easeInOut}`,
     },
     rootHovered: {
       opacity: 1,
