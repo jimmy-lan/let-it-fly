@@ -80,4 +80,41 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
       },
     ],
   },
+  {
+    role: UserRole.admin,
+    menuItems: [
+      {
+        name: "Home",
+        url: "/my",
+        Icon: HomeIcon,
+        size: 28,
+        highlightExact: true,
+      },
+      {
+        name: "Activity",
+        url: "/my/logTable",
+        Icon: AccountIcon,
+        size: 27,
+      },
+      {
+        name: "Paper Cranes",
+        url: "/my/cranesTable",
+        Icon: ComposeIcon,
+        size: 25,
+      },
+      {
+        name: "Users",
+        url: "/my/usersTable",
+        Icon: SpaceIcon,
+        size: 26,
+      },
+      {
+        name: "Store",
+        url: "/my/storeTable",
+        Icon: StoreIcon,
+        size: 26,
+      },
+    ],
+  },
 ];
+

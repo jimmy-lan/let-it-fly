@@ -118,6 +118,9 @@ export const loadUsersTable = () => {
         email: '12213@mail.utoronto.ca',
         name: 'Tim Kang',
         coins: 1200,
+        joindate: 'Oct 31 2020',
+        dateofbirth: 'Jan 1 1970',
+        contactinformation: ['contactinformation','Tel:647-123-4567\n Facebook: Willian Joyce\n LinkedIn:willian-joyce-2be4ry\n'],
       },
       {
         nickname: 'TomHandsome',
@@ -125,6 +128,10 @@ export const loadUsersTable = () => {
         email: '12315@mail.utoronto.ca',
         name: 'Tom Clarsion',
         coins: 900,
+        joindate: 'Oct 31 2020',
+        dateofbirth: 'Jan 1 1970',
+        contactinformation: '12312313',
+
       },
     ],
   };

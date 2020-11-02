@@ -1,7 +1,8 @@
+
 import React, { Component, useEffect } from 'react';
 import Table from './expandableTable';
-import { loadUsersTable } from '../../services/serverApi/userApi';
-const UserTable1 = () => (
+import { loadUsersTable } from '../../services/serverApi/userAuthApi';
+const UserTable = () => (
   <Table
     columns={[
       { title: 'Nickname', field: 'nickname' },
@@ -12,7 +13,12 @@ const UserTable1 = () => (
     ]}
     getData={loadUsersTable}
     title={"User Info"}
+    detalicolumns={[
+        {title:'Join Date',field: 'joindate'},
+        {title:'Date Of Birth',field: 'dateofbirth'},
+        {title:'Contact Information',field: 'contactinformation'},
+    ]}
   />
 );
 
-export default UserTable1;
+export default UserTable;
