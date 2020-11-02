@@ -9,6 +9,7 @@ import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
 import { UserHome } from "../features/UserHome";
+import userStore from "../features/userStore/userStore";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -21,6 +22,12 @@ export const userRoutes: RouteEntry[] = [
         Component: UserHome,
         exact: true,
         isProtected: [UserRole.user],
+      },
+      {
+        path: "/my/store",
+        Component: userStore,
+        isProtected: [UserRole.user],
+        exact: true,
       },
     ],
   },
