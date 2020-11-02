@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from '../table';
+import Table from './table';
 import { loadActivityTable } from '../../services/serverApi/userApi';
 const ActivityTable = () => (
   <Table

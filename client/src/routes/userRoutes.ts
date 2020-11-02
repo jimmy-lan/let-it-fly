@@ -8,13 +8,13 @@
 import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
-import { DummyText } from "../features/DummyText";
 import AdminHome from '../features/AdminHome/AdminHome';
 import PaperCraneTable from '../features/adminPage/PaperCraneTable';
 import UserTable1 from '../features/adminPage/UserTable1';
 import StoreTable from '../features/adminPage/StoreTable';
 import ActivityTable from '../features/adminPage/ActivityTable';
 import { SignIn } from "../features/authentication/SignIn";
+import { UserHome } from "../features/UserHome";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -24,7 +24,8 @@ export const userRoutes: RouteEntry[] = [
     children: [
       {
         path: "/my",
-        Component: DummyText,
+        Component: UserHome,
+        exact: true,
         isProtected: [UserRole.user],
       },
       {

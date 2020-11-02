@@ -17,7 +17,7 @@ import {
   changeEmail,
   setError,
   UserErrorObject,
-} from "../userSlice";
+} from "../userAuthSlice";
 import { useError } from "../hooks";
 import { Alert } from "@material-ui/lab";
 import { isEmailPattern, isEqual } from "../../../common/util";

@@ -61,7 +61,7 @@ const initialState: UserState = {
   email: "",
 };
 
-const userSlice = createSlice({
+const userAuthSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -101,7 +101,7 @@ export const {
   setError,
   clearError,
   signOut,
-} = userSlice.actions;
+} = userAuthSlice.actions;
 
 const handleServerError = (
   dispatch: ThunkDispatch<CombinedState<unknown>, unknown, Action<string>>,
@@ -152,4 +152,4 @@ export const signOutAsync = (): AppThunk => async (dispatch) => {
   dispatch(signOut());
 };
 
-export default userSlice.reducer;
+export default userAuthSlice.reducer;

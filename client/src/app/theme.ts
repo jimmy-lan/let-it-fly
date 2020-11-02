@@ -7,6 +7,28 @@
 import { createMuiTheme } from "@material-ui/core";
 import { deepPurple, orange } from "@material-ui/core/colors";
 
+declare module "@material-ui/core/styles/createPalette" {
+  interface Palette {
+    greyBackground: Palette["primary"];
+  }
+  interface PaletteOptions {
+    greyBackground: PaletteOptions["primary"];
+  }
+}
+
+declare module "@material-ui/core/styles" {
+  interface Theme {
+    settings: {
+      sideBarWidth: number;
+    };
+  }
+  interface ThemeOptions {
+    settings: {
+      sideBarWidth: number;
+    };
+  }
+}
+
 export const theme = createMuiTheme({
   palette: {
     primary: {
@@ -15,6 +37,10 @@ export const theme = createMuiTheme({
     secondary: {
       main: orange["A400"],
       dark: "#b26500",
+    },
+    greyBackground: {
+      main: "#eee",
+      light: "#f7f7f7",
     },
   },
   typography: {
@@ -28,5 +54,11 @@ export const theme = createMuiTheme({
       "Segoe UI Emoji",
       "Segoe UI Symbol",
     ].join(","),
+  },
+  settings: {
+    /**
+     * Side bar width when fully expanded
+     */
+    sideBarWidth: 240,
   },
 });

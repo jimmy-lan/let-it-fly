@@ -1,3 +1,8 @@
+/**
+ * Created by Jimmy Lan
+ * Creation Date: 2020-10-26
+ */
+
 import {
   configureStore,
   ThunkAction,
@@ -16,10 +21,12 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 
-import userAuthReducer from "../features/authentication/userSlice";
+import userAuthReducer from "../features/authentication/userAuthSlice";
+import appFrameReducer from "../common/components/AppFrame/appFrameSlice";
 
 const reducers = combineReducers({
   userAuth: userAuthReducer,
+  appFrame: appFrameReducer,
 });
 
 const persistedReducer = persistReducer(

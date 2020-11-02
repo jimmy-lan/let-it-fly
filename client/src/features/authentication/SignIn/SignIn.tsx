@@ -29,7 +29,7 @@ import {
   setError,
   UserErrorObject,
   authenticateAsync,
-} from "../userSlice";
+} from "../userAuthSlice";
 import { isEmailPattern } from "../../../common/util";
 import { signIn } from "../../../services/serverApi";
 import { useLocation } from "react-router-dom";

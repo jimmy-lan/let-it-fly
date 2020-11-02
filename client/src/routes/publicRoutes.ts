@@ -4,12 +4,12 @@
  * Description: Public routes visible to everyone.
  */
 import { RouteEntry } from "./models";
-import { Home } from "../features/Home";
+import { AppHome } from "../features/AppHome";
 
 export const publicRoutes: RouteEntry[] = [
   {
     path: "/",
     exact: true,
-    Component: Home,
+    Component: AppHome,
   },
 ];

@@ -8,7 +8,11 @@ Let It Fly is an anonymous platform for people to send messages
 ("paper cranes") to each other.
 This is a course project for CSC309.
 Team members: **Jimmy Lan** ([@lanyanxiang](https://github.com/lanyanxiang)),
-[name], [name], [name].
+**Brady Huai**([@BradyHuai](https://github.com/BradyHuai)), **Michael Liu**([@michaelliutt](https://github.com/michaelliutt)), **Xiao Sun**([@chsx258](https://github.com/chsx258)).
+
+## Documentation
+
+Please find a menu of documentation here: [Documentation Menu](/docs)
 
 ## Project Setup
 
