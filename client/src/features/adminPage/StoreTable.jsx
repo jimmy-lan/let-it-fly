@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from './table';
-import { loadStoreTable } from '../../services/serverApi/userAuthApi';
+import { loadStoreTable } from '../../services/serverApi/adminApi';
 const StoreTable = () => (
   <Table
     columns={[

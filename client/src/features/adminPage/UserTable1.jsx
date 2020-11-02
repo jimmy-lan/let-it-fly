@@ -1,7 +1,7 @@
 
 import React, { Component, useEffect } from 'react';
 import Table from './expandableTable';
-import { loadUsersTable } from '../../services/serverApi/userAuthApi';
+import { loadUsersTable } from '../../services/serverApi/adminApi';
 const UserTable = () => (
   <Table
     columns={[

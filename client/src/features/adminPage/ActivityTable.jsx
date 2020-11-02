@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from './table';
-import { loadActivityTable } from '../../services/serverApi/userAuthApi';
+import { loadActivityTable } from '../../services/serverApi/adminApi';
 const ActivityTable = () => (
   <Table
     columns={[

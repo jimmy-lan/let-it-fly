@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from './table';
-import { loadPaperCraneTable } from '../../services/serverApi/userAuthApi';
+import { loadPaperCraneTable } from '../../services/serverApi/adminApi';
 const PaperCraneTable = () => (
   <Table
     columns={[
