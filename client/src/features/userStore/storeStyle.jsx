@@ -52,8 +52,9 @@ export const myStyles = makeStyles({
     border: 0,
     borderRadius: 10,
     color: "white",
-    height: 36,
-    width: 128,
+    height: 32,
+    width: 88,
+    marginTop: 68,
     padding: "0 30px",
   },
   paper: {

@@ -19,27 +19,20 @@ const userStore = () => {
             <Grid item xs container direction="column">
               <Grid item xs container direction="column">
                 <Grid item>
-                  <Typography gutterBottom variant="subtitle1">
+                  <Typography gutterBottom variant="h6">
                     Blue Colored Cranes
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body2" gutterBottom>
-                    Effective period: forever
+                  <Typography variant="p">
+                    Chill with a blue colored crane after a busy day!
                   </Typography>
                 </Grid>
-                <Grid item>
-                  <Typography variant="body2" color="textSecondary">
-                    ID: 12138b
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Button className={classes.button}>Purchase</Button>
               </Grid>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1">500 Coins</Typography>
+              <Button className={classes.button}>Purchase</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -53,27 +46,20 @@ const userStore = () => {
             <Grid item xs container direction="column">
               <Grid item xs container direction="column">
                 <Grid item>
-                  <Typography gutterBottom variant="subtitle1">
+                  <Typography gutterBottom variant="h6">
                     Red Colored Cranes
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body2" gutterBottom>
-                    Effective period: forever
+                  <Typography variant="p">
+                    Ignite your passion with a bright red paper crane!
                   </Typography>
                 </Grid>
-                <Grid item>
-                  <Typography variant="body2" color="textSecondary">
-                    ID: 12138r
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Button className={classes.button}>Purchase</Button>
               </Grid>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1">500 Coins</Typography>
+              <Button className={classes.button}>Purchase</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -87,27 +73,21 @@ const userStore = () => {
             <Grid item xs container direction="column">
               <Grid item xs container direction="column">
                 <Grid item>
-                  <Typography gutterBottom variant="subtitle1">
+                  <Typography gutterBottom variant="h6">
                     Green Colored Cranes
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body2" gutterBottom>
-                    Effective period: forever
+                  <Typography variant="p">
+                    {" "}
+                    Feel refreshed using a lime green paper crane!
                   </Typography>
                 </Grid>
-                <Grid item>
-                  <Typography variant="body2" color="textSecondary">
-                    ID: 12138g
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Button className={classes.button}>Purchase</Button>
               </Grid>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1">500 Coins</Typography>
+              <Button className={classes.button}>Purchase</Button>
             </Grid>
           </Grid>
         </Grid>
@@ -121,27 +101,20 @@ const userStore = () => {
             <Grid item xs container direction="column">
               <Grid item xs container direction="column">
                 <Grid item>
-                  <Typography gutterBottom variant="subtitle1">
+                  <Typography gutterBottom variant="h6">
                     Yellow Colored Cranes
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body2" gutterBottom>
-                    Effective period: forever
+                  <Typography variant="p">
+                    Spread your joy with a luminous yellow paper crane!
                   </Typography>
                 </Grid>
-                <Grid item>
-                  <Typography variant="body2" color="textSecondary">
-                    ID: 12138y
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Button className={classes.button}>Purchase</Button>
               </Grid>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1">500 Coins</Typography>
+              <Button className={classes.button}>Purchase</Button>
             </Grid>
           </Grid>
         </Grid>
