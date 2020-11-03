@@ -7,7 +7,7 @@ import React, { ChangeEvent, FunctionComponent, useState } from "react";
 import { FeatureContainer } from "../../common/components/FeatureContainer";
 import { TabsContainer } from "./components/Tabs/TabsContainer";
 import { TabPanel } from "./components/Tabs/TabPanel";
-import { useStyles } from "./AccountSettings.style";
+// import { useStyles } from "./AccountSettings.style";
 
 interface OwnProps {}
 
@@ -21,14 +21,14 @@ enum AccountSettingsTabId {
 }
 
 const accountSettingsTabLabels = [
-  "Authentication",
   "Personal Info",
   "Contact Info",
   "Profile Data",
+  "Authentication",
 ];
 
 const AccountSettings: FunctionComponent<Props> = (props) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const [displayId, setDisplayId] = useState<AccountSettingsTabId>(
     AccountSettingsTabId.authentication
   );

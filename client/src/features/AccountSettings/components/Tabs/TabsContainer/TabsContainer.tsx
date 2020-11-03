@@ -41,9 +41,22 @@ const TabsContainer: FunctionComponent<Props> = ({
       className={clsx(classes.root, className)}
       {...otherProps}
     >
-      <Tabs orientation="vertical" value={selectedIndex} onChange={onTabChange}>
+      <Tabs
+        orientation="vertical"
+        value={selectedIndex}
+        onChange={onTabChange}
+        className={classes.tabs}
+        classes={{
+          indicator: classes.indicator,
+        }}
+      >
         {tabLabels.map((tabLabel: string, index: number) => (
-          <Tab label={tabLabel} value={index} />
+          <Tab
+            className={classes.tab}
+            label={tabLabel}
+            value={index}
+            key={tabLabel}
+          />
         ))}
       </Tabs>
       {children}

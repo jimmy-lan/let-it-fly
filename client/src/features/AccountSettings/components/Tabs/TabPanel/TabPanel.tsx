@@ -6,7 +6,9 @@
  *    a specified tab.
  */
 import React, { FunctionComponent, PropsWithChildren } from "react";
-import { Paper } from "@material-ui/core";
+import { Box, Paper } from "@material-ui/core";
+import clsx from "clsx";
+import { useStyles } from "./TabPanel.style";
 
 interface OwnProps {
   /**
@@ -25,12 +27,20 @@ type Props = OwnProps;
 const TabPanel: FunctionComponent<Props> = ({
   id,
   displayId,
+  className,
   children,
   ...otherProps
 }: PropsWithChildren<Props>) => {
+  const classes = useStyles();
   return (
-    <Paper elevation={0} square hidden={id !== displayId} {...otherProps}>
-      {id === displayId && children}
+    <Paper
+      elevation={0}
+      square
+      hidden={id !== displayId}
+      className={clsx(classes.root, className)}
+      {...otherProps}
+    >
+      {id === displayId && <Box>{children}</Box>}
     </Paper>
   );
 };

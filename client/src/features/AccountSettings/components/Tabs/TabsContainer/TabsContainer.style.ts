@@ -10,5 +10,14 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flexGrow: 1,
     },
+    tabs: {
+      borderRight: `1px solid ${theme.palette.divider}`,
+    },
+    tab: {
+      textTransform: "none",
+    },
+    indicator: {
+      backgroundColor: theme.palette.primary.main,
+    },
   })
 );
