@@ -25,7 +25,7 @@ export const useError = (): [
   // Clear all validation errors on first visit
   useEffect(() => {
     dispatch(clearError());
-  }, []);
+  }, [dispatch]);
 
   return [validationError, serverError];
 };

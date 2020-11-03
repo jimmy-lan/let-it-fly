@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren } from "react";
-import { Paper, Card, CardContent } from "@material-ui/core";
+import { Card, CardContent } from "@material-ui/core";
 import { useStyles } from "./FeatureContainer.style";
 import clsx from "clsx";
 

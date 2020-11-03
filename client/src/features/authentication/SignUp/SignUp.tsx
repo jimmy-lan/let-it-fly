@@ -4,14 +4,7 @@
  * Description: Sign up page for the app.
  */
 
-import React, {
-  ChangeEvent,
-  FunctionComponent,
-  useEffect,
-  useState,
-} from "react";
-import { AuthPageContainer } from "../components/AuthPageContainer";
-import { useStyles } from "./SignUp.style";
+import React, { ChangeEvent, FunctionComponent, useState } from "react";
 import {
   Checkbox,
   FormControlLabel,
@@ -19,10 +12,15 @@ import {
   FormControl,
   FormHelperText,
 } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { Alert } from "@material-ui/lab";
+
+import { AuthPageContainer } from "../components/AuthPageContainer";
+import { useStyles } from "./SignUp.style";
 import { GrayOutArea } from "../components/GridImageCard";
 import { useHistory } from "../../../hooks/useHistory";
 import { ControlButtons } from "../components/ControlButtons";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState, store } from "../../../app/store";
 import {
   authenticateAsync,
@@ -33,8 +31,6 @@ import {
 import { useError } from "../hooks";
 import { isEmailPattern, isEqual } from "../../../common/util";
 import { signUp } from "../../../services/serverApi";
-import { useLocation } from "react-router-dom";
-import { Alert } from "@material-ui/lab";
 
 interface OwnProps {}
 
