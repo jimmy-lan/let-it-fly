@@ -9,8 +9,8 @@ interface OwnProps {}
 
 type Props = OwnProps;
 
-const UserAccountSettings: FunctionComponent<Props> = (props) => {
+const AccountSettings: FunctionComponent<Props> = (props) => {
   return <div>Account settings</div>;
 };
 
-export { UserAccountSettings };
+export { AccountSettings };

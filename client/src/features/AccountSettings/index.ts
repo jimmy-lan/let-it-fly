@@ -3,4 +3,4 @@
  * Creation Date: 2020-11-03
  */
 
-export * from "./UserAccountSettings";
+export * from "./AccountSettings";
