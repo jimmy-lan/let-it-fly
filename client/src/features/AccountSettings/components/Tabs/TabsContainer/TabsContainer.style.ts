@@ -14,10 +14,13 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderRight: `1px solid ${theme.palette.divider}`,
     },
     tab: {
-      textTransform: "none",
+      textTransform: "initial",
+      "&:hover": {
+        color: theme.palette.secondary.main,
+      },
     },
     indicator: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.main,
     },
   })
 );

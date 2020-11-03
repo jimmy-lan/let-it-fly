@@ -7,6 +7,9 @@ import React, { ChangeEvent, FunctionComponent, useState } from "react";
 import { FeatureContainer } from "../../common/components/FeatureContainer";
 import { TabsContainer } from "./components/Tabs/TabsContainer";
 import { TabPanel } from "./components/Tabs/TabPanel";
+import { PersonalInfoPanel } from "./components/PersonalInfoPanel/PersonalInfoPanel";
+import { Avatar, IconButton } from "@material-ui/core";
+import { AvatarButton } from "./components/AvatarButton/AvatarButton";
 // import { useStyles } from "./AccountSettings.style";
 
 interface OwnProps {}
@@ -14,10 +17,10 @@ interface OwnProps {}
 type Props = OwnProps;
 
 enum AccountSettingsTabId {
-  authentication,
   personalInfo,
   contactInfo,
   profileData,
+  authentication,
 }
 
 const accountSettingsTabLabels = [
@@ -30,7 +33,7 @@ const accountSettingsTabLabels = [
 const AccountSettings: FunctionComponent<Props> = (props) => {
   // const classes = useStyles();
   const [displayId, setDisplayId] = useState<AccountSettingsTabId>(
-    AccountSettingsTabId.authentication
+    AccountSettingsTabId.personalInfo
   );
 
   const handleTabChange = (event: ChangeEvent<{}>, nextIndex: number) => {
@@ -39,25 +42,26 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
 
   return (
     <FeatureContainer fullHeight>
+      <AvatarButton />
       <TabsContainer
         tabLabels={accountSettingsTabLabels}
         selectedIndex={displayId}
         onTabChange={handleTabChange}
       >
-        <TabPanel
-          id={AccountSettingsTabId.authentication}
-          displayId={displayId}
-        >
-          Authentication
-        </TabPanel>
         <TabPanel id={AccountSettingsTabId.personalInfo} displayId={displayId}>
-          Personal Info
+          <PersonalInfoPanel />
         </TabPanel>
         <TabPanel id={AccountSettingsTabId.contactInfo} displayId={displayId}>
           Contact Info
         </TabPanel>
         <TabPanel id={AccountSettingsTabId.profileData} displayId={displayId}>
           Profile Data
+        </TabPanel>
+        <TabPanel
+          id={AccountSettingsTabId.authentication}
+          displayId={displayId}
+        >
+          Authentication
         </TabPanel>
       </TabsContainer>
     </FeatureContainer>
