@@ -7,6 +7,7 @@ import React, { ChangeEvent, FunctionComponent, useState } from "react";
 import { FeatureContainer } from "../../common/components/FeatureContainer";
 import { TabsContainer } from "./components/Tabs/TabsContainer";
 import { TabPanel } from "./components/Tabs/TabPanel";
+import { useStyles } from "./AccountSettings.style";
 
 interface OwnProps {}
 
@@ -27,6 +28,7 @@ const accountSettingsTabLabels = [
 ];
 
 const AccountSettings: FunctionComponent<Props> = (props) => {
+  const classes = useStyles();
   const [displayId, setDisplayId] = useState<AccountSettingsTabId>(
     AccountSettingsTabId.authentication
   );
@@ -41,6 +43,7 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
         tabLabels={accountSettingsTabLabels}
         selectedIndex={displayId}
         onTabChange={handleTabChange}
+        className={classes.tabsContainer}
       >
         <TabPanel
           id={AccountSettingsTabId.authentication}
