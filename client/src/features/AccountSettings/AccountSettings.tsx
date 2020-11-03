@@ -43,7 +43,6 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
         tabLabels={accountSettingsTabLabels}
         selectedIndex={displayId}
         onTabChange={handleTabChange}
-        className={classes.tabsContainer}
       >
         <TabPanel
           id={AccountSettingsTabId.authentication}

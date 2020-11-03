@@ -9,6 +9,8 @@ import React, {
   PropsWithChildren,
 } from "react";
 import { Paper, Tab, Tabs } from "@material-ui/core";
+import clsx from "clsx";
+import { useStyles } from "./TabsContainer.style";
 
 interface OwnProps {
   tabLabels: string[];
@@ -27,10 +29,18 @@ const TabsContainer: FunctionComponent<Props> = ({
   selectedIndex,
   onTabChange,
   children,
+  className,
   ...otherProps
 }: PropsWithChildren<Props>) => {
+  const classes = useStyles();
+
   return (
-    <Paper elevation={0} square {...otherProps}>
+    <Paper
+      elevation={0}
+      square
+      className={clsx(classes.root, className)}
+      {...otherProps}
+    >
       <Tabs orientation="vertical" value={selectedIndex} onChange={onTabChange}>
         {tabLabels.map((tabLabel: string, index: number) => (
           <Tab label={tabLabel} value={index} />
