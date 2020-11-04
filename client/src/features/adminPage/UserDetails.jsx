@@ -43,8 +43,17 @@ export default function FormPropsTextFields() {
                     id="nickName"
                     name="nickName"
                     label="Nickname"
-                    defaultValue={data.nickName}
+                    defaultValue={rowdata.nickname}
                     fullWidth
+                    onChange={event => {
+                        console.log(event.target.value)
+                        const index = rowData.tableData.id;
+                        const newData = rowData;
+                        newData.nickname = event.target.value;
+                        const updateData = [...data];
+                        updateData[index] = newData;
+                        setData([...updateData]);
+                    }}
                 />
             </div>
             <div>
@@ -54,7 +63,16 @@ export default function FormPropsTextFields() {
                     name="email"
                     label="Email"
                     fullWidth
-                    defaultValue="abc@mail.com"
+                    defaultValue={rowData.email}
+                    onChange={event => {
+                        console.log(event.target.value)
+                        const index = rowData.tableData.id;
+                        const newData = rowData;
+                        newData.email = event.target.value;
+                        const updateData = [...data];
+                        updateData[index] = newData;
+                        setData([...updateData]);
+                    }}
                 />
             </div>
             <div>
@@ -63,7 +81,16 @@ export default function FormPropsTextFields() {
                     name="birthday"
                     label="Birthday"
                     fullWidth
-                    defaultValue=""
+                    defaultValue={rowData.birthday}
+                    onChange={event => {
+                        console.log(event.target.value)
+                        const index = rowData.tableData.id;
+                        const newData = rowData;
+                        newData.birthday = event.target.value;
+                        const updateData = [...data];
+                        updateData[index] = newData;
+                        setData([...updateData]);
+                    }}
                 />
             </div>
             <div>
@@ -73,6 +100,16 @@ export default function FormPropsTextFields() {
                     name="firstName"
                     label="First name"
                     className={classes.parallel}
+                    defaultValue={rowData.firstname}
+                    onChange={event => {
+                        console.log(event.target.value)
+                        const index = rowData.tableData.id;
+                        const newData = rowData;
+                        newData.firstname = event.target.value;
+                        const updateData = [...data];
+                        updateData[index] = newData;
+                        setData([...updateData]);
+                    }}
                 />
                 <TextField
                     required
@@ -80,6 +117,16 @@ export default function FormPropsTextFields() {
                     name="lastName"
                     label="Last name"
                     className={classes.parallel}
+                    defaultValue={rowData.lastname}
+                    onChange={event => {
+                        console.log(event.target.value)
+                        const index = rowData.tableData.id;
+                        const newData = rowData;
+                        newData.lastname = event.target.value;
+                        const updateData = [...data];
+                        updateData[index] = newData;
+                        setData([...updateData]);
+                    }}
                 />
             </div>
             <div>
@@ -88,20 +135,38 @@ export default function FormPropsTextFields() {
                 label="Descirption"
                 multiline
                 rows={4}
-                defaultValue="Default Value"
                 variant="outlined"
                 fullWidth
+                defaultValue={rowData.description}
+                onChange={event => {
+                    console.log(event.target.value)
+                    const index = rowData.tableData.id;
+                    const newData = rowData;
+                    newData.description = event.target.value;
+                    const updateData = [...data];
+                    updateData[index] = newData;
+                    setData([...updateData]);
+                }}
             />
             </div>
             <div>
             <TextField
                 id="contact"
-                label="Contact"
+                label="Contact Information"
                 multiline
                 rows={4}
-                defaultValue="Default Value"
                 variant="outlined"
                 fullWidth
+                defaultValue={rowData.contactinformation}
+                onChange={event => {
+                    console.log(event.target.value)
+                    const index = rowData.tableData.id;
+                    const newData = rowData;
+                    newData.contactinformation = event.target.value;
+                    const updateData = [...data];
+                    updateData[index] = newData;
+                    setData([...updateData]);
+                }}
             />
             </div>
             <div>
@@ -110,21 +175,30 @@ export default function FormPropsTextFields() {
                 label="Interest"
                 multiline
                 rows={4}
-                defaultValue="Default Value"
                 variant="outlined"
                 fullWidth
+                defaultValue={rowData.interest}
+                onChange={event => {
+                    console.log(event.target.value)
+                    const index = rowData.tableData.id;
+                    const newData = rowData;
+                    newData.interest = event.target.value;
+                    const updateData = [...data];
+                    updateData[index] = newData;
+                    setData([...updateData]);
+                }}
             />
             </div>
-            <div className={classes.buttons}>
-                <Button variant="outlined">Cancel</Button>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<SaveIcon />}
-                >
-                    Save
-                </Button>
-            </div>
+            {/*<div className={classes.buttons}>*/}
+            {/*    <Button variant="outlined">Cancel</Button>*/}
+            {/*    <Button*/}
+            {/*        variant="contained"*/}
+            {/*        color="primary"*/}
+            {/*        startIcon={<SaveIcon />}*/}
+            {/*    >*/}
+            {/*        Save*/}
+            {/*    </Button>*/}
+            {/*</div>*/}
         </form>
 
     </React.Fragment>

@@ -15,7 +15,6 @@ import StoreTable from "../features/adminPage/StoreTable";
 import ActivityTable from "../features/adminPage/ActivityTable";
 import { SignIn } from "../features/authentication/SignIn";
 import { UserHome } from "../features/UserHome";
-
 export const userRoutes: RouteEntry[] = [
   {
     path: "/my",
