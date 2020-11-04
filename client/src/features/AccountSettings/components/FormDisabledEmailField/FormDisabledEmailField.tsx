@@ -19,6 +19,7 @@ import clsx from "clsx";
 import { useStyles } from "./FormDisabledEmailField.style";
 
 interface OwnProps {
+  label?: string;
   onUpdateCredentialsClick?: () => void;
   className?: string;
 }
@@ -26,13 +27,16 @@ interface OwnProps {
 type Props = OwnProps;
 
 const FormDisabledEmailField: FunctionComponent<Props> = ({
+  label,
   onUpdateCredentialsClick,
   className,
 }: Props) => {
   const classes = useStyles();
   return (
     <FormControl disabled fullWidth variant="outlined" className={className}>
-      <InputLabel htmlFor="outlined-email-field">Email Address</InputLabel>
+      <InputLabel htmlFor="outlined-email-field">
+        {label ? label : "Email Address"}
+      </InputLabel>
       <OutlinedInput
         id="outlined-email-field"
         type="email"
