@@ -3,13 +3,31 @@
  * Creation Date: 2020-11-04
  */
 import React, { FunctionComponent } from "react";
+import { Divider, TextField } from "@material-ui/core";
+import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
+import { useStyles } from "./ContactInfoPanel.style";
+import { FormHeader } from "../FormHeader/FormHeader";
 
 interface OwnProps {}
 
 type Props = OwnProps;
 
 const ContactInfoPanel: FunctionComponent<Props> = (props) => {
-  return <div>Contact info</div>;
+  const classes = useStyles();
+
+  return (
+    <form autoComplete="off" className={classes.root}>
+      <FormHeader title="Contact Information" />
+      <TextField
+        variant="outlined"
+        label="Telephone"
+        className={classes.formField}
+        fullWidth
+      />
+      <Divider className={classes.divider} />
+      <FormControlButtons primaryText="Save" secondaryText="Cancel" />
+    </form>
+  );
 };
 
 export { ContactInfoPanel };
