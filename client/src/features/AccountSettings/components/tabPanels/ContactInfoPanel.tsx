@@ -7,6 +7,7 @@ import { Divider, TextField } from "@material-ui/core";
 import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
 import { useStyles } from "./tabPanels.style";
 import { FormHeader } from "../FormHeader/FormHeader";
+import { FormDisabledEmailField } from "../FormDisabledEmailField/FormDisabledEmailField";
 
 interface OwnProps {}
 
@@ -18,6 +19,7 @@ const ContactInfoPanel: FunctionComponent<Props> = (props) => {
   return (
     <form autoComplete="off" className={classes.root}>
       <FormHeader title="Contact Information" />
+      <FormDisabledEmailField className={classes.formField} />
       <TextField
         variant="outlined"
         label="Telephone"

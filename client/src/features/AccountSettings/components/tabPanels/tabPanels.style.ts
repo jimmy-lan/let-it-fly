@@ -10,9 +10,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: "100%",
     },
-    disabled: {
-      color: theme.palette.text.disabled,
-    },
     formField: {
       marginBottom: theme.spacing(2.5),
     },
@@ -22,19 +19,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     dateField: {
       marginTop: theme.spacing(0.5),
       marginBottom: theme.spacing(3.9),
-    },
-    helperIcon: {
-      fontSize: 14,
-    },
-    infoHelperContainer: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      marginTop: theme.spacing(0.3),
-    },
-    infoHelperText: {
-      marginLeft: theme.spacing(0.6),
-      marginTop: 0,
     },
   })
 );

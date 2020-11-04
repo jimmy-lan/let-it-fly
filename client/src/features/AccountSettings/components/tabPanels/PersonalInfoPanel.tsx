@@ -20,6 +20,7 @@ import { FormHeader } from "../FormHeader/FormHeader";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
 import clsx from "clsx";
+import { FormDisabledEmailField } from "../FormDisabledEmailField/FormDisabledEmailField";
 
 interface OwnProps {}
 
@@ -44,33 +45,7 @@ const PersonalInfoPanel: FunctionComponent<Props> = (props) => {
           <TextField label="Last Name" variant="outlined" fullWidth required />
         </Grid>
       </Grid>
-      <FormControl
-        disabled
-        fullWidth
-        variant="outlined"
-        className={classes.formField}
-      >
-        <InputLabel htmlFor="outlined-email-field">Email Address</InputLabel>
-        <OutlinedInput
-          id="outlined-email-field"
-          type="email"
-          labelWidth={115}
-          value="user@user.com"
-          endAdornment={
-            <InputAdornment position="end">
-              <Button>Update Credentials</Button>
-            </InputAdornment>
-          }
-        />
-        <div className={classes.infoHelperContainer}>
-          <InfoIcon className={clsx(classes.helperIcon, classes.disabled)} />
-          <FormHelperText className={classes.infoHelperText}>
-            In this version of Let It Fly app, you cannot update your email
-            address after sign up.
-          </FormHelperText>
-        </div>
-      </FormControl>
-
+      <FormDisabledEmailField className={classes.formField} />
       <FormHeader title="More About You" />
       <KeyboardDatePicker
         margin="normal"
