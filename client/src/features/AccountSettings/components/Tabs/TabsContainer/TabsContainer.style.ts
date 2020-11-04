@@ -18,6 +18,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       "&:hover": {
         color: theme.palette.secondary.main,
       },
+      "&:focus": {
+        color: theme.palette.secondary.main,
+      },
     },
     indicator: {
       backgroundColor: theme.palette.secondary.main,

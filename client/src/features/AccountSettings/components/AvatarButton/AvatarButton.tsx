@@ -12,23 +12,35 @@ import { AccountCircle as AccountIcon } from "@material-ui/icons";
 
 interface OwnProps {
   avatarSrc?: string;
+  className?: string;
 }
 
 type Props = OwnProps;
 
-const AvatarButton: FunctionComponent<Props> = ({ avatarSrc }: Props) => {
+const AvatarButton: FunctionComponent<Props> = ({
+  avatarSrc,
+  className,
+}: Props) => {
   const classes = useStyles();
   return (
-    <div>
+    <div className={className}>
       <input
         accept="image/*"
         className={classes.imageInput}
-        id="icon-button-file"
+        id="avatar-button-file"
         type="file"
       />
-      <label htmlFor="icon-button-file">
-        <IconButton color="primary" component="span">
-          {avatarSrc ? <Avatar src={avatarSrc} /> : <AccountIcon />}
+      <label htmlFor="avatar-button-file">
+        <IconButton
+          color="primary"
+          component="span"
+          className={classes.iconButton}
+        >
+          {avatarSrc ? (
+            <Avatar src={avatarSrc} className={classes.icon} />
+          ) : (
+            <AccountIcon className={classes.icon} />
+          )}
         </IconButton>
       </label>
     </div>

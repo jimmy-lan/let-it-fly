@@ -9,5 +9,14 @@ export const useStyles = makeStyles((theme: Theme) =>
     imageInput: {
       display: "none",
     },
+    iconButton: {
+      width: "100%",
+      height: "100%",
+      margin: 0,
+    },
+    icon: {
+      width: "100%",
+      height: "100%",
+    },
   })
 );

@@ -8,9 +8,8 @@ import { FeatureContainer } from "../../common/components/FeatureContainer";
 import { TabsContainer } from "./components/Tabs/TabsContainer";
 import { TabPanel } from "./components/Tabs/TabPanel";
 import { PersonalInfoPanel } from "./components/PersonalInfoPanel/PersonalInfoPanel";
-import { Avatar, IconButton } from "@material-ui/core";
 import { AvatarButton } from "./components/AvatarButton/AvatarButton";
-// import { useStyles } from "./AccountSettings.style";
+import { useStyles } from "./AccountSettings.style";
 
 interface OwnProps {}
 
@@ -31,7 +30,7 @@ const accountSettingsTabLabels = [
 ];
 
 const AccountSettings: FunctionComponent<Props> = (props) => {
-  // const classes = useStyles();
+  const classes = useStyles();
   const [displayId, setDisplayId] = useState<AccountSettingsTabId>(
     AccountSettingsTabId.personalInfo
   );
@@ -41,12 +40,16 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
   };
 
   return (
-    <FeatureContainer fullHeight>
-      <AvatarButton />
+    <FeatureContainer fullHeight className={classes.root}>
+      <AvatarButton
+        className={classes.avatarButton}
+        avatarSrc="https://via.placeholder.com/150/0000FF/808080?Text=User"
+      />
       <TabsContainer
         tabLabels={accountSettingsTabLabels}
         selectedIndex={displayId}
         onTabChange={handleTabChange}
+        className={classes.tabsContainer}
       >
         <TabPanel id={AccountSettingsTabId.personalInfo} displayId={displayId}>
           <PersonalInfoPanel />
