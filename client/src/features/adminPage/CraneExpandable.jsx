@@ -21,7 +21,6 @@ import Typography from '@material-ui/core/Typography';
 
 
 const tableIcons = {
-    Add: AddBox,
     Check: Check,
     Clear: Clear,
     Delete: DeleteOutline,
@@ -81,14 +80,14 @@ export default function CraneTable({ columns, getData, title }) {
             tableRef={ref}
             options={{ search: true }}
             editable={{
-                onRowAdd: (newData) =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            setData([...data, newData]);
+                // onRowAdd: (newData) =>
+                //     new Promise((resolve, reject) => {
+                //         setTimeout(() => {
+                //             setData([...data, newData]);
 
-                            resolve();
-                        }, 1000);
-                    }),
+                //             resolve();
+                //         }, 1000);
+                //     }),
                 onRowUpdate: (newData, oldData) =>
                     new Promise((resolve, reject) => {
                         setTimeout(() => {
@@ -118,7 +117,7 @@ export default function CraneTable({ columns, getData, title }) {
                         <Paper 
                         variant="outlined"
                         className={classes.paper}>
-                            <Typography variant="h6" component="h6">
+                            <Typography variant="h6">
                                 {rowData.title}
                             </Typography>
                             {rowData.content}
