@@ -13,11 +13,6 @@ const UserTable = () => (
     ]}
     getData={loadUsersTable}
     title={"User Info"}
-    detailcolumns={[
-        {title:'Join Date',field: 'joindate'},
-        {title:'Date Of Birth',field: 'dateofbirth'},
-        {title:'Contact Information',field: 'contactinformation'},
-    ]}
   />
 );
 

@@ -21,7 +21,7 @@ import Grid from "@material-ui/core/Grid";
 import { get } from 'http';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-
+import Typography from "@material-ui/core/Typography";
 const tableIcons = {
     Add: AddBox,
     Check: Check,
@@ -41,20 +41,33 @@ const tableIcons = {
     ThirdStateCheck: Remove,
     ViewColumn: ViewColumn,
 };
-
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+    form: {
+        '& .MuiTextField-root': {
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(1),
+        },
+        lexGrow: 1,
+        width: "70%",
+        marginLeft: "auto",
+        marginRight: "auto"
+    },
+    parallel: {
+        width: "50%",
+        padding: 4,
+    },
+}));
 export default function Usertable({ columns, getData, title, expand }) {
     const { useState } = React;
 
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            flexGrow: 1,
-        },
-        paper: {
-            padding: theme.spacing(2),
-            textAlign: 'center',
-            color: theme.palette.text.secondary,
-        },
-    }));
     const classes = useStyles();
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -110,68 +123,176 @@ export default function Usertable({ columns, getData, title, expand }) {
             }}
             detailPanel={rowData => {
                 return(
-                    <div className={classes.root}>
-                    <Grid
-                        container
-                        spacing={2}
-                        justify="flex-start"
-                        alignItems='center'
-                    >
-                        <Grid item >
-                            <TextField
-                                id = '1'
-                                label = 'Join Date'
-                                defaultValue = {rowData.joindate}
-                                variant='outlined'
-                                onChange={event => {
-                                    console.log(event.target.value)
-                                    const index = rowData.tableData.id;
-                                    const newData = rowData;
-                                    newData.joindate = event.target.value;
-                                    const updateData = [...data];
-                                    updateData[index] = newData;
-                                    setData([...updateData]);
-                                }}
-                            />
-                        </Grid>
-                        <Grid item >
-                            <TextField
-                                id = '2'
-                                label = 'Date of Birth'
-                                defaultValue = {rowData.dateofbirth}
-                                variant='outlined'
-                                onChange={event => {
-                                    console.log(event.target.value)
-                                    const index = rowData.tableData.id;
-                                    const newData = rowData;
-                                    newData.dateofbirth = event.target.value;
-                                    const updateData = [...data];
-                                    updateData[index] = newData;
-                                    setData([...updateData]);
-                                }}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                id = '3'
-                                label = {rowData.contactinformation[0]}
-                                multiline
-                                defaultValue= {rowData.contactinformation[1]}
-                                variant='outlined'
-                                onChange={event => {
-                                    console.log(event.target.value)
-                                    const index = rowData.tableData.id;
-                                    const newData = rowData;
-                                    newData.contactinformation[1] = event.target.value;
-                                    const updateData = [...data];
-                                    updateData[index] = newData;
-                                    setData([...updateData]);
-                                }}
-                            />
-                        </Grid>
-                    </Grid>
-                    </div>
+                    <React.Fragment>
+                        {/*<Typography variant="h6" gutterBottom>*/}
+                        {/*    User Profile*/}
+                        {/*</Typography>*/}
+                        <form className={classes.form} noValidate autoComplete="off">
+                            <div>
+                                <TextField
+                                    required
+                                    id="nickName"
+                                    name="nickName"
+                                    label="Nickname"
+                                    defaultValue={rowData.nickname}
+                                    fullWidth
+                                    onChange={event => {
+                                        console.log(event.target.value)
+                                        const index = rowData.tableData.id;
+                                        const newData = rowData;
+                                        newData.nickname = event.target.value;
+                                        const updateData = [...data];
+                                        updateData[index] = newData;
+                                        setData([...updateData]);
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <TextField
+                                    required
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    fullWidth
+                                    defaultValue={rowData.email}
+                                    onChange={event => {
+                                        console.log(event.target.value)
+                                        const index = rowData.tableData.id;
+                                        const newData = rowData;
+                                        newData.email = event.target.value;
+                                        const updateData = [...data];
+                                        updateData[index] = newData;
+                                        setData([...updateData]);
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <TextField
+                                    id="birthday"
+                                    name="birthday"
+                                    label="Date Of Birth"
+                                    fullWidth
+                                    defaultValue={rowData.birthday}
+                                    onChange={event => {
+                                        console.log(event.target.value)
+                                        const index = rowData.tableData.id;
+                                        const newData = rowData;
+                                        newData.birthday = event.target.value;
+                                        const updateData = [...data];
+                                        updateData[index] = newData;
+                                        setData([...updateData]);
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <TextField
+                                    required
+                                    id="firstName"
+                                    name="firstName"
+                                    label="First name"
+                                    className={classes.parallel}
+                                    defaultValue={rowData.firstname}
+                                    onChange={event => {
+                                        console.log(event.target.value)
+                                        const index = rowData.tableData.id;
+                                        const newData = rowData;
+                                        newData.firstname = event.target.value;
+                                        const updateData = [...data];
+                                        updateData[index] = newData;
+                                        setData([...updateData]);
+                                    }}
+                                />
+                                <TextField
+                                    required
+                                    id="lastName"
+                                    name="lastName"
+                                    label="Last name"
+                                    className={classes.parallel}
+                                    defaultValue={rowData.lastname}
+                                    onChange={event => {
+                                        console.log(event.target.value)
+                                        const index = rowData.tableData.id;
+                                        const newData = rowData;
+                                        newData.lastname = event.target.value;
+                                        const updateData = [...data];
+                                        updateData[index] = newData;
+                                        setData([...updateData]);
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <TextField
+                                    id="descirption"
+                                    label="Descirption"
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                    fullWidth
+                                    defaultValue={rowData.description}
+                                    onChange={event => {
+                                        console.log(event.target.value)
+                                        const index = rowData.tableData.id;
+                                        const newData = rowData;
+                                        newData.description = event.target.value;
+                                        const updateData = [...data];
+                                        updateData[index] = newData;
+                                        setData([...updateData]);
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <TextField
+                                    id="contact"
+                                    label="Contact Information"
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                    fullWidth
+                                    defaultValue={rowData.contactinformation}
+                                    onChange={event => {
+                                        console.log(event.target.value)
+                                        const index = rowData.tableData.id;
+                                        const newData = rowData;
+                                        newData.contactinformation = event.target.value;
+                                        const updateData = [...data];
+                                        updateData[index] = newData;
+                                        setData([...updateData]);
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <TextField
+                                    id="interest"
+                                    label="Interest"
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                    fullWidth
+                                    defaultValue={rowData.interest}
+                                    onChange={event => {
+                                        console.log(event.target.value)
+                                        const index = rowData.tableData.id;
+                                        const newData = rowData;
+                                        newData.interest = event.target.value;
+                                        const updateData = [...data];
+                                        updateData[index] = newData;
+                                        setData([...updateData]);
+                                    }}
+                                />
+                            </div>
+                            {/*<div className={classes.buttons}>*/}
+                            {/*    <Button variant="outlined">Cancel</Button>*/}
+                            {/*    <Button*/}
+                            {/*        variant="contained"*/}
+                            {/*        color="primary"*/}
+                            {/*        startIcon={<SaveIcon />}*/}
+                            {/*    >*/}
+                            {/*        Save*/}
+                            {/*    </Button>*/}
+                            {/*</div>*/}
+                        </form>
+
+                    </React.Fragment>
                 )
             }}
         />
