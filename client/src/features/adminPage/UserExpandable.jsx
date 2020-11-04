@@ -125,6 +125,7 @@ export default function Usertable({ columns, getData, title }) {
                                     label="Nickname"
                                     defaultValue={rowData.nickname}
                                     fullWidth
+                                    color="secondary"
                                     onChange={event => {
                                         console.log(event.target.value)
                                         const index = rowData.tableData.id;
@@ -143,6 +144,7 @@ export default function Usertable({ columns, getData, title }) {
                                     name="email"
                                     label="Email"
                                     fullWidth
+                                    color="secondary"
                                     defaultValue={rowData.email}
                                     onChange={event => {
                                         console.log(event.target.value)
@@ -160,7 +162,9 @@ export default function Usertable({ columns, getData, title }) {
                                     id="birthday"
                                     name="birthday"
                                     label="Date Of Birth"
+                                    type='date'
                                     fullWidth
+                                    color="secondary"
                                     defaultValue={rowData.birthday}
                                     onChange={event => {
                                         console.log(event.target.value)
@@ -179,6 +183,7 @@ export default function Usertable({ columns, getData, title }) {
                                     id="firstName"
                                     name="firstName"
                                     label="First name"
+                                    color="secondary"
                                     className={classes.parallel}
                                     defaultValue={rowData.firstname}
                                     onChange={event => {
@@ -196,6 +201,7 @@ export default function Usertable({ columns, getData, title }) {
                                     id="lastName"
                                     name="lastName"
                                     label="Last name"
+                                    color="secondary"
                                     className={classes.parallel}
                                     defaultValue={rowData.lastname}
                                     onChange={event => {
@@ -217,6 +223,7 @@ export default function Usertable({ columns, getData, title }) {
                                     rows={4}
                                     variant="outlined"
                                     fullWidth
+                                    color="secondary"
                                     defaultValue={rowData.description}
                                     onChange={event => {
                                         console.log(event.target.value)
@@ -237,6 +244,7 @@ export default function Usertable({ columns, getData, title }) {
                                     rows={4}
                                     variant="outlined"
                                     fullWidth
+                                    color="secondary"
                                     defaultValue={rowData.contactinformation}
                                     onChange={event => {
                                         console.log(event.target.value)
@@ -257,6 +265,7 @@ export default function Usertable({ columns, getData, title }) {
                                     rows={4}
                                     variant="outlined"
                                     fullWidth
+                                    color="secondary"
                                     defaultValue={rowData.interest}
                                     onChange={event => {
                                         console.log(event.target.value)
