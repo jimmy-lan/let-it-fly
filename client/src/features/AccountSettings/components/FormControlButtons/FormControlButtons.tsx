@@ -4,7 +4,7 @@
  * Description: div containing one primary and one secondary buttons.
  */
 import React, { FunctionComponent } from "react";
-import { Button, Divider } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { useStyles } from "./FormControlButtons.style";
 import clsx from "clsx";
 

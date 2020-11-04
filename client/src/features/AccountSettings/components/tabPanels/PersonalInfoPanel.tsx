@@ -4,22 +4,10 @@
  */
 import React, { FunctionComponent, useState } from "react";
 import { useStyles } from "./tabPanels.style";
-import {
-  Grid,
-  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  OutlinedInput,
-  InputAdornment,
-  FormHelperText,
-  Divider,
-} from "@material-ui/core";
-import { InfoOutlined as InfoIcon } from "@material-ui/icons";
+import { Grid, TextField, Divider } from "@material-ui/core";
 import { FormHeader } from "../FormHeader/FormHeader";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
-import clsx from "clsx";
 import { FormDisabledEmailField } from "../FormDisabledEmailField/FormDisabledEmailField";
 
 interface OwnProps {}

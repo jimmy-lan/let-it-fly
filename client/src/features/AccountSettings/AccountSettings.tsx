@@ -10,8 +10,7 @@ import { TabPanel } from "./components/Tabs/TabPanel";
 import { PersonalInfoPanel } from "./components/tabPanels/PersonalInfoPanel";
 import { AvatarButton } from "./components/AvatarButton/AvatarButton";
 import { useStyles } from "./AccountSettings.style";
-import { Container, Divider } from "@material-ui/core";
-import { FormControlButtons } from "./components/FormControlButtons/FormControlButtons";
+import { Container } from "@material-ui/core";
 import { ContactInfoPanel } from "./components/tabPanels/ContactInfoPanel";
 import { ProfilePanel } from "./components/tabPanels/ProfilePanel";
 
