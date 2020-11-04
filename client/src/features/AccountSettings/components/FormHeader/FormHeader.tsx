@@ -8,20 +8,21 @@ import { useStyles } from "./FormHeader.style";
 
 interface OwnProps {
   title: string;
+  className?: string;
 }
 
 type Props = OwnProps;
 
-const FormHeader: FunctionComponent<Props> = ({ title }: Props) => {
+const FormHeader: FunctionComponent<Props> = ({ title, className }: Props) => {
   const classes = useStyles();
 
   return (
-    <>
+    <div className={className}>
       <Typography variant="h6" className={classes.title}>
         {title}
       </Typography>
-      <Divider className={classes.divider} />
-    </>
+      <Divider />
+    </div>
   );
 };
 

@@ -36,7 +36,7 @@ const PersonalInfoPanel: FunctionComponent<Props> = (props) => {
 
   return (
     <form autoComplete="off" className={classes.root}>
-      <FormHeader title="Basic Information" />
+      <FormHeader title="Basic Information" className={classes.formHeader} />
       <Grid container spacing={3} className={classes.formField}>
         <Grid item md={6} sm={12} xs={12}>
           <TextField label="First Name" variant="outlined" fullWidth required />
@@ -46,7 +46,7 @@ const PersonalInfoPanel: FunctionComponent<Props> = (props) => {
         </Grid>
       </Grid>
       <FormDisabledEmailField className={classes.formField} />
-      <FormHeader title="More About You" />
+      <FormHeader title="More About You" className={classes.formHeader} />
       <KeyboardDatePicker
         margin="normal"
         id="date-picker-dialog"
