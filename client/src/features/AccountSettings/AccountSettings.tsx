@@ -10,7 +10,8 @@ import { TabPanel } from "./components/Tabs/TabPanel";
 import { PersonalInfoPanel } from "./components/PersonalInfoPanel/PersonalInfoPanel";
 import { AvatarButton } from "./components/AvatarButton/AvatarButton";
 import { useStyles } from "./AccountSettings.style";
-import { Container } from "@material-ui/core";
+import { Container, Divider } from "@material-ui/core";
+import { FormControlButtons } from "./components/FormControlButtons/FormControlButtons";
 
 interface OwnProps {}
 
@@ -69,6 +70,8 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
             Authentication
           </TabPanel>
         </TabsContainer>
+        <Divider />
+        <FormControlButtons primaryText="Save" secondaryText="Cancel" />
       </Container>
     </FeatureContainer>
   );

@@ -13,6 +13,7 @@ import {
   OutlinedInput,
   InputAdornment,
   FormHelperText,
+  Divider,
 } from "@material-ui/core";
 import { InfoOutlined as InfoIcon } from "@material-ui/icons";
 import { FormHeader } from "../FormHeader/FormHeader";
