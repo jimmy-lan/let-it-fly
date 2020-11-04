@@ -53,12 +53,14 @@ export const loadPaperCraneTable = () => {
         to: '12213@mail.utoronto.ca',
         title: 'Hello world',
         date: '2020-05-15',
+        content: '',
       },
       {
         from: '1223@mail.utoronto.ca',
         to: '898913@mail.utoronto.ca',
         title: 'Hello world',
         date: '2020-05-15',
+        content: '',
       },
     ],
   };

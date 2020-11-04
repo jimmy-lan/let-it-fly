@@ -1,6 +1,6 @@
 
 import React, { Component, useEffect } from 'react';
-import Table from './expandableTable';
+import Table from './UserExpandable';
 import { loadUsersTable } from '../../services/serverApi/adminApi';
 const UserTable = () => (
   <Table

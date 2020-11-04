@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -16,12 +16,9 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import TextField from "@material-ui/core/TextField";
-import Container from '@material-ui/core/Container';
-import Grid from "@material-ui/core/Grid";
-import { get } from 'http';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from "@material-ui/core/Typography";
+
+
 const tableIcons = {
     Add: AddBox,
     Check: Check,
@@ -65,7 +62,9 @@ const useStyles = makeStyles((theme) => ({
         padding: 4,
     },
 }));
-export default function Usertable({ columns, getData, title, expand }) {
+
+
+export default function CraneTable({ columns, getData, title }) {
     const { useState } = React;
 
     const classes = useStyles();
@@ -124,9 +123,6 @@ export default function Usertable({ columns, getData, title, expand }) {
             detailPanel={rowData => {
                 return(
                     <React.Fragment>
-                        {/*<Typography variant="h6" gutterBottom>*/}
-                        {/*    User Profile*/}
-                        {/*</Typography>*/}
                         <form className={classes.form} noValidate autoComplete="off">
                             <div>
                                 <TextField
