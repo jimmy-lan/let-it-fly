@@ -9,7 +9,7 @@ const UserTable = () => (
       { title: 'Account Type', field: 'accounttype' },
       { title: 'Email', field: 'email' },
       { title: 'Name', field: 'name' },
-      { title: 'Coins', filed: 'coins', type: 'numeric' },
+      { title: 'Coins', filed: 'coins' },
     ]}
     getData={loadUsersTable}
     title={"User Info"}
