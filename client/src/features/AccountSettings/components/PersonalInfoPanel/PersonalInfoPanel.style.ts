@@ -16,8 +16,22 @@ export const useStyles = makeStyles((theme: Theme) =>
     divider: {
       marginBottom: theme.spacing(3),
     },
-    nameGrid: {
+    formField: {
       marginBottom: theme.spacing(2.5),
+    },
+    helperIcon: {
+      fontSize: 14,
+      color: theme.palette.text.disabled,
+    },
+    infoHelperContainer: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      marginTop: theme.spacing(0.3),
+    },
+    infoHelperText: {
+      marginLeft: theme.spacing(0.6),
+      marginTop: 0,
     },
   })
 );
