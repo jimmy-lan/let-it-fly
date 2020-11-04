@@ -17,6 +17,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from '@material-ui/core/styles';
+import { isRegularExpressionLiteral } from 'typescript';
 
 const tableIcons = {
     Add: AddBox,
@@ -114,6 +115,28 @@ export default function Usertable({ columns, getData, title }) {
                     }),
             }}
             detailPanel={rowData => {
+                const handleChange = event => {
+                    console.log(event.target.value)
+                    const index = rowData.tableData.id;
+                    const newData = rowData;
+                    newData.email = event.target.value;
+                    const updateData = [...data];
+                    updateData[index] = newData;
+                    setData([...updateData]);
+                }
+                var bool = rowData.email.search("@");
+                const error = bool == -1;
+
+                if (error) {
+                    var emailValid = "Invalid email address";
+                } else {
+                    var emailValid = "";
+                }
+
+                const error2 = rowData.nickname === "";
+                const error3 = rowData.firstname === "";
+                const error4 = rowData.lastname === "";
+
                 return(
                     <React.Fragment>
                         <form className={classes.form} noValidate autoComplete="off">
@@ -134,6 +157,7 @@ export default function Usertable({ columns, getData, title }) {
                                         updateData[index] = newData;
                                         setData([...updateData]);
                                     }}
+                                    error={error2}
                                 />
                             </div>
                             <div>
@@ -144,15 +168,9 @@ export default function Usertable({ columns, getData, title }) {
                                     label="Email"
                                     fullWidth
                                     defaultValue={rowData.email}
-                                    onChange={event => {
-                                        console.log(event.target.value)
-                                        const index = rowData.tableData.id;
-                                        const newData = rowData;
-                                        newData.email = event.target.value;
-                                        const updateData = [...data];
-                                        updateData[index] = newData;
-                                        setData([...updateData]);
-                                    }}
+                                    onChange={handleChange}
+                                    error={error}
+                                    helperText={emailValid}
                                 />
                             </div>
                             <div>
@@ -190,6 +208,7 @@ export default function Usertable({ columns, getData, title }) {
                                         updateData[index] = newData;
                                         setData([...updateData]);
                                     }}
+                                    error={error3}
                                 />
                                 <TextField
                                     required
@@ -207,6 +226,7 @@ export default function Usertable({ columns, getData, title }) {
                                         updateData[index] = newData;
                                         setData([...updateData]);
                                     }}
+                                    error={error4}
                                 />
                             </div>
                             <div>
