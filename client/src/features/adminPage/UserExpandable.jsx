@@ -16,12 +16,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import TextField from "@material-ui/core/TextField";
-import Container from '@material-ui/core/Container';
-import Grid from "@material-ui/core/Grid";
-import { get } from 'http';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from "@material-ui/core/Typography";
+
 const tableIcons = {
     Add: AddBox,
     Check: Check,
@@ -41,14 +37,10 @@ const tableIcons = {
     ThirdStateCheck: Remove,
     ViewColumn: ViewColumn,
 };
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
     },
     form: {
         '& .MuiTextField-root': {
@@ -58,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         lexGrow: 1,
         width: "70%",
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
     },
     parallel: {
         width: "50%",
