@@ -15,6 +15,7 @@ import StoreTable from "../features/adminPage/StoreTable";
 import ActivityTable from "../features/adminPage/ActivityTable";
 import { SignIn } from "../features/authentication/SignIn";
 import { UserHome } from "../features/UserHome";
+import UserDetails from "../features/adminPage/UserDetails";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -52,6 +53,11 @@ export const userRoutes: RouteEntry[] = [
       {
         path: "/my/cranesTable",
         Component: PaperCraneTable,
+        exact: true,
+      },
+      {
+        path: "/my/test",
+        Component: UserDetails,
         exact: true,
       },
     ],

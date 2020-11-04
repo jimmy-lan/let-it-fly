@@ -27,16 +27,16 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-export default function FormPropsTextFields() {
+export default function UserDetails() {
   const classes = useStyles();
   const [data, setData] = useState([]);
 
   return (
     <React.Fragment>
+        <form className={classes.root} noValidate autoComplete="off">
         <Typography variant="h6" gutterBottom>
             User Profile
         </Typography>
-        <form className={classes.root} noValidate autoComplete="off">
             <div>
                 <TextField
                     required
