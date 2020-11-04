@@ -1,6 +1,6 @@
 
 import React, { Component, useEffect } from 'react';
-import Table from './expandableTable';
+import Table from './UserExpandable';
 import { loadUsersTable } from '../../services/serverApi/adminApi';
 const UserTable = () => (
   <Table
@@ -9,15 +9,10 @@ const UserTable = () => (
       { title: 'Account Type', field: 'accounttype' },
       { title: 'Email', field: 'email' },
       { title: 'Name', field: 'name' },
-      { title: 'Coins', filed: 'coins', type: 'numeric' },
+      { title: 'Coins', field: 'coins' },
     ]}
     getData={loadUsersTable}
     title={"User Info"}
-    detalicolumns={[
-        {title:'Join Date',field: 'joindate'},
-        {title:'Date Of Birth',field: 'dateofbirth'},
-        {title:'Contact Information',field: 'contactinformation'},
-    ]}
   />
 );
 

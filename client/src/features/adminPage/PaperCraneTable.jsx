@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from './table';
+import Table from './CraneExpandable';
 import { loadPaperCraneTable } from '../../services/serverApi/adminApi';
 const PaperCraneTable = () => (
   <Table

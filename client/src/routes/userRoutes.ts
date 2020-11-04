@@ -10,7 +10,7 @@ import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
 import { AdminHome } from "../features/AdminHome2";
 import PaperCraneTable from "../features/adminPage/PaperCraneTable";
-import UserTable1 from "../features/adminPage/UserTable1";
+import UserTable from "../features/adminPage/UserTable";
 import StoreTable from "../features/adminPage/StoreTable";
 import ActivityTable from "../features/adminPage/ActivityTable";
 import { SignIn } from "../features/authentication/SignIn";
@@ -36,7 +36,7 @@ export const userRoutes: RouteEntry[] = [
       },
       {
         path: "/my/usersTable",
-        Component: UserTable1,
+        Component: UserTable,
         exact: true,
       },
       {

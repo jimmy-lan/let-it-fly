@@ -6,7 +6,7 @@ const StoreTable = () => (
     columns={[
       { title: 'ItemID', field: 'itemID' },
       { title: 'Description', field: 'description' },
-      { title: 'Price', field: 'price', type: 'numeric' },
+      { title: 'Price', field: 'price' },
     ]}
     getData={loadStoreTable}
     title={'Store Info'}
