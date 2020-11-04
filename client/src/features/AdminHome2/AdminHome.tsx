@@ -33,9 +33,9 @@ const AdminHome: FunctionComponent<Props> = (props) => {
   };
 
   return (
-    <Paper
+    <Paper className={classes.root}
     >
-      <Grid container className={classes.optionsGrid} spacing={0} direction="column">
+      <Grid container className={classes.optionsGrid} spacing={0}>
         <Grid item className={classes.optionContainer}>
           <Link to={"./../my/logTable"}>
             <AnimatedImageCardButton
