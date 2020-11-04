@@ -8,10 +8,8 @@ export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flex: 1,
-      paddingTop: theme.spacing(1.5),
-      paddingBottom: theme.spacing(1.5),
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3),
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
     },
   })
 );

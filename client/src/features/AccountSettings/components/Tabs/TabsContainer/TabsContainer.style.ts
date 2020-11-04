@@ -8,13 +8,16 @@ export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      flexDirection: "column",
       flexGrow: 1,
     },
     tabs: {
-      borderRight: `1px solid ${theme.palette.divider}`,
+      marginBottom: theme.spacing(2.5),
     },
     tab: {
       textTransform: "initial",
+      fontSize: 16,
+      paddingLeft: 0,
       "&:hover": {
         color: theme.palette.secondary.main,
       },

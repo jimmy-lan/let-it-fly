@@ -10,6 +10,7 @@ import { TabPanel } from "./components/Tabs/TabPanel";
 import { PersonalInfoPanel } from "./components/PersonalInfoPanel/PersonalInfoPanel";
 import { AvatarButton } from "./components/AvatarButton/AvatarButton";
 import { useStyles } from "./AccountSettings.style";
+import { Container } from "@material-ui/core";
 
 interface OwnProps {}
 
@@ -41,32 +42,34 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
 
   return (
     <FeatureContainer fullHeight className={classes.root}>
-      <AvatarButton
-        className={classes.avatarButton}
-        avatarSrc="https://via.placeholder.com/150/0000FF/808080?Text=User"
-      />
-      <TabsContainer
-        tabLabels={accountSettingsTabLabels}
-        selectedIndex={displayId}
-        onTabChange={handleTabChange}
-        className={classes.tabsContainer}
-      >
-        <TabPanel id={AccountSettingsTabId.personalInfo} displayId={displayId}>
-          <PersonalInfoPanel />
-        </TabPanel>
-        <TabPanel id={AccountSettingsTabId.contactInfo} displayId={displayId}>
-          Contact Info
-        </TabPanel>
-        <TabPanel id={AccountSettingsTabId.profileData} displayId={displayId}>
-          Profile Data
-        </TabPanel>
-        <TabPanel
-          id={AccountSettingsTabId.authentication}
-          displayId={displayId}
+      <Container>
+        <AvatarButton className={classes.avatarButton} avatarSrc="" />
+        <TabsContainer
+          tabLabels={accountSettingsTabLabels}
+          selectedIndex={displayId}
+          onTabChange={handleTabChange}
+          className={classes.tabsContainer}
         >
-          Authentication
-        </TabPanel>
-      </TabsContainer>
+          <TabPanel
+            id={AccountSettingsTabId.personalInfo}
+            displayId={displayId}
+          >
+            <PersonalInfoPanel />
+          </TabPanel>
+          <TabPanel id={AccountSettingsTabId.contactInfo} displayId={displayId}>
+            Contact Info
+          </TabPanel>
+          <TabPanel id={AccountSettingsTabId.profileData} displayId={displayId}>
+            Profile Data
+          </TabPanel>
+          <TabPanel
+            id={AccountSettingsTabId.authentication}
+            displayId={displayId}
+          >
+            Authentication
+          </TabPanel>
+        </TabsContainer>
+      </Container>
     </FeatureContainer>
   );
 };

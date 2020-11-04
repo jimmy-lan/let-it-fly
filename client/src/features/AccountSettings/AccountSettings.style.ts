@@ -16,10 +16,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: 120,
       height: 120,
       // margin: "auto",
-      marginLeft: 16,
     },
     tabsContainer: {
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(1),
     },
   })
 );

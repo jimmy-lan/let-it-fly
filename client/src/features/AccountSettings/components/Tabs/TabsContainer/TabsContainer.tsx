@@ -42,7 +42,7 @@ const TabsContainer: FunctionComponent<Props> = ({
       {...otherProps}
     >
       <Tabs
-        orientation="vertical"
+        orientation="horizontal"
         value={selectedIndex}
         onChange={onTabChange}
         className={classes.tabs}
