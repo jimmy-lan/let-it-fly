@@ -10,12 +10,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: "100%",
     },
-    title: {
-      marginBottom: theme.spacing(0.5),
-    },
-    divider: {
-      marginBottom: theme.spacing(3),
-    },
     formField: {
       marginBottom: theme.spacing(2.5),
     },

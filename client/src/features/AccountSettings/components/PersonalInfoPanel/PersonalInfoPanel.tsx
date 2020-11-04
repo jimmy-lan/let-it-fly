@@ -17,6 +17,7 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import { InfoOutlined as InfoIcon } from "@material-ui/icons";
+import { FormHeader } from "../FormHeader/FormHeader";
 
 interface OwnProps {}
 
@@ -26,10 +27,7 @@ const PersonalInfoPanel: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   return (
     <form autoComplete="off" className={classes.root}>
-      <Typography variant="h6" className={classes.title}>
-        Basic Information
-      </Typography>
-      <Divider className={classes.divider} />
+      <FormHeader title="Basic Information" />
       <Grid container spacing={3} className={classes.formField}>
         <Grid item md={6} sm={12} xs={12}>
           <TextField label="First Name" variant="outlined" fullWidth />
