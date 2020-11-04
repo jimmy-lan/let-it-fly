@@ -8,11 +8,11 @@
 import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
-import AdminHome from '../features/AdminHome/AdminHome';
-import PaperCraneTable from '../features/adminPage/PaperCraneTable';
-import UserTable1 from '../features/adminPage/UserTable1';
-import StoreTable from '../features/adminPage/StoreTable';
-import ActivityTable from '../features/adminPage/ActivityTable';
+import { AdminHome } from "../features/AdminHome2";
+import PaperCraneTable from "../features/adminPage/PaperCraneTable";
+import UserTable1 from "../features/adminPage/UserTable1";
+import StoreTable from "../features/adminPage/StoreTable";
+import ActivityTable from "../features/adminPage/ActivityTable";
 import { SignIn } from "../features/authentication/SignIn";
 import { UserHome } from "../features/UserHome";
 
@@ -35,22 +35,22 @@ export const userRoutes: RouteEntry[] = [
         isProtected: [UserRole.admin],
       },
       {
-        path: '/my/usersTable',
+        path: "/my/usersTable",
         Component: UserTable1,
         exact: true,
       },
       {
-        path: '/my/storeTable',
+        path: "/my/storeTable",
         Component: StoreTable,
         exact: true,
       },
       {
-        path: '/my/logTable',
+        path: "/my/logTable",
         Component: ActivityTable,
         exact: true,
       },
       {
-        path: '/my/cranesTable',
+        path: "/my/cranesTable",
         Component: PaperCraneTable,
         exact: true,
       },
