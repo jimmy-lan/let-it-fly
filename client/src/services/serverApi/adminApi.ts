@@ -17,7 +17,7 @@ export const loadUsersTable = () => {
         firstname: 'Tim',
         lastname:'Kang',
         name: 'Tim Kang',
-        coins: 1200,
+        coins: '1200',
         joindate: 'Oct 31 2020',
         birthday: 'Jan 1 1970',
         description: 'This is a default description for current user.',
@@ -31,7 +31,7 @@ export const loadUsersTable = () => {
         firstname: 'Tim',
         lastname:'Kang',
         name: 'Tim Kang',
-        coins: 1200,
+        coins: '1200',
         joindate: 'Oct 31 2020',
         birthday: 'Jan 1 1970',
         description: 'This is a default description for current user.',
@@ -91,12 +91,12 @@ export const loadStoreTable = () => {
       {
         itemID: 'bsdcieuwb73289ewbhdsbc',
         description: 'PeachcolorPaper',
-        price: 100,
+        price: '100',
       },
       {
         itemID: 'ckjwbfy74928uhfrgyw8iu',
         description: 'PeachcolorPaper',
-        price: 500,
+        price: '500',
       },
     ],
   };
