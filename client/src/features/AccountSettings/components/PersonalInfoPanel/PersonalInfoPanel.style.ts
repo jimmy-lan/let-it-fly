@@ -13,6 +13,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     formField: {
       marginBottom: theme.spacing(2.5),
     },
+    birthdateField: {
+      marginTop: theme.spacing(0.5),
+      marginBottom: theme.spacing(3.9),
+    },
     helperIcon: {
       fontSize: 14,
       color: theme.palette.text.disabled,

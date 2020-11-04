@@ -29,7 +29,7 @@ const FeatureContainer: FunctionComponent<Props> = ({
   const classes = useStyles();
   return (
     <Card
-      className={clsx(className, {
+      className={clsx(className, classes.root, {
         [classes.fullHeightContainer]: fullHeight,
       })}
     >
