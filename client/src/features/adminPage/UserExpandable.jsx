@@ -166,6 +166,7 @@ export default function Usertable({ columns, getData, title }) {
                                     fullWidth
                                     color="secondary"
                                     defaultValue={rowData.birthday}
+                                    InputLabelProps={{ shrink: true }}
                                     onChange={event => {
                                         console.log(event.target.value)
                                         const index = rowData.tableData.id;
