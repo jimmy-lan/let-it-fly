@@ -13,6 +13,7 @@ import { useStyles } from "./AccountSettings.style";
 import { Container, Divider } from "@material-ui/core";
 import { FormControlButtons } from "./components/FormControlButtons/FormControlButtons";
 import { ContactInfoPanel } from "./components/tabPanels/ContactInfoPanel";
+import { ProfilePanel } from "./components/tabPanels/ProfilePanel";
 
 interface OwnProps {}
 
@@ -62,7 +63,7 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
             <ContactInfoPanel />
           </TabPanel>
           <TabPanel id={AccountSettingsTabId.profileData} displayId={displayId}>
-            Profile Data
+            <ProfilePanel />
           </TabPanel>
           <TabPanel
             id={AccountSettingsTabId.authentication}
