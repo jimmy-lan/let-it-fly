@@ -5,7 +5,7 @@
 import React, { FunctionComponent } from "react";
 import { Divider, TextField } from "@material-ui/core";
 import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
-import { useStyles } from "./ContactInfoPanel.style";
+import { useStyles } from "./tabPanels.style";
 import { FormHeader } from "../FormHeader/FormHeader";
 
 interface OwnProps {}

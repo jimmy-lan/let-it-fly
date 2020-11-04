@@ -7,12 +7,12 @@ import React, { ChangeEvent, FunctionComponent, useState } from "react";
 import { FeatureContainer } from "../../common/components/FeatureContainer";
 import { TabsContainer } from "./components/Tabs/TabsContainer";
 import { TabPanel } from "./components/Tabs/TabPanel";
-import { PersonalInfoPanel } from "./components/PersonalInfoPanel/PersonalInfoPanel";
+import { PersonalInfoPanel } from "./components/tabPanels/PersonalInfoPanel";
 import { AvatarButton } from "./components/AvatarButton/AvatarButton";
 import { useStyles } from "./AccountSettings.style";
 import { Container, Divider } from "@material-ui/core";
 import { FormControlButtons } from "./components/FormControlButtons/FormControlButtons";
-import { ContactInfoPanel } from "./components/ContactInfoPanel/ContactInfoPanel";
+import { ContactInfoPanel } from "./components/tabPanels/ContactInfoPanel";
 
 interface OwnProps {}
 

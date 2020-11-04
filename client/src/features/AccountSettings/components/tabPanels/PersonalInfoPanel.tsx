@@ -3,7 +3,7 @@
  * Creation Date: 2020-11-03
  */
 import React, { FunctionComponent, useState } from "react";
-import { useStyles } from "./PersonalInfoPanel.style";
+import { useStyles } from "./tabPanels.style";
 import {
   Grid,
   TextField,
@@ -14,12 +14,12 @@ import {
   InputAdornment,
   FormHelperText,
   Divider,
-  Container,
 } from "@material-ui/core";
 import { InfoOutlined as InfoIcon } from "@material-ui/icons";
 import { FormHeader } from "../FormHeader/FormHeader";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
+import clsx from "clsx";
 
 interface OwnProps {}
 
@@ -63,7 +63,7 @@ const PersonalInfoPanel: FunctionComponent<Props> = (props) => {
           }
         />
         <div className={classes.infoHelperContainer}>
-          <InfoIcon className={classes.helperIcon} />
+          <InfoIcon className={clsx(classes.helperIcon, classes.disabled)} />
           <FormHelperText className={classes.infoHelperText}>
             In this version of Let It Fly app, you cannot update your email
             address after sign up.
@@ -81,7 +81,7 @@ const PersonalInfoPanel: FunctionComponent<Props> = (props) => {
         inputVariant="outlined"
         fullWidth
         onChange={handleBirthdayChange}
-        className={classes.birthdateField}
+        className={classes.dateField}
       />
       <Grid container spacing={3} className={classes.formField}>
         <Grid item md={6} sm={12} xs={12}>
