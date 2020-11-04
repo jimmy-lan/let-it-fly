@@ -14,10 +14,12 @@ import {
   InputAdornment,
   FormHelperText,
   Divider,
+  Container,
 } from "@material-ui/core";
 import { InfoOutlined as InfoIcon } from "@material-ui/icons";
 import { FormHeader } from "../FormHeader/FormHeader";
 import { KeyboardDatePicker } from "@material-ui/pickers";
+import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
 
 interface OwnProps {}
 
@@ -95,6 +97,8 @@ const PersonalInfoPanel: FunctionComponent<Props> = (props) => {
         fullWidth
         className={classes.formField}
       />
+      <Divider className={classes.divider} />
+      <FormControlButtons primaryText="Save" secondaryText="Cancel" />
     </form>
   );
 };

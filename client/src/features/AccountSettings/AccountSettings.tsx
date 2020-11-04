@@ -70,8 +70,6 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
             Authentication
           </TabPanel>
         </TabsContainer>
-        <Divider />
-        <FormControlButtons primaryText="Save" secondaryText="Cancel" />
       </Container>
     </FeatureContainer>
   );

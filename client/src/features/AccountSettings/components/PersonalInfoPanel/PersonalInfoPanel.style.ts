@@ -13,6 +13,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     formField: {
       marginBottom: theme.spacing(2.5),
     },
+    divider: {
+      marginBottom: theme.spacing(1),
+    },
     birthdateField: {
       marginTop: theme.spacing(0.5),
       marginBottom: theme.spacing(3.9),
