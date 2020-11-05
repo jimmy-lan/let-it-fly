@@ -10,7 +10,7 @@ import {
   Theme,
 } from "@material-ui/core/styles";
 import { blue, red } from "@material-ui/core/colors";
-import { theme } from "../../../../app/theme";
+import { theme } from "../../../../../app/theme";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({

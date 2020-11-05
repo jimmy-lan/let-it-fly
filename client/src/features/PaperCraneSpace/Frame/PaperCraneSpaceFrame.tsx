@@ -17,9 +17,9 @@ import { RouteEntry } from "../../../routes";
 import { useStyles } from "./PaperCraneSpaceFrame.style";
 import { FeatureContainer } from "../../../common/components/FeatureContainer";
 import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
-import { ListButtonWithTheme } from "./list/ListButtonWithTheme";
-import { blueTheme, redTheme } from "./list/list.style";
-import { ListIconItem } from "./list/ListIconItem";
+import { ListButtonWithTheme } from "./components/list/ListButtonWithTheme";
+import { blueTheme, redTheme } from "./components/list/list.style";
+import { ListIconItem } from "./components/list/ListIconItem";
 
 interface OwnProps {
   routes?: RouteEntry[];
