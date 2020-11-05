@@ -43,6 +43,8 @@ const TabsContainer: FunctionComponent<Props> = ({
     >
       <Tabs
         orientation="horizontal"
+        variant="scrollable"
+        scrollButtons="auto"
         value={selectedIndex}
         onChange={onTabChange}
         className={classes.tabs}
