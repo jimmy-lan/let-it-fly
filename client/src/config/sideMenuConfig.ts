@@ -55,16 +55,16 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
         size: 27,
       },
       {
-        name: "Compose",
-        url: "/my/space/compose",
-        Icon: ComposeIcon,
-        size: 25,
-      },
-      {
         name: "Inbox",
         url: "/my/space/inbox",
         Icon: SpaceIcon,
         size: 26,
+      },
+      {
+        name: "Compose",
+        url: "/my/space/compose",
+        Icon: ComposeIcon,
+        size: 25,
       },
       {
         name: "Friends",
