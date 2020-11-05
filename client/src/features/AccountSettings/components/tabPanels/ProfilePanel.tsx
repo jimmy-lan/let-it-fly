@@ -32,6 +32,7 @@ const ProfilePanel: FunctionComponent<Props> = (props) => {
       <ChipInput
         variant="outlined"
         label="Interests"
+        value={["Ski", "Make Friends"]}
         className={clsx(classes.chipInput, classes.formField)}
         fullWidth
       />

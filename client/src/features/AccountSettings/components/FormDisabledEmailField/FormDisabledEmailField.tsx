@@ -20,6 +20,7 @@ import { useStyles } from "./FormDisabledEmailField.style";
 
 interface OwnProps {
   label?: string;
+  hideButton?: boolean;
   onUpdateCredentialsClick?: () => void;
   className?: string;
 }
@@ -28,6 +29,7 @@ type Props = OwnProps;
 
 const FormDisabledEmailField: FunctionComponent<Props> = ({
   label,
+  hideButton,
   onUpdateCredentialsClick,
   className,
 }: Props) => {
@@ -43,11 +45,13 @@ const FormDisabledEmailField: FunctionComponent<Props> = ({
         labelWidth={115}
         value="user@user.com"
         endAdornment={
-          <InputAdornment position="end">
-            <Button onClick={onUpdateCredentialsClick}>
-              Update Credentials
-            </Button>
-          </InputAdornment>
+          !hideButton && (
+            <InputAdornment position="end">
+              <Button onClick={onUpdateCredentialsClick}>
+                Update Credentials
+              </Button>
+            </InputAdornment>
+          )
         }
       />
       <div className={classes.infoHelperContainer}>
