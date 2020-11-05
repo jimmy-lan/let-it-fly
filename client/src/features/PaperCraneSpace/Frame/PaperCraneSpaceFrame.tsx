@@ -7,7 +7,11 @@
  */
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { List } from "@material-ui/core";
-import { Inbox as InboxIcon, Send as SendIcon } from "@material-ui/icons";
+import {
+  Inbox as InboxIcon,
+  Send as SendIcon,
+  Star as StarredIcon,
+} from "@material-ui/icons";
 
 import { RouteEntry } from "../../../routes";
 import { useStyles } from "./PaperCraneSpaceFrame.style";
@@ -40,6 +44,7 @@ const PaperCraneSpaceFrame: FunctionComponent<Props> = ({
         </ListButtonWithTheme>
         <ListIconItem text="Received" icon={<InboxIcon />} />
         <ListIconItem text="Sent" icon={<SendIcon />} />
+        <ListIconItem text="Starred" icon={<StarredIcon />} />
       </List>
       <FeatureContainer className={classes.content} fullHeight>
         {renderRoutes()}

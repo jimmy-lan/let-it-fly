@@ -33,7 +33,9 @@ const FeatureContainer: FunctionComponent<Props> = ({
         [classes.fullHeightContainer]: fullHeight,
       })}
     >
-      <CardContent className={classes.container}>{children}</CardContent>
+      <CardContent className={clsx("container", classes.container)}>
+        {children}
+      </CardContent>
     </Card>
   );
 };

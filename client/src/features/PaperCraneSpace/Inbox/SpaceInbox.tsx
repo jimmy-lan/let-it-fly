@@ -4,6 +4,7 @@
  */
 import React, { FunctionComponent } from "react";
 import { useStyles } from "./SpaceInbox.style";
+import { Typography } from "@material-ui/core";
 
 interface OwnProps {}
 
@@ -13,7 +14,9 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className={classes.header}>Inbox</div>
+      <div className={classes.header}>
+        <Typography variant="subtitle1">Inbox</Typography>
+      </div>
     </div>
   );
 };

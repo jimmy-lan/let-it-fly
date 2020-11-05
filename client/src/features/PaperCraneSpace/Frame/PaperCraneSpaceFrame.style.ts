@@ -21,6 +21,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     content: {
       flex: 1,
       width: "100%",
+      padding: 0,
+      "& > .container": {
+        padding: 0,
+      },
     },
     listItem: {
       height: 48,

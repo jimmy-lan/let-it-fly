@@ -12,12 +12,16 @@ export const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       alignItems: "center",
       width: "100%",
+      padding: 0,
     },
     header: {
       width: "100%",
       height: 48,
       color: theme.palette.common.white,
       backgroundColor: theme.palette.primary.main,
+      display: "flex",
+      alignItems: "center",
+      padding: theme.spacing(2),
     },
   })
 );
