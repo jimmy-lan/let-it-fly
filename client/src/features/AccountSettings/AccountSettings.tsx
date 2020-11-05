@@ -13,6 +13,7 @@ import { useStyles } from "./AccountSettings.style";
 import { Container } from "@material-ui/core";
 import { ContactInfoPanel } from "./components/tabPanels/ContactInfoPanel";
 import { ProfilePanel } from "./components/tabPanels/ProfilePanel";
+import { AuthenticationPanel } from "./components/tabPanels/AuthenticationPanel";
 
 interface OwnProps {}
 
@@ -68,7 +69,7 @@ const AccountSettings: FunctionComponent<Props> = (props) => {
             id={AccountSettingsTabId.authentication}
             displayId={displayId}
           >
-            Authentication
+            <AuthenticationPanel />
           </TabPanel>
         </TabsContainer>
       </Container>
