@@ -6,21 +6,20 @@
  *    Provide frame for pages in paper crane space.
  */
 import React, { FunctionComponent, PropsWithChildren } from "react";
+import { List } from "@material-ui/core";
 import {
-  Button,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  MuiThemeProvider,
-} from "@material-ui/core";
-import { Inbox as InboxIcon, Send as SendIcon } from "@material-ui/icons";
+  Inbox as InboxIcon,
+  Send as SendIcon,
+  Markunread as UnreadIcon,
+} from "@material-ui/icons";
 
 import { RouteEntry } from "../../routes";
-import { blueTheme, redTheme, useStyles } from "./PaperCraneSpace.style";
+import { useStyles } from "./PaperCraneSpace.style";
 import { FeatureContainer } from "../../common/components/FeatureContainer";
 import { useRenderRoutes } from "../../hooks/useRenderRoutes";
-import clsx from "clsx";
+import { ListButtonWithTheme } from "./components/list/ListButtonWithTheme";
+import { blueTheme, redTheme } from "./components/list/list.style";
+import { ListIconItem } from "./components/list/ListIconItem";
 
 interface OwnProps {
   routes?: RouteEntry[];
@@ -37,42 +36,15 @@ const PaperCraneSpace: FunctionComponent<Props> = ({
   return (
     <div className={classes.root}>
       <List className={classes.list}>
-        <ListItem className={clsx(classes.noPadding, classes.listItem)}>
-          <MuiThemeProvider theme={redTheme}>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.button}
-            >
-              Compose
-            </Button>
-          </MuiThemeProvider>
-        </ListItem>
-        <ListItem className={clsx(classes.noPadding, classes.listItem)}>
-          <MuiThemeProvider theme={blueTheme}>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.button}
-            >
-              Search
-            </Button>
-          </MuiThemeProvider>
-        </ListItem>
-        <ListItem button className={classes.listItem}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="New Msgs" />
-        </ListItem>
-        <ListItem button className={classes.listItem}>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText primary="Sent Msgs" />
-        </ListItem>
+        <ListButtonWithTheme theme={redTheme} className={classes.listItem}>
+          Compose
+        </ListButtonWithTheme>
+        <ListButtonWithTheme theme={blueTheme} className={classes.listItem}>
+          Search
+        </ListButtonWithTheme>
+        <ListIconItem text="Unread" icon={<UnreadIcon />} />
+        <ListIconItem text="Received" icon={<InboxIcon />} />
+        <ListIconItem text="Sent" icon={<SendIcon />} />
       </List>
       <FeatureContainer className={classes.content} fullHeight>
         {renderRoutes()}
