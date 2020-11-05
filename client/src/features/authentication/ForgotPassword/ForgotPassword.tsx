@@ -12,16 +12,11 @@ import { ControlButtons } from "../components/ControlButtons";
 import { useHistory } from "../../../hooks/useHistory";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import {
-  authenticateAsync,
-  changeEmail,
-  setError,
-  UserErrorObject,
-} from "../userAuthSlice";
+import { changeEmail, setError, UserErrorObject } from "../userAuthSlice";
 import { useError } from "../hooks";
 import { Alert } from "@material-ui/lab";
-import { isEmailPattern, isEqual } from "../../../common/util";
-import { requestPassword, signUp } from "../../../services/serverApi";
+import { isEmailPattern } from "../../../common/util";
+import { requestPassword } from "../../../services/serverApi";
 
 interface OwnProps {}
 

@@ -1,20 +1,22 @@
 /**
  * Created by Jimmy Lan
- * Creation Date: 2020-10-30
+ * Creation Date: 2020-11-03
  */
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      marginBottom: theme.spacing(2.5),
+    imageInput: {
+      display: "none",
     },
-    container: {
-      height: "100%",
+    iconButton: {
       width: "100%",
+      height: "100%",
+      margin: 0,
     },
-    fullHeightContainer: {
-      minHeight: `calc(100% - 64px - ${theme.spacing(2)}px)`,
+    icon: {
+      width: "100%",
+      height: "100%",
     },
   })
 );

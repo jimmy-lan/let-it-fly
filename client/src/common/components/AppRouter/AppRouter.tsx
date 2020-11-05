@@ -6,7 +6,7 @@
  *    inside of the app.
  */
 
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { routes } from "../../../routes";
 

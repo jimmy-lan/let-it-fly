@@ -7,3 +7,4 @@ export * from "./AppHome";
 export * from "./authentication";
 export * from "./DummyText";
 export * from "./UserHome";
+export * from "./AccountSettings";
