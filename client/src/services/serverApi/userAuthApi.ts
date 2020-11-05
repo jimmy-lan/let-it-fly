@@ -1,7 +1,7 @@
 /**
  * Created by Jimmy Lan
  * Creation Date: 2020-10-25
- * Description: Server APIs for user-related queries
+ * Description: Server APIs for user-authentication related queries
  */
 import { getFakeServerCall } from "./helpers";
 import { ServerResponse, UserRole } from "./models";
