@@ -4,6 +4,8 @@
  * Description: Server APIs for paper crane space requests.
  */
 import { ServerResponse } from "./models";
+import { getFakeServerCall } from "./helpers";
+import { fakePaperCraneList } from "./paperCraneSpaceApi.fakeData";
 
 export interface PaperCraneInfo {
   title: string;
@@ -34,4 +36,14 @@ export const fetchPaperCraneListShallow = (
   limit: number,
   skip: number,
   fetchCategory: "received" | "sent" | "starred"
-) => {};
+) => {
+  const response: MultiplePaperCraneResponse = {
+    success: true,
+    data: fakePaperCraneList.slice(skip, skip + limit).map((entry) => ({
+      title: entry.title,
+      unread: entry.unread,
+      starred: entry.starred,
+    })),
+  };
+  return getFakeServerCall(response, 1);
+};
