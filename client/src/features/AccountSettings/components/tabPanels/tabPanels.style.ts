@@ -33,5 +33,12 @@ export const useStyles = makeStyles((theme: Theme) =>
     smallMarginBelow: {
       marginBottom: theme.spacing(0.9),
     },
+    chipInput: {
+      "& .WAMuiChipInput-inputRoot-72": {
+        /** Adjust weired padding space that comes with
+         * material-ui-chip-input component */
+        paddingBottom: 5,
+      },
+    },
   })
 );
