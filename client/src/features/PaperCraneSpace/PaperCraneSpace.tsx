@@ -6,13 +6,21 @@
  *    Provide frame for pages in paper crane space.
  */
 import React, { FunctionComponent, PropsWithChildren, useRef } from "react";
-import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { Inbox as InboxIcon } from "@material-ui/icons";
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  MuiThemeProvider,
+} from "@material-ui/core";
+import { Inbox as InboxIcon, Send as SendIcon } from "@material-ui/icons";
 
 import { RouteEntry } from "../../routes";
-import { useStyles } from "./PaperCraneSpace.style";
+import { blueTheme, redTheme, useStyles } from "./PaperCraneSpace.style";
 import { FeatureContainer } from "../../common/components/FeatureContainer";
 import { useRenderRoutes } from "../../hooks/useRenderRoutes";
+import clsx from "clsx";
 
 interface OwnProps {
   routes?: RouteEntry[];
@@ -29,15 +37,45 @@ const PaperCraneSpace: FunctionComponent<Props> = ({
   return (
     <div className={classes.root}>
       <List className={classes.list}>
-        <ListItem button>
+        <ListItem className={clsx(classes.noPadding, classes.listItem)}>
+          <MuiThemeProvider theme={redTheme}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+            >
+              Compose
+            </Button>
+          </MuiThemeProvider>
+        </ListItem>
+        <ListItem className={clsx(classes.noPadding, classes.listItem)}>
+          <MuiThemeProvider theme={blueTheme}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+            >
+              Search
+            </Button>
+          </MuiThemeProvider>
+        </ListItem>
+        <ListItem button className={classes.listItem}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary="New Msgs" />
+        </ListItem>
+        <ListItem button className={classes.listItem}>
+          <ListItemIcon>
+            <SendIcon />
+          </ListItemIcon>
+          <ListItemText primary="Sent Msgs" />
         </ListItem>
       </List>
       <FeatureContainer className={classes.content} fullHeight>
-        Example content
+        {renderRoutes()}
       </FeatureContainer>
     </div>
   );
