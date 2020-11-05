@@ -6,8 +6,9 @@ import React, { FunctionComponent } from "react";
 import ChipInput from "material-ui-chip-input";
 import { useStyles } from "./tabPanels.style";
 import { FormHeader } from "../FormHeader/FormHeader";
-import { TextField } from "@material-ui/core";
+import { Divider, TextField } from "@material-ui/core";
 import clsx from "clsx";
+import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
 
 interface OwnProps {}
 
@@ -36,6 +37,9 @@ const ProfilePanel: FunctionComponent<Props> = (props) => {
         className={clsx(classes.chipInput, classes.formField)}
         fullWidth
       />
+
+      <Divider className={classes.divider} />
+      <FormControlButtons primaryText="Save" secondaryText="Cancel" />
     </form>
   );
 };

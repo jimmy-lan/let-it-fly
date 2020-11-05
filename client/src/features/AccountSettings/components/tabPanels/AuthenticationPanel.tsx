@@ -6,7 +6,7 @@ import React, { FunctionComponent } from "react";
 import { useStyles } from "./tabPanels.style";
 import { FormDisabledEmailField } from "../FormDisabledEmailField/FormDisabledEmailField";
 import { FormHeader } from "../FormHeader/FormHeader";
-import { TextField } from "@material-ui/core";
+import { TextField, Divider } from "@material-ui/core";
 import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
 
 interface OwnProps {}
@@ -41,7 +41,11 @@ const AuthenticationPanel: FunctionComponent<Props> = (props) => {
         className={classes.formField}
         fullWidth
       />
-      <FormControlButtons primaryText="Save" secondaryText="Cancel" />
+      <Divider className={classes.divider} />
+      <FormControlButtons
+        primaryText="Update Credentials"
+        secondaryText="Cancel"
+      />
     </form>
   );
 };
