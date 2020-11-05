@@ -8,8 +8,12 @@
 import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
-import { AccountSettings, UserHome } from "../features";
-import { PaperCraneSpace } from "../features/PaperCraneSpace";
+import {
+  AccountSettings,
+  UserHome,
+  SpaceInbox,
+  PaperCraneSpaceFrame,
+} from "../features";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -29,8 +33,14 @@ export const userRoutes: RouteEntry[] = [
       },
       {
         path: "/my/space",
-        Component: PaperCraneSpace,
+        Component: PaperCraneSpaceFrame,
         isProtected: [UserRole.user],
+        children: [
+          {
+            path: "/my/space/inbox",
+            Component: SpaceInbox,
+          },
+        ],
       },
     ],
   },
