@@ -5,7 +5,7 @@
  *    Paper crane space for regular users.
  *    Provide frame for pages in paper crane space.
  */
-import React, { FunctionComponent, PropsWithChildren, useRef } from "react";
+import React, { FunctionComponent, PropsWithChildren } from "react";
 import {
   Button,
   List,

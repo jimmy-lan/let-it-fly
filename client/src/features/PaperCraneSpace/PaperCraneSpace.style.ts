@@ -44,11 +44,13 @@ export const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const redTheme = createMuiTheme({
+  // @ts-ignore
   palette: { primary: red },
   typography: theme.typography,
 });
 
 export const blueTheme = createMuiTheme({
+  // @ts-ignore
   palette: { primary: blue },
   typography: theme.typography,
 });

@@ -9,21 +9,21 @@ import { deepPurple, orange } from "@material-ui/core/colors";
 
 declare module "@material-ui/core/styles/createPalette" {
   interface Palette {
-    greyBackground?: Palette["primary"];
+    greyBackground: Palette["primary"];
   }
   interface PaletteOptions {
-    greyBackground?: PaletteOptions["primary"];
+    greyBackground: PaletteOptions["primary"];
   }
 }
 
 declare module "@material-ui/core/styles" {
   interface Theme {
-    settings?: {
+    settings: {
       sideBarWidth: number;
     };
   }
   interface ThemeOptions {
-    settings?: {
+    settings: {
       sideBarWidth: number;
     };
   }
