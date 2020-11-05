@@ -22,6 +22,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       padding: theme.spacing(2),
+      marginBottom: theme.spacing(0.5),
     },
   })
 );
