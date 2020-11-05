@@ -17,7 +17,8 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from '@material-ui/core/styles';
-import { isRegularExpressionLiteral } from 'typescript';
+import { AlternateEmail } from '@material-ui/icons';
+import { Alert } from '@material-ui/lab';
 
 const tableIcons = {
     Add: AddBox,
@@ -73,6 +74,8 @@ export default function Usertable({ columns, getData, title }) {
     }, [getData]);
 
     const ref = useRef();
+
+    var saveable = false;
 
     return (
         <MaterialTable
@@ -137,6 +140,10 @@ export default function Usertable({ columns, getData, title }) {
                 const error3 = rowData.firstname === "";
                 const error4 = rowData.lastname === "";
 
+                if ((!error) && (!error2) && (!error3) && (!error4)){
+                    saveable = true;
+                }
+
                 return(
                     <React.Fragment>
                         <form className={classes.form} noValidate autoComplete="off">
@@ -148,7 +155,6 @@ export default function Usertable({ columns, getData, title }) {
                                     label="Nickname"
                                     defaultValue={rowData.nickname}
                                     fullWidth
-                                    color="secondary"
                                     onChange={event => {
                                         console.log(event.target.value)
                                         const index = rowData.tableData.id;
@@ -168,7 +174,6 @@ export default function Usertable({ columns, getData, title }) {
                                     name="email"
                                     label="Email"
                                     fullWidth
-                                    color="secondary"
                                     defaultValue={rowData.email}
                                     onChange={handleChange}
                                     error={error}
@@ -180,11 +185,8 @@ export default function Usertable({ columns, getData, title }) {
                                     id="birthday"
                                     name="birthday"
                                     label="Date Of Birth"
-                                    type='date'
                                     fullWidth
-                                    color="secondary"
                                     defaultValue={rowData.birthday}
-                                    InputLabelProps={{ shrink: true }}
                                     onChange={event => {
                                         console.log(event.target.value)
                                         const index = rowData.tableData.id;
@@ -202,7 +204,6 @@ export default function Usertable({ columns, getData, title }) {
                                     id="firstName"
                                     name="firstName"
                                     label="First name"
-                                    color="secondary"
                                     className={classes.parallel}
                                     defaultValue={rowData.firstname}
                                     onChange={event => {
@@ -221,7 +222,6 @@ export default function Usertable({ columns, getData, title }) {
                                     id="lastName"
                                     name="lastName"
                                     label="Last name"
-                                    color="secondary"
                                     className={classes.parallel}
                                     defaultValue={rowData.lastname}
                                     onChange={event => {
@@ -244,7 +244,6 @@ export default function Usertable({ columns, getData, title }) {
                                     rows={4}
                                     variant="outlined"
                                     fullWidth
-                                    color="secondary"
                                     defaultValue={rowData.description}
                                     onChange={event => {
                                         console.log(event.target.value)
@@ -265,7 +264,6 @@ export default function Usertable({ columns, getData, title }) {
                                     rows={4}
                                     variant="outlined"
                                     fullWidth
-                                    color="secondary"
                                     defaultValue={rowData.contactinformation}
                                     onChange={event => {
                                         console.log(event.target.value)
@@ -286,7 +284,6 @@ export default function Usertable({ columns, getData, title }) {
                                     rows={4}
                                     variant="outlined"
                                     fullWidth
-                                    color="secondary"
                                     defaultValue={rowData.interest}
                                     onChange={event => {
                                         console.log(event.target.value)
@@ -314,6 +311,20 @@ export default function Usertable({ columns, getData, title }) {
                     </React.Fragment>
                 )
             }}
+            actions={[
+                {icon: tableIcons.Export,
+                tooltop: 'save user',
+                onClick: () => {
+                    if (saveable){
+                        alert("saved")
+                    }
+                    else {
+                        alert("false")
+                    }
+                }
+            }
+            ]
+            }
         />
     );
 }
