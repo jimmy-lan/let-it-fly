@@ -16,7 +16,6 @@ import StoreTable from "../features/adminPage/StoreTable";
 import ActivityTable from "../features/adminPage/ActivityTable";
 import { SignIn } from "../features/authentication/SignIn";
 
-
 export const userRoutes: RouteEntry[] = [
   {
     path: "/my",
@@ -32,9 +31,9 @@ export const userRoutes: RouteEntry[] = [
       {
         path: "/my/account",
         Component: AccountSettings,
-
       },
-        {path: "/my",
+      {
+        path: "/my",
         Component: AdminHome,
         exact: true,
         isProtected: [UserRole.admin],
