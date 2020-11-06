@@ -12,6 +12,9 @@ import {
   LibraryAddTwoTone as ComposeIcon,
   StoreTwoTone as StoreIcon,
   SupervisedUserCircleTwoTone as FriendsIcon,
+  PeopleAltTwoTone as UserIcon,
+  EmailTwoTone as CraneIcon,
+  PlaylistAddCheckTwoTone as LogIcon,
 } from "@material-ui/icons";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 
@@ -93,19 +96,19 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
       {
         name: "Activity",
         url: "/my/logTable",
-        Icon: AccountIcon,
+        Icon: LogIcon,
         size: 27,
       },
       {
         name: "Paper Cranes",
         url: "/my/cranesTable",
-        Icon: ComposeIcon,
+        Icon: CraneIcon,
         size: 25,
       },
       {
         name: "Users",
         url: "/my/usersTable",
-        Icon: SpaceIcon,
+        Icon: UserIcon,
         size: 26,
       },
       {
@@ -117,4 +120,3 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
     ],
   },
 ];
-
