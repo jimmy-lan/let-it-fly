@@ -116,14 +116,27 @@ export default function Usertable({ columns, getData, title }) {
             }}
             detailPanel={rowData => {
                 const handleChange = event => {
-                    console.log(event.target.name)
+                    const attr = event.target.name;
                     const index = rowData.tableData.id;
                     const newData = rowData;
-                    newData.email = event.target.value;
+                    
+                    if (attr === "firstname"){
+                        const space = newData.name.search(' ');
+                        const lastName = newData.name.substring(space, newData.name.length);
+                        newData.name = event.target.value + lastName;
+                    }
+                    if (attr === "lastname"){
+                        const space = newData.name.search(' ');
+                        const firstName = newData.name.substring(0, space+1);
+                        newData.name = firstName + event.target.value;
+                    }
+
+                    newData[attr] = event.target.value;
                     const updateData = [...data];
                     updateData[index] = newData;
                     setData([...updateData]);
                 }
+
                 const error1 = !isEmailPattern(rowData.email);
 
                 if (error1) {
@@ -143,15 +156,7 @@ export default function Usertable({ columns, getData, title }) {
                                     label="Nickname"
                                     defaultValue={rowData.nickname}
                                     fullWidth
-                                    onChange={event => {
-                                        console.log(event.target.value)
-                                        const index = rowData.tableData.id;
-                                        const newData = rowData;
-                                        newData.nickname = event.target.value;
-                                        const updateData = [...data];
-                                        updateData[index] = newData;
-                                        setData([...updateData]);
-                                    }}
+                                    onChange={handleChange}
                                     error={isEqual(rowData.nickname, '')}
                                 />
                             </div>
@@ -175,52 +180,28 @@ export default function Usertable({ columns, getData, title }) {
                                     label="Date Of Birth"
                                     fullWidth
                                     defaultValue={rowData.birthday}
-                                    onChange={event => {
-                                        console.log(event.target.value)
-                                        const index = rowData.tableData.id;
-                                        const newData = rowData;
-                                        newData.birthday = event.target.value;
-                                        const updateData = [...data];
-                                        updateData[index] = newData;
-                                        setData([...updateData]);
-                                    }}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div>
                                 <TextField
                                     required
-                                    id="firstName"
-                                    name="firstName"
+                                    id="firstname"
+                                    name="firstname"
                                     label="First name"
                                     className={classes.parallel}
                                     defaultValue={rowData.firstname}
-                                    onChange={event => {
-                                        console.log(event.target.value)
-                                        const index = rowData.tableData.id;
-                                        const newData = rowData;
-                                        newData.firstname = event.target.value;
-                                        const updateData = [...data];
-                                        updateData[index] = newData;
-                                        setData([...updateData]);
-                                    }}
+                                    onChange={handleChange}
                                     error={isEqual(rowData.firstname, '')}
                                 />
                                 <TextField
                                     required
-                                    id="lastName"
-                                    name="lastName"
+                                    id="lastname"
+                                    name="lastname"
                                     label="Last name"
                                     className={classes.parallel}
                                     defaultValue={rowData.lastname}
-                                    onChange={event => {
-                                        console.log(event.target.value)
-                                        const index = rowData.tableData.id;
-                                        const newData = rowData;
-                                        newData.lastname = event.target.value;
-                                        const updateData = [...data];
-                                        updateData[index] = newData;
-                                        setData([...updateData]);
-                                    }}
+                                    onChange={handleChange}
                                     error={isEqual(rowData.lastname, '')}
                                 />
                             </div>
@@ -233,15 +214,7 @@ export default function Usertable({ columns, getData, title }) {
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={rowData.description}
-                                    onChange={event => {
-                                        console.log(event.target.value)
-                                        const index = rowData.tableData.id;
-                                        const newData = rowData;
-                                        newData.description = event.target.value;
-                                        const updateData = [...data];
-                                        updateData[index] = newData;
-                                        setData([...updateData]);
-                                    }}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div>
@@ -253,15 +226,7 @@ export default function Usertable({ columns, getData, title }) {
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={rowData.contactinformation}
-                                    onChange={event => {
-                                        console.log(event.target.value)
-                                        const index = rowData.tableData.id;
-                                        const newData = rowData;
-                                        newData.contactinformation = event.target.value;
-                                        const updateData = [...data];
-                                        updateData[index] = newData;
-                                        setData([...updateData]);
-                                    }}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div>
@@ -273,15 +238,7 @@ export default function Usertable({ columns, getData, title }) {
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={rowData.interest}
-                                    onChange={event => {
-                                        console.log(event.target.value)
-                                        const index = rowData.tableData.id;
-                                        const newData = rowData;
-                                        newData.interest = event.target.value;
-                                        const updateData = [...data];
-                                        updateData[index] = newData;
-                                        setData([...updateData]);
-                                    }}
+                                    onChange={handleChange}
                                 />
                             </div>
                             {/*<div className={classes.buttons}>*/}
