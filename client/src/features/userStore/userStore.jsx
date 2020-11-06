@@ -7,7 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import UserStoreItem from "./UserStoreItem";
 import { loadStoreContents } from "../../services/serverApi/userStoreApi";
-import { uid } from "uid";
+
 // import { loadStoreContents } from "../../services/serverApi/userStoreApi";
 
 const userStore = () => {
