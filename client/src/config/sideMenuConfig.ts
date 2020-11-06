@@ -13,6 +13,9 @@ import {
   StoreTwoTone as StoreIcon,
   SupervisedUserCircleTwoTone as FriendsIcon,
 } from "@material-ui/icons";
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import RecentActorsIcon from '@material-ui/icons/RecentActors';
+import RestorePageIcon from '@material-ui/icons/RestorePage';
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 
 export interface SideMenuConfigEntry {
@@ -93,19 +96,19 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
       {
         name: "Activity",
         url: "/my/logTable",
-        Icon: AccountIcon,
+        Icon: RestorePageIcon,
         size: 27,
       },
       {
         name: "Paper Cranes",
         url: "/my/cranesTable",
-        Icon: ComposeIcon,
+        Icon: FileCopyIcon,
         size: 25,
       },
       {
         name: "Users",
         url: "/my/usersTable",
-        Icon: SpaceIcon,
+        Icon: RecentActorsIcon,
         size: 26,
       },
       {

@@ -17,8 +17,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from '@material-ui/core/styles';
-import { AlternateEmail } from '@material-ui/icons';
-import { Alert } from '@material-ui/lab';
+import { isEmailPattern, isEqual } from "../../common/util";
 
 const tableIcons = {
     Add: AddBox,
@@ -75,8 +74,6 @@ export default function Usertable({ columns, getData, title }) {
 
     const ref = useRef();
 
-    var saveable = false;
-
     return (
         <MaterialTable
             icons={tableIcons}
@@ -119,7 +116,7 @@ export default function Usertable({ columns, getData, title }) {
             }}
             detailPanel={rowData => {
                 const handleChange = event => {
-                    console.log(event.target.value)
+                    console.log(event.target.name)
                     const index = rowData.tableData.id;
                     const newData = rowData;
                     newData.email = event.target.value;
@@ -127,21 +124,12 @@ export default function Usertable({ columns, getData, title }) {
                     updateData[index] = newData;
                     setData([...updateData]);
                 }
-                var bool = rowData.email.search("@");
-                const error = bool == -1;
+                const error1 = !isEmailPattern(rowData.email);
 
-                if (error) {
+                if (error1) {
                     var emailValid = "Invalid email address";
                 } else {
                     var emailValid = "";
-                }
-
-                const error2 = rowData.nickname === "";
-                const error3 = rowData.firstname === "";
-                const error4 = rowData.lastname === "";
-
-                if ((!error) && (!error2) && (!error3) && (!error4)){
-                    saveable = true;
                 }
 
                 return(
@@ -151,7 +139,7 @@ export default function Usertable({ columns, getData, title }) {
                                 <TextField
                                     required
                                     id="nickName"
-                                    name="nickName"
+                                    name="nickname"
                                     label="Nickname"
                                     defaultValue={rowData.nickname}
                                     fullWidth
@@ -164,7 +152,7 @@ export default function Usertable({ columns, getData, title }) {
                                         updateData[index] = newData;
                                         setData([...updateData]);
                                     }}
-                                    error={error2}
+                                    error={isEqual(rowData.nickname, '')}
                                 />
                             </div>
                             <div>
@@ -176,7 +164,7 @@ export default function Usertable({ columns, getData, title }) {
                                     fullWidth
                                     defaultValue={rowData.email}
                                     onChange={handleChange}
-                                    error={error}
+                                    error={error1}
                                     helperText={emailValid}
                                 />
                             </div>
@@ -215,7 +203,7 @@ export default function Usertable({ columns, getData, title }) {
                                         updateData[index] = newData;
                                         setData([...updateData]);
                                     }}
-                                    error={error3}
+                                    error={isEqual(rowData.firstname, '')}
                                 />
                                 <TextField
                                     required
@@ -233,7 +221,7 @@ export default function Usertable({ columns, getData, title }) {
                                         updateData[index] = newData;
                                         setData([...updateData]);
                                     }}
-                                    error={error4}
+                                    error={isEqual(rowData.lastname, '')}
                                 />
                             </div>
                             <div>
@@ -312,19 +300,19 @@ export default function Usertable({ columns, getData, title }) {
                 )
             }}
             actions={[
-                {icon: tableIcons.Export,
+                {
+                icon: tableIcons.Export,
                 tooltop: 'save user',
-                onClick: () => {
-                    if (saveable){
-                        alert("saved")
-                    }
-                    else {
+                onClick: (event, rowData) => {
+                    if (isEqual(rowData.nickname, '') || isEqual(rowData.firstname, '') || isEqual(rowData.lastname, '') || !isEmailPattern(rowData.email)){
                         alert("false")
                     }
+                    else {
+                        alert("saved")
+                    }
                 }
-            }
-            ]
-            }
+                },
+            ]}
         />
     );
 }
