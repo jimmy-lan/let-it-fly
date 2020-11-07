@@ -241,16 +241,6 @@ export default function Usertable({ columns, getData, title }) {
                                     onChange={handleChange}
                                 />
                             </div>
-                            {/*<div className={classes.buttons}>*/}
-                            {/*    <Button variant="outlined">Cancel</Button>*/}
-                            {/*    <Button*/}
-                            {/*        variant="contained"*/}
-                            {/*        color="primary"*/}
-                            {/*        startIcon={<SaveIcon />}*/}
-                            {/*    >*/}
-                            {/*        Save*/}
-                            {/*    </Button>*/}
-                            {/*</div>*/}
                         </form>
 
                     </React.Fragment>
@@ -261,8 +251,11 @@ export default function Usertable({ columns, getData, title }) {
                 icon: tableIcons.Export,
                 tooltop: 'save user',
                 onClick: (event, rowData) => {
+                    if (isEqual(rowData.nickname, '')){
+                        rowData.nickname = '';
+                    }
                     if (isEqual(rowData.nickname, '') || isEqual(rowData.firstname, '') || isEqual(rowData.lastname, '') || !isEmailPattern(rowData.email)){
-                        alert("false")
+                        alert("failed")
                     }
                     else {
                         alert("saved")
