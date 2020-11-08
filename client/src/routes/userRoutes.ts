@@ -13,7 +13,6 @@ import PaperCraneTable from "../features/adminPage/PaperCraneTable";
 import UserTable from "../features/adminPage/UserTable";
 import StoreTable from "../features/adminPage/StoreTable";
 import ActivityTable from "../features/adminPage/ActivityTable";
-import { SignIn } from "../features/authentication/SignIn";
 import { UserHome, AccountSettings } from "../features";
 
 export const userRoutes: RouteEntry[] = [
