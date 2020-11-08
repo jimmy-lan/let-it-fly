@@ -1,7 +1,3 @@
-/**
- * Created by Jimmy Lan
- * Creation Date: 2020-10-30
- */
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) =>
@@ -25,11 +21,13 @@ export const useStyles = makeStyles((theme: Theme) =>
     optionContainer: {
       display: "inline-block",
       justifyContent: "center",
+
       alignItems: "center",
       width: "25%",
     },
     imageCardButton: {
       width: "100%",
+      height: "100%",
       display: "inline-block",
     },
   })
