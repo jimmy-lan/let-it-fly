@@ -30,12 +30,13 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
     );
 
     // TODO check for failure
+
+    setList((prevState: PaperCraneInfo[]) => prevState.concat(response.data!));
+
     if (!response.data?.length || response.data?.length < fetchCount) {
       setHasMore(false);
       return;
     }
-
-    setList((prevState: PaperCraneInfo[]) => prevState.concat(response.data!));
   };
 
   return (
