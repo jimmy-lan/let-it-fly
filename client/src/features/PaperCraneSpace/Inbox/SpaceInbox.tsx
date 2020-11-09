@@ -3,6 +3,7 @@
  * Creation Date: 2020-11-05
  */
 import React, { FunctionComponent, useState } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 import { useStyles } from "./SpaceInbox.style";
 import {
   Button,
@@ -46,22 +47,28 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
 
   //@ts-ignore
   return (
-    <FeatureContainer className={classes.root} scrollable>
+    <FeatureContainer className={classes.root}>
       <div className={classes.header}>
         <Typography variant="subtitle1">Inbox</Typography>
       </div>
 
-      <List>
-        {list.map((paperCrane: PaperCraneInfo, index: number) => (
-          <ListItem button key={index}>
-            <ListItemText primary={paperCrane.title} />
-          </ListItem>
-        ))}
-        {hasMore ? (
-          <Button onClick={fetchNextData}>Load More</Button>
-        ) : (
-          <Typography variant="subtitle1">That's all!</Typography>
-        )}
+      <List style={{ overflow: "auto", height: "92%" }}>
+        <InfiniteScroll
+          hasMore={hasMore}
+          loadMore={fetchNextData}
+          useWindow={false}
+        >
+          {list.map((paperCrane: PaperCraneInfo, index: number) => (
+            <ListItem button key={index}>
+              <ListItemText primary={paperCrane.title} />
+            </ListItem>
+          ))}
+          {hasMore ? (
+            <Button onClick={fetchNextData}>Load More</Button>
+          ) : (
+            <Typography variant="subtitle1">That's all!</Typography>
+          )}
+        </InfiniteScroll>
       </List>
     </FeatureContainer>
   );
