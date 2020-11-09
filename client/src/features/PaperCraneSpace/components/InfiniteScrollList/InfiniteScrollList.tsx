@@ -32,7 +32,10 @@ const EndMessage: FunctionComponent<{}> = (props) => {
   return (
     <div className={classes.messageContainer}>
       <Typography variant="body1">
-        You have seen all entries! <span>😄</span>
+        You have seen all entries!{" "}
+        <span role="img" aria-label="smile emoji">
+          😄
+        </span>
       </Typography>
     </div>
   );
