@@ -95,6 +95,12 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
         highlightExact: true,
       },
       {
+        name: "Account",
+        url: "/my/account",
+        Icon: AccountIcon,
+        size: 27,
+      },
+      {
         name: "Activity",
         url: "/my/logTable",
         Icon: LogIcon,
