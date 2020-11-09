@@ -9,11 +9,13 @@ import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
 import { AdminHome } from "../features/AdminHome";
-import PaperCraneTable from "../features/adminPage/PaperCraneTable";
-import UserTable from "../features/adminPage/UserTable";
-import StoreTable from "../features/adminPage/StoreTable";
-import ActivityTable from "../features/adminPage/ActivityTable";
 import { UserHome, AccountSettings } from "../features";
+import {
+  ActivityTable,
+  PaperCraneTable,
+  StoreTable,
+  UserTable,
+} from "../features/adminPage";
 
 export const userRoutes: RouteEntry[] = [
   {

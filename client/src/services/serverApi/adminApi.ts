@@ -1,8 +1,3 @@
-/**
- * Created by Jimmy Lan
- * Creation Date: 2020-10-25
- * Description: Server APIs for user-related queries
- */
 import { getFakeServerCall } from "./helpers";
 import { ServerResponse } from "./models";
 
