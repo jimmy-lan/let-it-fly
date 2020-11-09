@@ -3,21 +3,12 @@
  * Creation Date: 2020-11-05
  */
 import React, { FunctionComponent, useState } from "react";
-import InfiniteScroll from "react-infinite-scroller";
-import { useStyles } from "./SpaceInbox.style";
-import {
-  Button,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@material-ui/core";
+import { ListItem, ListItemText } from "@material-ui/core";
 import {
   fetchPaperCraneListShallow,
   MultiplePaperCraneResponse,
   PaperCraneInfo,
 } from "../../../services/serverApi";
-import { FeatureContainer } from "../../../common/components/FeatureContainer";
 import { FeatureContainerWithHeader } from "../components/FeatureContainerWithHeader/FeatureContainerWithHeader";
 import { InfiniteScrollList } from "../components/InfiniteScrollList/InfiniteScrollList";
 
@@ -26,7 +17,6 @@ interface OwnProps {}
 type Props = OwnProps;
 
 const SpaceInbox: FunctionComponent<Props> = (props) => {
-  const classes = useStyles();
   const [hasMore, setHasMore] = useState(true);
   const [list, setList] = useState<PaperCraneInfo[]>([]);
 
