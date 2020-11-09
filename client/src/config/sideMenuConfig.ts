@@ -4,7 +4,6 @@
  * Description: Configuration for the display of side menu.
  */
 import { SvgIconTypeMap } from "@material-ui/core";
-import { UserRole } from "../services/serverApi";
 import {
   HomeTwoTone as HomeIcon,
   AccountCircleTwoTone as AccountIcon,
@@ -12,8 +11,13 @@ import {
   LibraryAddTwoTone as ComposeIcon,
   StoreTwoTone as StoreIcon,
   SupervisedUserCircleTwoTone as FriendsIcon,
+  PeopleAltTwoTone as UserIcon,
+  EmailTwoTone as PaperCraneIcon,
+  PlaylistAddCheckTwoTone as LogIcon,
 } from "@material-ui/icons";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
+
+import { UserRole } from "../services/serverApi";
 
 export interface SideMenuConfigEntry {
   name: string;
@@ -75,6 +79,42 @@ export const sideMenuConfig: SideMenuConfigGroup[] = [
       {
         name: "Store",
         url: "/my/store",
+        Icon: StoreIcon,
+        size: 26,
+      },
+    ],
+  },
+  {
+    role: UserRole.admin,
+    menuItems: [
+      {
+        name: "Home",
+        url: "/my",
+        Icon: HomeIcon,
+        size: 28,
+        highlightExact: true,
+      },
+      {
+        name: "Activity",
+        url: "/my/logTable",
+        Icon: LogIcon,
+        size: 27,
+      },
+      {
+        name: "Paper Cranes",
+        url: "/my/cranesTable",
+        Icon: PaperCraneIcon,
+        size: 25,
+      },
+      {
+        name: "Users",
+        url: "/my/usersTable",
+        Icon: UserIcon,
+        size: 26,
+      },
+      {
+        name: "Store",
+        url: "/my/storeTable",
         Icon: StoreIcon,
         size: 26,
       },
