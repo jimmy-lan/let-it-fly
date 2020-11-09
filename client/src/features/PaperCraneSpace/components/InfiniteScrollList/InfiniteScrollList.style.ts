@@ -10,12 +10,12 @@ export const useStyles = makeStyles((theme: Theme) =>
       overflow: "auto",
       height: "calc(100% - 48px)",
     },
-    loaderContainer: {
+    messageContainer: {
       width: "100%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      padding: theme.spacing(1),
+      padding: theme.spacing(1.5),
     },
     circularProgress: {
       marginRight: theme.spacing(1.5),

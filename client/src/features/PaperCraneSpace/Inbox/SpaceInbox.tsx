@@ -28,6 +28,7 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
       list.length,
       "received"
     );
+
     // TODO check for failure
     if (!response.data?.length || response.data?.length < fetchCount) {
       setHasMore(false);

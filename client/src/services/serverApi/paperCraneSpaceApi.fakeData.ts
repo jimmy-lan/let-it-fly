@@ -626,4 +626,32 @@ export const fakePaperCraneList: PaperCraneInfo[] = [
       "dui fermentum, vulputate enim ut, pulvinar nibh. Maecenas quis erat enim. Integer fermentum consequat" +
       " purus sit amet sagittis.",
   },
+  {
+    title: "Placeholder Title Here",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat, elit et " +
+      "efficitur euismod, enim arcu facilisis elit, et imperdiet libero erat eu urna. " +
+      "Aliquam ut finibus purus. Duis at interdum libero, sed dictum ligula. Aenean porttitor " +
+      "metus eget condimentum suscipit. Nunc porta eleifend elit, sed tempus nisl euismod non." +
+      " Maecenas pellentesque diam in felis feugiat, a sodales lorem rhoncus. Nullam malesuada " +
+      "facilisis nunc ac auctor. Maecenas feugiat lectus eu urna consequat mattis. Integer ultricies " +
+      "est at interdum elementum. Quisque at sollicitudin tellus. Maecenas tempor orci cursus nunc " +
+      "tristique, pulvinar mattis nulla dictum. Etiam vel magna eu ligula venenatis luctus. Sed eget " +
+      "dui fermentum, vulputate enim ut, pulvinar nibh. Maecenas quis erat enim. Integer fermentum consequat" +
+      " purus sit amet sagittis.",
+  },
+  {
+    title: "This is a good paper crane",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat, elit et " +
+      "efficitur euismod, enim arcu facilisis elit, et imperdiet libero erat eu urna. " +
+      "Aliquam ut finibus purus. Duis at interdum libero, sed dictum ligula. Aenean porttitor " +
+      "metus eget condimentum suscipit. Nunc porta eleifend elit, sed tempus nisl euismod non." +
+      " Maecenas pellentesque diam in felis feugiat, a sodales lorem rhoncus. Nullam malesuada " +
+      "facilisis nunc ac auctor. Maecenas feugiat lectus eu urna consequat mattis. Integer ultricies " +
+      "est at interdum elementum. Quisque at sollicitudin tellus. Maecenas tempor orci cursus nunc " +
+      "tristique, pulvinar mattis nulla dictum. Etiam vel magna eu ligula venenatis luctus. Sed eget " +
+      "dui fermentum, vulputate enim ut, pulvinar nibh. Maecenas quis erat enim. Integer fermentum consequat" +
+      " purus sit amet sagittis.",
+  },
 ];

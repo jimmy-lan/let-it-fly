@@ -19,7 +19,7 @@ const Loader: FunctionComponent<{}> = (props) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.loaderContainer}>
+    <div className={classes.messageContainer}>
       <CircularProgress size={18} className={classes.circularProgress} />
       <Typography variant="body1">Loading...</Typography>
     </div>
@@ -29,7 +29,13 @@ const Loader: FunctionComponent<{}> = (props) => {
 const EndMessage: FunctionComponent<{}> = (props) => {
   const classes = useStyles();
 
-  return <div>End of entries</div>;
+  return (
+    <div className={classes.messageContainer}>
+      <Typography variant="body1">
+        You have seen all entries! <span>😄</span>
+      </Typography>
+    </div>
+  );
 };
 
 const InfiniteScrollList: FunctionComponent<Props> = ({
