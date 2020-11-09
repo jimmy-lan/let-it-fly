@@ -16,5 +16,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     fullHeightContainer: {
       minHeight: theme.settings.fullHeight,
     },
+    scrollable: {
+      overflow: "auto",
+    },
   })
 );

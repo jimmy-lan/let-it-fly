@@ -16,6 +16,10 @@ interface OwnProps {
    * Determine whether the container fits entire <main> area
    */
   fullHeight?: boolean;
+  /**
+   * Determine whether the container is scrollable
+   */
+  scrollable?: boolean;
   className?: string;
 }
 
@@ -24,6 +28,7 @@ type Props = OwnProps;
 const FeatureContainer: FunctionComponent<Props> = ({
   children,
   fullHeight,
+  scrollable,
   className,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
@@ -33,7 +38,11 @@ const FeatureContainer: FunctionComponent<Props> = ({
         [classes.fullHeightContainer]: fullHeight,
       })}
     >
-      <CardContent className={clsx("container", classes.container)}>
+      <CardContent
+        className={clsx("container", classes.container, {
+          [classes.scrollable]: scrollable,
+        })}
+      >
         {children}
       </CardContent>
     </Card>

@@ -46,7 +46,7 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
 
   //@ts-ignore
   return (
-    <FeatureContainer className={classes.root}>
+    <FeatureContainer className={classes.root} scrollable>
       <div className={classes.header}>
         <Typography variant="subtitle1">Inbox</Typography>
       </div>
