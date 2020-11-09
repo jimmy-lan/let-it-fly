@@ -8,6 +8,11 @@
 import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
+import { AdminHome } from "../features/AdminHome";
+import PaperCraneTable from "../features/adminPage/PaperCraneTable";
+import UserTable from "../features/adminPage/UserTable";
+import StoreTable from "../features/adminPage/StoreTable";
+import ActivityTable from "../features/adminPage/ActivityTable";
 import { UserHome, AccountSettings } from "../features";
 
 export const userRoutes: RouteEntry[] = [
@@ -21,6 +26,32 @@ export const userRoutes: RouteEntry[] = [
         Component: UserHome,
         exact: true,
         isProtected: [UserRole.user],
+      },
+      {
+        path: "/my",
+        Component: AdminHome,
+        exact: true,
+        isProtected: [UserRole.admin],
+      },
+      {
+        path: "/my/usersTable",
+        Component: UserTable,
+        exact: true,
+      },
+      {
+        path: "/my/storeTable",
+        Component: StoreTable,
+        exact: true,
+      },
+      {
+        path: "/my/logTable",
+        Component: ActivityTable,
+        exact: true,
+      },
+      {
+        path: "/my/cranesTable",
+        Component: PaperCraneTable,
+        exact: true,
       },
       {
         path: "/my/account",
