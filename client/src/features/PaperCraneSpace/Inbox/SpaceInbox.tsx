@@ -45,32 +45,25 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
     setList((prevState: PaperCraneInfo[]) => prevState.concat(response.data!));
   };
 
-  //@ts-ignore
   return (
-    <FeatureContainer className={classes.root}>
-      <div className={classes.header}>
-        <Typography variant="subtitle1">Inbox</Typography>
-      </div>
-
-      <List className={classes.list}>
-        <InfiniteScroll
-          hasMore={hasMore}
-          loadMore={fetchNextData}
-          useWindow={false}
-        >
-          {list.map((paperCrane: PaperCraneInfo, index: number) => (
-            <ListItem button key={index}>
-              <ListItemText primary={paperCrane.title} />
-            </ListItem>
-          ))}
-          {hasMore ? (
-            <Button onClick={fetchNextData}>Load More</Button>
-          ) : (
-            <Typography variant="subtitle1">That's all!</Typography>
-          )}
-        </InfiniteScroll>
-      </List>
-    </FeatureContainer>
+    <List className={classes.list}>
+      <InfiniteScroll
+        hasMore={hasMore}
+        loadMore={fetchNextData}
+        useWindow={false}
+      >
+        {list.map((paperCrane: PaperCraneInfo, index: number) => (
+          <ListItem button key={index}>
+            <ListItemText primary={paperCrane.title} />
+          </ListItem>
+        ))}
+        {hasMore ? (
+          <Button onClick={fetchNextData}>Load More</Button>
+        ) : (
+          <Typography variant="subtitle1">That's all!</Typography>
+        )}
+      </InfiniteScroll>
+    </List>
   );
 };
 
