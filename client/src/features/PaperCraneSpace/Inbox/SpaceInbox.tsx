@@ -52,7 +52,7 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
         <Typography variant="subtitle1">Inbox</Typography>
       </div>
 
-      <List style={{ overflow: "auto", height: "92%" }}>
+      <List className={classes.list}>
         <InfiniteScroll
           hasMore={hasMore}
           loadMore={fetchNextData}

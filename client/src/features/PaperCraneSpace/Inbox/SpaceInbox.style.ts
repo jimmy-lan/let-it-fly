@@ -29,5 +29,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       marginBottom: theme.spacing(0.5),
     },
+    list: {
+      overflow: "auto",
+      height: "calc(100% - 48px)",
+    },
   })
 );
