@@ -18,6 +18,8 @@ import {
   PaperCraneInfo,
 } from "../../../services/serverApi";
 import { FeatureContainer } from "../../../common/components/FeatureContainer";
+import { FeatureContainerWithHeader } from "../components/FeatureContainerWithHeader/FeatureContainerWithHeader";
+import { InfiniteScrollList } from "../components/InfiniteScrollList/InfiniteScrollList";
 
 interface OwnProps {}
 
@@ -46,8 +48,8 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
   };
 
   return (
-    <List className={classes.list}>
-      <InfiniteScroll
+    <FeatureContainerWithHeader headerTitle="Inbox">
+      <InfiniteScrollList
         hasMore={hasMore}
         loadMore={fetchNextData}
         useWindow={false}
@@ -57,13 +59,8 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
             <ListItemText primary={paperCrane.title} />
           </ListItem>
         ))}
-        {hasMore ? (
-          <Button onClick={fetchNextData}>Load More</Button>
-        ) : (
-          <Typography variant="subtitle1">That's all!</Typography>
-        )}
-      </InfiniteScroll>
-    </List>
+      </InfiniteScrollList>
+    </FeatureContainerWithHeader>
   );
 };
 
