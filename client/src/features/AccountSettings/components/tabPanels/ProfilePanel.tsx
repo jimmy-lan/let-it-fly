@@ -10,7 +10,7 @@ import { Divider, TextField } from "@material-ui/core";
 import clsx from "clsx";
 import { FormControlButtons } from "../FormControlButtons/FormControlButtons";
 
-interface OwnProps { }
+interface OwnProps {}
 
 type Props = OwnProps;
 
