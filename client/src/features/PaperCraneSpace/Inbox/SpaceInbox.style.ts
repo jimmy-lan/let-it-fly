@@ -8,11 +8,16 @@ export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      flex: 1,
+      width: "100%",
+      height: "100%",
+      padding: 0,
+      "& > .container": {
+        padding: 0,
+      },
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      width: "100%",
-      padding: 0,
     },
     header: {
       width: "100%",

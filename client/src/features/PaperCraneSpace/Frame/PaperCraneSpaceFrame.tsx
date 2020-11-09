@@ -15,7 +15,6 @@ import {
 
 import { RouteEntry } from "../../../routes";
 import { useStyles } from "./PaperCraneSpaceFrame.style";
-import { FeatureContainer } from "../../../common/components/FeatureContainer";
 import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
 import { ListButtonWithTheme } from "./components/list/ListButtonWithTheme";
 import { blueTheme, redTheme } from "./components/list/list.style";
@@ -46,9 +45,7 @@ const PaperCraneSpaceFrame: FunctionComponent<Props> = ({
         <ListIconItem text="Sent" icon={<SendIcon />} />
         <ListIconItem text="Starred" icon={<StarredIcon />} />
       </List>
-      <FeatureContainer className={classes.content} fullHeight>
-        {renderRoutes()}
-      </FeatureContainer>
+      {renderRoutes()}
     </div>
   );
 };

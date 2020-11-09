@@ -16,6 +16,7 @@ import {
   MultiplePaperCraneResponse,
   PaperCraneInfo,
 } from "../../../services/serverApi";
+import { FeatureContainer } from "../../../common/components/FeatureContainer";
 
 interface OwnProps {}
 
@@ -45,7 +46,7 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
 
   //@ts-ignore
   return (
-    <div className={classes.root}>
+    <FeatureContainer className={classes.root}>
       <div className={classes.header}>
         <Typography variant="subtitle1">Inbox</Typography>
       </div>
@@ -62,7 +63,7 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
           <Typography variant="subtitle1">That's all!</Typography>
         )}
       </List>
-    </div>
+    </FeatureContainer>
   );
 };
 

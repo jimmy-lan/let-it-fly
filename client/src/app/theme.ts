@@ -20,11 +20,13 @@ declare module "@material-ui/core/styles" {
   interface Theme {
     settings: {
       sideBarWidth: number;
+      fullHeight: string;
     };
   }
   interface ThemeOptions {
     settings: {
       sideBarWidth: number;
+      fullHeight: string;
     };
   }
 }
@@ -57,8 +59,12 @@ export const theme = createMuiTheme({
   },
   settings: {
     /**
-     * Side bar width when fully expanded
+     * Side bar width when fully expanded.
      */
     sideBarWidth: 240,
+    /**
+     * Full height for containers inside of app frame.
+     */
+    fullHeight: `calc(100% - 80px)`,
   },
 });
