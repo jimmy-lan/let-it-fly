@@ -4,7 +4,7 @@
  */
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import InfiniteScroll from "react-infinite-scroller";
-import { List } from "@material-ui/core";
+import { CircularProgress, List, Typography } from "@material-ui/core";
 import { useStyles } from "./InfiniteScrollList.style";
 
 interface OwnProps {
@@ -14,6 +14,23 @@ interface OwnProps {
 }
 
 type Props = OwnProps;
+
+const Loader: FunctionComponent<{}> = (props) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.loaderContainer}>
+      <CircularProgress size={18} className={classes.circularProgress} />
+      <Typography variant="body1">Loading...</Typography>
+    </div>
+  );
+};
+
+const EndMessage: FunctionComponent<{}> = (props) => {
+  const classes = useStyles();
+
+  return <div>End of entries</div>;
+};
 
 const InfiniteScrollList: FunctionComponent<Props> = ({
   hasMore,
@@ -29,10 +46,9 @@ const InfiniteScrollList: FunctionComponent<Props> = ({
         hasMore={hasMore}
         loadMore={loadMore}
         useWindow={useWindow}
-        loader={<div>Loading...</div>}
       >
         {children}
-        {!hasMore && <div>End of entries</div>}
+        {hasMore ? <Loader /> : <EndMessage />}
       </InfiniteScroll>
     </List>
   );
