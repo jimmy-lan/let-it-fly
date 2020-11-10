@@ -4,10 +4,10 @@
  */
 import React, { FunctionComponent } from "react";
 
-import { PaperCraneInfo } from "../../services/serverApi";
-import { FeatureContainerWithHeader } from "./components/FeatureContainerWithHeader/FeatureContainerWithHeader";
-import { InfiniteScrollList } from "./components/InfiniteScrollList/InfiniteScrollList";
-import { EmailStyledList } from "./components/EmailStyledList/EmailStyledList";
+import { PaperCraneInfo } from "../../../services/serverApi";
+import { FeatureContainerWithHeader } from "../components/FeatureContainerWithHeader/FeatureContainerWithHeader";
+import { InfiniteScrollList } from "../components/InfiniteScrollList/InfiniteScrollList";
+import { EmailStyledList } from "../components/EmailStyledList/EmailStyledList";
 import { usePaperCraneList } from "./hooks";
 
 interface OwnProps {}

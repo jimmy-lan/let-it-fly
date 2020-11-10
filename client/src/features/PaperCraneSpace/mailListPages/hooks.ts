@@ -3,7 +3,7 @@ import {
   fetchPaperCraneListShallow,
   MultiplePaperCraneResponse,
   PaperCraneInfo,
-} from "../../services/serverApi";
+} from "../../../services/serverApi";
 
 /**
  * Created by Jimmy Lan
