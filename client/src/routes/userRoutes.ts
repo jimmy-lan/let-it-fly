@@ -8,6 +8,7 @@
 import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
+
 import {
   AccountSettings,
   UserHome,
@@ -15,7 +16,16 @@ import {
   SpaceSentPage,
   SpaceStarredPage,
   PaperCraneSpaceFrame,
+  AdminHome,
+  UserStore,
 } from "../features";
+
+import {
+  ActivityTable,
+  PaperCraneTable,
+  StoreTable,
+  UserTable,
+} from "../features/adminPage";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -51,6 +61,41 @@ export const userRoutes: RouteEntry[] = [
             Component: SpaceStarredPage,
           },
         ],
+      },
+      {
+        path: "/my/store",
+        Component: UserStore,
+        isProtected: [UserRole.user],
+      },
+      {
+        path: "/my",
+        Component: AdminHome,
+        exact: true,
+        isProtected: [UserRole.admin],
+      },
+      {
+        path: "/my/users-table",
+        Component: UserTable,
+        exact: true,
+        isProtected: [UserRole.admin],
+      },
+      {
+        path: "/my/store-table",
+        Component: StoreTable,
+        exact: true,
+        isProtected: [UserRole.admin],
+      },
+      {
+        path: "/my/log-table",
+        Component: ActivityTable,
+        exact: true,
+        isProtected: [UserRole.admin],
+      },
+      {
+        path: "/my/cranes-table",
+        Component: PaperCraneTable,
+        exact: true,
+        isProtected: [UserRole.admin],
       },
     ],
   },
