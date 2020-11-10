@@ -17,14 +17,17 @@ import {
   AccountCircle as FriendIcon,
   Delete as DeleteIcon,
 } from "@material-ui/icons";
+import { useStyles } from "./UserFriendPage.style";
 
 interface OwnProps {}
 
 type Props = OwnProps;
 
 const UserFriendsPage: FunctionComponent<Props> = (props) => {
+  const classes = useStyles();
+
   return (
-    <FeatureContainerWithHeader headerTitle="Friends">
+    <FeatureContainerWithHeader headerTitle="Friends" className={classes.root}>
       <InfiniteScrollList hasMore={false} loadMore={() => {}}>
         <ListItem button>
           <ListItemAvatar>
