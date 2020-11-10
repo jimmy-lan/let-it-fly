@@ -31,7 +31,7 @@ Please find the `Dockerfile` in the `client` directory to do this.
 - routes: Consists of route configuration files.
   See: [Using the Route Config Files and useRenderRoutes Hook](/client/src/routes)
 
-\*\*Note that the route configuration features are not coming from a library.
+**Note that the route configuration features are not coming from a library.**
 We (or, in this case, I) wrote the logic to process the route configurations.
 Find the logic in `common` and `hooks` folder.
 
