@@ -6,7 +6,7 @@ import React, { FunctionComponent } from "react";
 import { usePaperCraneList } from "./hooks";
 import { InfiniteScrollList } from "../../../common/components/InfiniteScrollList/InfiniteScrollList";
 import { PaperCraneInfo } from "../../../services/serverApi";
-import { EmailStyledListItem } from "../components/EmailStyledListItem/EmailStyledListItem";
+import { EmailStyledListItem } from "./components/EmailStyledListItem/EmailStyledListItem";
 import { FeatureContainerWithHeader } from "../../../common/components/FeatureContainerWithHeader/FeatureContainerWithHeader";
 
 interface OwnProps {}
