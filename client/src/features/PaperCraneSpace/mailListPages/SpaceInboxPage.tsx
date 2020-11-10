@@ -5,8 +5,8 @@
 import React, { FunctionComponent } from "react";
 
 import { PaperCraneInfo } from "../../../services/serverApi";
-import { FeatureContainerWithHeader } from "../components/FeatureContainerWithHeader/FeatureContainerWithHeader";
-import { InfiniteScrollList } from "../components/InfiniteScrollList/InfiniteScrollList";
+import { FeatureContainerWithHeader } from "../../../common/components/FeatureContainerWithHeader/FeatureContainerWithHeader";
+import { InfiniteScrollList } from "../../../common/components/InfiniteScrollList/InfiniteScrollList";
 import { EmailStyledListItem } from "../components/EmailStyledListItem/EmailStyledListItem";
 import { usePaperCraneList } from "./hooks";
 

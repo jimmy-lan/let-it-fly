@@ -5,7 +5,7 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { Typography } from "@material-ui/core";
 
-import { FeatureContainer } from "../../../../common/components/FeatureContainer";
+import { FeatureContainer } from "../FeatureContainer";
 import { useStyles } from "./FeatureContainerWithHeader.style";
 import clsx from "clsx";
 
