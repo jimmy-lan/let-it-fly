@@ -12,6 +12,8 @@ import {
   AccountSettings,
   UserHome,
   SpaceInboxPage,
+  SpaceSentPage,
+  SpaceStarredPage,
   PaperCraneSpaceFrame,
 } from "../features";
 
@@ -39,6 +41,14 @@ export const userRoutes: RouteEntry[] = [
           {
             path: "/my/space/inbox",
             Component: SpaceInboxPage,
+          },
+          {
+            path: "/my/space/sent",
+            Component: SpaceSentPage,
+          },
+          {
+            path: "/my/space/starred",
+            Component: SpaceStarredPage,
           },
         ],
       },

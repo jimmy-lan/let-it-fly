@@ -19,6 +19,7 @@ import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
 import { ListButtonWithTheme } from "./components/list/ListButtonWithTheme";
 import { blueTheme, redTheme } from "./components/list/list.style";
 import { ListIconItem } from "./components/list/ListIconItem";
+import { useHistory } from "../../../hooks/useHistory";
 
 interface OwnProps {
   routes?: RouteEntry[];
@@ -30,7 +31,12 @@ const PaperCraneSpaceFrame: FunctionComponent<Props> = ({
   routes,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
+  const history = useHistory();
   const { renderRoutes } = useRenderRoutes(routes);
+
+  const navigateToLocation = (url: string) => {
+    history.push(url);
+  };
 
   return (
     <div className={classes.root}>
@@ -41,9 +47,21 @@ const PaperCraneSpaceFrame: FunctionComponent<Props> = ({
         <ListButtonWithTheme theme={blueTheme} className={classes.listItem}>
           Search
         </ListButtonWithTheme>
-        <ListIconItem text="Received" icon={<InboxIcon />} />
-        <ListIconItem text="Sent" icon={<SendIcon />} />
-        <ListIconItem text="Starred" icon={<StarredIcon />} />
+        <ListIconItem
+          onClick={() => navigateToLocation("/my/space/inbox")}
+          text="Received"
+          icon={<InboxIcon />}
+        />
+        <ListIconItem
+          onClick={() => navigateToLocation("/my/space/sent")}
+          text="Sent"
+          icon={<SendIcon />}
+        />
+        <ListIconItem
+          onClick={() => navigateToLocation("/my/space/starred")}
+          text="Starred"
+          icon={<StarredIcon />}
+        />
       </List>
       {renderRoutes()}
     </div>

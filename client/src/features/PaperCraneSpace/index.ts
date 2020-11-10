@@ -4,3 +4,5 @@
  */
 export * from "./Frame";
 export * from "./SpaceInboxPage";
+export * from "./SpaceSentPage";
+export * from "./SpaceStarredPage";
