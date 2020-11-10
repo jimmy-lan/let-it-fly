@@ -1,5 +1,5 @@
 import { getFakeServerCall } from "./helpers";
-import { ServerResponse, UserRole } from "./models";
+import { ServerResponse } from "./models";
 
 export const loadStoreContents = () => {
   const response: ServerResponse = {

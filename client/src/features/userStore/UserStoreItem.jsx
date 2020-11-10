@@ -5,7 +5,6 @@ import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { uid } from "uid";
 
 export default function UserStoreItem({ getData }) {
   const { useState } = React;
@@ -26,7 +25,7 @@ export default function UserStoreItem({ getData }) {
   if (!data.length) return <span>loading...</span>;
 
   return data.map((entry) => (
-    <Paper elevation={2} className={classes.paper} key={uid()}>
+    <Paper elevation={2} className={classes.paper} key={entry.itemName}>
       <Grid container direction="row" spacing={2}>
         <Grid item>
           <SendOutlinedIcon className={classes[entry.color]}></SendOutlinedIcon>

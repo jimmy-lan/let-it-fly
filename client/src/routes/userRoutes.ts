@@ -16,6 +16,7 @@ import {
   StoreTable,
   UserTable,
 } from "../features/adminPage";
+import { UserStore } from "../features/UserStore";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -30,34 +31,43 @@ export const userRoutes: RouteEntry[] = [
         isProtected: [UserRole.user],
       },
       {
+        path: "/my/account",
+        Component: AccountSettings,
+      },
+      {
+        path: "/my/store",
+        Component: UserStore,
+        isProtected: [UserRole.user],
+      },
+      {
         path: "/my",
         Component: AdminHome,
         exact: true,
         isProtected: [UserRole.admin],
       },
       {
-        path: "/my/usersTable",
+        path: "/my/users-table",
         Component: UserTable,
         exact: true,
+        isProtected: [UserRole.admin],
       },
       {
-        path: "/my/storeTable",
+        path: "/my/store-table",
         Component: StoreTable,
         exact: true,
+        isProtected: [UserRole.admin],
       },
       {
-        path: "/my/logTable",
+        path: "/my/log-table",
         Component: ActivityTable,
         exact: true,
+        isProtected: [UserRole.admin],
       },
       {
-        path: "/my/cranesTable",
+        path: "/my/cranes-table",
         Component: PaperCraneTable,
         exact: true,
-      },
-      {
-        path: "/my/account",
-        Component: AccountSettings,
+        isProtected: [UserRole.admin],
       },
     ],
   },
