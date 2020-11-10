@@ -12,11 +12,14 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      padding: theme.spacing(1),
+      padding: theme.spacing(3),
     },
     formField: {
-      width: "100%",
       marginBottom: theme.spacing(2.5),
+    },
+    controlButtons: {
+      width: "100%",
+      marginTop: theme.spacing(0.5),
     },
   })
 );
