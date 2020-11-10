@@ -12,33 +12,14 @@ import {
 import { FeatureContainerWithHeader } from "./components/FeatureContainerWithHeader/FeatureContainerWithHeader";
 import { InfiniteScrollList } from "./components/InfiniteScrollList/InfiniteScrollList";
 import { EmailStyledList } from "./components/EmailStyledList/EmailStyledList";
+import { usePaperCraneList } from "./hooks";
 
 interface OwnProps {}
 
 type Props = OwnProps;
 
-const SpaceInbox: FunctionComponent<Props> = (props) => {
-  const [hasMore, setHasMore] = useState(true);
-  const [list, setList] = useState<PaperCraneInfo[]>([]);
-
-  const fetchNextData = async () => {
-    const fetchCount = 10;
-
-    const response: MultiplePaperCraneResponse = await fetchPaperCraneListShallow(
-      fetchCount,
-      list.length,
-      "received"
-    );
-
-    // TODO check for failure
-
-    setList((prevState: PaperCraneInfo[]) => prevState.concat(response.data!));
-
-    if (!response.data?.length || response.data?.length < fetchCount) {
-      setHasMore(false);
-      return;
-    }
-  };
+const SpaceInboxPage: FunctionComponent<Props> = (props) => {
+  const [list, hasMore, fetchNextData] = usePaperCraneList("received");
 
   return (
     <FeatureContainerWithHeader headerTitle="Inbox">
@@ -55,4 +36,4 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
   );
 };
 
-export { SpaceInbox };
+export { SpaceInboxPage };

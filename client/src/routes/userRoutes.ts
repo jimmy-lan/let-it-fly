@@ -11,7 +11,7 @@ import { UserRole } from "../services/serverApi";
 import {
   AccountSettings,
   UserHome,
-  SpaceInbox,
+  SpaceInboxPage,
   PaperCraneSpaceFrame,
 } from "../features";
 
@@ -38,7 +38,7 @@ export const userRoutes: RouteEntry[] = [
         children: [
           {
             path: "/my/space/inbox",
-            Component: SpaceInbox,
+            Component: SpaceInboxPage,
           },
         ],
       },
