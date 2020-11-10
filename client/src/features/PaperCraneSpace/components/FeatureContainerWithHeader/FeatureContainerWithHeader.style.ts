@@ -10,7 +10,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flex: 1,
       width: "100%",
-      height: "100%",
       padding: 0,
       "& > .container": {
         padding: 0,
@@ -18,6 +17,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
+    },
+    fullHeight: {
+      height: "100%",
     },
     header: {
       width: "100%",

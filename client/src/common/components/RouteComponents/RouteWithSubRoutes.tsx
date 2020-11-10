@@ -27,7 +27,6 @@ const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }: Props) => {
   });
 
   if (isProtected) {
-    // @ts-ignore
     return (
       <ProtectedRoute path={path} exact={exact} redirectUrl={redirectUrl}>
         <Component routes={childrenToRender} />

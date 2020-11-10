@@ -12,6 +12,7 @@ import paperCraneComposeImage from "../../images/paper-crane-compose.jpg";
 import paperCraneSpaceImage from "../../images/paper-crane-space.jpg";
 import { AnimatedImageCardButton } from "./components/AnimatedImageCardButton";
 import clsx from "clsx";
+import { useHistory } from "../../hooks/useHistory";
 
 interface OwnProps {}
 
@@ -19,6 +20,8 @@ type Props = OwnProps;
 
 const UserHome: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
+  const history = useHistory();
+
   // When one image card is being hovered over, I want to fade
   // other image cards to create the visual effect.
   const [shouldImageCardFade, setShouldImageCardFade] = useState(false);
@@ -29,6 +32,14 @@ const UserHome: FunctionComponent<Props> = (props) => {
 
   const handleImageCardMouseLeave = () => {
     setShouldImageCardFade(false);
+  };
+
+  const handleEnterMySpaceClick = () => {
+    history.push("/my/space/inbox");
+  };
+
+  const handleComposeClick = () => {
+    history.push("/my/space/compose");
   };
 
   return (
@@ -49,6 +60,7 @@ const UserHome: FunctionComponent<Props> = (props) => {
             shouldFade={shouldImageCardFade}
             onMouseEnter={handleImageCardMouseEnter}
             onMouseLeave={handleImageCardMouseLeave}
+            onClick={handleEnterMySpaceClick}
           />
         </Grid>
         <Grid item md={5} sm={12} xs={12} className={classes.optionContainer}>
@@ -60,6 +72,7 @@ const UserHome: FunctionComponent<Props> = (props) => {
             shouldFade={shouldImageCardFade}
             onMouseEnter={handleImageCardMouseEnter}
             onMouseLeave={handleImageCardMouseLeave}
+            onClick={handleComposeClick}
           />
         </Grid>
         <Grid item md={1} />

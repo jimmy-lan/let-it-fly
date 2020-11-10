@@ -11,12 +11,12 @@ import { UserRole } from "../services/serverApi";
 
 import {
   AccountSettings,
-  UserHome,
+  AdminHome,
+  PaperCraneSpaceFrame,
   SpaceInboxPage,
   SpaceSentPage,
   SpaceStarredPage,
-  PaperCraneSpaceFrame,
-  AdminHome,
+  UserHome,
   UserStore,
 } from "../features";
 
@@ -26,6 +26,7 @@ import {
   StoreTable,
   UserTable,
 } from "../features/adminPage";
+import { PaperCraneCompose } from "../features/PaperCraneSpace/PaperCraneCompose";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -59,6 +60,10 @@ export const userRoutes: RouteEntry[] = [
           {
             path: "/my/space/starred",
             Component: SpaceStarredPage,
+          },
+          {
+            path: "/my/space/compose",
+            Component: PaperCraneCompose,
           },
         ],
       },
