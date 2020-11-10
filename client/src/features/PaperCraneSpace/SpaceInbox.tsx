@@ -3,27 +3,15 @@
  * Creation Date: 2020-11-05
  */
 import React, { FunctionComponent, useState } from "react";
-import {
-  Avatar,
-  IconButton,
-  ListItem,
-  ListItemAvatar,
-  ListItemSecondaryAction,
-  ListItemText,
-} from "@material-ui/core";
 
 import {
   fetchPaperCraneListShallow,
   MultiplePaperCraneResponse,
   PaperCraneInfo,
-} from "../../../services/serverApi";
-import { FeatureContainerWithHeader } from "../components/FeatureContainerWithHeader/FeatureContainerWithHeader";
-import { InfiniteScrollList } from "../components/InfiniteScrollList/InfiniteScrollList";
-import {
-  Delete as DeleteIcon,
-  Send as PaperCraneIcon,
-  StarBorder as StarIcon,
-} from "@material-ui/icons";
+} from "../../services/serverApi";
+import { FeatureContainerWithHeader } from "./components/FeatureContainerWithHeader/FeatureContainerWithHeader";
+import { InfiniteScrollList } from "./components/InfiniteScrollList/InfiniteScrollList";
+import { EmailStyledList } from "./components/EmailStyledList/EmailStyledList";
 
 interface OwnProps {}
 
@@ -60,22 +48,7 @@ const SpaceInbox: FunctionComponent<Props> = (props) => {
         useWindow={false}
       >
         {list.map((paperCrane: PaperCraneInfo, index: number) => (
-          <ListItem button key={index}>
-            <ListItemAvatar>
-              <Avatar>
-                <PaperCraneIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={paperCrane.title} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end">
-                <StarIcon />
-              </IconButton>
-              <IconButton edge="end">
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
+          <EmailStyledList title={paperCrane.title} key={index} />
         ))}
       </InfiniteScrollList>
     </FeatureContainerWithHeader>

@@ -3,4 +3,4 @@
  * Creation Date: 2020-11-04
  */
 export * from "./Frame";
-export * from "./Inbox";
+export * from "./SpaceInbox";
