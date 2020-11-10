@@ -41,7 +41,11 @@ const PaperCraneSpaceFrame: FunctionComponent<Props> = ({
   return (
     <div className={classes.root}>
       <List className={classes.list}>
-        <ListButtonWithTheme theme={redTheme} className={classes.listItem}>
+        <ListButtonWithTheme
+          onClick={() => navigateToLocation("/my/space/compose")}
+          theme={redTheme}
+          className={classes.listItem}
+        >
           Compose
         </ListButtonWithTheme>
         <ListButtonWithTheme theme={blueTheme} className={classes.listItem}>

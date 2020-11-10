@@ -6,7 +6,7 @@ import React, { FunctionComponent } from "react";
 import { usePaperCraneList } from "./hooks";
 import { InfiniteScrollList } from "../components/InfiniteScrollList/InfiniteScrollList";
 import { PaperCraneInfo } from "../../../services/serverApi";
-import { EmailStyledList } from "../components/EmailStyledList/EmailStyledList";
+import { EmailStyledListItem } from "../components/EmailStyledListItem/EmailStyledListItem";
 import { FeatureContainerWithHeader } from "../components/FeatureContainerWithHeader/FeatureContainerWithHeader";
 
 interface OwnProps {}
@@ -24,7 +24,7 @@ const SpaceStarredPage: FunctionComponent<Props> = (props) => {
         useWindow={false}
       >
         {list.map((paperCrane: PaperCraneInfo, index: number) => (
-          <EmailStyledList title={paperCrane.title} key={index} />
+          <EmailStyledListItem title={paperCrane.title} key={index} />
         ))}
       </InfiniteScrollList>
     </FeatureContainerWithHeader>

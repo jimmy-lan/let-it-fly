@@ -9,6 +9,7 @@ import { useStyles } from "./list.style";
 
 interface OwnProps {
   theme: Theme;
+  onClick?: () => void;
   className?: string;
 }
 
@@ -16,13 +17,14 @@ type Props = OwnProps;
 
 const ListButtonWithTheme: FunctionComponent<Props> = ({
   theme,
+  onClick,
   className,
   children,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
 
   return (
-    <ListItem className={clsx(className, classes.noPadding)}>
+    <ListItem onClick={onClick} className={clsx(className, classes.noPadding)}>
       <MuiThemeProvider theme={theme}>
         <Button
           variant="contained"

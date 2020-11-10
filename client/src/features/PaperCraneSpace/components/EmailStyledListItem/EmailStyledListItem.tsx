@@ -19,7 +19,6 @@ import {
 } from "@material-ui/icons";
 
 interface OwnProps {
-  key?: any;
   title: string;
   onClick?: () => void;
   handleDeleteClick?: () => void;
@@ -28,15 +27,14 @@ interface OwnProps {
 
 type Props = OwnProps;
 
-const EmailStyledList: FunctionComponent<Props> = ({
-  key,
+const EmailStyledListItem: FunctionComponent<Props> = ({
   title,
   onClick,
   handleDeleteClick,
   handleStarClick,
 }: Props) => {
   return (
-    <ListItem button onClick={onClick} key={key}>
+    <ListItem button onClick={onClick}>
       <ListItemAvatar>
         <Avatar>
           <PaperCraneIcon />
@@ -55,4 +53,4 @@ const EmailStyledList: FunctionComponent<Props> = ({
   );
 };
 
-export { EmailStyledList };
+export { EmailStyledListItem };
