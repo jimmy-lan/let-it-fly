@@ -16,6 +16,7 @@ import {
   StoreTable,
   UserTable,
 } from "../features/adminPage";
+import { UserStore } from "../features/UserStore";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -27,6 +28,11 @@ export const userRoutes: RouteEntry[] = [
         path: "/my",
         Component: UserHome,
         exact: true,
+        isProtected: [UserRole.user],
+      },
+      {
+        path: "/my/store",
+        Component: UserStore,
         isProtected: [UserRole.user],
       },
       {
