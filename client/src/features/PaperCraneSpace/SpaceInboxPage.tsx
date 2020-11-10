@@ -2,13 +2,9 @@
  * Created by Jimmy Lan
  * Creation Date: 2020-11-05
  */
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent } from "react";
 
-import {
-  fetchPaperCraneListShallow,
-  MultiplePaperCraneResponse,
-  PaperCraneInfo,
-} from "../../services/serverApi";
+import { PaperCraneInfo } from "../../services/serverApi";
 import { FeatureContainerWithHeader } from "./components/FeatureContainerWithHeader/FeatureContainerWithHeader";
 import { InfiniteScrollList } from "./components/InfiniteScrollList/InfiniteScrollList";
 import { EmailStyledList } from "./components/EmailStyledList/EmailStyledList";
