@@ -14,7 +14,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     fullHeightContainer: {
-      minHeight: `calc(100% - 64px - ${theme.spacing(2)}px)`,
+      minHeight: theme.settings.fullHeight,
+    },
+    scrollable: {
+      overflow: "auto",
     },
   })
 );

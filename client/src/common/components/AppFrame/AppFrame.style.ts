@@ -11,7 +11,9 @@ export const useStyles = makeStyles((theme: Theme) => {
       display: "flex",
       height: "100vh",
       width: "100vw",
-      overflowX: "hidden",
+      [theme.breakpoints.up("sm")]: {
+        overflowX: "hidden",
+      },
     },
     navBar: {
       zIndex: theme.zIndex.drawer + 1,

@@ -8,15 +8,24 @@
 import { RouteEntry } from "./models";
 import { AppFrame } from "../common/components/AppFrame";
 import { UserRole } from "../services/serverApi";
-import { AdminHome } from "../features/AdminHome";
-import { UserHome, AccountSettings } from "../features";
+
+import {
+  AccountSettings,
+  UserHome,
+  SpaceInboxPage,
+  SpaceSentPage,
+  SpaceStarredPage,
+  PaperCraneSpaceFrame,
+  AdminHome,
+  UserStore,
+} from "../features";
+
 import {
   ActivityTable,
   PaperCraneTable,
   StoreTable,
   UserTable,
 } from "../features/adminPage";
-import { UserStore } from "../features/UserStore";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -33,6 +42,25 @@ export const userRoutes: RouteEntry[] = [
       {
         path: "/my/account",
         Component: AccountSettings,
+      },
+      {
+        path: "/my/space",
+        Component: PaperCraneSpaceFrame,
+        isProtected: [UserRole.user],
+        children: [
+          {
+            path: "/my/space/inbox",
+            Component: SpaceInboxPage,
+          },
+          {
+            path: "/my/space/sent",
+            Component: SpaceSentPage,
+          },
+          {
+            path: "/my/space/starred",
+            Component: SpaceStarredPage,
+          },
+        ],
       },
       {
         path: "/my/store",

@@ -17,6 +17,7 @@ interface OwnProps {
   imageSrc: string;
   imageAlt?: string;
   title: string;
+  onClick?: () => void;
   className?: string;
 }
 
@@ -26,11 +27,12 @@ const ImageCardButton: FunctionComponent<Props> = ({
   imageSrc,
   imageAlt,
   title,
+  onClick,
   className,
 }: Props) => {
   const classes = useStyles();
   return (
-    <Card className={className}>
+    <Card className={className} onClick={onClick}>
       <CardActionArea>
         <CardMedia
           component="img"
