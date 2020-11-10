@@ -31,6 +31,10 @@ export const userRoutes: RouteEntry[] = [
         isProtected: [UserRole.user],
       },
       {
+        path: "/my/account",
+        Component: AccountSettings,
+      },
+      {
         path: "/my/store",
         Component: UserStore,
         isProtected: [UserRole.user],
@@ -42,28 +46,24 @@ export const userRoutes: RouteEntry[] = [
         isProtected: [UserRole.admin],
       },
       {
-        path: "/my/usersTable",
+        path: "/my/users-table",
         Component: UserTable,
         exact: true,
       },
       {
-        path: "/my/storeTable",
+        path: "/my/store-table",
         Component: StoreTable,
         exact: true,
       },
       {
-        path: "/my/logTable",
+        path: "/my/log-table",
         Component: ActivityTable,
         exact: true,
       },
       {
-        path: "/my/cranesTable",
+        path: "/my/cranes-table",
         Component: PaperCraneTable,
         exact: true,
-      },
-      {
-        path: "/my/account",
-        Component: AccountSettings,
       },
     ],
   },
