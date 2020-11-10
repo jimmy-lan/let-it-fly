@@ -1,0 +1,66 @@
+import { makeStyles } from "@material-ui/core/styles";
+
+export const myStyles = makeStyles({
+  red: {
+    background: "linear-gradient(45deg, #f50057 30%, #f44336 90%)",
+    border: 0,
+    borderRadius: 10,
+    color: "white",
+    height: 128,
+    width: 128,
+    padding: "0 30px",
+
+    // left: "400px",
+    // position: "absolute",
+  },
+  green: {
+    background: "linear-gradient(45deg, #4caf50 30%, #76ff03 90%)",
+    border: 0,
+    borderRadius: 10,
+    color: "white",
+    height: 128,
+    width: 128,
+    padding: "0 30px",
+    // right: "200px",
+    // position: "absolute",
+  },
+  yellow: {
+    background: "linear-gradient(45deg, #ffeb3b 30%, #ffc400 90%)",
+    border: 0,
+    borderRadius: 10,
+    color: "white",
+    height: 128,
+    width: 128,
+    padding: "0 30px",
+    // bottom: "200px",
+    // position: "absolute",
+  },
+
+  blue: {
+    background: "linear-gradient(45deg, #2979ff 30%, #2196f3 90%)",
+    border: 0,
+    borderRadius: 10,
+    color: "white",
+    height: 128,
+    width: 128,
+    padding: "0 30px",
+    // right: "200px",
+    // position: "absolute",
+  },
+  button: {
+    background: "linear-gradient(45deg, #2979ff 30%, #2196f3 90%)",
+    border: 0,
+    borderRadius: 10,
+    color: "white",
+    height: 32,
+    width: 88,
+    marginTop: 68,
+    padding: "0 30px",
+  },
+  paper: {
+    width: "600px",
+    display: "inline-block",
+    padding: "8px",
+    margin: "4px",
+  },
+});
