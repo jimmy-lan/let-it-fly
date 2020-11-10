@@ -27,6 +27,7 @@ import {
   UserTable,
 } from "../features/adminPage";
 import { PaperCraneCompose } from "../features/PaperCraneSpace/PaperCraneCompose";
+import { UserFriendsPage } from "../features/UserFriendsPage";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -66,6 +67,10 @@ export const userRoutes: RouteEntry[] = [
             Component: PaperCraneCompose,
           },
         ],
+      },
+      {
+        path: "/my/friends",
+        Component: UserFriendsPage,
       },
       {
         path: "/my/store",

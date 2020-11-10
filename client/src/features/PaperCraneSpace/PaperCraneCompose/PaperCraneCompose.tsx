@@ -3,8 +3,8 @@
  * Creation Date: 2020-11-09
  */
 import React, { FunctionComponent } from "react";
-import { FeatureContainerWithHeader } from "../components/FeatureContainerWithHeader/FeatureContainerWithHeader";
-import { Divider, TextField } from "@material-ui/core";
+import { FeatureContainerWithHeader } from "../../../common/components/FeatureContainerWithHeader/FeatureContainerWithHeader";
+import { TextField } from "@material-ui/core";
 import { useStyles } from "./PaperCraneCompose.style";
 import { FormControlButtons } from "../../AccountSettings/components/FormControlButtons/FormControlButtons";
 

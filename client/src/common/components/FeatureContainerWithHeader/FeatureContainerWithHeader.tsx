@@ -5,13 +5,14 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { Typography } from "@material-ui/core";
 
-import { FeatureContainer } from "../../../../common/components/FeatureContainer";
+import { FeatureContainer } from "../FeatureContainer";
 import { useStyles } from "./FeatureContainerWithHeader.style";
 import clsx from "clsx";
 
 interface OwnProps {
   headerTitle: string;
   flexibleHeight?: boolean;
+  className?: string;
 }
 
 type Props = OwnProps;
@@ -19,13 +20,14 @@ type Props = OwnProps;
 const FeatureContainerWithHeader: FunctionComponent<Props> = ({
   headerTitle,
   flexibleHeight,
+  className,
   children,
 }: PropsWithChildren<Props>) => {
   const classes = useStyles();
 
   return (
     <FeatureContainer
-      className={clsx(classes.root, {
+      className={clsx(className, classes.root, {
         [classes.fullHeight]: !flexibleHeight,
       })}
     >
