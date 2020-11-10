@@ -15,7 +15,8 @@ Team members: **Jimmy Lan** ([@lanyanxiang](https://github.com/lanyanxiang)),
 Please find a menu of documentation here: [Documentation Menu](/docs)/.
 
 ## Marking Guide for TA and Professor
-* [Phase 1](/docs/marking/phase1.md)
+
+- [Phase 1](/docs/marking/phase1.md)
 
 ## Project Setup
 
