@@ -35,6 +35,7 @@ interface OwnProps {
    * Callback function when mouse leaves the component.
    */
   onMouseLeave?: () => void;
+  onClick?: () => void;
 }
 
 type Props = OwnProps;
@@ -47,6 +48,7 @@ const AnimatedImageCardButton: FunctionComponent<Props> = ({
   shouldFade,
   onMouseEnter,
   onMouseLeave,
+  onClick,
 }: Props) => {
   const classes = useStyles();
   const [isHover, setHover] = useState(false);
@@ -81,6 +83,7 @@ const AnimatedImageCardButton: FunctionComponent<Props> = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className={classes.card}
+        onClick={onClick}
       >
         <CardActionArea>
           <CardMedia
