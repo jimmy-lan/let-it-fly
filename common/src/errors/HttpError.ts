@@ -1,3 +1,8 @@
+/*
+ * Created by Jimmy Lan
+ * Creation Date: 2020-11-30
+ */
+
 /**
  * This class represents an HttpError with an http status code
  * and a list of error messages.
