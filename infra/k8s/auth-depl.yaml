@@ -21,7 +21,7 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
-            - name: MONGO_CONNECTION
+            - name: MONGO_CONNECTION_URI
               value: "mongodb://auth-mongo-service:27017/auth"
 
 ---
