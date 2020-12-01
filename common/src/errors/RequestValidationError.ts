@@ -21,7 +21,7 @@ export class RequestValidationError extends HttpError {
     Object.setPrototypeOf(this, RequestValidationError);
   }
 
-  serializeErrors(): SerializedHttpError {
+  serializeErrors(): SerializedHttpError[] {
     return this.errors.map((error: ValidationError) => ({
       message: error.msg,
       cause: error.param,
