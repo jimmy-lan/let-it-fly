@@ -1,12 +1,13 @@
 {
   "name": "@ly-letitfly/common",
-  "version": "0.0.6",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && tsc",
     "clean": "del ./build/*",
     "update": "git add . && git commit -m \"Update\" && npm version patch && npm run build && npm publish",
+    "update-clean": "npm version patch && npm run build && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
