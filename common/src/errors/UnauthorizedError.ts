@@ -15,6 +15,6 @@ export class UnauthorizedError extends HttpError {
   }
 
   serializeErrors() {
-    return [{ message: "Unauthorized" }];
+    return [{ message: this.message }];
   }
 }

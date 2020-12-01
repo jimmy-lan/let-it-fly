@@ -9,12 +9,12 @@ export class InternalServerError extends HttpError {
   statusCode = 500;
 
   constructor(message?: string) {
-    super("Internal server error" || message);
+    super(message || "Internal server error");
 
     Object.setPrototypeOf(this, InternalServerError.prototype);
   }
 
   serializeErrors() {
-    return [{ message: "Internal server error" }];
+    return [{ message: this.message }];
   }
 }
