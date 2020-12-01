@@ -13,8 +13,4 @@ export class NotFoundError extends HttpError {
 
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
-
-  serializeErrors() {
-    return [{ message: this.message }];
-  }
 }

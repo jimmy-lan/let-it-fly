@@ -12,8 +12,4 @@ export class BadRequestError extends HttpError {
 
     Object.setPrototypeOf(this, BadRequestError.prototype);
   }
-
-  serializeErrors() {
-    return [{ message: this.message }];
-  }
 }

@@ -3,6 +3,8 @@
  * Creation Date: 2020-11-30
  */
 
+export type SerializedHttpError = { message: string; cause?: string }[];
+
 /**
  * This class represents an HttpError with an http status code
  * and a list of error messages.
@@ -29,5 +31,7 @@ export abstract class HttpError extends Error {
     Object.setPrototypeOf(this, HttpError.prototype);
   }
 
-  abstract serializeErrors(): { message: string; cause?: string }[];
+  serializeErrors(): SerializedHttpError {
+    return [{ message: this.message }];
+  }
 }

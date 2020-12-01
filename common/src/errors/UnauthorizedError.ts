@@ -13,8 +13,4 @@ export class UnauthorizedError extends HttpError {
 
     Object.setPrototypeOf(this, UnauthorizedError.prototype);
   }
-
-  serializeErrors() {
-    return [{ message: this.message }];
-  }
 }

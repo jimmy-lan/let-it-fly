@@ -13,8 +13,4 @@ export class UnprocessableEntityError extends HttpError {
 
     Object.setPrototypeOf(this, UnprocessableEntityError.prototype);
   }
-
-  serializeErrors(): { message: string; cause?: string }[] {
-    return [{ message: this.message }];
-  }
 }

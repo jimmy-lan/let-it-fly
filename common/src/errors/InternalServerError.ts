@@ -13,8 +13,4 @@ export class InternalServerError extends HttpError {
 
     Object.setPrototypeOf(this, InternalServerError.prototype);
   }
-
-  serializeErrors() {
-    return [{ message: this.message }];
-  }
 }
