@@ -24,7 +24,7 @@ interface UserProps {
 declare global {
   namespace Express {
     interface Request {
-      currentUser?: UserProps;
+      user?: UserProps;
     }
   }
 }
@@ -39,7 +39,7 @@ export const extractUser = (
   }
 
   try {
-    req.currentUser = jwt.verify(
+    req.user = jwt.verify(
       req.session.jwt,
       process.env.JWT_SECRET!
     ) as UserProps;
