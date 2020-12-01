@@ -21,6 +21,7 @@
   "dependencies": {
     "@ly-letitfly/common": "^0.2.2",
     "express-async-errors": "^3.1.1",
+    "mongoose": "^5.11.1",
     "typescript": "^4.1.2"
   }
 }

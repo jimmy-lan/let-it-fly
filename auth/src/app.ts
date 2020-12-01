@@ -26,3 +26,5 @@ app.all("*", () => {
 });
 
 app.use(handleErrors);
+
+export { app };
