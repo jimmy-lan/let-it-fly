@@ -1,7 +1,7 @@
 /*
-* Created by Jimmy Lan
-* Creation Date: 2020-11-30
-*/
+ * Created by Jimmy Lan
+ * Creation Date: 2020-11-30
+ */
 
 import { HttpError } from "./HttpError";
 
