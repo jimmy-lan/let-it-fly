@@ -7,7 +7,7 @@ import { json } from "body-parser";
 import "express-async-errors";
 import cookieSession from "cookie-session";
 
-import { , handleErrors } from "@ly-letitfly/common";
+import { NotFoundError, handleErrors } from "@ly-letitfly/common";
 
 const app = express();
 

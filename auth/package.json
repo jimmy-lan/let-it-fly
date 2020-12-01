@@ -18,7 +18,7 @@
     "ts-jest": "^26.4.4"
   },
   "dependencies": {
-    "@ly-letitfly/common": "^0.2.1",
+    "@ly-letitfly/common": "^0.2.2",
     "express-async-errors": "^3.1.1"
   }
 }
