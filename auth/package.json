@@ -16,5 +16,9 @@
     "ts-node-dev": "^1.0.0",
     "supertest": "^6.0.1",
     "ts-jest": "^26.4.4"
+  },
+  "dependencies": {
+    "@ly-letitfly/common": "^0.2.1",
+    "express-async-errors": "^3.1.1"
   }
 }
