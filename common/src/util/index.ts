@@ -22,7 +22,7 @@ export const verifyEnvVariables = (variables: string[]) => {
 declare global {
   namespace NodeJS {
     interface Global {
-      getTestCookie: () => string[];
+      getTestCookie: (payload?: JwtPayload) => string[];
     }
   }
 }
