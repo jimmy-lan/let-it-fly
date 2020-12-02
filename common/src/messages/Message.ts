@@ -14,5 +14,4 @@ import { Subjects } from "./Subjects";
 export interface Message {
   subject: Subjects;
   data: Object;
-  time: Date;
 }
