@@ -4,12 +4,10 @@
  */
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { JwtPayload, UserRole } from "../../../common/src/models";
-import jwt from "jsonwebtoken";
 
 let mongo: MongoMemoryServer;
 beforeAll(async () => {
-  process.env.JWT_SECRET = "asdfjkl;";
+  process.env.JWT_SECRET = "asdf";
   // Stop NODE from complaining about self-signed certificates
   // during test.
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";

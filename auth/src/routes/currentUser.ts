@@ -11,7 +11,6 @@ const router = express.Router();
  * Obtain information regarding the authenticated user.
  */
 router.get("/current", extractUser, (req: Request, res: Response) => {
-  console.log("current user");
   if (!req.user) {
     throw new UnauthorizedError();
   }
