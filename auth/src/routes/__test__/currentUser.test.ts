@@ -7,11 +7,11 @@ import request from "supertest";
 import { app } from "../../app";
 import { UserRole } from "../../../../common/src/models";
 
-it("returns 404 failure if no user is authenticated", async () => {
+it("returns 401 failure if no user is authenticated", async () => {
   const response = await request(app)
     .get("/api/users/current")
     .send()
-    .expect(404);
+    .expect(401);
 
   expect(response.body).toHaveProperty("success");
   expect(response.body.success).toBeFalsy();
