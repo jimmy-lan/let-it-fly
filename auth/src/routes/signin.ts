@@ -43,7 +43,7 @@ router.post(
       req
     );
 
-    return res.send(existingUser);
+    return res.send({ success: true, data: existingUser });
   }
 );
 
