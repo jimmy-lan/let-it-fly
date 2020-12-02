@@ -4,6 +4,8 @@
  */
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
+import { JwtPayload, UserRole } from "../../../common/src/models";
+import jwt from "jsonwebtoken";
 
 let mongo: MongoMemoryServer;
 beforeAll(async () => {

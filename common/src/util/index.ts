@@ -40,7 +40,7 @@ global.getTestCookie = (payload?: JwtPayload) => {
         role: UserRole.user,
       };
 
-  const token = jwt.sign(data, process.env.JWT_KEY!);
+  const token = jwt.sign(data, process.env.JWT_SECRET!);
   const sessionJson = JSON.stringify({ jwt: token });
   const base64String = Buffer.from(sessionJson).toString("hex");
   return [`express:sess=${base64String}`];

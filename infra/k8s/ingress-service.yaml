@@ -10,7 +10,7 @@ spec:
     - host: letitfly.dev
       http:
         paths:
-          - path: /api/v1/users/?(.*)
+          - path: /api/users/?(.*)
             backend:
               serviceName: auth-service
               servicePort: 3000

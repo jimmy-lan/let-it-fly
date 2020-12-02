@@ -6,6 +6,7 @@
 import request from "supertest";
 import { app } from "../../app";
 import { UserRole } from "../../../../common/src/models";
+import jwt from "jsonwebtoken";
 
 it("returns 401 failure if no user is authenticated", async () => {
   const response = await request(app)
@@ -24,9 +25,24 @@ it("returns details of the current user when an authenticated user is present", 
     role: UserRole.user,
   };
 
+  const payload = fakeUser;
+
+  const data = payload
+    ? payload
+    : {
+        id: "jfwieofdjs",
+        email: "user@user.com",
+        role: UserRole.user,
+      };
+
+  const token = jwt.sign(data, process.env.JWT_SECRET!);
+  const sessionJson = JSON.stringify({ jwt: token });
+  const base64String = Buffer.from(sessionJson).toString("hex");
+  const cookie = [`express:sess=${base64String}`];
+
   const response = await request(app)
     .get("/api/users/current")
-    .set("Cookie", global.getTestCookie(fakeUser))
+    .set("Cookie", cookie)
     .send()
     .expect(200);
 

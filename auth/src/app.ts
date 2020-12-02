@@ -9,6 +9,7 @@ import "express-async-errors";
 import cookieSession from "cookie-session";
 
 import { NotFoundError, handleErrors } from "@ly-letitfly/common";
+import * as routes from "./routes";
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use(
     secure: process.env.NODE_ENV !== "test",
   })
 );
+
+app.use("/api/users", Object.values(routes));
 
 app.all("*", () => {
   throw new NotFoundError();
