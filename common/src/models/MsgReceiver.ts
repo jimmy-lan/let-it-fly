@@ -20,7 +20,15 @@ export abstract class MsgReceiver<T extends Message> {
    * acknowledge a message before retrying.
    * @protected
    */
-  protected ackTimeout: number = 20 * 1000;
+  protected ackWait: number = 20 * 1000;
 
   constructor(private client: Stan) {}
+
+  subscriptionOptions = () =>
+    this.client
+      .subscriptionOptions()
+      .setDeliverAllAvailable()
+      .setManualAckMode(true)
+      .setAckWait(this.ackWait)
+      .setDurableName(this.queueGroup);
 }
