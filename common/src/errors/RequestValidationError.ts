@@ -18,7 +18,7 @@ export class RequestValidationError extends HttpError {
       this.statusCode = statusCode;
     }
 
-    Object.setPrototypeOf(this, RequestValidationError);
+    Object.setPrototypeOf(this, RequestValidationError.prototype);
   }
 
   serializeErrors(): SerializedHttpError[] {
