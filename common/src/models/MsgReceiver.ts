@@ -24,11 +24,32 @@ export abstract class MsgReceiver<T extends Message> {
 
   constructor(private client: Stan) {}
 
-  subscriptionOptions = () =>
-    this.client
+  get subscriptionOptions() {
+    return this.client
       .subscriptionOptions()
       .setDeliverAllAvailable()
       .setManualAckMode(true)
       .setAckWait(this.ackWait)
       .setDurableName(this.queueGroup);
+  }
+
+  parseMsg = (msg: NatsMessage) => {
+    const data = msg.getData();
+    return typeof data === "string"
+      ? JSON.parse(data)
+      : JSON.parse(data.toString("utf8"));
+  };
+
+  listen = () => {
+    const subscription = this.client.subscribe(
+      this.subject,
+      this.queueGroup,
+      this.subscriptionOptions
+    );
+
+    subscription.on("message", (msg: NatsMessage) => {
+      const data = this.parseMsg(msg);
+      this.onMessage(data, msg);
+    });
+  };
 }
