@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model, HookNextFunction } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
 import { PasswordEncoder } from "../services";
 
 /**
@@ -63,8 +63,6 @@ const userSchema = new Schema(
   }
 );
 
-// @ts-ignore
-// @ts-ignore
 /**
  * Return a user document with specified attr.
  * Invoke by calling User.build().
@@ -73,19 +71,18 @@ const userSchema = new Schema(
  * @see UserProps
  * @see UserModel
  */
-// @ts-ignore
-userSchema.statics.build = (props: UserProps) => {
+const build = (props: UserProps) => {
   return new User(props);
 };
+userSchema.static("build", build);
 
-// @ts-ignore
-userSchema.pre("save", async function (done: HookNextFunction) {
+userSchema.pre<UserDocument>("save", async function (done) {
   // hash password
   if (this.isModified("password")) {
     const hashed = await PasswordEncoder.toHash(this.get("password"));
     this.set("password", hashed);
   }
-  done();
+  done(null);
 });
 
 const User = mongoose.model<UserDocument, UserModel>("User", userSchema);
