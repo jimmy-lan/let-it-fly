@@ -10,8 +10,8 @@ import {
   validateRequest,
 } from "@ly-letitfly/common";
 import { body } from "express-validator";
-import jwt from "jsonwebtoken";
 import { User } from "../models";
+import { generateJwtWithSession } from "../helpers";
 
 const router = express.Router();
 
@@ -60,14 +60,6 @@ const abortIfUserExists = async (email: string) => {
     const errorMessage = `Email ${email} is in use.`;
     throw new BadRequestError(errorMessage);
   }
-};
-
-const generateJwtWithSession = (jwtBody: Object, req: Request) => {
-  const userJwt = jwt.sign(jwtBody, process.env.JWT_SECRET!);
-
-  req.session = {
-    jwt: userJwt,
-  };
 };
 
 export { router as signupRouter };
