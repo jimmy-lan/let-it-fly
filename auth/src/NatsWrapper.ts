@@ -17,6 +17,15 @@ export class NatsWrapper {
     return NatsWrapper._instance;
   };
 
+  get client() {
+    if (!this._client) {
+      throw new Error(
+        "NATS client accessed before connection. Call 'connect' first before obtaining the client."
+      );
+    }
+    return this._client;
+  }
+
   connect = (clusterID: string, clientID: string, opts?: StanOptions) => {
     this._client = nats.connect(clusterID, clientID, opts);
 
