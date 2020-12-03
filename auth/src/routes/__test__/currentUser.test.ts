@@ -9,7 +9,7 @@ import { UserRole } from "@ly-letitfly/common";
 
 it("returns 401 failure if no user is authenticated", async () => {
   const response = await request(app)
-    .get("/api/users/current")
+    .get("/api/auth/current")
     .send()
     .expect(401);
 
@@ -25,7 +25,7 @@ it("returns details of the current user when an authenticated user is present", 
   };
 
   const response = await request(app)
-    .get("/api/users/current")
+    .get("/api/auth/current")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send()
     .expect(200);

@@ -11,7 +11,7 @@ jest.mock("../../services/NatsWrapper");
 
 it("returns response with status 201 when successful", async () => {
   const response = await request(app)
-    .post("/api/users/signup")
+    .post("/api/auth/signup")
     .send({
       email: "user@user.com",
       password: "user",
@@ -24,7 +24,7 @@ it("returns response with status 201 when successful", async () => {
 
 it("returns response with status 400 on bad requests", async () => {
   const response1 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/auth/signup")
     .send({
       email: "@user.com",
       password: "user",
@@ -34,7 +34,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response1.body.success).toBeFalsy();
 
   const response2 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/auth/signup")
     .send({
       email: "user@user.com",
     })
@@ -43,7 +43,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response2.body.success).toBeFalsy();
 
   const response3 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/auth/signup")
     .send({})
     .expect(400);
 
@@ -52,7 +52,7 @@ it("returns response with status 400 on bad requests", async () => {
 
 it("returns error when duplicate emails are present", async () => {
   const response1 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/auth/signup")
     .send({
       email: "user@user.com",
       password: "user",
@@ -60,7 +60,7 @@ it("returns error when duplicate emails are present", async () => {
     .expect(201);
 
   const response2 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/auth/signup")
     .send({
       email: "user@user.com",
       password: "pass",
@@ -73,7 +73,7 @@ it("returns error when duplicate emails are present", async () => {
 
 it("sets cookie after successful signup", async () => {
   const response = await request(app)
-    .post("/api/users/signup")
+    .post("/api/auth/signup")
     .send({
       email: "admin@admin.com",
       password: "admin",
@@ -86,7 +86,7 @@ it("sets cookie after successful signup", async () => {
 
 it("sends a message when user successfully signs up", async () => {
   await request(app)
-    .post("/api/users/signup")
+    .post("/api/auth/signup")
     .send({
       email: "admin@admin.com",
       password: "admin",
