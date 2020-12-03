@@ -4,3 +4,4 @@
  */
 
 export * from "./AccountSignInMsgSender";
+export * from "./AccountSignUpMsgSender";

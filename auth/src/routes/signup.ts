@@ -12,6 +12,8 @@ import {
 import { body } from "express-validator";
 import { User } from "../models";
 import { generateJwtWithSession } from "../helpers";
+import { AccountSignUpMsgSender } from "../messages/senders";
+import { NatsWrapper } from "../NatsWrapper";
 
 const router = express.Router();
 
@@ -33,7 +35,13 @@ router.post(
     const user = User.build({ email, password, role: UserRole.guest });
     await user.save();
 
-    generateJwtWithSession(
+    // Emit sign up message
+    await new AccountSignUpMsgSender(NatsWrapper.getInstance().client).send({
+      id: user.id,
+      email: user.email,
+    });
+
+    await generateJwtWithSession(
       {
         id: user.id,
         email: user.email,
