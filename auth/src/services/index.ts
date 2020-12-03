@@ -4,3 +4,4 @@
  */
 
 export * from "./PasswordEncoder";
+export * from "./NatsWrapper";

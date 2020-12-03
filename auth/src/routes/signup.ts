@@ -13,7 +13,7 @@ import { body } from "express-validator";
 import { User } from "../models";
 import { generateJwtWithSession } from "../helpers";
 import { AccountSignUpMsgSender } from "../messages/senders";
-import { NatsWrapper } from "../NatsWrapper";
+import { NatsWrapper } from "../services";
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ router.post(
     await user.save();
 
     // Emit sign up message
-    await new AccountSignUpMsgSender(NatsWrapper.getInstance().client).send({
+    await new AccountSignUpMsgSender(NatsWrapper.get().client).send({
       id: user.id,
       email: user.email,
     });

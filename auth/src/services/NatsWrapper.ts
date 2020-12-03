@@ -10,7 +10,7 @@ export class NatsWrapper {
   private _client?: Stan;
   private static _instance?: NatsWrapper;
 
-  static getInstance = () => {
+  static get = () => {
     if (!NatsWrapper._instance) {
       NatsWrapper._instance = new NatsWrapper();
     }

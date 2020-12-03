@@ -6,14 +6,14 @@
 import mongoose from "mongoose";
 import { verifyEnvVariables } from "@ly-letitfly/common";
 import { app } from "./app";
-import { NatsWrapper } from "./NatsWrapper";
+import { NatsWrapper } from "./services";
 
 const start = async () => {
   verifyEnvVariables(["JWT_SECRET", "MONGO_CONNECTION_URI"]);
 
   try {
     // Connect to nats
-    const natsWrapper = NatsWrapper.getInstance();
+    const natsWrapper = NatsWrapper.get();
     await natsWrapper.connect("letitfly", "auth", {
       url: "http://nats-service:4222",
     });
