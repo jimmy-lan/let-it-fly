@@ -13,9 +13,19 @@ const start = async () => {
 
   try {
     // Connect to nats
-    await NatsWrapper.getInstance().connect("letitfly", "auth", {
+    const natsWrapper = NatsWrapper.getInstance();
+    await natsWrapper.connect("letitfly", "auth", {
       url: "http://nats-service:4222",
     });
+
+    const natsClient = natsWrapper.client;
+    natsClient.on("close", () => {
+      console.warn("Connection to NATS is closed!");
+      process.exit();
+    });
+
+    process.on("SIGINT", () => natsClient.close());
+    process.on("SIGTERM", () => natsClient.close());
 
     // Connect to mongodb
     await mongoose.connect(process.env.MONGO_CONNECTION_URI!, {
