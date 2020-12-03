@@ -6,6 +6,9 @@
 import request from "supertest";
 import { app } from "../../app";
 import { UserRole } from "@ly-letitfly/common";
+import { natsWrapper } from "../../services";
+
+jest.mock("../../services/NatsWrapper");
 
 it("returns 400 failure response when invalid email is provided", async () => {
   const response = await request(app)
@@ -89,7 +92,7 @@ it("returns some user information when successfully signed in", async () => {
 
 it("returns response with status 400 on bad requests", async () => {
   const response1 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/users/signin")
     .send({
       email: "helloworld",
       password: "hithere",
@@ -99,7 +102,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response1.body.success).toBeFalsy();
 
   const response2 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/users/signin")
     .send({
       password: "hithere",
     })
@@ -108,7 +111,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response2.body.success).toBeFalsy();
 
   const response3 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/users/signin")
     .send({
       email: "a@bcdef",
       password: "hithere",
@@ -118,7 +121,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response3.body.success).toBeFalsy();
 
   const response4 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/users/signin")
     .send({
       email: "test@test.com",
       password: "",
@@ -128,9 +131,29 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response4.body.success).toBeFalsy();
 
   const response5 = await request(app)
-    .post("/api/users/signup")
+    .post("/api/users/signin")
     .send({})
     .expect(400);
 
   expect(response5.body.success).toBeFalsy();
+});
+
+it("sends a message when user successfully signs in", async () => {
+  await request(app)
+    .post("/api/users/signup")
+    .send({
+      email: "user@user.com",
+      password: "user",
+    })
+    .expect(201);
+
+  await request(app)
+    .post("/api/users/signin")
+    .send({
+      email: "user@user.com",
+      password: "user",
+    })
+    .expect(200);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalledTimes(2);
 });

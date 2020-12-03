@@ -6,7 +6,7 @@
 
 import nats, { Stan, StanOptions } from "node-nats-streaming";
 
-export class NatsWrapper {
+class NatsWrapper {
   private _client?: Stan;
   private static _instance?: NatsWrapper;
 
@@ -41,3 +41,5 @@ export class NatsWrapper {
     });
   };
 }
+
+export const natsWrapper = NatsWrapper.get();

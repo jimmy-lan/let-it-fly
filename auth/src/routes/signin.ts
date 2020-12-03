@@ -10,7 +10,7 @@ import { PasswordEncoder } from "../services";
 import { User } from "../models";
 import { generateJwtWithSession } from "../helpers";
 import { AccountSignInMsgSender } from "../messages/senders";
-import { NatsWrapper } from "../services";
+import { natsWrapper } from "../services";
 
 const router = express.Router();
 
@@ -38,7 +38,7 @@ router.post(
     }
 
     // Emit user sign in message
-    await new AccountSignInMsgSender(NatsWrapper.get().client).send({
+    await new AccountSignInMsgSender(natsWrapper.client).send({
       id: existingUser.id,
       email: existingUser.email,
     });

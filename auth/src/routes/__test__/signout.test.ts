@@ -6,6 +6,8 @@
 import request from "supertest";
 import { app } from "../../app";
 
+jest.mock("../../services/NatsWrapper");
+
 it("removes cookie after successfully signed out", async () => {
   await request(app)
     .post("/api/users/signup")

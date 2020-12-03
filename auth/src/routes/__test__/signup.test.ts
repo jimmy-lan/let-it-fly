@@ -5,6 +5,9 @@
 import request from "supertest";
 import { app } from "../../app";
 import { UserRole } from "@ly-letitfly/common";
+import { natsWrapper } from "../../services";
+
+jest.mock("../../services/NatsWrapper");
 
 it("returns response with status 201 when successful", async () => {
   const response = await request(app)
@@ -79,4 +82,17 @@ it("sets cookie after successful signup", async () => {
 
   expect(response.body.success).toBeTruthy();
   expect(response.get("Set-Cookie")).toBeDefined();
+});
+
+it("sends a message when user successfully signs up", async () => {
+  await request(app)
+    .post("/api/users/signup")
+    .send({
+      email: "admin@admin.com",
+      password: "admin",
+    })
+    .expect(201);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalledTimes(1);
+  expect(natsWrapper.client.publish).toHaveBeenCalledWith();
 });
