@@ -9,6 +9,8 @@ import { BadRequestError, validateRequest } from "@ly-letitfly/common";
 import { PasswordEncoder } from "../services";
 import { User } from "../models";
 import { generateJwtWithSession } from "../helpers";
+import { AccountSignInMsgSender } from "../messages/senders";
+import { NatsWrapper } from "../NatsWrapper";
 
 const router = express.Router();
 
@@ -34,6 +36,12 @@ router.post(
     if (!isMatch) {
       throw new BadRequestError("Invalid credentials");
     }
+
+    // Emit user sign in message
+    await new AccountSignInMsgSender(NatsWrapper.getInstance().client).send({
+      id: existingUser.id,
+      email: existingUser.email,
+    });
 
     generateJwtWithSession(
       {
