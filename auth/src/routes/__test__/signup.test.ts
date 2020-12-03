@@ -94,5 +94,4 @@ it("sends a message when user successfully signs up", async () => {
     .expect(201);
 
   expect(natsWrapper.client.publish).toHaveBeenCalledTimes(1);
-  expect(natsWrapper.client.publish).toHaveBeenCalledWith();
 });
