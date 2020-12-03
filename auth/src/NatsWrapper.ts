@@ -8,19 +8,19 @@ import nats, { Stan, StanOptions } from "node-nats-streaming";
 
 export class NatsWrapper {
   private _client?: Stan;
-  private _instance?: NatsWrapper;
+  private static _instance?: NatsWrapper;
 
-  getInstance = () => {
-    if (!this._instance) {
-      this._instance = new NatsWrapper();
+  static getInstance = () => {
+    if (!NatsWrapper._instance) {
+      NatsWrapper._instance = new NatsWrapper();
     }
-    return this._instance;
+    return NatsWrapper._instance;
   };
 
   connect = (clusterID: string, clientID: string, opts?: StanOptions) => {
     this._client = nats.connect(clusterID, clientID, opts);
 
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this._client!.on("connect", () => {
         console.log("Connected to NATS.");
         resolve();
