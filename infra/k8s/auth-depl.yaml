@@ -21,6 +21,14 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_SECRET
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: http://nats-service:4222
+            - name: NATS_CLUSTER_ID
+              value: letitfly
             - name: MONGO_CONNECTION_URI
               value: "mongodb://auth-mongo-service:27017/auth"
 

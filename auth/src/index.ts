@@ -9,13 +9,23 @@ import { app } from "./app";
 import { natsWrapper } from "./services";
 
 const start = async () => {
-  verifyEnvVariables(["JWT_SECRET", "MONGO_CONNECTION_URI"]);
+  verifyEnvVariables([
+    "JWT_SECRET",
+    "MONGO_CONNECTION_URI",
+    "NATS_CLUSTER_ID",
+    "NATS_CLIENT_ID",
+    "NATS_URL",
+  ]);
 
   try {
     // Connect to nats
-    await natsWrapper.connect("letitfly", "auth", {
-      url: "http://nats-service:4222",
-    });
+    await natsWrapper.connect(
+      process.env.NATS_CLUSTER_ID!,
+      process.env.NATS_CLIENT_ID!,
+      {
+        url: process.env.NATS_URL!,
+      }
+    );
 
     const natsClient = natsWrapper.client;
     natsClient.on("close", () => {
