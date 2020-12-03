@@ -30,7 +30,7 @@ router.post(
 
     await abortIfUserExists(email);
 
-    const user = User.build({ email, password, role: UserRole.user });
+    const user = User.build({ email, password, role: UserRole.guest });
     await user.save();
 
     generateJwtWithSession(
