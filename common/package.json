@@ -1,6 +1,6 @@
 {
   "name": "@ly-letitfly/common",
-  "version": "0.2.9",
+  "version": "0.2.11",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
