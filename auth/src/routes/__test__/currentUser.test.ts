@@ -5,7 +5,7 @@
 
 import request from "supertest";
 import { app } from "../../app";
-import { UserRole } from "../../../../common/src/models";
+import { UserRole } from "@ly-letitfly/common";
 
 it("returns 401 failure if no user is authenticated", async () => {
   const response = await request(app)
