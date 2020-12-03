@@ -4,6 +4,7 @@
  */
 import request from "supertest";
 import { app } from "../../app";
+import { UserRole } from "@ly-letitfly/common";
 
 it("returns response with status 201 when successful", async () => {
   const response = await request(app)
@@ -15,6 +16,7 @@ it("returns response with status 201 when successful", async () => {
     .expect(201);
 
   expect(response.body.success).toBeTruthy();
+  expect(response.body.data.role).toEqual(UserRole.guest);
 });
 
 it("returns response with status 400 on bad requests", async () => {

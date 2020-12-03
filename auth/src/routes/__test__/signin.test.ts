@@ -84,7 +84,7 @@ it("returns some user information when successfully signed in", async () => {
   expect(response2.body.data).toBeDefined();
   expect(response2.body.data.email).toEqual(email);
   expect(response2.body.data.password).not.toBeDefined();
-  expect(response2.body.data.role).toEqual(UserRole.user);
+  expect(response2.body.data.role).toEqual(UserRole.guest);
 });
 
 it("returns response with status 400 on bad requests", async () => {
