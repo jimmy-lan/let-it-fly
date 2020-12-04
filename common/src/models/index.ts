@@ -6,3 +6,5 @@
 export * from "./ResponseBody";
 export * from "./JwtPayload";
 export * from "./UserRole";
+export * from "./MsgReceiver";
+export * from "./MsgSender";
