@@ -14,7 +14,7 @@ spec:
             backend:
               serviceName: auth-service
               servicePort: 3000
-          - path: /api/users/?(.*)
+          - path: /api/users/info/?(.*)
             backend:
               serviceName: user-info-service
               servicePort: 3000
