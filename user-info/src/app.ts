@@ -8,7 +8,12 @@ import { json } from "body-parser";
 import "express-async-errors";
 import cookieSession from "cookie-session";
 
-import { NotFoundError, handleErrors } from "@ly-letitfly/common";
+import {
+  NotFoundError,
+  handleErrors,
+  extractUser,
+  requireAuth,
+} from "@ly-letitfly/common";
 // import * as routes from "./routes";
 
 const app = express();
@@ -21,6 +26,10 @@ app.use(
     secure: process.env.NODE_ENV !== "test",
   })
 );
+
+// All routes in this service requires authentication
+app.use(extractUser);
+app.use(requireAuth);
 
 // app.use("/api/auth", Object.values(routes));
 
