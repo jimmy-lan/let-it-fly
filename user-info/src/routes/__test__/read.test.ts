@@ -57,9 +57,9 @@ it("returns user information on valid requests", async () => {
 
   expect(response1.body.success).toBeTruthy();
   expect(response1.body.data.id).toEqual(fakeUser.id);
-  expect(response1.body.data.personal.dateOfBirth.getFullYear()).toEqual(2000);
-  expect(response1.body.data.personal.dateOfBirth.getMonth()).toEqual(1);
-  expect(response1.body.data.personal.dateOfBirth.getDate()).toEqual(1);
+  expect(response1.body.data.personal.dateOfBirth).toEqual(
+    "2000-01-01T00:00:00.000Z"
+  );
   expect(response1.body.data.contact.email.primary).toEqual(fakeUser.email);
   expect(response1.body.data.contact.telephone).toEqual("123-123-1234");
 });

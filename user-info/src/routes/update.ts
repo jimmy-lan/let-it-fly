@@ -9,13 +9,13 @@ import {
   validateRequest,
 } from "@ly-letitfly/common";
 import { ForbiddenError } from "@ly-letitfly/common/build/errors/ForbiddenError";
-import { User } from "../models";
 import { param } from "express-validator";
 import mongoose from "mongoose";
+import { User } from "../models";
 
 const router = express.Router();
 
-const updateUser = async (req: Request, res: Response) => {
+const updateUserInfo = async (req: Request, res: Response) => {
   const body = req.body;
   const { userId } = req.params;
 
@@ -49,9 +49,9 @@ const updateUser = async (req: Request, res: Response) => {
 router.patch(
   "/:userId",
   [
-    param("userId").custom((userId: string) =>
-      mongoose.Types.ObjectId.isValid(userId)
-    ),
+    param("userId")
+      .custom((userId: string) => mongoose.Types.ObjectId.isValid(userId))
+      .withMessage("User ID must be a valid Object ID type."),
   ],
   validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
@@ -64,7 +64,7 @@ router.patch(
 
     next();
   },
-  updateUser
+  updateUserInfo
 );
 
 router.patch(
@@ -73,7 +73,7 @@ router.patch(
     req.params.userId = req.user!.id;
     next();
   },
-  updateUser
+  updateUserInfo
 );
 
 export { router as updateInfoRouter };
