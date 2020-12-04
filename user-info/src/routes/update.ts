@@ -5,7 +5,6 @@
 import express, { Request, Response } from "express";
 import {
   BadRequestError,
-  UnprocessableEntityError,
   UserRole,
 } from "@ly-letitfly/common";
 import { ForbiddenError } from "@ly-letitfly/common/build/errors/ForbiddenError";
@@ -25,11 +24,13 @@ router.patch(["/", "/:userId"], async (req: Request, res: Response) => {
   }
 
   // Check validity of name if it is defined
-  if (body.name?.first?.length === 0 || body.name?.first?.length > 35) {
+  const firstName = body.personal?.name?.first;
+  if (firstName?.length === 0 || firstName?.length > 35) {
     throw new BadRequestError("First name is too short or too long.");
   }
 
-  if (body.name?.last?.length === 0 || body.name?.last?.length > 35) {
+  const lastName = body.personal?.name?.last;
+  if (lastName?.length === 0 || lastName?.length > 35) {
     throw new BadRequestError("Last name is too short or too long.");
   }
 
@@ -41,7 +42,7 @@ router.patch(["/", "/:userId"], async (req: Request, res: Response) => {
 
   const user = await User.findById(updateUserId);
   if (!user) {
-    throw new UnprocessableEntityError(`User ${updateUserId} is not found`);
+    throw new BadRequestError(`User ${updateUserId} is not found`);
   }
   user.set(body);
   user.save();
