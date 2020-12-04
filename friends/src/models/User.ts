@@ -12,7 +12,7 @@ interface UserProps {
   avatar: string;
 }
 
-interface UserDocument extends Document {
+export interface UserDocument extends Document {
   firstName: string;
   lastName: string;
   avatar: string;
@@ -22,17 +22,28 @@ interface UserModel extends Model<UserDocument> {
   build(props: UserProps): UserDocument;
 }
 
-const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
+const userSchema = new Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    avatar: String,
   },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  avatar: String,
-});
+  {
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+      },
+    },
+  }
+);
 
 const build = (props: UserProps) => {
   const user = { _id: props.id, ...props };
