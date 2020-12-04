@@ -24,3 +24,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: lanyanxi/user-info
+      context: user-info
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
