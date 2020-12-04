@@ -36,7 +36,7 @@ interface UserProps {
   };
   profile?: {
     description?: string;
-    interests?: string;
+    interests?: string[];
   };
   dateJoined?: Date;
 }
@@ -71,7 +71,7 @@ interface UserDocument extends Document {
   };
   profile?: {
     description?: string;
-    interests?: string;
+    interests?: string[];
   };
   dateJoined: Date;
 }
@@ -84,14 +84,8 @@ const userSchema = new Schema(
   {
     personal: {
       name: {
-        first: {
-          type: String,
-          required: true,
-        },
-        last: {
-          type: String,
-          required: true,
-        },
+        first: String,
+        last: String,
       },
       dateOfBirth: mongoose.Schema.Types.Date,
       city: String,
@@ -120,7 +114,7 @@ const userSchema = new Schema(
     },
     profile: {
       description: String,
-      interests: String,
+      interests: [String],
     },
     dateJoined: {
       type: mongoose.Schema.Types.Date,

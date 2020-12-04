@@ -8,14 +8,14 @@ build:
   local:
     push: false
   artifacts:
-    - image: lanyanxi/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.js"
-            dest: .
+#    - image: lanyanxi/client
+#      context: client
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: "src/**/*.js"
+#            dest: .
     - image: lanyanxi/auth
       context: auth
       docker:

@@ -16,6 +16,8 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
   async onMessage(data: AccountSignUp["data"], msg: Message) {
     const { id, email } = data;
 
+    console.log("Message Received: ", id, email);
+
     const user = User.build({
       _id: id,
       contact: { email: { primary: email } },
