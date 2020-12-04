@@ -7,7 +7,6 @@ import mongoose from "mongoose";
 import { verifyEnvVariables } from "@ly-letitfly/common";
 import { app } from "./app";
 import { natsWrapper } from "./services";
-import { AccountSignUpMsgReceiver } from "./messages/receivers";
 
 const start = async () => {
   verifyEnvVariables([
@@ -36,9 +35,6 @@ const start = async () => {
 
     process.on("SIGINT", () => natsClient.close());
     process.on("SIGTERM", () => natsClient.close());
-
-    // Listeners
-    new AccountSignUpMsgReceiver(natsClient).listen();
 
     // Connect to mongodb
     await mongoose.connect(process.env.MONGO_CONNECTION_URI!, {
