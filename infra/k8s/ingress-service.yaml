@@ -18,6 +18,10 @@ spec:
             backend:
               serviceName: user-property-service
               servicePort: 3000
+          - path: /api/users/property/?(.*)
+            backend:
+              serviceName: user-activities-service
+              servicePort: 3000
           - path: /api/friends/?(.*)
             backend:
               serviceName: friends-service
