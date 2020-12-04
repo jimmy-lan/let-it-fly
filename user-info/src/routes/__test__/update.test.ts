@@ -138,9 +138,68 @@ it("handles valid update user request", async () => {
     "https://github.com/testing"
   );
   expect(updatedUser?.contact.telephone).toEqual("123-456-7899");
-  expect(updatedUser?.profile?.interests).toEqual([
-    "Ski",
-    "Have fun",
-    "Coding",
-  ]);
+  expect(updatedUser?.profile?.interests).toHaveLength(3);
+});
+
+it("handles valid update user request while ignoring irrelevant fields", async () => {
+  const user = User.build({
+    _id: "5fc9c18a41911f00230bdcb3",
+    contact: { email: { primary: "a1@b.com" } },
+  });
+  await user.save();
+
+  const response = await request(app)
+    .patch("/api/users/info")
+    .set(
+      "Cookie",
+      global.getTestCookie({
+        id: "5fc9c18a41911f00230bdcb3",
+        email: "a1@b.com",
+        role: UserRole.user,
+      })
+    )
+    .send({
+      // should be ignored
+      _id: "dkslfjadsklfd;a",
+      // should be ignored
+      id: "fjaodslfjdasklf;aafda/adfae",
+      personal: {
+        city: "Toronto",
+        region: "Ontario",
+        dateOfBirth: "1970-01-01",
+      },
+      contact: {
+        email: {
+          // should be ignored
+          primary: "jfldasfal@ajfkalsdfj.com",
+          secondary: "c@d.com",
+        },
+        telephone: "123-456-7899",
+        other: {
+          github: "https://github.com/testing",
+        },
+      },
+      profile: {
+        description: "Hello world!",
+      },
+      // should be ignored
+      dateJoined: "2000-11-01",
+    })
+    .expect(200);
+
+  expect(response.body.success).toBeTruthy();
+  const updatedUser = await User.findById("5fc9c18a41911f00230bdcb3");
+  expect(updatedUser).toBeDefined();
+  expect(updatedUser?.personal.dateOfBirth).toBeDefined();
+  expect(updatedUser?.personal.city).toEqual("Toronto");
+  expect(updatedUser?.personal.region).toEqual("Ontario");
+  expect(updatedUser?.contact.email.primary).toEqual("a1@b.com");
+  expect(updatedUser?.contact.email.secondary).toEqual("c@d.com");
+  expect(updatedUser?.contact.other.github).toEqual(
+    "https://github.com/testing"
+  );
+  expect(updatedUser?.contact.telephone).toEqual("123-456-7899");
+  expect(updatedUser?.profile?.description).toEqual("Hello world!");
+  expect(updatedUser?.dateJoined.getFullYear()).not.toEqual(2000);
+  expect(updatedUser?.id).not.toEqual("dkslfjadsklfd;a");
 });
