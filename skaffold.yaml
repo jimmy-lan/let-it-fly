@@ -32,4 +32,16 @@ build:
       context: user-info
       docker:
         dockerfile: Dockerfile
+    - image: lanyanxi/user-property
+      context: user-property
+      docker:
+        dockerfile: Dockerfile
+    - image: lanyanxi/user-activities
+      context: user-activities
+      docker:
+        dockerfile: Dockerfile
+    - image: lanyanxi/paper-cranes
+      context: paper-cranes
+      docker:
+        dockerfile: Dockerfile
 

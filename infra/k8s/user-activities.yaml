@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-activities-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-activities
+  template:
+    metadata:
+      labels:
+        app: user-activities
+    spec:
+      containers:
+        - name: user-activities
+          image: lanyanxi/user-activities
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_SECRET
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: http://nats-service:4222
+            - name: NATS_CLUSTER_ID
+              value: letitfly
+            - name: MONGO_CONNECTION_URI
+              value: "mongodb://user-activities-mongo-service:27017/user-activities"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-activities-service
+spec:
+  selector:
+    app: user-activities
+  ports:
+    - name: user-activities
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

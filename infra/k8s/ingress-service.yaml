@@ -14,13 +14,25 @@ spec:
             backend:
               serviceName: user-info-service
               servicePort: 3000
-          - path: /api/users/?(.*)
+          - path: /api/users/property/?(.*)
             backend:
-              serviceName: auth-service
+              serviceName: user-property-service
+              servicePort: 3000
+          - path: /api/users/property/?(.*)
+            backend:
+              serviceName: user-activities-service
               servicePort: 3000
           - path: /api/friends/?(.*)
             backend:
               serviceName: friends-service
+              servicePort: 3000
+          - path: /api/paper-cranes/?(.*)
+            backend:
+              serviceName: paper-cranes-service
+              servicePort: 3000
+          - path: /api/users/?(.*)
+            backend:
+              serviceName: auth-service
               servicePort: 3000
 #          - path: /?(.*)
 #            backend:
