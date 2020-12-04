@@ -54,7 +54,7 @@ const start = async () => {
   const port = process.env.PORT || 3000;
   app.listen(port, () => {
     console.log(
-      `Successfully initialized User Information service (label=[user-info]) on port ${3000}.`
+      `Successfully initialized User Information service (label=[user-info]) on port ${port}.`
     );
   });
 };

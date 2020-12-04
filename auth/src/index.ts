@@ -50,7 +50,7 @@ const start = async () => {
   const port = process.env.PORT || 3000;
   app.listen(port, () => {
     console.log(
-      `Successfully initialized Auth service (label=[auth]) on port ${3000}.`
+      `Successfully initialized Auth service (label=[auth]) on port ${port}.`
     );
   });
 };
