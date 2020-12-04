@@ -48,7 +48,7 @@ const userSchema = new Schema(
 const build = (props: UserProps) => {
   const user = { _id: props.id, ...props };
   delete user.id;
-  return new User(props);
+  return new User(user);
 };
 userSchema.static("build", build);
 
