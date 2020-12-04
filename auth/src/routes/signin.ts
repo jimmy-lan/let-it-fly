@@ -6,11 +6,10 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import { BadRequestError, validateRequest } from "@ly-letitfly/common";
-import { PasswordEncoder } from "../services";
+import { PasswordEncoder, natsWrapper } from "../services";
 import { User } from "../models";
 import { generateJwtWithSession } from "../helpers";
 import { AccountSignInMsgSender } from "../messages/senders";
-import { natsWrapper } from "../services";
 
 const router = express.Router();
 

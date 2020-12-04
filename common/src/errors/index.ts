@@ -10,3 +10,4 @@ export * from "./NotFoundError";
 export * from "./RequestValidationError";
 export * from "./UnauthorizedError";
 export * from "./UnprocessableEntityError";
+export * from "./ForbiddenError";
