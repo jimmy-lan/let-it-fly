@@ -18,6 +18,10 @@ spec:
             backend:
               serviceName: auth-service
               servicePort: 3000
+          - path: /api/friends/?(.*)
+            backend:
+              serviceName: friends-service
+              servicePort: 3000
 #          - path: /?(.*)
 #            backend:
 #              serviceName: client-service

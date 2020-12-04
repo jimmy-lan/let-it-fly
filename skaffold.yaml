@@ -28,4 +28,8 @@ build:
       context: user-info
       docker:
         dockerfile: Dockerfile
+    - image: lanyanxi/friends
+      context: user-info
+      docker:
+        dockerfile: Dockerfile
 
