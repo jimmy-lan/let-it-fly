@@ -8,17 +8,16 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
-import { UserDocument } from "./User";
 
 interface PaperCraneProps {
   id: string;
-  sender: UserDocument;
-  receiver: UserDocument;
+  sender: string;
+  receiver: string;
 }
 
 export interface PaperCraneDocument extends Document {
-  sender: UserDocument;
-  receiver: UserDocument;
+  sender: string;
+  receiver: string;
 }
 
 interface PaperCraneModel extends Model<PaperCraneDocument> {
@@ -29,12 +28,10 @@ const paperCraneSchema = new Schema(
   {
     sender: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
       required: true,
     },
     receiver: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
       required: true,
     },
   },
