@@ -11,14 +11,15 @@ import { validateRequest } from "@ly-letitfly/common";
 const router = express.Router();
 
 router.post(
-  "/request/:userId",
+  "/request/:paperCraneId",
   [
-    param("userId").custom((userId: string) =>
+    param("paperCraneId").custom((userId: string) =>
       mongoose.Types.ObjectId.isValid(userId)
     ),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
+    const { paperCraneId } = req.params;
     return res.send({});
   }
 );
