@@ -22,7 +22,7 @@ app.use(
   })
 );
 
-app.use("/api/auth", Object.values(routes));
+app.use("/api/users", Object.values(routes));
 
 app.all("*", () => {
   throw new NotFoundError();

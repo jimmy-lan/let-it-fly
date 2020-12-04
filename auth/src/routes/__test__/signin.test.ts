@@ -12,7 +12,7 @@ jest.mock("../../services/NatsWrapper");
 
 it("returns 400 failure response when invalid email is provided", async () => {
   const response = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       email: "root@doesnotexist.com",
       password: "password!",
@@ -24,7 +24,7 @@ it("returns 400 failure response when invalid email is provided", async () => {
 
 it("returns 400 failure response when invalid password is provided", async () => {
   await request(app)
-    .post("/api/auth/signup")
+    .post("/api/users/signup")
     .send({
       email: "root@doesnotexist.com",
       password: "jfwe9qfods",
@@ -32,7 +32,7 @@ it("returns 400 failure response when invalid password is provided", async () =>
     .expect(201);
 
   const response2 = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       email: "root@doesnotexist.com",
       password: "password!",
@@ -44,7 +44,7 @@ it("returns 400 failure response when invalid password is provided", async () =>
 
 it("sets a cookie when successfully signed in", async () => {
   await request(app)
-    .post("/api/auth/signup")
+    .post("/api/users/signup")
     .send({
       email: "root@doesnotexist.com",
       password: "jfwe9qfods",
@@ -52,7 +52,7 @@ it("sets a cookie when successfully signed in", async () => {
     .expect(201);
 
   const response2 = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       email: "root@doesnotexist.com",
       password: "jfwe9qfods",
@@ -68,7 +68,7 @@ it("returns some user information when successfully signed in", async () => {
   const password = "jfwe9qfods";
 
   await request(app)
-    .post("/api/auth/signup")
+    .post("/api/users/signup")
     .send({
       email,
       password,
@@ -76,7 +76,7 @@ it("returns some user information when successfully signed in", async () => {
     .expect(201);
 
   const response2 = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       email,
       password,
@@ -92,7 +92,7 @@ it("returns some user information when successfully signed in", async () => {
 
 it("returns response with status 400 on bad requests", async () => {
   const response1 = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       email: "helloworld",
       password: "hithere",
@@ -102,7 +102,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response1.body.success).toBeFalsy();
 
   const response2 = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       password: "hithere",
     })
@@ -111,7 +111,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response2.body.success).toBeFalsy();
 
   const response3 = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       email: "a@bcdef",
       password: "hithere",
@@ -121,7 +121,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response3.body.success).toBeFalsy();
 
   const response4 = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       email: "test@test.com",
       password: "",
@@ -131,7 +131,7 @@ it("returns response with status 400 on bad requests", async () => {
   expect(response4.body.success).toBeFalsy();
 
   const response5 = await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({})
     .expect(400);
 
@@ -140,7 +140,7 @@ it("returns response with status 400 on bad requests", async () => {
 
 it("sends a message when user successfully signs in", async () => {
   await request(app)
-    .post("/api/auth/signup")
+    .post("/api/users/signup")
     .send({
       email: "user@user.com",
       password: "user",
@@ -148,7 +148,7 @@ it("sends a message when user successfully signs in", async () => {
     .expect(201);
 
   await request(app)
-    .post("/api/auth/signin")
+    .post("/api/users/signin")
     .send({
       email: "user@user.com",
       password: "user",

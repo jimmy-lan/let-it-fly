@@ -10,7 +10,7 @@ jest.mock("../../services/NatsWrapper");
 
 it("removes cookie after successfully signed out", async () => {
   await request(app)
-    .post("/api/auth/signup")
+    .post("/api/users/signup")
     .send({
       email: "info@logouttest.com",
       password: "password!",
@@ -18,7 +18,7 @@ it("removes cookie after successfully signed out", async () => {
     .expect(201);
 
   const response = await request(app)
-    .post("/api/auth/signout")
+    .post("/api/users/signout")
     .send({})
     .expect(200);
 
