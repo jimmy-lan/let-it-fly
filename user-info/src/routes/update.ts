@@ -9,3 +9,5 @@ const router = express.Router();
 router.patch("/", async (req: Request, res: Response) => {
   return res.send({});
 });
+
+export { router as updateInfoRouter };

@@ -14,7 +14,7 @@ import {
   extractUser,
   requireAuth,
 } from "@ly-letitfly/common";
-// import * as routes from "./routes";
+import * as routes from "./routes";
 
 const app = express();
 
@@ -31,7 +31,7 @@ app.use(
 app.use(extractUser);
 app.use(requireAuth);
 
-// app.use("/api/auth", Object.values(routes));
+app.use("/api/users/info", Object.values(routes));
 
 app.all("*", () => {
   throw new NotFoundError();
