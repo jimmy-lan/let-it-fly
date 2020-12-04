@@ -31,7 +31,7 @@ app.use(
 app.use(extractUser);
 app.use(requireAuth);
 
-// app.use("/api/users/property", Object.values(routes));
+// app.use("/api/paper-cranes", Object.values(routes));
 
 app.all("*", () => {
   throw new NotFoundError();
