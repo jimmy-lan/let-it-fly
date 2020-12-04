@@ -54,7 +54,7 @@ interface UserDocument extends Document {
   };
   contact: {
     email: {
-      primary: string;
+      primary?: string;
       secondary?: string;
     };
     telephone?: string;

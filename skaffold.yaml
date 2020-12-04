@@ -28,7 +28,4 @@ build:
       context: user-info
       docker:
         dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.ts'
-            dest: .
+
