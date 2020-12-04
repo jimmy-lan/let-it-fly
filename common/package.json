@@ -1,12 +1,17 @@
 {
   "name": "@ly-letitfly/common",
-  "version": "0.0.1",
+  "version": "0.2.11",
   "description": "",
-  "main": "index.js",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
     "build": "npm run clean && tsc",
     "clean": "del ./build/*",
     "update": "git add . && git commit -m \"Update\" && npm version patch && npm run build && npm publish",
+    "update-clean": "npm version patch && npm run build && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -22,6 +27,7 @@
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "express-validator": "^6.7.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "node-nats-streaming": "^0.3.2"
   }
 }
