@@ -7,8 +7,11 @@ import express, { Request, Response, NextFunction } from "express";
 import { param } from "express-validator";
 import mongoose from "mongoose";
 import { User } from "../models";
-import { BadRequestError, validateRequest } from "@ly-letitfly/common";
-import { ForbiddenError } from "@ly-letitfly/common/build/errors/ForbiddenError";
+import {
+  BadRequestError,
+  validateRequest,
+  ForbiddenError,
+} from "@ly-letitfly/common";
 
 const router = express.Router();
 

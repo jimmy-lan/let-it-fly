@@ -3,8 +3,7 @@
  * Creation Date: 2020-12-03
  */
 
-import { MsgReceiver } from "@ly-letitfly/common/build/models/MsgReceiver";
-import { AccountSignUp, Subjects } from "@ly-letitfly/common/build/messages";
+import { AccountSignUp, Subjects, MsgReceiver } from "@ly-letitfly/common";
 import { Message } from "node-nats-streaming";
 import { queueGroup } from "./constants";
 import { User } from "../../models";

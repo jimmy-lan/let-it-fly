@@ -7,8 +7,8 @@ import {
   BadRequestError,
   UserRole,
   validateRequest,
+  ForbiddenError,
 } from "@ly-letitfly/common";
-import { ForbiddenError } from "@ly-letitfly/common/build/errors/ForbiddenError";
 import { param } from "express-validator";
 import mongoose from "mongoose";
 import { User } from "../models";
