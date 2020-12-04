@@ -7,7 +7,7 @@ import express, { Request, Response, NextFunction } from "express";
 import { param } from "express-validator";
 import mongoose from "mongoose";
 import { User } from "../models";
-import { validateRequest } from "@ly-letitfly/common";
+import { BadRequestError, validateRequest } from "@ly-letitfly/common";
 import { ForbiddenError } from "@ly-letitfly/common/build/errors/ForbiddenError";
 
 const router = express.Router();
@@ -16,6 +16,10 @@ const readUserInfo = async (req: Request, res: Response) => {
   const { userId } = req.params;
 
   const user = await User.findById(userId);
+
+  if (!user) {
+    throw new BadRequestError(`User ${userId} is not found`);
+  }
 
   return res.send({ success: true, data: user });
 };
@@ -47,7 +51,8 @@ router.get(
     }
 
     next();
-  }
+  },
+  readUserInfo
 );
 
 export { router as readInfoRouter };
