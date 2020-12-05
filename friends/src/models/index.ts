@@ -6,3 +6,4 @@
 export * from "./FriendRequest";
 export * from "./PaperCrane";
 export * from "./User";
+export * from "./FriendRelation";
