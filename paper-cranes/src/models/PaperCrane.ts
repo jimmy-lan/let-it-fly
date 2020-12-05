@@ -18,7 +18,7 @@ interface PaperCraneProps {
   wishToConnect?: string[];
 }
 
-interface PaperCraneDocument extends Document {
+export interface PaperCraneDocument extends Document {
   sender: UserDocument;
   receiver: UserDocument;
   title: string;
