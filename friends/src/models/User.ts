@@ -9,7 +9,7 @@ interface UserProps {
   id: string;
   firstName: string;
   lastName: string;
-  avatar: string;
+  avatar?: string;
 }
 
 export interface UserDocument extends Document {
