@@ -4,16 +4,19 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { PaperCraneStyle } from "@ly-letitfly/common";
 
 interface UserProps {
   id: string;
   firstName: string;
   lastName: string;
+  paperCraneStyles: PaperCraneStyle[];
 }
 
 export interface UserDocument extends Document {
   firstName: string;
   lastName: string;
+  paperCraneStyles: PaperCraneStyle[];
 }
 
 interface UserModel extends Model<UserDocument> {
@@ -29,6 +32,12 @@ const userSchema = new Schema(
     lastName: {
       type: String,
       required: true,
+    },
+    paperCraneStyles: {
+      type: [String],
+      required: true,
+      enum: Object.values(PaperCraneStyle),
+      default: [PaperCraneStyle.gray],
     },
   },
   {
