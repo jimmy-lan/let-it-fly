@@ -4,4 +4,4 @@
  */
 
 export * from "./User";
-export * from "./FriendRelation";
+export * from "./Friend";
