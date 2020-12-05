@@ -52,6 +52,6 @@ const build = (props: ReplyProps) => {
 };
 replySchema.static("build", build);
 
-const Reply = mongoose.model<ReplyDocument, ReplyModel>("reply", replySchema);
+const Reply = mongoose.model<ReplyDocument, ReplyModel>("Reply", replySchema);
 
 export { Reply };
