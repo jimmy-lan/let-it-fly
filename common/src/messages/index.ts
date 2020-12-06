@@ -6,3 +6,4 @@
 export * from "./Message";
 export * from "./Subjects";
 export * from "./auth";
+export * from "./user-info";
