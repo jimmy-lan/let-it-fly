@@ -11,4 +11,9 @@ import { Subjects } from "../Subjects";
 
 export interface AccountRoleUpdateUser extends Message {
   subject: Subjects.AccountUserRoleUpdate;
+  data: {
+    id: string;
+    firstName: string;
+    lastname: string;
+  };
 }
