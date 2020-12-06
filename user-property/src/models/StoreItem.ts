@@ -9,6 +9,11 @@ import { StoreItemCategory } from "@ly-letitfly/common";
 interface StoreItemProps {
   name: string;
   category: StoreItemCategory;
+  /**
+   * Value required by the services working with this item.
+   * Used internally on servers. Do not display to user.
+   */
+  value: string;
   description: string;
   price: number;
 }
@@ -16,6 +21,7 @@ interface StoreItemProps {
 interface StoreItemDocument extends Document {
   name: string;
   category: StoreItemCategory;
+  value: string;
   description: string;
   price: number;
 }
@@ -34,6 +40,10 @@ const storeItemSchema = new Schema(
       type: String,
       required: true,
       enum: Object.values(StoreItemCategory),
+    },
+    value: {
+      type: String,
+      required: true,
     },
     description: {
       type: String,

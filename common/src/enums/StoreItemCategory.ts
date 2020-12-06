@@ -4,5 +4,5 @@
  */
 
 export enum StoreItemCategory {
-  paperCraneStyle = "paperCraneStyle",
+  paperCraneStyle = "paper-crane-style",
 }
