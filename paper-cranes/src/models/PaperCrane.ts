@@ -5,7 +5,6 @@
 
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { UserDocument } from "./User";
-import { PaperCraneStyle } from "../../../common/src/enums";
 import { ReplyDocument } from "./Reply";
 import { defaultUserProperties } from "@ly-letitfly/common";
 
@@ -14,7 +13,7 @@ interface PaperCraneProps {
   receiver?: UserDocument;
   title: string;
   content: string;
-  style: PaperCraneStyle;
+  style: string;
   replies?: ReplyDocument[];
   wishToConnect?: string[];
 }
@@ -24,7 +23,7 @@ export interface PaperCraneDocument extends Document {
   receiver: UserDocument;
   title: string;
   content: string;
-  style: PaperCraneStyle;
+  style: string;
   replies: ReplyDocument[];
   wishToConnect: string[];
 }
@@ -55,7 +54,6 @@ const paperCraneSchema = new Schema(
     style: {
       type: String,
       required: true,
-      enum: Object.values(PaperCraneStyle),
       default: defaultUserProperties.paperCraneStyles[0],
     },
     replies: {
