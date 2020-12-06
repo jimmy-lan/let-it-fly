@@ -12,4 +12,10 @@ import { Subjects } from "../Subjects";
 
 export interface UserInfoUpdate extends Message {
   subject: Subjects.UserInfoUpdate;
+  data: {
+    id: string;
+    avatar: string;
+    firstName: string;
+    lastName: string;
+  };
 }
