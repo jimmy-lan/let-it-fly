@@ -6,7 +6,7 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { defaultUserProperties } from "@ly-letitfly/common";
 
-import { PaperCraneStyle } from "../../../common/src/enums";
+import { PaperCraneStyle } from "@ly-letitfly/common";
 
 interface UserProps {
   id: string;
@@ -50,7 +50,9 @@ const userSchema = new Schema(
 );
 
 const build = (props: UserProps) => {
-  return new User(props);
+  const user = { _id: props.id, ...props };
+  delete user.id;
+  return new User(user);
 };
 userSchema.static("build", build);
 
