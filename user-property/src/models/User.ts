@@ -1,21 +1,23 @@
 /*
  * Created by Jimmy Lan
- * Creation Date: 2020-12-04
+ * Creation Date: 2020-12-05
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { defaultUserProperties } from "@ly-letitfly/common";
+
+import { PaperCraneStyle } from "@ly-letitfly/common";
 
 interface UserProps {
   id: string;
-  firstName: string;
-  lastName: string;
-  avatar?: string;
+  coins?: number;
+  paperCraneStyles?: PaperCraneStyle[];
 }
 
-export interface UserDocument extends Document {
-  firstName: string;
-  lastName: string;
-  avatar: string;
+interface UserDocument extends Document {
+  id: string;
+  coins: number;
+  paperCraneStyles: PaperCraneStyle[];
 }
 
 interface UserModel extends Model<UserDocument> {
@@ -24,15 +26,16 @@ interface UserModel extends Model<UserDocument> {
 
 const userSchema = new Schema(
   {
-    firstName: {
-      type: String,
+    coins: {
+      type: Number,
       required: true,
+      default: defaultUserProperties.coins,
     },
-    lastName: {
-      type: String,
-      required: true,
+    paperCraneStyles: {
+      type: [String],
+      enum: Object.values(PaperCraneStyle),
+      default: defaultUserProperties.paperCraneStyles,
     },
-    avatar: String,
   },
   {
     toJSON: {
@@ -41,6 +44,7 @@ const userSchema = new Schema(
         delete ret._id;
         delete ret.__v;
       },
+      versionKey: false,
     },
   }
 );
@@ -53,5 +57,4 @@ const build = (props: UserProps) => {
 userSchema.static("build", build);
 
 const User = mongoose.model<UserDocument, UserModel>("User", userSchema);
-
 export { User };

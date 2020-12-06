@@ -6,7 +6,7 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface UserProps {
-  _id?: string;
+  id?: string;
   personal?: {
     name?: {
       first: string;
@@ -134,7 +134,9 @@ const userSchema = new Schema(
 );
 
 const build = (props: UserProps) => {
-  return new User(props);
+  const user = { _id: props.id, ...props };
+  delete user.id;
+  return new User(user);
 };
 userSchema.static("build", build);
 

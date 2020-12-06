@@ -34,6 +34,7 @@ const updateUserInfo = async (req: Request, res: Response) => {
   // during this request
   delete body.contact?.email?.primary;
   delete body.dateJoined;
+  delete body.id;
   delete body._id;
 
   const user = await User.findById(userId);

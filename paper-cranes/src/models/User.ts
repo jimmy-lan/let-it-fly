@@ -1,21 +1,22 @@
 /*
  * Created by Jimmy Lan
- * Creation Date: 2020-12-04
+ * Creation Date: 2020-12-05
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { defaultUserProperties, PaperCraneStyle } from "@ly-letitfly/common";
 
 interface UserProps {
   id: string;
   firstName: string;
   lastName: string;
-  avatar?: string;
+  paperCraneStyles: PaperCraneStyle[];
 }
 
 export interface UserDocument extends Document {
   firstName: string;
   lastName: string;
-  avatar: string;
+  paperCraneStyles: PaperCraneStyle[];
 }
 
 interface UserModel extends Model<UserDocument> {
@@ -32,7 +33,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    avatar: String,
+    paperCraneStyles: {
+      type: [String],
+      required: true,
+      enum: Object.values(PaperCraneStyle),
+      default: defaultUserProperties.paperCraneStyles,
+    },
   },
   {
     toJSON: {
