@@ -12,4 +12,5 @@ export enum Subjects {
   AccountSignUp = "account:signup",
   AccountSignIn = "account:signin",
   AccountUserRoleUpdate = "account:user-role-update",
+  UserInfoUpdate = "user-info:update",
 }
