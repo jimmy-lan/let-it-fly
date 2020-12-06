@@ -3,4 +3,15 @@
  * Creation Date: 2020-12-06
  */
 
-export * from "";
+import { Message } from "../Message";
+import { Subjects } from "../Subjects";
+
+export interface UserConnect extends Message {
+  subject: Subjects.PaperCraneUserConnect;
+  data: {
+    /**
+     * Array of user ids with length 2.
+     */
+    users: string[];
+  };
+}
