@@ -13,4 +13,5 @@ export enum Subjects {
   AccountSignIn = "account:signin",
   AccountUserRoleUpdate = "account:user-role-update",
   UserInfoUpdate = "user-info:update",
+  PropertyPurchase = "property:purchase",
 }
