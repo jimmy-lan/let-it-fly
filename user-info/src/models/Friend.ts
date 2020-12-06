@@ -8,6 +8,7 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface FriendProps {
   user: string;
@@ -41,6 +42,7 @@ const friendSchema = new Schema(
     },
   }
 );
+friendSchema.plugin(updateIfCurrentPlugin);
 
 const build = (props: FriendProps) => {
   return new Friend(props);
