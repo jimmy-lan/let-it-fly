@@ -87,7 +87,7 @@ it("responds with 400 bad request when user is not found", async () => {
 
 it("handles valid update user request", async () => {
   const user = User.build({
-    _id: "5fc9c18a41911f00230bdcb3",
+    id: "5fc9c18a41911f00230bdcb3",
     contact: { email: { primary: "a1@b.com" } },
   });
   await user.save();
@@ -143,7 +143,7 @@ it("handles valid update user request", async () => {
 
 it("handles valid update user request while ignoring irrelevant fields", async () => {
   const user = User.build({
-    _id: "5fc9c18a41911f00230bdcb3",
+    id: "5fc9c18a41911f00230bdcb3",
     contact: { email: { primary: "a1@b.com" } },
   });
   await user.save();

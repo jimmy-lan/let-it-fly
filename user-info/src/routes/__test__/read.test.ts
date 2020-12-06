@@ -36,7 +36,7 @@ it("returns user information on valid requests", async () => {
     role: UserRole.user,
   };
   const user = User.build({
-    _id: fakeUser.id,
+    id: fakeUser.id,
     personal: {
       dateOfBirth: new Date("2000-01-01"),
     },
@@ -71,7 +71,7 @@ it("returns 403 when user has insufficient permission to access data", async () 
     role: UserRole.user,
   };
   const user = User.build({
-    _id: fakeUser.id,
+    id: fakeUser.id,
     personal: {
       dateOfBirth: new Date("2000-01-01"),
     },
