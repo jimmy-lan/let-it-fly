@@ -18,7 +18,7 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
     console.log("Message Received: ", id, email);
 
     const user = User.build({
-      _id: id,
+      id,
       contact: { email: { primary: email } },
     });
 
