@@ -29,6 +29,7 @@ const userSchema = new Schema(
     coins: {
       type: Number,
       required: true,
+      default: defaultUserProperties.coins,
     },
     paperCraneStyles: {
       type: [String],
