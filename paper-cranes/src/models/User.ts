@@ -4,7 +4,7 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
-import { PaperCraneStyle } from "@ly-letitfly/common";
+import { defaultUserProperties, PaperCraneStyle } from "@ly-letitfly/common";
 
 interface UserProps {
   id: string;
@@ -37,7 +37,7 @@ const userSchema = new Schema(
       type: [String],
       required: true,
       enum: Object.values(PaperCraneStyle),
-      default: [PaperCraneStyle.gray],
+      default: defaultUserProperties.paperCraneStyles,
     },
   },
   {

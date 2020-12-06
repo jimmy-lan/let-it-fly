@@ -7,6 +7,7 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 import { UserDocument } from "./User";
 import { PaperCraneStyle } from "../../../common/src/enums";
 import { ReplyDocument } from "./Reply";
+import { defaultUserProperties } from "@ly-letitfly/common";
 
 interface PaperCraneProps {
   sender: UserDocument;
@@ -55,7 +56,7 @@ const paperCraneSchema = new Schema(
       type: String,
       required: true,
       enum: Object.values(PaperCraneStyle),
-      default: PaperCraneStyle.gray,
+      default: defaultUserProperties.paperCraneStyles[0],
     },
     replies: {
       type: [mongoose.Schema.Types.ObjectId],

@@ -4,6 +4,8 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { defaultUserProperties } from "@ly-letitfly/common";
+
 import { PaperCraneStyle } from "../../../common/src/enums";
 
 interface UserProps {
@@ -31,7 +33,7 @@ const userSchema = new Schema(
     paperCraneStyles: {
       type: [String],
       enum: Object.values(PaperCraneStyle),
-      default: [PaperCraneStyle.gray],
+      default: defaultUserProperties.paperCraneStyles,
     },
   },
   {
