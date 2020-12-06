@@ -4,5 +4,4 @@
  */
 
 export * from "./UserRole";
-export * from "./PaperCraneStyle";
 export * from "./StoreItemCategory";

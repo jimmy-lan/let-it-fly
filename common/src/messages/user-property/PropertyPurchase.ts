@@ -5,12 +5,13 @@
 
 import { Message } from "../Message";
 import { Subjects } from "../Subjects";
-import { PaperCraneStyle, StoreItemCategory } from "../../enums";
+import { StoreItemCategory } from "../../enums";
 
-export interface PaperCraneStylePurchase extends Message {
+export interface PropertyPurchase extends Message {
   subject: Subjects.PropertyPurchase;
   data: {
     userId: string;
-    itemValue: PaperCraneStyle;
+    itemCategory: StoreItemCategory;
+    itemValue: string;
   };
 }
