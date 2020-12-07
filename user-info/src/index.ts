@@ -8,6 +8,8 @@ import { verifyEnvVariables } from "@ly-letitfly/common";
 import { app } from "./app";
 import { natsWrapper } from "./services";
 import { AccountSignUpMsgReceiver } from "./messages/receivers";
+import { FriendCreateMsgReceiver } from "./messages/receivers/FriendCreateMsgReceiver";
+import { FriendDeleteMsgReceiver } from "./messages/receivers/FriendDeleteMsgReceiver";
 
 const start = async () => {
   verifyEnvVariables([
@@ -44,6 +46,8 @@ const start = async () => {
 
     // Listeners
     new AccountSignUpMsgReceiver(natsClient).listen();
+    new FriendCreateMsgReceiver(natsClient).listen();
+    new FriendDeleteMsgReceiver(natsClient).listen();
 
     // Connect to mongodb
     await mongoose.connect(process.env.MONGO_CONNECTION_URI!, {
