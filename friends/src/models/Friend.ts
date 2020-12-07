@@ -14,6 +14,7 @@ interface FriendProps {
 }
 
 interface FriendDocument extends Document {
+  __v: number;
   user: UserDocument;
   friends: UserDocument[];
 }
@@ -28,6 +29,7 @@ const friendSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+      unique: true,
     },
     friends: {
       type: [mongoose.Schema.Types.ObjectId],
