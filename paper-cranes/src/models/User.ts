@@ -5,6 +5,7 @@
 
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { defaultUserProperties } from "@ly-letitfly/common";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface UserProps {
   id: string;
@@ -43,6 +44,7 @@ const userSchema = new Schema(
     },
   }
 );
+userSchema.plugin(updateIfCurrentPlugin);
 
 const build = (props: UserProps) => {
   const user = { _id: props.id, ...props };
