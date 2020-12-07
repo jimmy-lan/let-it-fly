@@ -12,6 +12,8 @@ import {
 import { body, param } from "express-validator";
 import mongoose from "mongoose";
 import { User } from "../models";
+import { UserInfoUpdateMsgSender } from "../messages/senders";
+import { natsWrapper } from "../services";
 
 const router = express.Router();
 
@@ -43,6 +45,15 @@ const updateUserInfo = async (req: Request, res: Response) => {
   }
   user.set(body);
   user.save();
+
+  // Emit user info update event
+  await new UserInfoUpdateMsgSender(natsWrapper.client).send({
+    id: user.id,
+    avatar: user.avatar,
+    firstName: user.personal.name.first,
+    lastName: user.personal.name.last,
+    __v: user.__v,
+  });
 
   return res.send({ success: true, data: user });
 };

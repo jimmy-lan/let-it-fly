@@ -44,6 +44,7 @@ interface UserProps {
 
 interface UserDocument extends Document {
   __v: number;
+  avatar: string;
   personal: {
     name: {
       first: string;

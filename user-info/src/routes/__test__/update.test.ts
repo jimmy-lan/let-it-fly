@@ -8,6 +8,8 @@ import { app } from "../../app";
 import { UserRole } from "@ly-letitfly/common";
 import { User } from "../../models";
 
+jest.mock("../../services/NatsWrapper");
+
 it("returns 401 failure response when not authenticated", async () => {
   const response = await request(app)
     .patch("/api/users/info")
