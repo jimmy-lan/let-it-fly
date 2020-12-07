@@ -30,11 +30,11 @@ it("returns an empty list when the user does not have friends", async () => {
 
   const user = User.build({ id: fakeUser.id });
   await user.save();
-  const friendRelation = Friend.build({ user: user, friends: [] });
+  const friendRelation = Friend.build({ user: user.id, friends: [] });
   await friendRelation.save();
 
   const response = await request(app)
-    .get("/api/friend")
+    .get("/api/friends")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send()
     .expect(200);
@@ -63,11 +63,11 @@ it("returns a list of friends on valid requests", async () => {
     lastName: "Williams",
   });
   await friend.save();
-  const friendRelation = Friend.build({ user: user, friends: [friend] });
+  const friendRelation = Friend.build({ user: user.id, friends: [friend] });
   await friendRelation.save();
 
   const response = await request(app)
-    .get("/api/friend")
+    .get("/api/friends")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send()
     .expect(200);
@@ -99,12 +99,12 @@ it("denies access if permission is insufficient", async () => {
     lastName: "Williams",
   });
   await friend.save();
-  const friendRelation = Friend.build({ user: user, friends: [friend] });
+  const friendRelation = Friend.build({ user: user.id, friends: [friend] });
   await friendRelation.save();
 
   const response = await request(app)
-    .get("/api/friend")
-    .set("Cookie", global.getTestCookie())
+    .get("/api/friends/" + fakeUser.id)
+    .set("Cookie", global.getTestCookie(fakeUserFriend))
     .send()
     .expect(403);
 
@@ -131,11 +131,11 @@ it("allows admin access", async () => {
     lastName: "Williams",
   });
   await friend.save();
-  const friendRelation = Friend.build({ user: user, friends: [friend] });
+  const friendRelation = Friend.build({ user: user.id, friends: [friend] });
   await friendRelation.save();
 
   const response = await request(app)
-    .get("/api/friend")
+    .get("/api/friends/" + fakeUser.id)
     .set(
       "Cookie",
       global.getTestCookie({

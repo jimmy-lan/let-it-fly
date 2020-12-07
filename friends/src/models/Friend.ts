@@ -9,13 +9,13 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 import { UserDocument } from "./User";
 
 interface FriendProps {
-  user: UserDocument;
+  user: string;
   friends: UserDocument[];
 }
 
 interface FriendDocument extends Document {
   __v: number;
-  user: UserDocument;
+  user: string;
   friends: UserDocument[];
 }
 
@@ -27,19 +27,19 @@ const friendSchema = new Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
       required: true,
       unique: true,
     },
-    friends: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "User",
-    },
+    friends: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     toJSON: {
       transform(doc, ret) {
-        ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
       },

@@ -43,12 +43,12 @@ export class PaperCraneConnectMsgReceiver extends MsgReceiver<
     }
 
     const userRelation1 = await Friend.findOneAndUpdate(
-      { user: user1 },
+      { user: user1.id },
       { $addToSet: { friends: user2 } }
     );
 
     const userRelation2 = await Friend.findOneAndUpdate(
-      { user: user2 },
+      { user: user2.id },
       { $addToSet: { friends: user1 } }
     );
 
