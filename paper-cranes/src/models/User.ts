@@ -8,9 +8,9 @@ import { defaultUserProperties } from "@ly-letitfly/common";
 
 interface UserProps {
   id: string;
-  firstName: string;
-  lastName: string;
-  paperCraneStyles: string[];
+  firstName?: string;
+  lastName?: string;
+  paperCraneStyles?: string[];
 }
 
 export interface UserDocument extends Document {
@@ -25,14 +25,8 @@ interface UserModel extends Model<UserDocument> {
 
 const userSchema = new Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
+    firstName: String,
+    lastName: String,
     paperCraneStyles: {
       type: [String],
       required: true,
