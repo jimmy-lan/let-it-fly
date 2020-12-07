@@ -19,7 +19,7 @@ export class PaperCraneConnectMsgReceiver extends MsgReceiver<
   subject: Subjects.PaperCraneUserConnect = Subjects.PaperCraneUserConnect;
   queueGroup = queueGroup;
 
-  async onMessage(data: PaperCraneUserConnect["data"], msg: Message): void {
+  async onMessage(data: PaperCraneUserConnect["data"], msg: Message) {
     const {
       users: [userId1, userId2],
     } = data;

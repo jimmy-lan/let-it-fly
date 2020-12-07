@@ -30,6 +30,7 @@ const friendSchema = new Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      unique: true,
     },
     friends: [mongoose.Schema.Types.ObjectId],
   },
