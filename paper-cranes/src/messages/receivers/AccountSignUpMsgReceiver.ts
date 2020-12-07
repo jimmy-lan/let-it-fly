@@ -6,7 +6,7 @@
 import { Message } from "node-nats-streaming";
 import { AccountSignUp, MsgReceiver, Subjects } from "@ly-letitfly/common";
 import { queueGroup } from "./constants";
-import { User } from "../../models";
+import { User, UserProperty } from "../../models";
 
 export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
   subject: Subjects.AccountSignUp = Subjects.AccountSignUp;
@@ -30,6 +30,9 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
       msg.ack();
       return;
     }
+
+    const property = UserProperty.build({ id });
+    await property.save();
 
     msg.ack();
   }
