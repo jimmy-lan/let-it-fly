@@ -29,7 +29,7 @@ build:
       docker:
         dockerfile: Dockerfile
     - image: lanyanxi/friends
-      context: user-info
+      context: friends
       docker:
         dockerfile: Dockerfile
     - image: lanyanxi/user-property

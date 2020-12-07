@@ -24,7 +24,11 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
       contact: { email: { primary: email } },
     });
 
-    await user.save();
+    try {
+      await user.save();
+    } catch (error) {
+      console.error(error);
+    }
 
     msg.ack();
   }

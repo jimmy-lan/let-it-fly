@@ -25,14 +25,8 @@ interface UserModel extends Model<UserDocument> {
 
 const userSchema = new Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
+    firstName: String,
+    lastName: String,
     avatar: String,
   },
   {
@@ -48,7 +42,7 @@ const userSchema = new Schema(
 userSchema.plugin(updateIfCurrentPlugin);
 
 const build = (props: UserProps) => {
-  const user = { _id: props.id, ...props };
+  const user: any = { _id: props.id, ...props };
   delete user.id;
   return new User(user);
 };

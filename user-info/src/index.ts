@@ -34,8 +34,13 @@ const start = async () => {
       process.exit();
     });
 
-    process.on("SIGINT", () => natsClient.close());
-    process.on("SIGTERM", () => natsClient.close());
+    const onNatsClose = () => {
+      natsClient.close();
+      process.exit(1);
+    };
+
+    process.on("SIGINT", onNatsClose);
+    process.on("SIGTERM", onNatsClose);
 
     // Listeners
     new AccountSignUpMsgReceiver(natsClient).listen();
