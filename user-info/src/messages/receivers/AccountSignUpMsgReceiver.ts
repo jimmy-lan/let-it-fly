@@ -15,7 +15,9 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
   async onMessage(data: AccountSignUp["data"], msg: Message) {
     const { id, email } = data;
 
-    console.log("Message Received: ", id, email);
+    console.log(
+      `Account sign up message received - id: ${id}, email: ${email}`
+    );
 
     const user = User.build({
       id,
