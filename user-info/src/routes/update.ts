@@ -9,7 +9,7 @@ import {
   validateRequest,
   ForbiddenError,
 } from "@ly-letitfly/common";
-import { param } from "express-validator";
+import { body, param } from "express-validator";
 import mongoose from "mongoose";
 import { User } from "../models";
 
@@ -53,6 +53,7 @@ router.patch(
     param("userId")
       .custom((userId: string) => mongoose.Types.ObjectId.isValid(userId))
       .withMessage("User ID must be a valid Object ID type."),
+    body("contact.email.secondary").optional().isEmail(),
   ],
   validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
@@ -70,6 +71,8 @@ router.patch(
 
 router.patch(
   "/",
+  [body("contact.email.secondary").optional().isEmail()],
+  validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
     req.params.userId = req.user!.id;
     next();

@@ -16,6 +16,7 @@ interface FriendProps {
 }
 
 interface FriendDocument extends Document {
+  __v: number;
   user: string;
   friends: string[];
 }

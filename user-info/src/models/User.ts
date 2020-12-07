@@ -43,6 +43,7 @@ interface UserProps {
 }
 
 interface UserDocument extends Document {
+  __v: number;
   personal: {
     name: {
       first: string;
