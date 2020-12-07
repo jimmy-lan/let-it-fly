@@ -34,7 +34,9 @@ const updateUserInfo = async (req: Request, res: Response) => {
 
   // User cannot update the following fields
   // during this request
-  delete body.contact?.email?.primary;
+  if (req.user?.role !== UserRole.admin) {
+    delete body.contact?.email?.primary;
+  }
   delete body.dateJoined;
   delete body.id;
   delete body._id;
