@@ -6,7 +6,7 @@
 import { AccountSignUp, Subjects, MsgReceiver } from "@ly-letitfly/common";
 import { Message } from "node-nats-streaming";
 import { queueGroup } from "./constants";
-import { User } from "../../models";
+import { Friend, User } from "../../models";
 
 export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
   subject: Subjects.AccountSignUp = Subjects.AccountSignUp;
@@ -28,7 +28,12 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
       await user.save();
     } catch (error) {
       console.error(error);
+      msg.ack();
+      return;
     }
+
+    const friendRelation = Friend.build({ user: user.id, friends: [] });
+    await friendRelation.save();
 
     msg.ack();
   }
