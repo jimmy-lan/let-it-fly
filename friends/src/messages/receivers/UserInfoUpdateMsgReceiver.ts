@@ -30,7 +30,11 @@ export class UserInfoUpdateMsgReceiver extends MsgReceiver<UserInfoUpdate> {
     );
 
     user.set({ avatar, firstName, lastName });
-    await user.save();
+    try {
+      await user.save();
+    } catch (error) {
+      console.error(error);
+    }
 
     msg.ack();
   }
