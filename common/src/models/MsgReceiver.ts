@@ -22,7 +22,7 @@ export abstract class MsgReceiver<T extends Message> {
    */
   protected ackWait: number = 10 * 1000;
 
-  constructor(private client: Stan) {}
+  constructor(protected client: Stan) {}
 
   get subscriptionOptions() {
     return this.client
