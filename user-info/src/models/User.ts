@@ -85,6 +85,7 @@ interface UserModel extends Model<UserDocument> {
 
 const userSchema = new Schema(
   {
+    avatar: String,
     personal: {
       name: {
         first: String,
