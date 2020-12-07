@@ -7,8 +7,8 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface UserProps {
   id: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   avatar?: string;
 }
 
