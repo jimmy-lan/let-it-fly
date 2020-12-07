@@ -5,9 +5,12 @@
 
 import mongoose from "mongoose";
 import request from "supertest";
-import { app } from "../../app";
 import { UserRole } from "@ly-letitfly/common";
-import { Friend, User } from "../../models";
+
+import { app } from "../../app";
+import { Friend, User, UserDocument } from "../../models";
+
+jest.mock("../../services/NatsWrapper");
 
 it("returns 401 if user is not authenticated", async () => {
   const id = mongoose.Types.ObjectId().toHexString();
@@ -61,7 +64,7 @@ it("deletes friend on valid request", async () => {
     .delete("/api/friends/" + fakeUserFriend.id)
     .set("Cookie", global.getTestCookie(fakeUser))
     .send()
-    .expect(204);
+    .expect(202);
 
   expect(response.body.success).toBeTruthy();
 
@@ -102,11 +105,14 @@ it("deletes friend on valid request", async () => {
     .delete("/api/friends/" + fakeUserFriend2.id)
     .set("Cookie", global.getTestCookie(fakeUser))
     .send()
-    .expect(204);
+    .expect(202);
 
   expect(response.body.success).toBeTruthy();
 
-  const newFriendRelation = await Friend.findOne({ user: fakeUser.id });
+  const newFriendRelation = await Friend.findOne({
+    user: fakeUser.id,
+  }).populate("friends");
   expect(newFriendRelation!.friends.length).toBe(1);
-  expect(newFriendRelation!.friends[0].id).toEqual(fakeUserFriend1.id);
+  const remainingFriend = newFriendRelation!.friends[0] as UserDocument;
+  expect(remainingFriend.id).toEqual(fakeUserFriend1.id);
 });

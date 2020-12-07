@@ -11,7 +11,7 @@ import {
 import { queueGroup } from "./constants";
 import { Message } from "node-nats-streaming";
 import { Friend, User } from "../../models";
-import { FriendCreateMsgSender } from "../senders/FriendCreateMsgSender";
+import { FriendCreateMsgSender } from "../senders";
 
 export class PaperCraneConnectMsgReceiver extends MsgReceiver<
   PaperCraneUserConnect
