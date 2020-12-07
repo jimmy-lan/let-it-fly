@@ -44,7 +44,7 @@ const updateUserInfo = async (req: Request, res: Response) => {
     throw new BadRequestError(`User ${userId} is not found`);
   }
   user.set(body);
-  user.save();
+  await user.save();
 
   // Emit user info update event
   await new UserInfoUpdateMsgSender(natsWrapper.client).send({
