@@ -3,8 +3,7 @@
  * Creation Date: 2020-12-07
  */
 
-import { MsgReceiver, Subjects } from "@ly-letitfly/common";
-import { FriendDelete } from "@ly-letitfly/common/build/messages/friend/FriendDelete";
+import { MsgReceiver, Subjects, FriendDelete } from "@ly-letitfly/common";
 import { queueGroup } from "./constants";
 import { Message } from "node-nats-streaming";
 import { Friend } from "../../models";

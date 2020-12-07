@@ -31,7 +31,7 @@ app.use(
 app.use(extractUser);
 app.use(requireAuth);
 
-app.use("/api/friends", ...Object.values(routes));
+app.use("/api/friends", Object.values(routes));
 
 app.all("*", () => {
   throw new NotFoundError();
