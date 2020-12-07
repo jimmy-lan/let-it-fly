@@ -3,10 +3,12 @@
  * Creation Date: 2020-12-04
  */
 
+import mongoose from "mongoose";
 import request from "supertest";
-import { app } from "../../app";
 import { UserRole } from "@ly-letitfly/common";
-import { User } from "../../models";
+
+import { app } from "../../app";
+import { Friend, User } from "../../models";
 
 it("returns 401 if the user is not authenticated", async () => {
   await request(app).get("/api/users/info").send().expect(401);
@@ -91,4 +93,58 @@ it("returns 403 when user has insufficient permission to access data", async () 
     .expect(403);
 
   expect(response1.body.success).toBeFalsy();
+});
+
+it("allows information access between friends", async () => {
+  const fakeUser = {
+    id: mongoose.Types.ObjectId().toHexString(),
+    email: "user@user.com",
+    role: UserRole.user,
+  };
+  const fakeUserFriend = {
+    id: mongoose.Types.ObjectId().toHexString(),
+    email: "friend@friend.com",
+    role: UserRole.user,
+  };
+
+  const user = User.build({
+    id: fakeUser.id,
+    contact: {
+      email: {
+        primary: fakeUser.email,
+      },
+    },
+  });
+  await user.save();
+  const friend = User.build({
+    id: fakeUserFriend.id,
+    personal: {
+      dateOfBirth: new Date("2000-01-01"),
+    },
+    contact: {
+      email: {
+        primary: fakeUserFriend.email,
+      },
+      telephone: "123-123-1234",
+    },
+  });
+  await friend.save();
+
+  const friendRelation = Friend.build({
+    user: fakeUser.id,
+    friends: [fakeUserFriend.id],
+  });
+  await friendRelation.save();
+
+  const response = await request(app)
+    .get("/api/users/info/" + fakeUserFriend.id)
+    .set("Cookie", global.getTestCookie(fakeUser))
+    .send()
+    .expect(200);
+
+  expect(response.body.success).toBeTruthy();
+  expect(response.body.data.contact.email.primary).toEqual(
+    fakeUserFriend.email
+  );
+  expect(response.body.data.contact.telephone).toEqual("123-123-1234");
 });

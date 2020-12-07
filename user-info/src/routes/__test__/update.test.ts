@@ -3,9 +3,11 @@
  * Creation Date: 2020-12-04
  */
 
+import mongoose from "mongoose";
 import request from "supertest";
-import { app } from "../../app";
 import { UserRole } from "@ly-letitfly/common";
+
+import { app } from "../../app";
 import { User } from "../../models";
 
 jest.mock("../../services/NatsWrapper");
@@ -204,4 +206,42 @@ it("handles valid update user request while ignoring irrelevant fields", async (
   expect(updatedUser?.profile?.description).toEqual("Hello world!");
   expect(updatedUser?.dateJoined.getFullYear()).not.toEqual(2000);
   expect(updatedUser?.id).not.toEqual("dkslfjadsklfd;a");
+});
+
+it("allows admin user to update primary email address for a user", async () => {
+  const fakeUser = {
+    id: mongoose.Types.ObjectId().toHexString(),
+    email: "user@user.com",
+    role: UserRole.user,
+  };
+  const user = User.build({
+    id: fakeUser.id,
+    contact: { email: { primary: fakeUser.email } },
+  });
+  await user.save();
+
+  const fakeAdmin = {
+    id: mongoose.Types.ObjectId().toHexString(),
+    email: "admin@admin.com",
+    role: UserRole.admin,
+  };
+  const admin = User.build({
+    id: fakeAdmin.id,
+    contact: { email: { primary: fakeAdmin.email } },
+  });
+  await admin.save();
+
+  const response = await request(app)
+    .patch("/api/users/info/" + fakeUser.id)
+    .set("Cookie", global.getTestCookie(fakeAdmin))
+    .send({
+      personal: {
+        email: {
+          primary: "newemail@new.com",
+        },
+      },
+    })
+    .expect(200);
+
+  expect(response.body.success).toBeTruthy();
 });
