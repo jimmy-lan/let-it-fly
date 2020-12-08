@@ -6,8 +6,12 @@
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import { param } from "express-validator";
-import { UserRole, validateRequest } from "@ly-letitfly/common";
-import { StoreItem } from "../models";
+import {
+  BadRequestError,
+  UserRole,
+  validateRequest,
+} from "@ly-letitfly/common";
+import { StoreItem, UserProperty } from "../models";
 
 const router = express.Router();
 
@@ -42,6 +46,27 @@ router.get("/inventory", async (req: Request, res: Response) => {
   if (req.user!.role === UserRole.admin) {
     return res.send({ success: true, data: inventories });
   }
+
+  const property = await UserProperty.findById(req.user!.id);
+  if (!property) {
+    throw new BadRequestError(
+      `User ${
+        req.user!.id
+      } does not have property entries. A message is probably missing.`
+    );
+  }
+  const ownedInventoryIds = property.paperCraneStyles;
+
+  const filteredInventories = inventories
+    .map((inventory) => ({
+      id: inventory.id,
+      name: inventory.name,
+      description: inventory.description,
+      price: inventory.price,
+    }))
+    .filter((inventory) => !ownedInventoryIds.includes(inventory.id));
+
+  return res.send({ success: true, data: filteredInventories });
 });
 
 export { router as readRouter };

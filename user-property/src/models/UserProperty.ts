@@ -30,7 +30,7 @@ const userPropertySchema = new Schema(
       default: defaultUserProperties.coins,
     },
     paperCraneStyles: {
-      type: [String],
+      type: [mongoose.Schema.Types.ObjectId],
       default: defaultUserProperties.paperCraneStyles,
     },
   },
