@@ -5,6 +5,7 @@
 
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { StoreItemCategory } from "@ly-letitfly/common";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface StoreItemProps {
   name: string;
@@ -65,6 +66,7 @@ const storeItemSchema = new Schema(
     },
   }
 );
+storeItemSchema.plugin(updateIfCurrentPlugin);
 
 const build = (props: StoreItemProps) => {
   return new StoreItem(props);
