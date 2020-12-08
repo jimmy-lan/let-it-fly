@@ -65,6 +65,12 @@ router.get(
 
     responseData.replies = replies;
 
+    // Mark paper crane as read if needed
+    if (record.isUnread) {
+      record.isUnread = false;
+      await record.save();
+    }
+
     return res.send({ success: true, data: responseData });
   }
 );

@@ -4,13 +4,13 @@
  */
 
 import request from "supertest";
-import mongoose from "mongoose";
 import { app } from "../../app";
 import {
   addFakeUser,
   addPaperCraneWithRecordNoReceiver,
   addPaperStyle,
 } from "./helpers";
+import { PaperCrane, PaperCraneRecord } from "../../models";
 
 it("returns 401 when user is not authenticated", async () => {
   await request(app).get("/api/paper-crane").send({}).expect(401);
@@ -39,4 +39,17 @@ it("returns correct search result on valid request", async () => {
   expect(response.body.success).toBeTruthy();
   expect(response.body.data).toBeDefined();
   expect(response.body.data.id).toEqual(paperCrane.id);
+  expect(response.body.data.style).toBeDefined();
+  expect(response.body.data.style).toEqual("#ccc");
+
+  const savedPaperCrane = await PaperCrane.findById(paperCrane.id);
+  expect(savedPaperCrane!.receiverId).toBeDefined();
+  expect(savedPaperCrane!.receiverId.toString()).toEqual(user2.id);
+
+  const recordUser2 = await PaperCraneRecord.findOne({
+    userId: user2.id,
+  }).populate("paperCrane");
+  expect(recordUser2!.paperCrane.id).toEqual(paperCrane.id);
+  expect(recordUser2!.isStarred).toBeFalsy();
+  expect(recordUser2!.isUnread).toBeTruthy();
 });

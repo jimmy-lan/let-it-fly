@@ -12,7 +12,7 @@ import {
   addPaperStyle,
   addReply,
 } from "./helpers";
-import { PaperCrane } from "../../models";
+import { PaperCrane, PaperCraneRecord } from "../../models";
 
 it("returns 401 when user is not authenticated", async () => {
   const id = mongoose.Types.ObjectId().toHexString();
@@ -79,6 +79,43 @@ it("returns a paper crane on valid request", async () => {
   expect(response.body.data.isUnread).toBeFalsy();
   expect(response.body.data.sender).not.toBeDefined();
   expect(response.body.data.receiver).not.toBeDefined();
+});
+
+it("marks paper crane as read after request is completed", async () => {
+  const user1 = await addFakeUser();
+  const user2 = await addFakeUser();
+
+  await addPaperStyle(user1.id, "#ccc");
+  await addPaperStyle(user2.id, "#ccc");
+
+  const paperCrane = await addPaperCraneWithRecord(
+    user1.id,
+    user2.id,
+    "title",
+    "content",
+    "#ccc",
+    true
+  );
+
+  await request(app)
+    .get("/api/paper-cranes/" + paperCrane.id + "/info")
+    .set("Cookie", global.getTestCookie(user2))
+    .send()
+    .expect(200);
+
+  const recordUser2 = await PaperCraneRecord.findOne({
+    userId: user2.id,
+    paperCrane,
+  });
+  expect(recordUser2!.isUnread).toBeFalsy();
+
+  // User 2 reading the paper crane should not affect the unread status
+  // of user 1
+  const recordUser1 = await PaperCraneRecord.findOne({
+    userId: user1.id,
+    paperCrane,
+  });
+  expect(recordUser1!.isUnread).toBeTruthy();
 });
 
 it(
