@@ -24,6 +24,10 @@ interface UserModel extends Model<UserDocument> {
   build(props: UserProps): UserDocument;
 }
 
+const defaultUserPaperCraneStyles = defaultUserProperties.paperCraneStyleItems.map(
+  (item) => item.value
+);
+
 const userSchema = new Schema(
   {
     firstName: String,
@@ -31,7 +35,7 @@ const userSchema = new Schema(
     paperCraneStyles: {
       type: [String],
       required: true,
-      default: defaultUserProperties.paperCraneStyles,
+      default: defaultUserPaperCraneStyles,
     },
   },
   {

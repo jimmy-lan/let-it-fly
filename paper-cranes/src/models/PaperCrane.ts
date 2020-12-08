@@ -49,7 +49,7 @@ const paperCraneSchema = new Schema(
     style: {
       type: String,
       required: true,
-      default: defaultUserProperties.paperCraneStyles[0],
+      default: defaultUserProperties.paperCraneStyleItems[0].value,
     },
     replies: [
       {

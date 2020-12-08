@@ -25,12 +25,16 @@ interface UserPropertyModel extends Model<UserPropertyDocument> {
   build(props: UserPropertyProps): UserPropertyDocument;
 }
 
+const defaultUserPaperCraneStyles = defaultUserProperties.paperCraneStyleItems.map(
+  (item) => item.value
+);
+
 const UserPropertySchema = new Schema(
   {
     paperCraneStyles: {
       type: [String],
       required: true,
-      default: defaultUserProperties.paperCraneStyles,
+      default: defaultUserPaperCraneStyles,
     },
   },
   {
