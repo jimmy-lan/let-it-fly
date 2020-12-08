@@ -29,6 +29,7 @@ const UserPropertySchema = new Schema(
   {
     paperCraneStyles: {
       type: [String],
+      required: true,
       default: defaultUserProperties.paperCraneStyles,
     },
   },
