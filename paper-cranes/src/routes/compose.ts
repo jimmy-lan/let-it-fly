@@ -22,12 +22,6 @@ router.post(
     const { title, content, style } = req.body;
     const userId = req.user!.id;
 
-    // Query current user
-    const currentUser = await User.findById(userId);
-    if (!currentUser) {
-      throw new Error("User not initialized. An event may be missing.");
-    }
-
     // Check if current user has style
     const property = await UserProperty.findById(userId);
     if (!property) {
@@ -46,7 +40,7 @@ router.post(
       title,
       content,
       style,
-      sender: currentUser,
+      senderId: userId,
     });
     await paperCrane.save();
 

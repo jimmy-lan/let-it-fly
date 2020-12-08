@@ -46,11 +46,9 @@ export const addPaperCraneWithRecord = async (
   isUnread: boolean = false,
   isStarred: boolean = false
 ) => {
-  const sender = await User.findById(senderId);
-  const receiver = await User.findById(receiverId);
   const paperCrane = PaperCrane.build({
-    sender: sender!,
-    receiver: receiver!,
+    senderId,
+    receiverId,
     title,
     content,
     style,
@@ -88,7 +86,7 @@ export const addPaperCraneWithRecordNoReceiver = async (
 ) => {
   const sender = await User.findById(senderId);
   const paperCrane = PaperCrane.build({
-    sender: sender!,
+    senderId,
     title,
     content,
     style,
