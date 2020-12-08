@@ -12,7 +12,7 @@ import { PaperCraneRecord } from "../models";
 const router = express.Router();
 
 router.delete(
-  "/:paperCraneId",
+  "/:paperCraneId/delete",
   [
     param("paperCraneId")
       .custom((id: string) => mongoose.Types.ObjectId.isValid(id))
