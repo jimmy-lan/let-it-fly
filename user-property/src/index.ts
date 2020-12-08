@@ -6,7 +6,7 @@
 import mongoose from "mongoose";
 import { verifyEnvVariables } from "@ly-letitfly/common";
 import { app } from "./app";
-import { natsWrapper } from "./services";
+import { DataWorker, natsWrapper } from "./services";
 import { AccountSignUpMsgReceiver } from "./messages/receivers";
 
 const start = async () => {
@@ -52,6 +52,10 @@ const start = async () => {
       useCreateIndex: true,
     });
     console.log("Connected to MongoDB.");
+
+    // Ensure default values are added in the database
+    await DataWorker.ensureDefaultStoreItem();
+    console.log("Data worker: ensureDefaultStoreItem ran successfully.");
   } catch (error) {
     console.error(error);
   }

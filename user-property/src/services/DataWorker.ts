@@ -15,6 +15,7 @@ export class DataWorker {
    * items required by the common package
    */
   static ensureDefaultStoreItem = async () => {
+    console.log("Checking default store items are added to database");
     for (let styleItem of defaultUserProperties.paperCraneStyleItems) {
       const storeItem = await StoreItem.findOne({
         category: StoreItemCategory.paperCraneStyle,
