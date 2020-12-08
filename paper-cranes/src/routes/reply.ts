@@ -8,6 +8,6 @@ import mongoose from "mongoose";
 
 const router = express.Router();
 
-router.post("/:id", async (req: Request, res: Response) => {});
+router.post("/:id/reply", async (req: Request, res: Response) => {});
 
 export { router as replyRouter };

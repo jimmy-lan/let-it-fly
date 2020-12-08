@@ -8,6 +8,6 @@ import mongoose from "mongoose";
 
 const router = express.Router();
 
-router.get("/:id", async (req: Request, res: Response) => {});
+router.get("/:id/info", async (req: Request, res: Response) => {});
 
 export { router as readRouter };
