@@ -5,6 +5,7 @@
 
 /**
  * compose a paper crane  POST /api/paper-crane/
+ * - need: title, content, style
  * search a paper crane  GET /api/paper-crane
  * read a paper crane  GET /api/paper-crane/:id
  * reply to a paper crane POST /api/paper-crane/:id
