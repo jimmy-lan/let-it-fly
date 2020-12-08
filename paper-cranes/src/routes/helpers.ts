@@ -8,6 +8,8 @@ import {
   PaperCraneDocument,
   PaperCraneRecord,
   PaperCraneRecordDocument,
+  User,
+  UserDocument,
 } from "../models";
 import { BadRequestError, ForbiddenError } from "@ly-letitfly/common";
 
@@ -29,4 +31,16 @@ export const findPaperCraneAndRecord = async (
   }
 
   return [paperCrane, record];
+};
+
+export const findActiveUser = async (userId: string): Promise<UserDocument> => {
+  const user = await User.findById(userId);
+
+  if (!user) {
+    throw new BadRequestError(
+      "User is not found. Some messages may fail to be dispatched."
+    );
+  }
+
+  return user;
 };
