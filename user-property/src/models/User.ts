@@ -6,18 +6,16 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { defaultUserProperties } from "@ly-letitfly/common";
 
-import { PaperCraneStyle } from "@ly-letitfly/common";
-
 interface UserProps {
   id: string;
   coins?: number;
-  paperCraneStyles?: PaperCraneStyle[];
+  paperCraneStyles?: string[];
 }
 
 interface UserDocument extends Document {
   id: string;
   coins: number;
-  paperCraneStyles: PaperCraneStyle[];
+  paperCraneStyles: string[];
 }
 
 interface UserModel extends Model<UserDocument> {
@@ -33,7 +31,6 @@ const userSchema = new Schema(
     },
     paperCraneStyles: {
       type: [String],
-      enum: Object.values(PaperCraneStyle),
       default: defaultUserProperties.paperCraneStyles,
     },
   },
