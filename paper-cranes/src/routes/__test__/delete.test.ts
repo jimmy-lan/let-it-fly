@@ -12,7 +12,7 @@ import { PaperCraneRecord } from "../../models";
 it("returns 401 when user is not authenticated", async () => {
   const id = mongoose.Types.ObjectId().toHexString();
   await request(app)
-    .delete("/api/paper-crane/" + id)
+    .delete("/api/paper-cranes/" + id + "/delete")
     .send({})
     .expect(401);
 });
@@ -22,7 +22,7 @@ it("returns 400 if paper crane attempting to delete does not exist", async () =>
   const user = await addFakeUser();
 
   const response = await request(app)
-    .delete("/api/paper-cranes/" + id)
+    .delete("/api/paper-cranes/" + id + "/delete")
     .set("Cookie", global.getTestCookie(user))
     .send({})
     .expect(400);
@@ -46,7 +46,7 @@ it("deletes paper crane on valid request", async () => {
   );
 
   const response = await request(app)
-    .delete("/api/paper-cranes/" + paperCrane.id)
+    .delete("/api/paper-cranes/" + paperCrane.id + "/delete")
     .set("Cookie", global.getTestCookie(user1))
     .send({})
     .expect(202);

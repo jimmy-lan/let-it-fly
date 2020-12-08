@@ -13,7 +13,7 @@ import { PaperCraneRecord } from "../../models";
 it("returns 401 when user is not authenticated", async () => {
   const id = mongoose.Types.ObjectId().toHexString();
   await request(app)
-    .patch("/api/paper-crane/" + id)
+    .patch("/api/paper-cranes/" + id + "/info")
     .send({})
     .expect(401);
 });
@@ -23,7 +23,7 @@ it("returns 400 if paper crane does not exist", async () => {
   const user = await addFakeUser();
 
   const response = await request(app)
-    .patch("/api/paper-cranes/" + id)
+    .patch("/api/paper-cranes/" + id + "/info")
     .set("Cookie", global.getTestCookie(user))
     .send({ isStarred: true })
     .expect(400);
@@ -40,7 +40,7 @@ it("returns 400 if user does not exist", async () => {
   };
 
   const response = await request(app)
-    .patch("/api/paper-cranes/" + id)
+    .patch("/api/paper-cranes/" + id + "/info")
     .set("Cookie", global.getTestCookie(user))
     .send({ isStarred: true })
     .expect(400);
@@ -64,7 +64,7 @@ it("successfully updates paper crane record on valid requests", async () => {
   );
 
   const response = await request(app)
-    .patch("/api/paper-cranes/" + paperCrane.id)
+    .patch("/api/paper-cranes/" + paperCrane.id + "/info")
     .set("Cookie", global.getTestCookie(user2))
     .send({ isStarred: true, isUnread: true })
     .expect(200);

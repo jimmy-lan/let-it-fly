@@ -5,10 +5,22 @@
 
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
+import { PaperCraneRecord } from "../models";
 
 const router = express.Router();
 
-router.get("/sent", async (req: Request, res: Response) => {});
+router.get("/sent", async (req: Request, res: Response) => {
+  const userId = req.user!.id;
+
+  // Query paper crane record
+  const paperCraneRecords = await PaperCraneRecord.find({ userId }).populate({
+    path: "paperCrane",
+    select: "title content style sender",
+  });
+
+  paperCraneRecords.filter((record) => record.paperCrane.sender.id === userId);
+  return res.send({ success: true, data: paperCraneRecords });
+});
 
 router.get("/received", async (req: Request, res: Response) => {});
 

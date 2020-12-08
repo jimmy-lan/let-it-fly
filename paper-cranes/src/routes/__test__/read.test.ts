@@ -11,7 +11,7 @@ import { addFakeUser, addPaperCraneWithRecord, addPaperStyle } from "./helpers";
 it("returns 401 when user is not authenticated", async () => {
   const id = mongoose.Types.ObjectId().toHexString();
   await request(app)
-    .get("/api/paper-crane/" + id)
+    .get("/api/paper-cranes/" + id + "/info")
     .send({})
     .expect(401);
 });
@@ -33,7 +33,7 @@ it("returns 403 forbidden if user does not have sufficient permission to read pa
   );
 
   const response = await request(app)
-    .get("/api/paper-cranes/" + paperCrane.id)
+    .get("/api/paper-cranes/" + paperCrane.id + "/info")
     .set("Cookie", global.getTestCookie(user3))
     .send()
     .expect(403);
@@ -57,7 +57,7 @@ it("returns a paper crane on valid request", async () => {
   );
 
   const response = await request(app)
-    .get("/api/paper-cranes/" + paperCrane.id)
+    .get("/api/paper-cranes/" + paperCrane.id + "/info")
     .set("Cookie", global.getTestCookie(user2))
     .send()
     .expect(200);

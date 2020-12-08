@@ -15,7 +15,7 @@ jest.mock("../../services/NatsWrapper");
 it("returns 401 when user is not authenticated", async () => {
   const id = mongoose.Types.ObjectId().toHexString();
   await request(app)
-    .post("/api/paper-crane/" + id)
+    .post("/api/paper-cranes/" + id + "/reply")
     .send({})
     .expect(401);
 });
@@ -25,7 +25,7 @@ it("returns 400 if paper crane does not exist", async () => {
   const user = await addFakeUser();
 
   const response = await request(app)
-    .post("/api/paper-cranes/" + id)
+    .post("/api/paper-cranes/" + id + "/reply")
     .set("Cookie", global.getTestCookie(user))
     .send({ content: "reply reply", isWishToConnect: false })
     .expect(400);
@@ -42,7 +42,7 @@ it("returns 400 if user does not exist", async () => {
   };
 
   const response = await request(app)
-    .post("/api/paper-cranes/" + id)
+    .post("/api/paper-cranes/" + id + "/reply")
     .set("Cookie", global.getTestCookie(user))
     .send({ content: "reply reply", isWishToConnect: false })
     .expect(400);
@@ -66,7 +66,7 @@ it("adds reply on a valid request", async () => {
   );
 
   const response = await request(app)
-    .post("/api/paper-cranes/" + paperCrane.id)
+    .post("/api/paper-cranes/" + paperCrane.id + "/reply")
     .set("Cookie", global.getTestCookie(user2))
     .send({ content: "reply reply", isWishToConnect: false })
     .expect(201);
