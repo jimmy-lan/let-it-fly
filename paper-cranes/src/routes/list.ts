@@ -3,8 +3,7 @@
  * Creation Date: 2020-12-07
  */
 
-import express, { Request, Response, NextFunction } from "express";
-import mongoose from "mongoose";
+import express, { Request, Response } from "express";
 import { PaperCraneRecord } from "../models";
 
 const router = express.Router();
@@ -40,7 +39,19 @@ router.get("/received", async (req: Request, res: Response) => {
   return res.send({ success: true, data: filteredRecords });
 });
 
-router.get("/starred", async (req: Request, res: Response) => {});
+router.get("/starred", async (req: Request, res: Response) => {
+  const userId = req.user!.id;
+
+  // Query paper crane record
+  const paperCraneRecords = await PaperCraneRecord.find({ userId }).populate({
+    path: "paperCrane",
+    select: "title content style",
+  });
+  const filteredRecords = paperCraneRecords
+    .filter((record) => record.isStarred)
+    .map((record) => record.paperCrane);
+  return res.send({ success: true, data: filteredRecords });
+});
 
 router.get("/unread", async (req: Request, res: Response) => {
   const userId = req.user!.id;
@@ -51,7 +62,9 @@ router.get("/unread", async (req: Request, res: Response) => {
     select: "title content style",
   });
 
-  const filteredRecords = paperCraneRecords.filter((record) => record.isUnread);
+  const filteredRecords = paperCraneRecords
+    .filter((record) => record.isUnread)
+    .map((record) => record.paperCrane);
   return res.send({ success: true, data: filteredRecords });
 });
 

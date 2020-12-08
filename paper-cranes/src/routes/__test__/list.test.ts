@@ -125,3 +125,39 @@ it("returns a list of unread paper crane", async () => {
   expect(response.body.success).toBeTruthy();
   expect(response.body.data.length).toBe(0);
 });
+
+it("returns a list of starred paper crane", async () => {
+  const [user1, user2, user3] = await populateUserAndPaperCranes();
+
+  const paperCrane = await addPaperCraneWithRecord(
+    user1.id,
+    user2.id,
+    "User 1 to 2 starred",
+    "some content",
+    "#ccc",
+    false,
+    true
+  );
+
+  const response1 = await request(app)
+    .get("/api/paper-cranes/starred")
+    .set("Cookie", global.getTestCookie(user1))
+    .send()
+    .expect(200);
+
+  expect(response1.body.success).toBeTruthy();
+  expect(response1.body.data).toBeDefined();
+  expect(response1.body.data.length).toBe(1);
+  expect(response1.body.data[0].id).toEqual(paperCrane.id);
+
+  const response2 = await request(app)
+    .get("/api/paper-cranes/starred")
+    .set("Cookie", global.getTestCookie(user2))
+    .send()
+    .expect(200);
+  expect(response2.body.success).toBeTruthy();
+  expect(response2.body.data).toBeDefined();
+  expect(response2.body.data.length).toBe(1);
+  expect(response2.body.data[0].id).toEqual(paperCrane.id);
+  expect(response2.body.data[0].title).toEqual(paperCrane.title);
+});
