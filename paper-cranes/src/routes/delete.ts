@@ -26,7 +26,7 @@ router.delete(
     // Make sure the current user can delete this paper crane
     const paperCraneRecord = await PaperCraneRecord.findOne({
       userId,
-    }).populate("paperCrane.id");
+    }).populate({ path: "paperCrane", select: "id" });
     if (!paperCraneRecord) {
       // User does not have any paper crane
       throw new BadRequestError(
@@ -38,7 +38,9 @@ router.delete(
     paperCraneRecord.isDeleted = true;
     await paperCraneRecord.save();
 
-    return res.send({ success: true, data: paperCraneRecord.paperCrane.id });
+    return res
+      .status(202)
+      .send({ success: true, data: paperCraneRecord.paperCrane.id });
   }
 );
 
