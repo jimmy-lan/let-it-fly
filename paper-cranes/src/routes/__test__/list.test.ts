@@ -53,8 +53,6 @@ const populateUserAndPaperCranes = async () => {
 it("returns an empty list for sent if nothing is sent", async () => {
   const [user1, user2, user3] = await populateUserAndPaperCranes();
 
-  console.log(user3);
-
   const response = await request(app)
     .get("/api/paper-cranes/sent")
     .set("Cookie", global.getTestCookie(user3))
@@ -65,64 +63,64 @@ it("returns an empty list for sent if nothing is sent", async () => {
   expect(response.body.data.length).toBe(0);
 });
 
-// it("returns an empty list for receive if nothing is received", async () => {
-//   const [user1, user2, user3] = await populateUserAndPaperCranes();
-//
-//   const response = await request(app)
-//     .get("/api/paper-cranes/received")
-//     .set("Cookie", global.getTestCookie(user1))
-//     .send()
-//     .expect(200);
-//
-//   expect(response.body.success).toBeTruthy();
-//   expect(response.body.data.length).toBe(0);
-// });
-//
-// it("returns a list of sent paper crane", async () => {
-//   const [user1, user2, user3] = await populateUserAndPaperCranes();
-//
-//   const response = await request(app)
-//     .get("/api/paper-cranes/sent")
-//     .set("Cookie", global.getTestCookie(user1))
-//     .send()
-//     .expect(200);
-//
-//   expect(response.body.success).toBeTruthy();
-//   expect(response.body.data.length).toBe(2);
-//   expect(response.body.data[0].sender).not.toBeDefined();
-//   expect(response.body.data[0].receiver).not.toBeDefined();
-//   expect(response.body.data[0].title).toBeDefined();
-//   expect(response.body.data[0].content).toBeDefined();
-//   expect(response.body.data[0].style).toBeDefined();
-// });
-//
-// it("returns a list of received paper crane", async () => {
-//   const [user1, user2, user3] = await populateUserAndPaperCranes();
-//
-//   const response = await request(app)
-//     .get("/api/paper-cranes/received")
-//     .set("Cookie", global.getTestCookie(user3))
-//     .send()
-//     .expect(200);
-//
-//   expect(response.body.success).toBeTruthy();
-//   expect(response.body.data.length).toBe(2);
-//   expect(response.body.data[0].sender).not.toBeDefined();
-//   expect(response.body.data[0].receiver).not.toBeDefined();
-//   expect(response.body.data[0].title).toBeDefined();
-//   expect(response.body.data[0].content).toBeDefined();
-//   expect(response.body.data[0].style).toBeDefined();
-// });
-//
-// it("returns a list of unread paper crane", async () => {
-//   const [user1, user2, user3] = await populateUserAndPaperCranes();
-//
-//   const response = await request(app)
-//     .get("/api/paper-cranes/unread")
-//     .set("Cookie", global.getTestCookie(user2))
-//     .send()
-//     .expect(200);
-//
-//   expect(response.body.success).toBeTruthy();
-//   expect(response.body.data.length).toBe(0);
-// });
+it("returns an empty list for receive if nothing is received", async () => {
+  const [user1, user2, user3] = await populateUserAndPaperCranes();
+
+  const response = await request(app)
+    .get("/api/paper-cranes/received")
+    .set("Cookie", global.getTestCookie(user1))
+    .send()
+    .expect(200);
+
+  expect(response.body.success).toBeTruthy();
+  expect(response.body.data.length).toBe(0);
+});
+
+it("returns a list of sent paper crane", async () => {
+  const [user1, user2, user3] = await populateUserAndPaperCranes();
+
+  const response = await request(app)
+    .get("/api/paper-cranes/sent")
+    .set("Cookie", global.getTestCookie(user1))
+    .send()
+    .expect(200);
+
+  expect(response.body.success).toBeTruthy();
+  expect(response.body.data.length).toBe(2);
+  expect(response.body.data[0].sender).not.toBeDefined();
+  expect(response.body.data[0].receiver).not.toBeDefined();
+  expect(response.body.data[0].title).toBeDefined();
+  expect(response.body.data[0].content).toBeDefined();
+  expect(response.body.data[0].style).toBeDefined();
+});
+
+it("returns a list of received paper crane", async () => {
+  const [user1, user2, user3] = await populateUserAndPaperCranes();
+
+  const response = await request(app)
+    .get("/api/paper-cranes/received")
+    .set("Cookie", global.getTestCookie(user3))
+    .send()
+    .expect(200);
+
+  expect(response.body.success).toBeTruthy();
+  expect(response.body.data.length).toBe(2);
+  expect(response.body.data[0].sender).not.toBeDefined();
+  expect(response.body.data[0].receiver).not.toBeDefined();
+  expect(response.body.data[0].title).toBeDefined();
+  expect(response.body.data[0].content).toBeDefined();
+  expect(response.body.data[0].style).toBeDefined();
+});
+
+it("returns a list of unread paper crane", async () => {
+  const [user1, user2, user3] = await populateUserAndPaperCranes();
+
+  const response = await request(app)
+    .get("/api/paper-cranes/unread")
+    .set("Cookie", global.getTestCookie(user2))
+    .send()
+    .expect(200);
+
+  expect(response.body.success).toBeTruthy();
+  expect(response.body.data.length).toBe(0);
+});

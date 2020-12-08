@@ -18,8 +18,10 @@ router.get("/sent", async (req: Request, res: Response) => {
     select: "title content style sender",
   });
 
-  paperCraneRecords.filter((record) => record.paperCrane.sender.id === userId);
-  return res.send({ success: true, data: paperCraneRecords });
+  const filteredRecords = paperCraneRecords.filter(
+    (record) => record.paperCrane.sender.id === userId
+  );
+  return res.send({ success: true, data: filteredRecords });
 });
 
 router.get("/received", async (req: Request, res: Response) => {});
