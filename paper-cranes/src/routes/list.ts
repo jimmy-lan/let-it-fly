@@ -15,12 +15,13 @@ router.get("/sent", async (req: Request, res: Response) => {
   // Query paper crane record
   const paperCraneRecords = await PaperCraneRecord.find({ userId }).populate({
     path: "paperCrane",
-    select: "title content style sender",
+    select: "title content style senderId",
   });
 
-  const filteredRecords = paperCraneRecords.filter(
-    (record) => record.paperCrane.senderId === userId
-  );
+  const filteredRecords = paperCraneRecords
+    .filter((record) => record.paperCrane.senderId.toString() === userId)
+    .map((record) => record.paperCrane);
+
   return res.send({ success: true, data: filteredRecords });
 });
 
@@ -30,12 +31,12 @@ router.get("/received", async (req: Request, res: Response) => {
   // Query paper crane record
   const paperCraneRecords = await PaperCraneRecord.find({ userId }).populate({
     path: "paperCrane",
-    select: "title content style receiver",
+    select: "title content style receiverId",
   });
 
-  const filteredRecords = paperCraneRecords.filter(
-    (record) => record.paperCrane.receiverId === userId
-  );
+  const filteredRecords = paperCraneRecords
+    .filter((record) => record.paperCrane.receiverId.toString() === userId)
+    .map((record) => record.paperCrane);
   return res.send({ success: true, data: filteredRecords });
 });
 

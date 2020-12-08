@@ -95,7 +95,7 @@ it("creates a paper crane when request is valid", async () => {
   expect(paperCrane).toBeDefined();
   expect(paperCrane!.title).toEqual("title");
   expect(paperCrane!.content).toEqual("hi");
-  expect(paperCrane!.senderId).toEqual(fakeUser.id);
+  expect(paperCrane!.senderId.toString()).toEqual(fakeUser.id);
 
   const paperCraneRecord = await PaperCraneRecord.findOne({
     userId: fakeUser.id,
