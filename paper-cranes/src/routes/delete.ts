@@ -9,3 +9,5 @@ import mongoose from "mongoose";
 const router = express.Router();
 
 router.delete("/:id", async (req: Request, res: Response) => {});
+
+export { router as deleteRouter };

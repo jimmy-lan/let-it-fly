@@ -13,3 +13,5 @@ router.get("/sent", async (req: Request, res: Response) => {});
 router.get("/received", async (req: Request, res: Response) => {});
 
 router.get("/unread", async (req: Request, res: Response) => {});
+
+export { router as listRouter };
