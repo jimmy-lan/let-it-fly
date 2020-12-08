@@ -4,7 +4,6 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
-import { UserDocument } from "./User";
 import { ReplyDocument } from "./Reply";
 import { defaultUserProperties } from "@ly-letitfly/common";
 
@@ -52,10 +51,12 @@ const paperCraneSchema = new Schema(
       required: true,
       default: defaultUserProperties.paperCraneStyles[0],
     },
-    replies: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Reply",
-    },
+    replies: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Reply",
+      },
+    ],
     wishToConnect: {
       type: [mongoose.Schema.Types.ObjectId],
       default: [],

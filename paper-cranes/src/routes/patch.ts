@@ -6,12 +6,8 @@
 import express, { Request, Response } from "express";
 import { body, param } from "express-validator";
 import mongoose from "mongoose";
-import {
-  BadRequestError,
-  ForbiddenError,
-  validateRequest,
-} from "@ly-letitfly/common";
-import { PaperCrane, PaperCraneRecord } from "../models";
+import { validateRequest } from "@ly-letitfly/common";
+import { findPaperCraneAndRecord } from "./helpers";
 
 const router = express.Router();
 
@@ -31,15 +27,10 @@ router.patch(
     const userId = req.user!.id;
 
     // Find paper crane record for this user
-    const paperCrane = await PaperCrane.findById(paperCraneId);
-    if (!paperCrane) {
-      throw new BadRequestError(`Paper crane ${paperCraneId} does not exist`);
-    }
-
-    const record = await PaperCraneRecord.findOne({ userId, paperCrane });
-    if (!record) {
-      throw new ForbiddenError();
-    }
+    const [paperCrane, record] = await findPaperCraneAndRecord(
+      userId,
+      paperCraneId
+    );
 
     // Update record
     if (isStarred !== undefined) {

@@ -18,7 +18,10 @@ router.get("/sent", async (req: Request, res: Response) => {
   });
 
   const filteredRecords = paperCraneRecords
-    .filter((record) => record.paperCrane.senderId.toString() === userId)
+    .filter(
+      (record) =>
+        record.paperCrane.senderId.toString() === userId && !record.isDeleted
+    )
     .map((record) => record.paperCrane);
 
   return res.send({ success: true, data: filteredRecords });
@@ -34,7 +37,10 @@ router.get("/received", async (req: Request, res: Response) => {
   });
 
   const filteredRecords = paperCraneRecords
-    .filter((record) => record.paperCrane.receiverId.toString() === userId)
+    .filter(
+      (record) =>
+        record.paperCrane.receiverId.toString() === userId && !record.isDeleted
+    )
     .map((record) => record.paperCrane);
   return res.send({ success: true, data: filteredRecords });
 });
@@ -48,7 +54,7 @@ router.get("/starred", async (req: Request, res: Response) => {
     select: "title content style",
   });
   const filteredRecords = paperCraneRecords
-    .filter((record) => record.isStarred)
+    .filter((record) => record.isStarred && !record.isDeleted)
     .map((record) => record.paperCrane);
   return res.send({ success: true, data: filteredRecords });
 });
@@ -63,7 +69,7 @@ router.get("/unread", async (req: Request, res: Response) => {
   });
 
   const filteredRecords = paperCraneRecords
-    .filter((record) => record.isUnread)
+    .filter((record) => record.isUnread && !record.isDeleted)
     .map((record) => record.paperCrane);
   return res.send({ success: true, data: filteredRecords });
 });

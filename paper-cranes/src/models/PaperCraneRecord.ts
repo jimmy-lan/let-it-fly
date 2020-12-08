@@ -14,7 +14,7 @@ interface PaperCraneRecordProps {
   isUnread?: boolean;
 }
 
-interface PaperCraneRecordDocument extends Document {
+export interface PaperCraneRecordDocument extends Document {
   userId: string;
   paperCrane: PaperCraneDocument;
   isDeleted: boolean;
