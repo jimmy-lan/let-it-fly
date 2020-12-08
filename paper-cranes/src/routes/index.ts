@@ -7,6 +7,7 @@
  * compose a paper crane  POST /api/paper-crane/
  * search a paper crane  GET /api/paper-crane
  * read a paper crane  GET /api/paper-crane/:id
+ * reply to a paper crane POST /api/paper-crane/:id
  * star, mark as unread a paper crane  PATCH /api/paper-crane/:id, body star + markUnread
  * delete paper crane DELETE /api/paper-crane/:id
  * get a list of paper cranes sent  GET /api/paper-crane/sent
