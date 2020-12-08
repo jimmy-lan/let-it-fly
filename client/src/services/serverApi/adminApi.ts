@@ -92,7 +92,7 @@ export const loadActivityTable = () => {
     success: true,
     data: [
       {
-        performedBy: "12213@mail.utoronto.ca",
+        performedBy: "hfljy0@mail.utoronto.ca",
         discription: "login",
         date: "2020-05-15",
       },
@@ -119,6 +119,71 @@ export const loadStoreTable = () => {
         itemID: "ckjwbfy74928uhfrgyw8iu",
         description: "PeachcolorPaper",
         price: "500",
+      },
+    ],
+  };
+  return getFakeServerCall(response, 0.5);
+};
+export const loadUserChat = () => {
+  const response: ServerResponse = {
+    success: true,
+    data: [
+     [20,"#2dc6c8",'New User Today'],[100,"#b6a2dd", "New User This Week"],[200,"#5ab1ee","All Users"]
+    ],
+  };
+  return getFakeServerCall(response, 0.5);
+};
+export const loadUsersChat = () => {
+  const response: ServerResponse = {
+    success: true,
+    data: [
+      {
+        type: 'last month',
+        value: 27,
+      },
+      {
+        type: 'last half month',
+        value: 25,
+      },
+      {
+        type: 'last week',
+        value: 18,
+      },
+      {
+        type: 'last day',
+        value: 15,
+      },
+      {
+        type: 'today',
+        value: 5,
+      },
+    ],
+  };
+  return getFakeServerCall(response, 0.5);
+};
+export const loadCranesChat = () => {
+  const response: ServerResponse = {
+    success: true,
+    data: [
+      {
+        type: 'last month',
+        value: 88,
+      },
+      {
+        type: 'last half month',
+        value:56,
+      },
+      {
+        type: 'last week',
+        value: 44,
+      },
+      {
+        type: 'last day',
+        value: 32,
+      },
+      {
+        type: 'today',
+        value: 7,
       },
     ],
   };

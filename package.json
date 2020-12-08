@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/csc309-fall-2020/team03/issues"
   },
-  "homepage": "https://github.com/csc309-fall-2020/team03#readme"
+  "homepage": "https://github.com/csc309-fall-2020/team03#readme",
+  "dependencies": {
+    "devextreme": "^20.2.4"
+  }
 }
