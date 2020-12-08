@@ -3,5 +3,5 @@
  * Creation Date: 2020-12-08
  */
 
-export * from "./User";
+export * from "./UserProperty";
 export * from "./StoreItem";

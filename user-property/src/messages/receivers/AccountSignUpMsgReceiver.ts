@@ -6,7 +6,7 @@
 import { Message } from "node-nats-streaming";
 import { AccountSignUp, MsgReceiver, Subjects } from "@ly-letitfly/common";
 import { queueGroup } from "./constants";
-import { User } from "../../models";
+import { UserProperty } from "../../models";
 
 export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
   subject: Subjects.AccountSignUp = Subjects.AccountSignUp;
@@ -17,7 +17,7 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
 
     console.log(`Account sign up message received - id: ${id}`);
 
-    const user = User.build({
+    const user = UserProperty.build({
       id,
     });
 

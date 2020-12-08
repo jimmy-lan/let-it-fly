@@ -6,23 +6,23 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { defaultUserProperties } from "@ly-letitfly/common";
 
-interface UserProps {
+interface UserPropertyProps {
   id: string;
   coins?: number;
   paperCraneStyles?: string[];
 }
 
-interface UserDocument extends Document {
+interface UserPropertyDocument extends Document {
   id: string;
   coins: number;
   paperCraneStyles: string[];
 }
 
-interface UserModel extends Model<UserDocument> {
-  build(props: UserProps): UserDocument;
+interface UserPropertyModel extends Model<UserPropertyDocument> {
+  build(props: UserPropertyProps): UserPropertyDocument;
 }
 
-const userSchema = new Schema(
+const userPropertySchema = new Schema(
   {
     coins: {
       type: Number,
@@ -46,12 +46,15 @@ const userSchema = new Schema(
   }
 );
 
-const build = (props: UserProps) => {
-  const user = { _id: props.id, ...props };
-  delete user.id;
-  return new User(user);
+const build = (props: UserPropertyProps) => {
+  const userProperty: any = { _id: props.id, ...props };
+  delete userProperty.id;
+  return new UserProperty(userProperty);
 };
-userSchema.static("build", build);
+userPropertySchema.static("build", build);
 
-const User = mongoose.model<UserDocument, UserModel>("User", userSchema);
-export { User };
+const UserProperty = mongoose.model<UserPropertyDocument, UserPropertyModel>(
+  "User",
+  userPropertySchema
+);
+export { UserProperty };
