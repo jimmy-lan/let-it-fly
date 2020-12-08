@@ -32,7 +32,6 @@ const userPropertySchema = new Schema(
     },
     paperCraneStyles: {
       type: [mongoose.Schema.Types.ObjectId],
-      default: defaultUserProperties.paperCraneStyles,
     },
   },
   {
