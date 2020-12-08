@@ -11,6 +11,7 @@ interface PaperCraneRecordProps {
   paperCrane: PaperCraneDocument;
   isDeleted?: boolean;
   isStarred?: boolean;
+  isUnread?: boolean;
 }
 
 interface PaperCraneRecordDocument extends Document {
@@ -18,6 +19,7 @@ interface PaperCraneRecordDocument extends Document {
   paperCrane: PaperCraneDocument;
   isDeleted: boolean;
   isStarred: boolean;
+  isUnread: boolean;
 }
 
 interface PaperCraneRecordModel extends Model<PaperCraneRecordDocument> {
@@ -37,6 +39,7 @@ const paperCraneRecordSchema = new Schema(
     },
     isDeleted: Boolean,
     isStarred: Boolean,
+    isUnread: Boolean,
   },
   {
     toJSON: {
