@@ -46,7 +46,7 @@ const UserPropertySchema = new Schema(
 UserPropertySchema.plugin(updateIfCurrentPlugin);
 
 const build = (props: UserPropertyProps) => {
-  const property = { _id: props.id, ...props };
+  const property: any = { _id: props.id, ...props };
   delete property.id;
   return new UserProperty(property);
 };

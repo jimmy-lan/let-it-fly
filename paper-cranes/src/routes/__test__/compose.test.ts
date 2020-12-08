@@ -9,14 +9,14 @@ import { addFakeUser, addPaperStyle } from "./helpers";
 import { PaperCrane, PaperCraneRecord, UserDocument } from "../../models";
 
 it("returns 401 when user is not authenticated", async () => {
-  await request(app).post("/api/paper-crane").send({}).expect(401);
+  await request(app).post("/api/paper-cranes").send({}).expect(401);
 });
 
 it("responds with 400 bad request if no request body is provided", async () => {
   const fakeUser = await addFakeUser();
 
   const response = await request(app)
-    .post("/api/paper-crane")
+    .post("/api/paper-cranes")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send({})
     .expect(400);
@@ -28,7 +28,7 @@ it("responds with 400 bad request if style is missing", async () => {
   const fakeUser = await addFakeUser();
 
   const response = await request(app)
-    .post("/api/paper-crane")
+    .post("/api/paper-cranes")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send({ title: "Good paper crane", content: "Some awesome content" })
     .expect(400);
@@ -40,7 +40,7 @@ it("responds with 400 bad request if title is missing", async () => {
   const fakeUser = await addFakeUser();
 
   const response = await request(app)
-    .post("/api/paper-crane")
+    .post("/api/paper-cranes")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send({ content: "hi", style: "#000" })
     .expect(400);
@@ -52,7 +52,7 @@ it("responds with 400 bad request if title and content is empty", async () => {
   const fakeUser = await addFakeUser();
 
   const response = await request(app)
-    .post("/api/paper-crane")
+    .post("/api/paper-cranes")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send({ title: "", content: "", style: "#000" })
     .expect(400);
@@ -65,7 +65,7 @@ it("responds with 400 if user does not have the paper crane style provided", asy
   await addPaperStyle(fakeUser.id, "#f5f5f5");
 
   const response = await request(app)
-    .post("/api/paper-crane")
+    .post("/api/paper-cranes")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send({ title: "title", content: "hi", style: "#000" })
     .expect(400);
@@ -78,12 +78,12 @@ it("creates a paper crane when request is valid", async () => {
   await addPaperStyle(fakeUser.id, "#e5e5e5");
 
   const response = await request(app)
-    .post("/api/paper-crane")
+    .post("/api/paper-cranes")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send({ title: "title", content: "hi", style: "#e5e5e5" })
     .expect(201);
 
-  expect(response.body.status).toBeTruthy();
+  expect(response.body.success).toBeTruthy();
   expect(response.body.data.title).toEqual("title");
   expect(response.body.data.content).toEqual("hi");
   expect(response.body.data.style).toEqual("#e5e5e5");
@@ -94,7 +94,7 @@ it("creates a paper crane when request is valid", async () => {
   );
   expect(paperCrane).toBeDefined();
   expect(paperCrane!.title).toEqual("title");
-  expect(paperCrane!.content).toEqual("content");
+  expect(paperCrane!.content).toEqual("hi");
   const sender = paperCrane!.sender as UserDocument;
   expect(sender.id).toEqual(fakeUser.id);
 
