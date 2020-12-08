@@ -124,15 +124,7 @@ export const loadStoreTable = () => {
   };
   return getFakeServerCall(response, 0.5);
 };
-export const loadUserChat = () => {
-  const response: ServerResponse = {
-    success: true,
-    data: [
-     [20,"#2dc6c8",'New User Today'],[100,"#b6a2dd", "New User This Week"],[200,"#5ab1ee","All Users"]
-    ],
-  };
-  return getFakeServerCall(response, 0.5);
-};
+
 export const loadUsersChat = () => {
   const response: ServerResponse = {
     success: true,
