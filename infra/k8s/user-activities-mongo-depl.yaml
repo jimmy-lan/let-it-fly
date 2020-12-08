@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-activities-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-activities-mongo-db
+  template:
+    metadata:
+      labels:
+        app: user-activities-mongo-db
+    spec:
+      containers:
+        - name: user-activities-mongo-db
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-activities-mongo-service
+spec:
+  selector:
+    app: user-activities-mongo-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

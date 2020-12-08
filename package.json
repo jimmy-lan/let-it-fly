@@ -1,0 +1,24 @@
+{
+  "name": "team03",
+  "version": "1.0.0",
+  "description": "> Author: Jimmy Lan > > Last Updated: Oct 21, 2020",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "update-common-pkg": "./update-common-pkg.bash",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csc309-fall-2020/team03.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csc309-fall-2020/team03/issues"
+  },
+  "homepage": "https://github.com/csc309-fall-2020/team03#readme"
+}
