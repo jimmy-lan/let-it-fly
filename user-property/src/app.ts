@@ -14,8 +14,6 @@ import {
   extractUser,
   requireAuth,
 } from "@ly-letitfly/common";
-import { AccountSignUpMsgReceiver } from "./messages/receivers";
-import { natsWrapper } from "./services";
 import * as routes from "./routes";
 
 const app = express();
@@ -34,9 +32,6 @@ app.use(extractUser);
 app.use(requireAuth);
 
 app.use("/api/users/property", Object.values(routes));
-
-// Listeners
-new AccountSignUpMsgReceiver(natsWrapper.client).listen();
 
 app.all("*", () => {
   throw new NotFoundError();
