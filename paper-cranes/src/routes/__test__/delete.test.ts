@@ -5,5 +5,12 @@
 
 import mongoose from "mongoose";
 import request from "supertest";
+import { app } from "../../app";
 
-jest.mock("../../services/NatsWrapper");
+it("returns 401 when user is not authenticated", async () => {
+  const id = mongoose.Types.ObjectId().toHexString();
+  await request(app)
+    .delete("/api/paper-crane/" + id)
+    .send({})
+    .expect(401);
+});
