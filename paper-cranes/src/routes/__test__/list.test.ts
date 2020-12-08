@@ -11,6 +11,7 @@ it("returns 401 when user is not authenticated", async () => {
   await request(app).get("/api/paper-cranes/sent").send({}).expect(401);
   await request(app).get("/api/paper-cranes/received").send({}).expect(401);
   await request(app).get("/api/paper-cranes/unread").send({}).expect(401);
+  await request(app).get("/api/paper-cranes/starred").send({}).expect(401);
 });
 
 const populateUserAndPaperCranes = async () => {
