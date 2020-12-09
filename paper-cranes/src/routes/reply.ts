@@ -6,10 +6,7 @@
 import express, { Request, Response } from "express";
 import { param, body } from "express-validator";
 import mongoose from "mongoose";
-import {
-  BadRequestError,
-  validateRequest,
-} from "@ly-letitfly/common";
+import { BadRequestError, validateRequest } from "@ly-letitfly/common";
 import { findActiveUser } from "./helpers";
 import {
   PaperCrane,
