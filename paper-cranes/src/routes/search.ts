@@ -18,7 +18,7 @@ router.get("/", async (req: Request, res: Response) => {
     // No receiver specified
     receiverId: { $exists: false },
   };
-  const count = await PaperCrane.count(findCondition).exec();
+  const count = await PaperCrane.countDocuments(findCondition).exec();
 
   const skip = Math.floor(Math.random() * count);
   const paperCrane = await PaperCrane.findOne(findCondition).skip(skip).exec();
