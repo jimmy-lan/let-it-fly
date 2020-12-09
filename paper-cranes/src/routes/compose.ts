@@ -6,16 +6,16 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import { BadRequestError, validateRequest } from "@ly-letitfly/common";
-import { PaperCrane, PaperCraneRecord, User, UserProperty } from "../models";
+import { PaperCrane, PaperCraneRecord, UserProperty } from "../models";
 
 const router = express.Router();
 
 router.post(
   "/",
   [
-    body("title").isString().not().isEmpty(),
-    body("content").isString().not().isEmpty(),
-    body("style").isString().not().isEmpty(),
+    body("title").not().isEmpty().withMessage("title must be provided"),
+    body("content").not().isEmpty().withMessage("content must be provided"),
+    body("style").not().isEmpty().withMessage("style must be provided"),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
