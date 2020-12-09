@@ -8,6 +8,7 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface FriendProps {
   user: string;
@@ -15,6 +16,7 @@ interface FriendProps {
 }
 
 interface FriendDocument extends Document {
+  __v: number;
   user: string;
   friends: string[];
 }
@@ -28,6 +30,7 @@ const friendSchema = new Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      unique: true,
     },
     friends: [mongoose.Schema.Types.ObjectId],
   },
@@ -41,6 +44,7 @@ const friendSchema = new Schema(
     },
   }
 );
+friendSchema.plugin(updateIfCurrentPlugin);
 
 const build = (props: FriendProps) => {
   return new Friend(props);

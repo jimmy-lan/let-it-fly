@@ -4,3 +4,6 @@
  */
 
 export * from "./AccountSignUpMsgReceiver";
+export * from "./AccountRoleUpdateUserMsgReceiver";
+export * from "./FriendCreateMsgReceiver";
+export * from "./FriendDeleteMsgReceiver";

@@ -5,5 +5,6 @@
 
 export * from "./PaperCrane";
 export * from "./PaperCraneRecord";
+export * from "./UserProperty";
 export * from "./Reply";
 export * from "./User";

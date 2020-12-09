@@ -6,7 +6,8 @@
 import mongoose from "mongoose";
 import { verifyEnvVariables } from "@ly-letitfly/common";
 import { app } from "./app";
-import { natsWrapper } from "./services";
+import { DataWorker, natsWrapper } from "./services";
+import { AccountSignUpMsgReceiver } from "./messages/receivers";
 
 const start = async () => {
   verifyEnvVariables([
@@ -33,8 +34,16 @@ const start = async () => {
       process.exit();
     });
 
-    process.on("SIGINT", () => natsClient.close());
-    process.on("SIGTERM", () => natsClient.close());
+    const onNatsClose = () => {
+      natsClient.close();
+      process.exit(1);
+    };
+
+    process.on("SIGINT", onNatsClose);
+    process.on("SIGTERM", onNatsClose);
+
+    // Listeners
+    new AccountSignUpMsgReceiver(natsWrapper.client).listen();
 
     // Connect to mongodb
     await mongoose.connect(process.env.MONGO_CONNECTION_URI!, {
@@ -43,6 +52,10 @@ const start = async () => {
       useCreateIndex: true,
     });
     console.log("Connected to MongoDB.");
+
+    // Ensure default values are added in the database
+    await DataWorker.ensureDefaultStoreItem();
+    console.log("Data worker: ensureDefaultStoreItem ran successfully.");
   } catch (error) {
     console.error(error);
   }

@@ -4,19 +4,17 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
-import { defaultUserProperties } from "@ly-letitfly/common";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface UserProps {
   id: string;
-  firstName: string;
-  lastName: string;
-  paperCraneStyles: string[];
+  firstName?: string;
+  lastName?: string;
 }
 
 export interface UserDocument extends Document {
   firstName: string;
   lastName: string;
-  paperCraneStyles: string[];
 }
 
 interface UserModel extends Model<UserDocument> {
@@ -25,19 +23,8 @@ interface UserModel extends Model<UserDocument> {
 
 const userSchema = new Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    paperCraneStyles: {
-      type: [String],
-      required: true,
-      default: defaultUserProperties.paperCraneStyles,
-    },
+    firstName: String,
+    lastName: String,
   },
   {
     toJSON: {
@@ -49,9 +36,10 @@ const userSchema = new Schema(
     },
   }
 );
+userSchema.plugin(updateIfCurrentPlugin);
 
 const build = (props: UserProps) => {
-  const user = { _id: props.id, ...props };
+  const user: any = { _id: props.id, ...props };
   delete user.id;
   return new User(user);
 };

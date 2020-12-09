@@ -15,4 +15,6 @@ export enum Subjects {
   UserInfoUpdate = "user-info:update",
   PropertyPurchase = "property:purchase",
   PaperCraneUserConnect = "paper-crane:user-connect",
+  FriendCreate = "friend:create",
+  FriendDelete = "friend:deletes",
 }

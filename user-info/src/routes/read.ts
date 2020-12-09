@@ -6,7 +6,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import { param } from "express-validator";
 import mongoose from "mongoose";
-import { User } from "../models";
+import { Friend, User } from "../models";
 import {
   BadRequestError,
   validateRequest,
@@ -46,10 +46,24 @@ router.get(
   validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
     const { userId } = req.params;
+    const currentUserId = req.user!.id;
 
-    // TODO a regular user should be able to access user information of a
-    //  friend. Update this once the friends service is complete.
-    if (req.user!.id !== userId) {
+    // A regular user should only access user information
+    // about him/herself or a friend.
+
+    // The user is accessing information of him/herself
+    if (userId === currentUserId) {
+      return next();
+    }
+
+    const friendRelation = await Friend.findOne({ user: currentUserId });
+    // The user has no friends
+    if (!friendRelation) {
+      throw new ForbiddenError();
+    }
+
+    // The user is not accessing information about a friend
+    if (!friendRelation.friends.includes(userId)) {
       throw new ForbiddenError();
     }
 

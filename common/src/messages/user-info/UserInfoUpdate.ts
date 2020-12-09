@@ -17,5 +17,6 @@ export interface UserInfoUpdate extends Message {
     avatar: string;
     firstName: string;
     lastName: string;
+    __v: number;
   };
 }

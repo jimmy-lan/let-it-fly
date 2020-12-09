@@ -9,9 +9,11 @@ import {
   validateRequest,
   ForbiddenError,
 } from "@ly-letitfly/common";
-import { param } from "express-validator";
+import { body, param } from "express-validator";
 import mongoose from "mongoose";
 import { User } from "../models";
+import { UserInfoUpdateMsgSender } from "../messages/senders";
+import { natsWrapper } from "../services";
 
 const router = express.Router();
 
@@ -32,7 +34,9 @@ const updateUserInfo = async (req: Request, res: Response) => {
 
   // User cannot update the following fields
   // during this request
-  delete body.contact?.email?.primary;
+  if (req.user?.role !== UserRole.admin) {
+    delete body.contact?.email?.primary;
+  }
   delete body.dateJoined;
   delete body.id;
   delete body._id;
@@ -42,7 +46,16 @@ const updateUserInfo = async (req: Request, res: Response) => {
     throw new BadRequestError(`User ${userId} is not found`);
   }
   user.set(body);
-  user.save();
+  await user.save();
+
+  // Emit user info update event
+  await new UserInfoUpdateMsgSender(natsWrapper.client).send({
+    id: user.id,
+    avatar: user.avatar,
+    firstName: user.personal.name.first,
+    lastName: user.personal.name.last,
+    __v: user.__v,
+  });
 
   return res.send({ success: true, data: user });
 };
@@ -53,6 +66,7 @@ router.patch(
     param("userId")
       .custom((userId: string) => mongoose.Types.ObjectId.isValid(userId))
       .withMessage("User ID must be a valid Object ID type."),
+    body("contact.email.secondary").optional().isEmail(),
   ],
   validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
@@ -70,6 +84,8 @@ router.patch(
 
 router.patch(
   "/",
+  [body("contact.email.secondary").optional().isEmail()],
+  validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {
     req.params.userId = req.user!.id;
     next();

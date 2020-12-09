@@ -10,12 +10,18 @@ import { UserDocument } from "./User";
 interface ReplyProps {
   sender: UserDocument;
   content: string;
+  /**
+   * Date time when this reply is issued. Defaults to
+   * the current time stamp.
+   */
+  time?: Date;
   isWishToConnect?: boolean;
 }
 
 export interface ReplyDocument extends Document {
   sender: UserDocument;
   content: string;
+  time: Date;
   isWishToConnect: boolean;
 }
 
@@ -33,6 +39,11 @@ const replySchema = new Schema(
     content: {
       type: String,
       required: true,
+    },
+    time: {
+      type: mongoose.Schema.Types.Date,
+      required: true,
+      default: Date.now,
     },
     isWishToConnect: Boolean,
   },

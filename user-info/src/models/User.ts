@@ -4,6 +4,7 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface UserProps {
   id?: string;
@@ -42,6 +43,8 @@ interface UserProps {
 }
 
 interface UserDocument extends Document {
+  __v: number;
+  avatar: string;
   personal: {
     name: {
       first: string;
@@ -82,6 +85,7 @@ interface UserModel extends Model<UserDocument> {
 
 const userSchema = new Schema(
   {
+    avatar: String,
     personal: {
       name: {
         first: String,
@@ -132,6 +136,7 @@ const userSchema = new Schema(
     },
   }
 );
+userSchema.plugin(updateIfCurrentPlugin);
 
 const build = (props: UserProps) => {
   const user = { _id: props.id, ...props };

@@ -4,13 +4,12 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
-import { UserDocument } from "./User";
 import { ReplyDocument } from "./Reply";
 import { defaultUserProperties } from "@ly-letitfly/common";
 
 interface PaperCraneProps {
-  sender: UserDocument;
-  receiver?: UserDocument;
+  senderId: string;
+  receiverId?: string;
   title: string;
   content: string;
   style: string;
@@ -19,8 +18,8 @@ interface PaperCraneProps {
 }
 
 export interface PaperCraneDocument extends Document {
-  sender: UserDocument;
-  receiver: UserDocument;
+  senderId: string;
+  receiverId: string;
   title: string;
   content: string;
   style: string;
@@ -34,15 +33,11 @@ interface PaperCraneModel extends Model<PaperCraneDocument> {
 
 const paperCraneSchema = new Schema(
   {
-    sender: {
+    senderId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "User",
     },
-    receiver: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+    receiverId: mongoose.Schema.Types.ObjectId,
     title: {
       type: String,
       required: true,
@@ -54,12 +49,14 @@ const paperCraneSchema = new Schema(
     style: {
       type: String,
       required: true,
-      default: defaultUserProperties.paperCraneStyles[0],
+      default: defaultUserProperties.paperCraneStyleItems[0].value,
     },
-    replies: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Reply",
-    },
+    replies: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Reply",
+      },
+    ],
     wishToConnect: {
       type: [mongoose.Schema.Types.ObjectId],
       default: [],

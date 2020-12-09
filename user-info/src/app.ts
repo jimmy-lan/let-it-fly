@@ -12,7 +12,7 @@ import {
   NotFoundError,
   handleErrors,
   extractUser,
-  requireAuth,
+  disallowGuest,
 } from "@ly-letitfly/common";
 import * as routes from "./routes";
 
@@ -29,7 +29,7 @@ app.use(
 
 // All routes in this service requires authentication
 app.use(extractUser);
-app.use(requireAuth);
+app.use(disallowGuest);
 
 app.use("/api/users/info", Object.values(routes));
 

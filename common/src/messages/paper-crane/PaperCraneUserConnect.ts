@@ -6,7 +6,7 @@
 import { Message } from "../Message";
 import { Subjects } from "../Subjects";
 
-export interface UserConnect extends Message {
+export interface PaperCraneUserConnect extends Message {
   subject: Subjects.PaperCraneUserConnect;
   data: {
     /**

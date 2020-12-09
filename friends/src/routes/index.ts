@@ -3,4 +3,5 @@
  * Creation Date: 2020-12-04
  */
 
-export * from "./requestFriend";
+export * from "./read";
+export * from "./delete";
