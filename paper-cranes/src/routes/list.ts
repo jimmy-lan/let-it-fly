@@ -174,13 +174,12 @@ router.get(
     }
 
     const { skip, limit } = req.query;
-    const userId = req.user!.id;
 
     const findLimit: number = limit ? Number(limit) : 0;
     const findSkip: number = skip ? Number(skip) : 0;
 
     // Query paper crane record
-    const paperCraneRecords = await PaperCraneRecord.find({ userId })
+    const paperCraneRecords = await PaperCraneRecord.find({})
       .limit(findLimit)
       .skip(findSkip)
       .populate({
