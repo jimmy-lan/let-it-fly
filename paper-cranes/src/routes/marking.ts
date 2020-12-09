@@ -12,7 +12,7 @@ import { findPaperCraneAndRecord } from "./helpers";
 const router = express.Router();
 
 router.patch(
-  "/:paperCraneId/info",
+  "/:paperCraneId/marking",
   [
     param("paperCraneId")
       .custom((id: string) => mongoose.Types.ObjectId.isValid(id))
@@ -52,4 +52,4 @@ router.patch(
   }
 );
 
-export { router as patchRouter };
+export { router as markingRouter };
