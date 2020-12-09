@@ -11,7 +11,7 @@ import { User } from "../models";
 const router = express.Router();
 
 router.get(
-  "/list",
+  "/",
   [
     query("limit").optional().isInt({ gt: 0 }),
     query("skip").optional().isInt({ gt: 0 }),
