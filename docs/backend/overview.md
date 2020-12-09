@@ -18,8 +18,8 @@ user authentication (issuance of token) and role management.
 
 ### User Information Service
 
-This service is responsible for managing detailed information about a user. 
-This includes personal information, contact information, profile data, and 
+This service is responsible for managing detailed information about a user.
+This includes personal information, contact information, profile data, and
 avatar of users.
 
 ### User Property Service
