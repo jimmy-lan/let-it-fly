@@ -9,6 +9,8 @@ interface UserProps {
   email: string;
   password: string;
   role: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 /**
@@ -27,8 +29,8 @@ interface UserDocument extends Document {
   email: string;
   password: string;
   role: string;
-  createdAt: string; // created automatically
-  updatedAt: string; // created automatically
+  firstName: string;
+  lastName: string;
 }
 
 /**
@@ -49,6 +51,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    firstName: String,
+    lastName: String,
   },
   {
     toJSON: {
