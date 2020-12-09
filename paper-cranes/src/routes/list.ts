@@ -4,7 +4,9 @@
  */
 
 import express, { Request, Response } from "express";
+import { query } from "express-validator";
 import { PaperCraneRecord, PaperCraneRecordDocument } from "../models";
+import { validateRequest } from "@ly-letitfly/common";
 
 const router = express.Router();
 
@@ -23,51 +25,92 @@ const mapRecordsToPaperCrane = (record: PaperCraneRecordDocument) => {
   };
 };
 
-router.get("/sent", async (req: Request, res: Response) => {
-  const userId = req.user!.id;
+router.get(
+  "/sent",
+  [
+    query("limit").optional().isInt({ gt: 0 }),
+    query("skip").optional().isInt({ gt: 0 }),
+  ],
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const { skip, limit } = req.query;
+    const userId = req.user!.id;
 
-  // Query paper crane record
-  const paperCraneRecords = await PaperCraneRecord.find({ userId }).populate({
-    path: "paperCrane",
-    select: "title content style senderId",
-  });
+    const findLimit: number = limit ? Number(limit) : 0;
+    const findSkip: number = skip ? Number(skip) : 0;
 
-  const filteredRecords = paperCraneRecords
-    .filter(
-      (record) =>
-        record.paperCrane.senderId.toString() === userId && !record.isDeleted
-    )
-    .map(mapRecordsToPaperCrane);
+    // Query paper crane record
+    const paperCraneRecords = await PaperCraneRecord.find({ userId })
+      .limit(findLimit)
+      .skip(findSkip)
+      .populate({
+        path: "paperCrane",
+        select: "title content style senderId",
+      })
+      .exec();
 
-  return res.send({ success: true, data: filteredRecords });
-});
+    const filteredRecords = paperCraneRecords
+      .filter(
+        (record) =>
+          record.paperCrane.senderId.toString() === userId && !record.isDeleted
+      )
+      .map(mapRecordsToPaperCrane);
 
-router.get("/received", async (req: Request, res: Response) => {
-  const userId = req.user!.id;
+    return res.send({ success: true, data: filteredRecords });
+  }
+);
 
-  // Query paper crane record
-  const paperCraneRecords = await PaperCraneRecord.find({ userId }).populate({
-    path: "paperCrane",
-    select: "title content style receiverId",
-  });
+router.get(
+  "/received",
+  [
+    query("limit").optional().isInt({ gt: 0 }),
+    query("skip").optional().isInt({ gt: 0 }),
+  ],
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const { skip, limit } = req.query;
+    const userId = req.user!.id;
 
-  const filteredRecords = paperCraneRecords
-    .filter(
-      (record) =>
-        record.paperCrane.receiverId?.toString() === userId && !record.isDeleted
-    )
-    .map(mapRecordsToPaperCrane);
-  return res.send({ success: true, data: filteredRecords });
-});
+    const findLimit: number = limit ? Number(limit) : 0;
+    const findSkip: number = skip ? Number(skip) : 0;
+
+    // Query paper crane record
+    const paperCraneRecords = await PaperCraneRecord.find({ userId })
+      .limit(findLimit)
+      .skip(findSkip)
+      .populate({
+        path: "paperCrane",
+        select: "title content style receiverId",
+      })
+      .exec();
+
+    const filteredRecords = paperCraneRecords
+      .filter(
+        (record) =>
+          record.paperCrane.receiverId?.toString() === userId &&
+          !record.isDeleted
+      )
+      .map(mapRecordsToPaperCrane);
+    return res.send({ success: true, data: filteredRecords });
+  }
+);
 
 router.get("/starred", async (req: Request, res: Response) => {
+  const { skip, limit } = req.query;
   const userId = req.user!.id;
 
+  const findLimit: number = limit ? Number(limit) : 0;
+  const findSkip: number = skip ? Number(skip) : 0;
+
   // Query paper crane record
-  const paperCraneRecords = await PaperCraneRecord.find({ userId }).populate({
-    path: "paperCrane",
-    select: "title content style",
-  });
+  const paperCraneRecords = await PaperCraneRecord.find({ userId })
+    .limit(findLimit)
+    .skip(findSkip)
+    .populate({
+      path: "paperCrane",
+      select: "title content style",
+    })
+    .exec();
   const filteredRecords = paperCraneRecords
     .filter((record) => record.isStarred && !record.isDeleted)
     .map(mapRecordsToPaperCrane);
@@ -75,13 +118,20 @@ router.get("/starred", async (req: Request, res: Response) => {
 });
 
 router.get("/unread", async (req: Request, res: Response) => {
+  const { skip, limit } = req.query;
   const userId = req.user!.id;
 
+  const findLimit: number = limit ? Number(limit) : 0;
+  const findSkip: number = skip ? Number(skip) : 0;
+
   // Query paper crane record
-  const paperCraneRecords = await PaperCraneRecord.find({ userId }).populate({
-    path: "paperCrane",
-    select: "title content style",
-  });
+  const paperCraneRecords = await PaperCraneRecord.find({ userId })
+    .limit(findLimit)
+    .skip(findSkip)
+    .populate({
+      path: "paperCrane",
+      select: "title content style",
+    });
 
   const filteredRecords = paperCraneRecords
     .filter((record) => record.isUnread && !record.isDeleted)
