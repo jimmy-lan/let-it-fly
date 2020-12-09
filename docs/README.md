@@ -1,5 +1,9 @@
 # Documentation Menu
 
+## Setup Guide
+
+- [Setting Up a Local Development Cluster](/docs/setup)
+
 ## Client
 
 - [Understanding the Server API Folder](/client/src/services/serverApi)
