@@ -15,7 +15,7 @@ export class FriendDeleteMsgReceiver extends MsgReceiver<FriendDelete> {
   async onMessage(data: FriendDelete["data"], msg: Message) {
     const friendRelation = await Friend.findOne({
       user: data.userId,
-      __v: data.__v,
+      __v: data.__v - 1,
     });
 
     if (!friendRelation) {

@@ -5,6 +5,6 @@
 
 import { MsgSender, PropertyPurchase, Subjects } from "@ly-letitfly/common";
 
-export class propertyPurchaseMsgSender extends MsgSender<PropertyPurchase> {
+export class PropertyPurchaseMsgSender extends MsgSender<PropertyPurchase> {
   subject: PropertyPurchase["subject"] = Subjects.PropertyPurchase;
 }

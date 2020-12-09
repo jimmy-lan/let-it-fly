@@ -20,7 +20,7 @@ export class PropertyPurchaseMsgReceiver extends MsgReceiver<PropertyPurchase> {
   async onMessage(data: PropertyPurchase["data"], msg: Message) {
     const property = await UserProperty.findOne({
       _id: data.userId,
-      __v: data.__v,
+      __v: data.__v - 1,
     });
 
     if (!property) {

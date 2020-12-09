@@ -8,8 +8,10 @@ import { verifyEnvVariables } from "@ly-letitfly/common";
 import { app } from "./app";
 import { natsWrapper } from "./services";
 import { AccountSignUpMsgReceiver } from "./messages/receivers";
-import { PropertyPurchaseMsgReceiver } from "./messages/receivers/PropertyPurchaseMsgReceiver";
-import { UserInfoUpdateMsgReceiver } from "../../friends/src/messages/receivers";
+import {
+  PropertyPurchaseMsgReceiver,
+  UserInfoUpdateMsgReceiver,
+} from "./messages/receivers";
 
 const start = async () => {
   verifyEnvVariables([

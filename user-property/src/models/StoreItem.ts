@@ -19,7 +19,7 @@ interface StoreItemProps {
   price: number;
 }
 
-interface StoreItemDocument extends Document {
+export interface StoreItemDocument extends Document {
   name: string;
   category: StoreItemCategory;
   value: string;

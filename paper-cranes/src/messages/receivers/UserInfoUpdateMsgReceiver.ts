@@ -6,7 +6,7 @@
 import { MsgReceiver, Subjects, UserInfoUpdate } from "@ly-letitfly/common";
 import { Message } from "node-nats-streaming";
 import { queueGroup } from "./constants";
-import { User } from "../../../../friends/src/models";
+import { User } from "../../models";
 
 export class UserInfoUpdateMsgReceiver extends MsgReceiver<UserInfoUpdate> {
   subject: Subjects.UserInfoUpdate = Subjects.UserInfoUpdate;

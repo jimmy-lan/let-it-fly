@@ -15,6 +15,7 @@ import {
   requireAuth,
 } from "@ly-letitfly/common";
 import * as routes from "./routes";
+import { purchaseRouter } from "./routes/purchase";
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(extractUser);
 app.use(requireAuth);
 
 app.use("/api/users/property", Object.values(routes));
+app.use("/api/users/property", purchaseRouter);
 
 app.all("*", () => {
   throw new NotFoundError();

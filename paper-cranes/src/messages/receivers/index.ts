@@ -4,3 +4,5 @@
  */
 
 export * from "./AccountSignUpMsgReceiver";
+export * from "./PropertyPurchaseMsgReceiver";
+export * from "./UserInfoUpdateMsgReceiver";

@@ -6,17 +6,18 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 import { defaultUserProperties } from "@ly-letitfly/common";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
+import { StoreItemDocument } from "./StoreItem";
 
 interface UserPropertyProps {
   id: string;
   coins?: number;
-  paperCraneStyles?: string[];
+  paperCraneStyles?: StoreItemDocument[];
 }
 
 interface UserPropertyDocument extends Document {
   id: string;
   coins: number;
-  paperCraneStyles: string[];
+  paperCraneStyles: StoreItemDocument[];
 }
 
 interface UserPropertyModel extends Model<UserPropertyDocument> {
@@ -31,7 +32,12 @@ const userPropertySchema = new Schema(
       default: defaultUserProperties.coins,
     },
     paperCraneStyles: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "StoreItem",
+        },
+      ],
     },
   },
   {

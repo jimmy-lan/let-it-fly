@@ -11,6 +11,7 @@ import {
   AccountSignUpMsgReceiver,
   UserInfoUpdateMsgReceiver,
 } from "./messages/receivers";
+import { PaperCraneConnectMsgReceiver } from "./messages/receivers/PaperCraneConnectMsgReceiver";
 
 const start = async () => {
   verifyEnvVariables([
@@ -48,6 +49,7 @@ const start = async () => {
     // Listeners
     new AccountSignUpMsgReceiver(natsClient).listen();
     new UserInfoUpdateMsgReceiver(natsClient).listen();
+    new PaperCraneConnectMsgReceiver(natsClient).listen();
 
     // Connect to mongodb
     await mongoose.connect(process.env.MONGO_CONNECTION_URI!, {

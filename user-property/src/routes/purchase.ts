@@ -12,6 +12,8 @@ import {
   validateRequest,
 } from "@ly-letitfly/common";
 import { StoreItem, UserProperty } from "../models";
+import { PropertyPurchaseMsgSender } from "../messages";
+import { natsWrapper } from "../services";
 
 const router = express.Router();
 
@@ -43,6 +45,13 @@ router.post(
 
       property.paperCraneStyles.push(item.id);
       await property.save();
+
+      await new PropertyPurchaseMsgSender(natsWrapper.client).send({
+        itemValue: item.value,
+        itemCategory: item.category,
+        userId,
+        __v: property.__v!,
+      });
     }
 
     // Currently, we do not have other categories of items
