@@ -25,7 +25,7 @@ const router = express.Router();
  * Once update is successful, the guest user becomes a regular user.
  */
 router.post(
-  "/role/upgrade",
+  "/roles/upgrade",
   [
     body("firstName")
       .notEmpty()
