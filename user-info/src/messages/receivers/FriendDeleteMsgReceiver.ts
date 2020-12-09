@@ -18,6 +18,10 @@ export class FriendDeleteMsgReceiver extends MsgReceiver<FriendDelete> {
       __v: data.__v - 1,
     });
 
+    console.log(
+      `Friend create message received - user id: ${data.userId}, friend id: ${data.friendId}`
+    );
+
     if (!friendRelation) {
       throw new Error("No matching friend relation found!");
     }

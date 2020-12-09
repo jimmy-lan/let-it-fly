@@ -20,7 +20,10 @@ export class UserInfoUpdateMsgReceiver extends MsgReceiver<UserInfoUpdate> {
 
     if (!user) {
       // We are attempting to update user information in an incorrect order
-      throw new Error("No matching user entry found.");
+      throw new Error(
+        "No matching user entry found." +
+          `data.d: ${data.id}, data.__v: ${data.__v}`
+      );
     }
 
     const { firstName, lastName } = data;

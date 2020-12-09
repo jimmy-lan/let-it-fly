@@ -24,7 +24,10 @@ export class PropertyPurchaseMsgReceiver extends MsgReceiver<PropertyPurchase> {
     });
 
     if (!property) {
-      throw new Error("No matching property entry found.");
+      throw new Error(
+        "No matching property entry found. " +
+          `data.userId: ${data.userId}, data.__v: ${data.__v}`
+      );
     }
 
     const { itemCategory, itemValue } = data;

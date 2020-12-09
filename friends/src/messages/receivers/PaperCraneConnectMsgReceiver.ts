@@ -42,33 +42,35 @@ export class PaperCraneConnectMsgReceiver extends MsgReceiver<
       throw new Error(`User ${userId2} is not found!`);
     }
 
-    const userRelation1 = await Friend.findOneAndUpdate(
-      { user: user1.id },
-      { $addToSet: { friends: user2 } }
-    );
-
-    const userRelation2 = await Friend.findOneAndUpdate(
-      { user: user2.id },
-      { $addToSet: { friends: user1 } }
-    );
+    const userRelation1 = await Friend.findOne({ user: user1.id });
+    const userRelation2 = await Friend.findOne({ user: user2.id });
 
     if (!userRelation1 || !userRelation2) {
       throw new Error("User relation for corresponding users not found!");
     }
 
+    if (!userRelation1.friends.includes(user2)) {
+      userRelation1.friends.push(user2);
+      await userRelation1.save();
+
+      await new FriendCreateMsgSender(this.client).send({
+        userId: userId1,
+        friendId: userId2,
+        __v: userRelation1.__v,
+      });
+    }
+
+    if (!userRelation2.friends.includes(user1)) {
+      userRelation2.friends.push(user1);
+      await userRelation2.save();
+
+      await new FriendCreateMsgSender(this.client).send({
+        userId: userId2,
+        friendId: userId1,
+        __v: userRelation2.__v,
+      });
+    }
+
     msg.ack();
-
-    // Emit friend created message
-    await new FriendCreateMsgSender(this.client).send({
-      userId: userId1,
-      friendId: userId2,
-      __v: userRelation1.__v,
-    });
-
-    await new FriendCreateMsgSender(this.client).send({
-      userId: userId2,
-      friendId: userId1,
-      __v: userRelation2.__v,
-    });
   }
 }
