@@ -115,6 +115,4 @@ Note that there are no spaces between the words above. Also note that you are
 not typing into some text boxes. Just click on any blank space on the page and type
 the string.
 
----
-
 You should be able to see the application now. The setup process is now complete.
