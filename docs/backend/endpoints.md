@@ -18,8 +18,8 @@ Please note the following:
   attempts to access other services while having a role of `guest`. The user **must**
   call the route `/api/users/roles/upgrade` and provide valid first and last name
   in order to upgrade the user role to `user`, which indicates a regular user.
-- When working with our api backends, please ensure that the requests are sent from
-  `https`, not `http`. We do **NOT** send cookies over `http` due to security
+- When working with our api backends, please ensure that the requests are sent
+  using `https`, not `http`. We do **NOT** send cookies over `http` due to security
   reasons. If you are testing our app and sending your requests using `http` instead
   of `https`, the backend API won't issue you a cookie, so you will not
   be authenticated to use our backend services.
