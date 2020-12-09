@@ -20,6 +20,6 @@ export * from "./delete";
 export * from "./read";
 export * from "./compose";
 export * from "./list";
-export * from "./patch";
+export * from "./marking";
 export * from "./reply";
 export * from "./search";
