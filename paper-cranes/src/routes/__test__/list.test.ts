@@ -91,7 +91,6 @@ it("returns a list of sent paper crane", async () => {
   expect(response.body.data[0].receiver).not.toBeDefined();
   expect(response.body.data[0].id).toBeDefined();
   expect(response.body.data[0].title).toBeDefined();
-  expect(response.body.data[0].content).toBeDefined();
   expect(response.body.data[0].style).toBeDefined();
 });
 
@@ -109,7 +108,6 @@ it("returns a list of received paper crane", async () => {
   expect(response.body.data[0].sender).not.toBeDefined();
   expect(response.body.data[0].receiver).not.toBeDefined();
   expect(response.body.data[0].title).toBeDefined();
-  expect(response.body.data[0].content).toBeDefined();
   expect(response.body.data[0].style).toBeDefined();
 });
 
