@@ -20,9 +20,11 @@ Please note the following:
   in order to upgrade the user role to `user`, which indicates a regular user.
 - We provide many testing files across different services. Most routes, especially
   some important routes that will be used by the user, are well tested. Please find
-  these testing files under `/src/routes/__test__` for each available service. You can
+  these testing files under the folder `src/routes/__test__` for each available service. You can
   run these tests by running `npm run test` from **the folder for each service**, but
   **NOT** from the root project folder.
+
+We will describe the available route names for each service below.
 
 ### Authentication Service
 
