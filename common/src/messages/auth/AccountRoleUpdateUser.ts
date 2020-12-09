@@ -14,6 +14,6 @@ export interface AccountRoleUpdateUser extends Message {
   data: {
     id: string;
     firstName: string;
-    lastname: string;
+    lastName: string;
   };
 }
