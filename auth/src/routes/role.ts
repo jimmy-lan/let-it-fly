@@ -76,3 +76,5 @@ router.post(
     return res.send({ success: true, data: user });
   }
 );
+
+export { router as roleRouter };
