@@ -66,7 +66,7 @@ Route prefix: `/api/users/property`
 | /inventory        | GET    | Get list of inventory **NOT** owned by signed in user | Returns all inventory for admin |
 | /:itemId/purchase | POST   | Purchase item with <itemId>                           |                                 |
 
-## Paper Cranes Service
+### Paper Cranes Service
 
 Route prefix: `/api/paper-cranes`
 
@@ -91,7 +91,7 @@ Please note that routes `/sent`, `/received`, `/starred`, and `/read` support qu
 You can specify `skip` and `limit` query parameters for these routes. Namely, `limit` limits the number of entries
 to return, `skip` determines the number of entries to skip.
 
-## Friends Service
+### Friends Service
 
 Route prefix: `/api/friends`
 
