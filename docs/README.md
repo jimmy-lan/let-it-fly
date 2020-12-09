@@ -14,3 +14,4 @@
 
 - [Service Overview](/docs/backend/overview.md)
 - [List of Endpoints](/docs/backend/endpoints.md)
+- [Event-Driven Microservices and Our Critical Decisions](/docs/backend/decisions.md)
