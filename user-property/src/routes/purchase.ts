@@ -37,25 +37,38 @@ router.post(
       );
     }
 
+    // Do not allow duplicate purchases on some categories
     if (item.category === StoreItemCategory.paperCraneStyle) {
-      // Do not allow duplicate paper crane styles
       if (property.paperCraneStyles.includes(item)) {
-        throw new BadRequestError("User already owns this paper crane style");
+        throw new BadRequestError("You already own this paper crane style");
       }
-
-      property.paperCraneStyles.push(item);
-      await property.save();
-
-      // Emit message
-      await new PropertyPurchaseMsgSender(natsWrapper.client).send({
-        itemValue: item.value,
-        itemCategory: item.category,
-        userId,
-        __v: property.__v!,
-      });
     }
 
-    // Currently, we do not have other categories of items
+    // Check if user has sufficient fund to purchase this item
+    if (property.coins < item.price) {
+      throw new BadRequestError(
+        "You do not have sufficient coins to purchase this item."
+      );
+    }
+
+    switch (item.category) {
+      case StoreItemCategory.paperCraneStyle:
+        property.paperCraneStyles.push(item);
+        await property.save();
+
+        // Emit message
+        await new PropertyPurchaseMsgSender(natsWrapper.client).send({
+          itemValue: item.value,
+          itemCategory: item.category,
+          userId,
+          __v: property.__v!,
+        });
+        break;
+
+      // Currently, we do not have other categories of items
+      default:
+        await property.save();
+    }
 
     return res.send({ success: true, data: property });
   }
