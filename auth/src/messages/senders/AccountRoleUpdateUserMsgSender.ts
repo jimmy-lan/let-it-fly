@@ -9,8 +9,6 @@ import {
   Subjects,
 } from "@ly-letitfly/common";
 
-export class AccountRoleUpdateUserMsgSender extends MsgSender<
-  AccountRoleUpdateUser
-> {
+export class AccountRoleUpdateUserMsgSender extends MsgSender<AccountRoleUpdateUser> {
   subject: AccountRoleUpdateUser["subject"] = Subjects.AccountUserRoleUpdate;
 }

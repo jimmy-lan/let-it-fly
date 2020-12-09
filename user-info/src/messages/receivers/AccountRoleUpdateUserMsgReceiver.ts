@@ -13,9 +13,7 @@ import { Message } from "node-nats-streaming";
 import { User } from "../../models";
 import { UserInfoUpdateMsgSender } from "../senders";
 
-export class AccountRoleUpdateUserMsgReceiver extends MsgReceiver<
-  AccountRoleUpdateUser
-> {
+export class AccountRoleUpdateUserMsgReceiver extends MsgReceiver<AccountRoleUpdateUser> {
   subject: AccountRoleUpdateUser["subject"] = Subjects.AccountUserRoleUpdate;
   queueGroup = queueGroup;
 

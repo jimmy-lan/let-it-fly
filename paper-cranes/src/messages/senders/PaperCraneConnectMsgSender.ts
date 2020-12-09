@@ -9,8 +9,6 @@ import {
   Subjects,
 } from "@ly-letitfly/common";
 
-export class PaperCraneConnectMsgSender extends MsgSender<
-  PaperCraneUserConnect
-> {
+export class PaperCraneConnectMsgSender extends MsgSender<PaperCraneUserConnect> {
   subject: PaperCraneUserConnect["subject"] = Subjects.PaperCraneUserConnect;
 }
