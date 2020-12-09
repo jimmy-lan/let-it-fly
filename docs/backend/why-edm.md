@@ -1,4 +1,4 @@
-## Event-Driven Microservices and Our Critical Decisions
+## Why Event-Driven Microservices?
 
 > Author: Jimmy Lan
 >
