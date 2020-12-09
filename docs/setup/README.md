@@ -2,7 +2,7 @@
 
 > Author: Jimmy Lan
 >
-> Date: 2020-12-09
+> Last Updated: 2020-12-09
 
 In this article, we will talk about the steps that you have to take in order
 to set up a local copy of our project.
