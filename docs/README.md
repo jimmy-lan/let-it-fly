@@ -9,3 +9,4 @@
 ## Backend Services
 
 - [Service Overview](/docs/backend/overview.md)
+- [List of Endpoints](/docs/backend/endpoints.md)
