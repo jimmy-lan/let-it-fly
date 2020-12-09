@@ -4,39 +4,27 @@
  */
 
 import mongoose, { Schema, Document, Model } from "mongoose";
-import { defaultUserProperties } from "@ly-letitfly/common";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface UserProps {
   id: string;
   firstName?: string;
   lastName?: string;
-  paperCraneStyles?: string[];
 }
 
 export interface UserDocument extends Document {
   firstName: string;
   lastName: string;
-  paperCraneStyles: string[];
 }
 
 interface UserModel extends Model<UserDocument> {
   build(props: UserProps): UserDocument;
 }
 
-const defaultUserPaperCraneStyles = defaultUserProperties.paperCraneStyleItems.map(
-  (item) => item.value
-);
-
 const userSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    paperCraneStyles: {
-      type: [String],
-      required: true,
-      default: defaultUserPaperCraneStyles,
-    },
   },
   {
     toJSON: {
