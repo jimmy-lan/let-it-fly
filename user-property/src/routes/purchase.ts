@@ -39,13 +39,14 @@ router.post(
 
     if (item.category === StoreItemCategory.paperCraneStyle) {
       // Do not allow duplicate paper crane styles
-      if (property.paperCraneStyles.includes(item.id)) {
+      if (property.paperCraneStyles.includes(item)) {
         throw new BadRequestError("User already owns this paper crane style");
       }
 
-      property.paperCraneStyles.push(item.id);
+      property.paperCraneStyles.push(item);
       await property.save();
 
+      // Emit message
       await new PropertyPurchaseMsgSender(natsWrapper.client).send({
         itemValue: item.value,
         itemCategory: item.category,

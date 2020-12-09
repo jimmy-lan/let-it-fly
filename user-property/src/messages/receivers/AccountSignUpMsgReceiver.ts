@@ -35,7 +35,7 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
 
     const user = UserProperty.build({
       id,
-      paperCraneStyles: [defaultPaperCraneItem.id],
+      paperCraneStyles: [defaultPaperCraneItem],
     });
 
     try {
