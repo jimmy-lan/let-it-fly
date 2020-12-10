@@ -109,6 +109,7 @@ to return, `skip` determines the number of entries to skip.
 > Migrated: This service was originally named "user property service".
 
 Route prefix: `/api/property`
+
 <del>Route prefix: `/api/users/property`</del> (Deprecated, will remove before phase 2 submission. Please migrate your code!)
 
 #### Routes for Regular User and Admin
