@@ -4,20 +4,29 @@
  */
 
 import express, { Request, Response } from "express";
-import { query } from "express-validator";
-import { requireAdmin, validateRequest } from "@ly-letitfly/common";
+import { query, param, body } from "express-validator";
+import {
+  BadRequestError,
+  requireAdmin,
+  UserRole,
+  validateRequest,
+} from "@ly-letitfly/common";
 import { User } from "../models";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
+/**
+ * Get a list of all users
+ */
 router.get(
   "/",
+  requireAdmin,
   [
     query("limit").optional().isInt({ gt: 0 }),
     query("skip").optional().isInt({ gt: 0 }),
   ],
   validateRequest,
-  requireAdmin,
   async (req: Request, res: Response) => {
     const { skip, limit } = req.query;
 
@@ -28,6 +37,36 @@ router.get(
     const users = await User.find({}).limit(findLimit).skip(findSkip).exec();
 
     return res.send({ success: true, data: users });
+  }
+);
+
+/**
+ * Update role for a specific user
+ */
+router.patch(
+  "/roles/:userId/upgrade",
+  requireAdmin,
+  [
+    param("userId").custom((id: string) => mongoose.Types.ObjectId.isValid(id)),
+    body("role")
+      .isIn(Object.values(UserRole))
+      .withMessage("role must be valid"),
+  ],
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const { role } = req.body;
+    const { userId } = req.params;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new BadRequestError(`User ${userId} does not exist`);
+    }
+
+    user.role = role;
+    await user.save();
+
+    return res.send({ success: true, data: user });
   }
 );
 
