@@ -14,7 +14,7 @@ jest.mock("../../services/NatsWrapper");
 
 it("returns 401 failure response when not authenticated", async () => {
   const response = await request(app)
-    .patch("/api/users/info")
+    .patch("/api/profiles")
     .send({})
     .expect(401);
 
@@ -23,7 +23,7 @@ it("returns 401 failure response when not authenticated", async () => {
 
 it("returns 401 failure response when not authenticated", async () => {
   const response = await request(app)
-    .patch("/api/users/info/5fc9c18a41911f00230bdcb3")
+    .patch("/api/profiles/5fc9c18a41911f00230bdcb3")
     .send({})
     .expect(401);
 
@@ -32,7 +32,7 @@ it("returns 401 failure response when not authenticated", async () => {
 
 it("responds with 400 bad request when first name is not valid", async () => {
   const response = await request(app)
-    .patch("/api/users/info")
+    .patch("/api/profiles")
     .set("Cookie", global.getTestCookie())
     .send({
       personal: {
@@ -48,7 +48,7 @@ it("responds with 400 bad request when first name is not valid", async () => {
 
 it("responds with 400 bad request when last name is not valid", async () => {
   const response = await request(app)
-    .patch("/api/users/info")
+    .patch("/api/profiles")
     .set("Cookie", global.getTestCookie())
     .send({
       personal: {
@@ -64,7 +64,7 @@ it("responds with 400 bad request when last name is not valid", async () => {
 
 it("responds with 400 bad request when name is not valid", async () => {
   const response = await request(app)
-    .patch("/api/users/info")
+    .patch("/api/profiles")
     .set("Cookie", global.getTestCookie())
     .send({
       personal: {
@@ -81,7 +81,7 @@ it("responds with 400 bad request when name is not valid", async () => {
 
 it("responds with 400 bad request when user is not found", async () => {
   const response = await request(app)
-    .patch("/api/users/info")
+    .patch("/api/profiles")
     .set("Cookie", global.getTestCookie())
     .send({})
     .expect(400);
@@ -97,7 +97,7 @@ it("handles valid update user request", async () => {
   await user.save();
 
   const response = await request(app)
-    .patch("/api/users/info")
+    .patch("/api/profiles")
     .set(
       "Cookie",
       global.getTestCookie({
@@ -153,7 +153,7 @@ it("handles valid update user request while ignoring irrelevant fields", async (
   await user.save();
 
   const response = await request(app)
-    .patch("/api/users/info")
+    .patch("/api/profiles")
     .set(
       "Cookie",
       global.getTestCookie({
@@ -232,7 +232,7 @@ it("allows admin user to update primary email address for a user", async () => {
   await admin.save();
 
   const response = await request(app)
-    .patch("/api/users/info/" + fakeUser.id)
+    .patch("/api/profiles/" + fakeUser.id)
     .set("Cookie", global.getTestCookie(fakeAdmin))
     .send({
       personal: {

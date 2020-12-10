@@ -9,11 +9,11 @@ spec:
     - host: letitfly.dev
       http:
         paths:
-          - path: /api/users/info
+          - path: /api/profiles
             pathType: Prefix
             backend:
               service:
-                name: user-info-service
+                name: profile-service
                 port:
                   number: 3000
           - path: /api/users/property

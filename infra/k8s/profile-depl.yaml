@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-info-depl
+  name: profile-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-info
+      app: profile
   template:
     metadata:
       labels:
-        app: user-info
+        app: profile
     spec:
       containers:
-        - name: user-info
-          image: lanyanxi/user-info
+        - name: profile
+          image: lanyanxi/profile
           env:
             - name: JWT_SECRET
               valueFrom:
@@ -30,18 +30,18 @@ spec:
             - name: NATS_CLUSTER_ID
               value: letitfly
             - name: MONGO_CONNECTION_URI
-              value: "mongodb://user-info-mongo-service:27017/user-info"
+              value: "mongodb://profile-mongo-service:27017/profile"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-info-service
+  name: profile-service
 spec:
   selector:
-    app: user-info
+    app: profile
   ports:
-    - name: user-info
+    - name: profile
       protocol: TCP
       port: 3000
       targetPort: 3000
