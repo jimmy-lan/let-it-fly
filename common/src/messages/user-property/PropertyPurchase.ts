@@ -13,5 +13,6 @@ export interface PropertyPurchase extends Message {
     userId: string;
     itemCategory: StoreItemCategory;
     itemValue: string;
+    __v: number;
   };
 }

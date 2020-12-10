@@ -12,9 +12,9 @@ import {
   NotFoundError,
   handleErrors,
   extractUser,
-  requireAuth,
+  disallowGuest,
 } from "@ly-letitfly/common";
-// import * as routes from "./routes";
+import * as routes from "./routes";
 
 const app = express();
 
@@ -29,9 +29,9 @@ app.use(
 
 // All routes in this service requires authentication
 app.use(extractUser);
-app.use(requireAuth);
+app.use(disallowGuest);
 
-// app.use("/api/paper-cranes", Object.values(routes));
+app.use("/api/paper-cranes", Object.values(routes));
 
 app.all("*", () => {
   throw new NotFoundError();

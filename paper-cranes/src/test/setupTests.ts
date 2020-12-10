@@ -20,6 +20,8 @@ beforeAll(async () => {
     useUnifiedTopology: true,
     useCreateIndex: true,
   });
+
+  jest.setTimeout(10 * 1000);
 });
 
 beforeEach(async () => {
@@ -28,7 +30,7 @@ beforeEach(async () => {
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
-    await collection.deleteMany();
+    await collection.deleteMany({});
   }
 });
 

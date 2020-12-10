@@ -9,3 +9,4 @@ export * from "./auth";
 export * from "./user-info";
 export * from "./user-property";
 export * from "./paper-crane";
+export * from "./friend";

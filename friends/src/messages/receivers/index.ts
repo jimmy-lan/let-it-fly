@@ -1,0 +1,7 @@
+/*
+ * Created by Jimmy Lan
+ * Creation Date: 2020-12-06
+ */
+
+export * from "./AccountSignUpMsgReceiver";
+export * from "./UserInfoUpdateMsgReceiver";

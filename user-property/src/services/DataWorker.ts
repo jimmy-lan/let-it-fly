@@ -1,0 +1,30 @@
+/*
+ * Created by Jimmy Lan
+ * Creation Date: 2020-12-08
+ */
+
+import { StoreItem } from "../models";
+import { defaultUserProperties, StoreItemCategory } from "@ly-letitfly/common";
+
+/**
+ * Utility service to perform operations on data.
+ */
+export class DataWorker {
+  /**
+   * Ensure that the store item document contains default
+   * items required by the common package
+   */
+  static ensureDefaultStoreItem = async () => {
+    console.log("Checking default store items are added to database");
+    for (let styleItem of defaultUserProperties.paperCraneStyleItems) {
+      const storeItem = await StoreItem.findOne({
+        category: StoreItemCategory.paperCraneStyle,
+        value: styleItem.value,
+      });
+      if (!storeItem) {
+        const item = StoreItem.build(styleItem);
+        await item.save();
+      }
+    }
+  };
+}
