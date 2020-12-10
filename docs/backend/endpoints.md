@@ -62,6 +62,7 @@ Route prefix: `/api/profiles`
 | /:userId/data   | PATCH  | Update profile data of the user with <userId> | Has permission checks  |
 | /avatar         | GET    | Get avatar of the signed in user              |                        |
 | /:userId/avatar | GET    | Get avatar of the user with <userId>          | Has permission checks  |
+| /avatar         | PATCH  | Upload avatar for the signed in user          |                        |
 
 ### User Property Service
 
