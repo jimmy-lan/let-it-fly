@@ -15,7 +15,6 @@ import {
   disallowGuest,
 } from "@ly-letitfly/common";
 import * as routes from "./routes";
-import { purchaseRouter } from "./routes/purchase";
 
 const app = express();
 
@@ -32,8 +31,7 @@ app.use(
 app.use(extractUser);
 app.use(disallowGuest);
 
-app.use("/api/users/property", Object.values(routes));
-app.use("/api/users/property", purchaseRouter);
+app.use("/api/property", Object.values(routes));
 
 app.all("*", () => {
   throw new NotFoundError();
