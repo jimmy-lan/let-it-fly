@@ -7,6 +7,7 @@ import express, { Request, Response } from "express";
 import { query, param, body } from "express-validator";
 import {
   BadRequestError,
+  extractUser,
   requireAdmin,
   UserRole,
   validateRequest,
@@ -21,6 +22,7 @@ const router = express.Router();
  */
 router.get(
   "/",
+  extractUser,
   requireAdmin,
   [
     query("limit").optional().isInt({ gt: 0 }),
@@ -45,6 +47,7 @@ router.get(
  */
 router.patch(
   "/roles/:userId/change",
+  extractUser,
   requireAdmin,
   [
     param("userId").custom((id: string) => mongoose.Types.ObjectId.isValid(id)),

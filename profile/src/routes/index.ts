@@ -4,5 +4,6 @@
  */
 
 export * from "./read";
-export * from "./update";
+export * from "./data";
 export * from "./avatar";
+export * from "./admin";
