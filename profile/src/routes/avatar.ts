@@ -24,7 +24,7 @@ const multerMid = multer({
 router.use(multerMid.single("file"));
 
 const uploadImage = (file: Express.Multer.File): Promise<string> => {
-  return new Promise((reject, resolve) => {
+  return new Promise((resolve, reject) => {
     const { originalname, buffer } = file;
 
     const bucket = storage.bucket("let-it-fly-website");
@@ -79,3 +79,5 @@ router.patch("/avatar", async (req: Request, res: Response) => {
 
   return res.send({ success: true, data: imageUrl });
 });
+
+export { router as avatarRouter };
