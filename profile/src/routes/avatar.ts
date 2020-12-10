@@ -3,12 +3,20 @@
  * Creation Date: 2020-12-09
  */
 
-import express, { Request, Response, Express } from "express";
+import express, { Request, Response, Express, NextFunction } from "express";
 import multer from "multer";
 import { natsWrapper, storage } from "../services";
-import { BadRequestError, InternalServerError } from "@ly-letitfly/common";
+import {
+  BadRequestError,
+  ForbiddenError,
+  InternalServerError,
+  UserRole,
+  validateRequest,
+} from "@ly-letitfly/common";
 import { User } from "../models";
 import { UserInfoUpdateMsgSender } from "../messages/senders";
+import { param } from "express-validator";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -44,8 +52,8 @@ const uploadImage = (file: Express.Multer.File): Promise<string> => {
   });
 };
 
-router.patch("/avatar", async (req: Request, res: Response) => {
-  const userId = req.user!.id;
+const patchUserAvatar = async (req: Request, res: Response) => {
+  const { userId } = req.params;
 
   // Find current user
   const user = await User.findById(userId);
@@ -78,6 +86,36 @@ router.patch("/avatar", async (req: Request, res: Response) => {
   });
 
   return res.send({ success: true, data: imageUrl });
-});
+};
+
+router.patch(
+  "/avatar",
+  async (req: Request, res: Response, next: NextFunction) => {
+    req.params.userId = req.user!.id;
+    next();
+  },
+  patchUserAvatar
+);
+
+router.patch(
+  "/:userId/avatar",
+  [
+    param("userId")
+      .custom((userId: string) => mongoose.Types.ObjectId.isValid(userId))
+      .withMessage("User ID must be a valid Object ID type."),
+  ],
+  validateRequest,
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { userId } = req.params;
+
+    // Check for permission
+    if (req.user?.role !== UserRole.admin && req.user?.id !== userId) {
+      throw new ForbiddenError();
+    }
+
+    next();
+  },
+  patchUserAvatar
+);
 
 export { router as avatarRouter };

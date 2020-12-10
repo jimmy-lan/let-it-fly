@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-property-depl
+  name: property-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-property
+      app: property
   template:
     metadata:
       labels:
-        app: user-property
+        app: property
     spec:
       containers:
-        - name: user-property
-          image: lanyanxi/user-property
+        - name: property
+          image: lanyanxi/property
           env:
             - name: JWT_SECRET
               valueFrom:
@@ -30,18 +30,18 @@ spec:
             - name: NATS_CLUSTER_ID
               value: letitfly
             - name: MONGO_CONNECTION_URI
-              value: "mongodb://user-property-mongo-service:27017/user-property"
+              value: "mongodb://property-mongo-service:27017/property"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-property-service
+  name: property-service
 spec:
   selector:
-    app: user-property
+    app: property
   ports:
-    - name: user-property
+    - name: property
       protocol: TCP
       port: 3000
       targetPort: 3000

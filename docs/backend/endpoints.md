@@ -7,6 +7,7 @@
 | WARNING: Due to scope, we did not make a separate service for admin users (i.e. the management service). Instead, we add some temporary routes on other services to allow access for admin users. This is in no way a good practice, so please be aware that admin users can be calling routes "in a weired way" in order to update resources. |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
+
 ### Before You Continue
 
 Please note the following:
@@ -43,6 +44,25 @@ Route prefix: `/api/users`
 | /current       | GET    | Get signed in user                       |                               |
 | /roles/upgrade | GET    | Upgrade current user from guest to admin | Req body: firstName, lastName |
 
+#### Routes for Admin User
+
+| Route Name            | Method | Short Description                  | Additional Information               |
+| --------------------- | ------ | ---------------------------------- | ------------------------------------ |
+| /                     | GET    | Get a list of users                | id, email, role, firstName, lastName |
+| /roles/:userId/change | PATCH  | Update role for user with <userId> | Req body: role                       |
+
+#### Notes for admin routes
+
+By calling the "/" route with GET method, a list of user information with **only** id, email, role, first name, last name will be returned. For a more detailed list, please query the user profile service.
+
+For the route "/roles/:userId/change" with PATCH method, please provide a "role" attribute in the request body. It should be one of "admin", "user", or "guest". Otherwise, a bad request error would be returned from the service.
+
+#### Query Parameters
+
+Please note that the admin GET route supports query parameters for pagination.
+You can specify `skip` and `limit` query parameters for these routes. Namely, `limit` limits the number of entries
+to return, `skip` determines the number of entries to skip.
+
 ### Profile Service
 
 > Migrated: This service was originally named "user information service".
@@ -51,7 +71,7 @@ Route prefix: `/api/profiles`
 
 <del>Route prefix: `/api/users/info`</del> (Deprecated, will remove before phase 2 submission. Please migrate your code!)
 
-#### Routes for Regular User and Admin
+#### Routes for Regular User
 
 | Route Name      | Method | Short Description                             | Additional Information |
 | --------------- | ------ | --------------------------------------------- | ---------------------- |
@@ -62,13 +82,36 @@ Route prefix: `/api/profiles`
 | /avatar         | GET    | Get avatar of the signed in user              |                        |
 | /:userId/avatar | GET    | Get avatar of the user with <userId>          | Has permission checks  |
 | /avatar         | PATCH  | Upload avatar for the signed in user          |                        |
+| /:userId/avatar | PATCH  | Upload avatar for the the user with <userId>  | Has permission checks  |
 
 | WARNING: You will not be able to upload an avatar during your local testing. This is because the key file used to access GCS is ignored for security reasons. Please test the avatar upload functionality on the production API only. |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-### User Property Service
 
-Route prefix: `/api/users/property`
+#### Permission Checks
+
+For the routes indicated to have permission checks above, different behaviour may occur depending on who sends the request. For example, for the patch route `/:userId/data`, if a regular user sends this patch request attempting to update the primary email (i.e. `contact.email.primary` is specified in the request body), this field will be ignored and not updated. However, if an admin user sends the same request, the primary email for the user **will** be modified.
+
+Also, there are permission checks to ensure proper data access in these routes. For a regular user, we only allow access to profile information if either (1) the user is trying to access the profile for him/herself, or (2) the user is trying to access the profile of a friend. However, this is not the case for an admin user. An admin user can call the same route to access any user profile.
+
+#### Routes for Admin User
+
+| Route Name | Method | Short Description   | Additional Information             |
+| ---------- | ------ | ------------------- | ---------------------------------- |
+| /          | GET    | Get a list of users | Return a list of user profile info |
+
+#### Query Parameters
+
+Please note that the admin GET route supports query parameters for pagination.
+You can specify `skip` and `limit` query parameters for these routes. Namely, `limit` limits the number of entries
+to return, `skip` determines the number of entries to skip.
+
+### Property Service
+
+> Migrated: This service was originally named "user property service".
+
+Route prefix: `/api/property`
+<del>Route prefix: `/api/users/property`</del> (Deprecated, will remove before phase 2 submission. Please migrate your code!)
 
 #### Routes for Regular User and Admin
 
@@ -79,6 +122,14 @@ Route prefix: `/api/users/property`
 | /items/coins      | GET    | Get coins owned by signed in user                     |                                 |
 | /inventory        | GET    | Get list of inventory **NOT** owned by signed in user | Returns all inventory for admin |
 | /:itemId/purchase | POST   | Purchase item with <itemId>                           |                                 |
+
+#### Routes for Admin
+
+| Route Name      | Method | Short Description   | Additional Information                              |
+| --------------- | ------ | ------------------- | --------------------------------------------------- |
+| /inventory      | POST   | Add an inventory    | Req body: name, description, value, price, category |
+| /:itemId/change | PATCH  | Update an inventory | Req body: attributes of inventory, all optional     |
+| /:itemId/delete | DELETE | Delete an inventory |                                                     |
 
 ### Paper Cranes Service
 
@@ -105,6 +156,16 @@ Please note that routes `/sent`, `/received`, `/starred`, and `/read` support qu
 You can specify `skip` and `limit` query parameters for these routes. Namely, `limit` limits the number of entries
 to return, `skip` determines the number of entries to skip.
 
+#### Routes for Admin User
+
+| Route Name | Method | Short Description                        | Additional Information   |
+| ---------- | ------ | ---------------------------------------- | ------------------------ |
+| /          | GET    | Get a list of paper cranes in the system | Can use query parameters |
+
+#### Note for Admin Routes
+
+You may realize that some admin routes are identical to routes that a user may use. These routes behave differently depending on who sends the request to them.
+
 ### Friends Service
 
 Route prefix: `/api/friends`
@@ -117,12 +178,12 @@ Route prefix: `/api/friends`
 | /:userId   | GET    | Get a list of friends for user with <userId>         | Has permission checks  |
 | /:friendId | DELETE | Delete friend with <friendId> for the signed in user |                        |
 
-### Query Parameters
+#### Query Parameters
 
 Please note that the GET methods for routes `/` and `/userId` has pagination support. That is, you can add in
 query parameters `limit` and `skip`.
 
-### Friend Deletion Note
+#### Friend Deletion Note
 
 When a user deletes a friend, the friend entry only disappears for the user performing this operation.
 For the friend of the user (i.e. the other party with <friendId>), the user is still a friend.
