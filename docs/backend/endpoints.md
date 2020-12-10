@@ -64,6 +64,10 @@ Route prefix: `/api/profiles`
 | /:userId/avatar | GET    | Get avatar of the user with <userId>          | Has permission checks  |
 | /avatar         | PATCH  | Upload avatar for the signed in user          |                        |
 
+| WARNING: You will not be able to upload an avatar during your local testing. This is because the key file used to access GCS is ignored for security reasons. Please test the avatar upload functionality on the production API only. |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+
 ### User Property Service
 
 Route prefix: `/api/users/property`
