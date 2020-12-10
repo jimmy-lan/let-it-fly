@@ -23,3 +23,8 @@ export * from "./list";
 export * from "./marking";
 export * from "./reply";
 export * from "./search";
+
+// Temporary admin routes must be exported last
+// because it has routes with the same name as other routes,
+// but only for admin (with different behaviour)
+export * from "./admin";

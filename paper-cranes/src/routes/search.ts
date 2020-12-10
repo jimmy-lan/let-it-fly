@@ -3,12 +3,18 @@
  * Creation Date: 2020-12-07
  */
 
-import express, { Request, Response } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import { PaperCrane, PaperCraneRecord } from "../models";
+import { UserRole } from "@ly-letitfly/common";
 
 const router = express.Router();
 
-router.get("/", async (req: Request, res: Response) => {
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+  // Temporary forwarding if the user is admin
+  if (req.user!.role === UserRole.admin) {
+    return next();
+  }
+
   const userId = req.user!.id;
 
   // Find a random matching paper crane

@@ -156,6 +156,16 @@ Please note that routes `/sent`, `/received`, `/starred`, and `/read` support qu
 You can specify `skip` and `limit` query parameters for these routes. Namely, `limit` limits the number of entries
 to return, `skip` determines the number of entries to skip.
 
+#### Routes for Admin User
+
+| Route Name | Method | Short Description                        | Additional Information   |
+| ---------- | ------ | ---------------------------------------- | ------------------------ |
+| /          | GET    | Get a list of paper cranes in the system | Can use query parameters |
+
+#### Note for Admin Routes
+
+You may realize that some admin routes are identical to routes that a user may use. These routes behave differently depending on who sends the request to them.
+
 ### Friends Service
 
 Route prefix: `/api/friends`
