@@ -39,3 +39,6 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
+
+# Api key files
+src/services/let-it-fly-298204-32f4ad372cbd.json
