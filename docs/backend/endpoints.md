@@ -106,9 +106,12 @@ Please note that the admin GET route supports query parameters for pagination.
 You can specify `skip` and `limit` query parameters for these routes. Namely, `limit` limits the number of entries
 to return, `skip` determines the number of entries to skip.
 
-### User Property Service
+### Property Service
 
-Route prefix: `/api/users/property`
+> Migrated: This service was originally named "user property service".
+
+Route prefix: `/api/property`
+<del>Route prefix: `/api/users/property`</del> (Deprecated, will remove before phase 2 submission. Please migrate your code!)
 
 #### Routes for Regular User and Admin
 
@@ -119,6 +122,12 @@ Route prefix: `/api/users/property`
 | /items/coins      | GET    | Get coins owned by signed in user                     |                                 |
 | /inventory        | GET    | Get list of inventory **NOT** owned by signed in user | Returns all inventory for admin |
 | /:itemId/purchase | POST   | Purchase item with <itemId>                           |                                 |
+
+#### Routes for Admin
+
+| Route Name | Method | Short Description | Additional Information                              |
+| ---------- | ------ | ----------------- | --------------------------------------------------- |
+| /inventory | POST   | Add an inventory  | Req body: name, description, value, price, category |
 
 ### Paper Cranes Service
 
