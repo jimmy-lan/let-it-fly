@@ -124,4 +124,4 @@ router.get(
   readUserAvatar
 );
 
-export { router as readInfoRouter };
+export { router as readRouter };

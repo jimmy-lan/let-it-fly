@@ -63,10 +63,17 @@ Route prefix: `/api/profiles`
 | /avatar         | GET    | Get avatar of the signed in user              |                        |
 | /:userId/avatar | GET    | Get avatar of the user with <userId>          | Has permission checks  |
 | /avatar         | PATCH  | Upload avatar for the signed in user          |                        |
+| /:userId/avatar | PATCH  | Upload avatar for the the user with <userId>  | Has permission checks  |
 
 | WARNING: You will not be able to upload an avatar during your local testing. This is because the key file used to access GCS is ignored for security reasons. Please test the avatar upload functionality on the production API only. |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
+
+#### Permission Checks
+
+For the routes indicated to have permission checks above, different behaviour may occur depending on who sends the request. For example, for the patch route `/:userId/data`, if a regular user sends this patch request attempting to update the primary email (i.e. `contact.email.primary` is specified in the request body), this field will be ignored and not updated. However, if an admin user sends the same request, the primary email for the user **will** be modified.
+
+Also, there are permission checks to ensure proper data access in these routes. For a regular user, we only allow access to profile information if either (1) the user is trying to access the profile for him/herself, or (2) the user is trying to access the profile of a friend. However, this is not the case for an admin user. An admin user can call the same route to access any user profile.
 
 ### User Property Service
 
@@ -119,12 +126,12 @@ Route prefix: `/api/friends`
 | /:userId   | GET    | Get a list of friends for user with <userId>         | Has permission checks  |
 | /:friendId | DELETE | Delete friend with <friendId> for the signed in user |                        |
 
-### Query Parameters
+#### Query Parameters
 
 Please note that the GET methods for routes `/` and `/userId` has pagination support. That is, you can add in
 query parameters `limit` and `skip`.
 
-### Friend Deletion Note
+#### Friend Deletion Note
 
 When a user deletes a friend, the friend entry only disappears for the user performing this operation.
 For the friend of the user (i.e. the other party with <friendId>), the user is still a friend.
