@@ -44,7 +44,7 @@ router.get(
  * Update role for a specific user
  */
 router.patch(
-  "/roles/:userId/upgrade",
+  "/roles/:userId/change",
   requireAdmin,
   [
     param("userId").custom((id: string) => mongoose.Types.ObjectId.isValid(id)),

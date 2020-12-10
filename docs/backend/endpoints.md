@@ -44,6 +44,25 @@ Route prefix: `/api/users`
 | /current       | GET    | Get signed in user                       |                               |
 | /roles/upgrade | GET    | Upgrade current user from guest to admin | Req body: firstName, lastName |
 
+#### Routes for Admin User
+
+| Route Name            | Method | Short Description                  | Additional Information               |
+| --------------------- | ------ | ---------------------------------- | ------------------------------------ |
+| /                     | GET    | Get a list of users                | id, email, role, firstName, lastName |
+| /roles/:userId/change | PATCH  | Update role for user with <userId> | Req body: role                       |
+
+#### Notes for admin routes
+
+By calling the "/" route with GET method, a list of user information with **only** id, email, role, first name, last name will be returned. For a more detailed list, please query the user profile service.
+
+For the route "/roles/:userId/change" with PATCH method, please provide a "role" attribute in the request body. It should be one of "admin", "user", or "guest". Otherwise, a bad request error would be returned from the service.
+
+#### Query Parameters
+
+Please note that the admin GET route supports query parameters for pagination.
+You can specify `skip` and `limit` query parameters for these routes. Namely, `limit` limits the number of entries
+to return, `skip` determines the number of entries to skip.
+
 ### Profile Service
 
 > Migrated: This service was originally named "user information service".
@@ -52,7 +71,7 @@ Route prefix: `/api/profiles`
 
 <del>Route prefix: `/api/users/info`</del> (Deprecated, will remove before phase 2 submission. Please migrate your code!)
 
-#### Routes for Regular User and Admin
+#### Routes for Regular User
 
 | Route Name      | Method | Short Description                             | Additional Information |
 | --------------- | ------ | --------------------------------------------- | ---------------------- |
@@ -74,6 +93,18 @@ Route prefix: `/api/profiles`
 For the routes indicated to have permission checks above, different behaviour may occur depending on who sends the request. For example, for the patch route `/:userId/data`, if a regular user sends this patch request attempting to update the primary email (i.e. `contact.email.primary` is specified in the request body), this field will be ignored and not updated. However, if an admin user sends the same request, the primary email for the user **will** be modified.
 
 Also, there are permission checks to ensure proper data access in these routes. For a regular user, we only allow access to profile information if either (1) the user is trying to access the profile for him/herself, or (2) the user is trying to access the profile of a friend. However, this is not the case for an admin user. An admin user can call the same route to access any user profile.
+
+#### Routes for Admin User
+
+| Route Name | Method | Short Description   | Additional Information             |
+| ---------- | ------ | ------------------- | ---------------------------------- |
+| /          | GET    | Get a list of users | Return a list of user profile info |
+
+#### Query Parameters
+
+Please note that the admin GET route supports query parameters for pagination.
+You can specify `skip` and `limit` query parameters for these routes. Namely, `limit` limits the number of entries
+to return, `skip` determines the number of entries to skip.
 
 ### User Property Service
 
