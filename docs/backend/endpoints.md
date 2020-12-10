@@ -125,9 +125,11 @@ Route prefix: `/api/property`
 
 #### Routes for Admin
 
-| Route Name | Method | Short Description | Additional Information                              |
-| ---------- | ------ | ----------------- | --------------------------------------------------- |
-| /inventory | POST   | Add an inventory  | Req body: name, description, value, price, category |
+| Route Name      | Method | Short Description   | Additional Information                              |
+| --------------- | ------ | ------------------- | --------------------------------------------------- |
+| /inventory      | POST   | Add an inventory    | Req body: name, description, value, price, category |
+| /:itemId/change | PATCH  | Update an inventory | Req body: attributes of inventory, all optional     |
+| /:itemId/delete | DELETE | Delete an inventory |                                                     |
 
 ### Paper Cranes Service
 

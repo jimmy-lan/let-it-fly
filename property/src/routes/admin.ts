@@ -3,23 +3,26 @@
  * Creation Date: 2020-12-10
  */
 
-import { body } from "express-validator";
+import { param, body } from "express-validator";
 import {
   validateRequest,
   requireAdmin,
   StoreItemCategory,
+  BadRequestError,
 } from "@ly-letitfly/common";
 import express, { Request, Response } from "express";
+import mongoose from "mongoose";
 import { StoreItem } from "../models";
 
 const router = express.Router();
+
+router.use(requireAdmin);
 
 /**
  * Add an inventory
  */
 router.post(
   "/inventory",
-  requireAdmin,
   [
     body("name").notEmpty(),
     body("description").notEmpty(),
@@ -40,6 +43,51 @@ router.post(
     });
 
     await storeItem.save();
+
+    return res.send({ success: true, data: storeItem });
+  }
+);
+
+/**
+ * Update item with <itemId> in inventory
+ */
+router.patch(
+  "/:itemId/change",
+  [
+    param("itemId").custom((id: string) => mongoose.Types.ObjectId.isValid(id)),
+    body("category").optional().isIn(Object.values(StoreItemCategory)),
+  ],
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const { itemId } = req.params;
+
+    const storeItem = await StoreItem.findById(itemId);
+
+    if (!storeItem) {
+      throw new BadRequestError(`Store does not have item with id ${itemId}`);
+    }
+
+    storeItem.set(req.body);
+    await storeItem.save();
+
+    return res.send({ success: true, data: storeItem });
+  }
+);
+
+router.delete(
+  "/:itemId/delete",
+  [param("itemId").custom((id: string) => mongoose.Types.ObjectId.isValid(id))],
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const { itemId } = req.params;
+
+    const storeItem = await StoreItem.findById(itemId);
+
+    if (!storeItem) {
+      throw new BadRequestError(`Store does not have item with id ${itemId}`);
+    }
+
+    await storeItem.delete();
 
     return res.send({ success: true, data: storeItem });
   }
