@@ -61,7 +61,7 @@ const updateUserInfo = async (req: Request, res: Response) => {
 };
 
 router.patch(
-  "/:userId",
+  "/:userId/data",
   [
     param("userId")
       .custom((userId: string) => mongoose.Types.ObjectId.isValid(userId))
@@ -83,7 +83,7 @@ router.patch(
 );
 
 router.patch(
-  "/",
+  "/data",
   [body("contact.email.secondary").optional().isEmail()],
   validateRequest,
   async (req: Request, res: Response, next: NextFunction) => {

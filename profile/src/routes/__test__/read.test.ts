@@ -11,18 +11,18 @@ import { app } from "../../app";
 import { Friend, User } from "../../models";
 
 it("returns 401 if the user is not authenticated", async () => {
-  await request(app).get("/api/users/info").send().expect(401);
+  await request(app).get("/api/profiles").send().expect(401);
 });
 
 it("returns 400 if the user is not found", async () => {
   const response1 = await request(app)
-    .get("/api/users/info")
+    .get("/api/profiles/data")
     .set("Cookie", global.getTestCookie())
     .send()
     .expect(400);
 
   const response2 = await request(app)
-    .get("/api/users/info/5fc9c18a41911f00230bdcb3")
+    .get("/api/profiles/5fc9c18a41911f00230bdcb3/data")
     .set("Cookie", global.getTestCookie())
     .send()
     .expect(400);
@@ -52,7 +52,7 @@ it("returns user information on valid requests", async () => {
   await user.save();
 
   const response1 = await request(app)
-    .get("/api/users/info")
+    .get("/api/profiles/data")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send()
     .expect(200);
@@ -87,7 +87,7 @@ it("returns 403 when user has insufficient permission to access data", async () 
   await user.save();
 
   const response1 = await request(app)
-    .get("/api/users/info/5fca61c5f473a21229516c61")
+    .get("/api/profiles/5fca61c5f473a21229516c61/data")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send()
     .expect(403);
@@ -137,7 +137,7 @@ it("allows information access between friends", async () => {
   await friendRelation.save();
 
   const response = await request(app)
-    .get("/api/users/info/" + fakeUserFriend.id)
+    .get("/api/profiles/" + fakeUserFriend.id + "/data")
     .set("Cookie", global.getTestCookie(fakeUser))
     .send()
     .expect(200);

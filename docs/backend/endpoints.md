@@ -7,6 +7,7 @@
 | WARNING: Due to scope, we did not make a separate service for admin users (i.e. the management service). Instead, we add some temporary routes on other services to allow access for admin users. This is in no way a good practice, so please be aware that admin users can be calling routes "in a weired way" in order to update resources. |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
+
 ### Before You Continue
 
 Please note the following:
@@ -43,18 +44,29 @@ Route prefix: `/api/users`
 | /current       | GET    | Get signed in user                       |                               |
 | /roles/upgrade | GET    | Upgrade current user from guest to admin | Req body: firstName, lastName |
 
-### User Information Service
+### Profile Service
 
-Route prefix: `/api/users/info`
+> Migrated: This service was originally named "user information service".
+
+Route prefix: `/api/profiles`
+
+<del>Route prefix: `/api/users/info`</del> (Deprecated, will remove before phase 2 submission. Please migrate your code!)
 
 #### Routes for Regular User and Admin
 
-| Route Name | Method | Short Description                  | Additional Information |
-| ---------- | ------ | ---------------------------------- | ---------------------- |
-| /          | GET    | Get info about signed in user      |                        |
-| /:userId   | GET    | Get info about user with <userId>  | Has permission checks  |
-| /          | PATCH  | Update info about signed in user   | See model for req body |
-| /:userId   | PATCH  | Update info for user with <userId> | Has permission checks  |
+| Route Name      | Method | Short Description                             | Additional Information |
+| --------------- | ------ | --------------------------------------------- | ---------------------- |
+| /data           | GET    | Get profile data of the signed in user        |                        |
+| /:userId/data   | GET    | Get profile data of the user with <userId>    | Has permission checks  |
+| /data           | PATCH  | Update profile data of the signed in user     | See model for req body |
+| /:userId/data   | PATCH  | Update profile data of the user with <userId> | Has permission checks  |
+| /avatar         | GET    | Get avatar of the signed in user              |                        |
+| /:userId/avatar | GET    | Get avatar of the user with <userId>          | Has permission checks  |
+| /avatar         | PATCH  | Upload avatar for the signed in user          |                        |
+
+| WARNING: You will not be able to upload an avatar during your local testing. This is because the key file used to access GCS is ignored for security reasons. Please test the avatar upload functionality on the production API only. |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
 
 ### User Property Service
 

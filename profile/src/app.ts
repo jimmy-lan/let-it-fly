@@ -31,7 +31,7 @@ app.use(
 app.use(extractUser);
 app.use(disallowGuest);
 
-app.use("/api/users/info", Object.values(routes));
+app.use("/api/profiles", Object.values(routes));
 
 app.all("*", () => {
   throw new NotFoundError();

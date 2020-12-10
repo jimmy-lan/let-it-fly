@@ -1,5 +1,5 @@
 {
-  "name": "user-info",
+  "name": "profile",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -27,11 +27,14 @@
     "ts-node-dev": "^1.0.0"
   },
   "dependencies": {
+    "@google-cloud/storage": "^5.6.0",
     "@ly-letitfly/common": "^0.3.3",
     "@types/mongoose": "^5.10.1",
+    "@types/multer": "^1.4.5",
     "express-async-errors": "^3.1.1",
     "mongoose": "^5.11.1",
     "mongoose-update-if-current": "^1.4.0",
+    "multer": "^1.4.2",
     "node-nats-streaming": "^0.3.2",
     "typescript": "^4.1.2"
   }

@@ -24,8 +24,8 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: lanyanxi/user-info
-      context: user-info
+    - image: lanyanxi/profile
+      context: profile
       docker:
         dockerfile: Dockerfile
     - image: lanyanxi/friends

@@ -4,3 +4,4 @@
  */
 
 export * from "./NatsWrapper";
+export * from "./cloudStorage";
