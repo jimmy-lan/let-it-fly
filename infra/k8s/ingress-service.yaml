@@ -16,7 +16,7 @@ spec:
                 name: profile-service
                 port:
                   number: 3000
-          - path: /api/users/property
+          - path: /api/property
             pathType: Prefix
             backend:
               service:
