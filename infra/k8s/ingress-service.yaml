@@ -20,7 +20,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: user-property-service
+                name: property-service
                 port:
                   number: 3000
           - path: /api/users/activities
