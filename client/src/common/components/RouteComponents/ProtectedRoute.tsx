@@ -8,9 +8,10 @@
 
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { Route, RouteProps, Redirect, useHistory } from "react-router-dom";
-import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 
 import { useConfig } from "../../../config";
+import { RootState } from "../../../app/store";
 
 interface OwnProps extends RouteProps {
   /**
@@ -34,9 +35,9 @@ const ProtectedRoute: FunctionComponent<Props> = ({
   redirectUrl,
   ...otherProps
 }: PropsWithChildren<OwnProps>) => {
-  const cookie = Cookies.get("express:sess");
+  const { email } = useSelector((state: RootState) => state.userAuth);
   // isAuthenticated is set to true when there is an auth cookie, false if otherwise.
-  const isAuthenticated = !!cookie;
+  const isAuthenticated = !!email;
 
   const { location } = useHistory();
   const { unauthRedirectRoute } = useConfig();
