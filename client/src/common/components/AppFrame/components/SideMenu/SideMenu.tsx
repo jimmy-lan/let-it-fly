@@ -9,7 +9,7 @@ import { Divider, Drawer, IconButton } from "@material-ui/core";
 
 import { SideMenuGreetingCard } from "./SideMenuGreetingCard";
 import { SideMenuList } from "./SideMenuList";
-import { SideBarState } from "../../appFrameSlice";
+import { SideBarState } from "../../../../../app/redux/appFrameSlice";
 import { useStyles } from "./SideMenu.style";
 
 interface OwnProps {

@@ -17,7 +17,10 @@ import { useRenderRoutes } from "../../../hooks/useRenderRoutes";
 import { SideMenu } from "./components/SideMenu/SideMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import { SideBarState, setSideBarState } from "./appFrameSlice";
+import {
+  SideBarState,
+  setSideBarState,
+} from "../../../app/redux/appFrameSlice";
 import { NavBar } from "./components/NavBar/NavBar";
 import clsx from "clsx";
 

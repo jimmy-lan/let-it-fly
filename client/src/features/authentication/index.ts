@@ -6,4 +6,4 @@
 export * from "./SignIn";
 export * from "./SignUp";
 export * from "./ForgotPassword";
-export * from "./userAuthSlice";
+export * from "../../app/redux/userAuthSlice";

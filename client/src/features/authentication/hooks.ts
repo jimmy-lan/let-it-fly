@@ -6,7 +6,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { useEffect } from "react";
-import { clearError, UserErrorObject } from "./userAuthSlice";
+import { clearError, UserErrorObject } from "../../app/redux/userAuthSlice";
 
 /**
  * Use error object from user slice.
