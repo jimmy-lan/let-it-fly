@@ -6,7 +6,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://letitfly.dev",
+  baseURL: "https://letitfly.net",
   timeout: 10 * 1000,
   validateStatus: (status) => status >= 200 && status < 500,
 });

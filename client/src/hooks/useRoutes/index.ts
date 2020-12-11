@@ -7,13 +7,17 @@
  *    Do not use this hook in SSR!
  */
 
+import Cookies from "js-cookie";
+
 import { RouteEntry } from "../../routes";
 import { store } from "../../app/store";
 
 export const useRoutes = (routes: RouteEntry[]) => {
   const currentUser = store.getState().userAuth;
+  const cookie = Cookies.get("express:sess");
+
   // if currentUser is authenticated
-  if (currentUser.token) {
+  if (cookie) {
     // return routes that are relevant to the role.
     return routes.filter((route: RouteEntry) => {
       if (route.isProtected) {

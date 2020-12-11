@@ -11,7 +11,6 @@ import {
   CombinedState,
 } from "@reduxjs/toolkit";
 import { AppThunk } from "../store";
-import { AvatarResponse, fetchAvatar } from "../../services/serverApi";
 import { AxiosResponse } from "axios";
 import {
   CoinsResponse,
