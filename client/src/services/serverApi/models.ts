@@ -14,7 +14,7 @@ export interface ServerResponse {
    * from the server. This attribute will not be set if
    * request fails.
    */
-  data?: object;
+  data?: any;
   /**
    * If request results in an error, success will be set
    * to false and some error message will be returned.

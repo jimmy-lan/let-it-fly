@@ -10,6 +10,9 @@ import {
   Action,
   CombinedState,
 } from "@reduxjs/toolkit";
+import { AppThunk } from "../store";
+import { AvatarResponse, fetchAvatar } from "../../services/serverApi";
+import { AxiosResponse } from "axios";
 
 export interface ProfileState {
   profile: ProfilePayload;
@@ -17,19 +20,20 @@ export interface ProfileState {
 }
 
 export interface ProfilePayload {
+  avatar?: string;
   personal?: {
     name?: {
-      first: string;
-      last: string;
+      first?: string;
+      last?: string;
     };
     dateOfBirth?: Date;
     city?: string;
     region?: string;
     occupation?: string;
   };
-  contact: {
-    email: {
-      primary: string;
+  contact?: {
+    email?: {
+      primary?: string;
       secondary?: string;
     };
     telephone?: string;
@@ -78,6 +82,12 @@ const userProfileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
+    setProfile: (
+      state: ProfileState,
+      { payload }: PayloadAction<ProfilePayload>
+    ) => {
+      state.profile = payload;
+    },
     setError: (
       state: ProfileState,
       { payload }: PayloadAction<ProfileErrorObject>
@@ -90,7 +100,7 @@ const userProfileSlice = createSlice({
   },
 });
 
-export const { setError, clearError } = userProfileSlice.actions;
+export const { setProfile, setError, clearError } = userProfileSlice.actions;
 
 const handleServerError = (
   dispatch: ThunkDispatch<CombinedState<unknown>, unknown, Action<string>>,
@@ -100,6 +110,31 @@ const handleServerError = (
   dispatch(
     setError({ server: "Sorry, we cannot handle your request right now." })
   );
+};
+
+export const fetchUserAvatarAsync = (): AppThunk => async (dispatch) => {
+  let response: AxiosResponse<AvatarResponse>;
+  try {
+    response = await fetchAvatar();
+  } catch (error) {
+    handleServerError(dispatch, error);
+    return error;
+  }
+  const body = response.data;
+  if (body.success) {
+    dispatch(clearError());
+    dispatch(setProfile({ avatar: body.data! }));
+  } else {
+    if (body.errors) {
+      dispatch(setError({ server: body.errors[0].message }));
+    } else {
+      dispatch(
+        setError({
+          server: "Sorry, the profile service is temporarily unavailable.",
+        })
+      );
+    }
+  }
 };
 
 export default userProfileSlice.reducer;

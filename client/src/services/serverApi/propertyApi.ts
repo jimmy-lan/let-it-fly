@@ -1,5 +1,19 @@
+/*
+ * Updated by Jimmy Lan
+ * Update Date: 2020-12-11
+ */
+
 import { getFakeServerCall } from "./helpers";
 import { ServerResponse } from "./models";
+import { axios } from "../axios";
+
+export interface CoinsResponse extends ServerResponse {
+  data?: number;
+}
+
+export const fetchNumCoins = async () => {
+  return await axios.get<CoinsResponse>("/api/property/items/coins");
+};
 
 export const loadStoreContents = () => {
   const response: ServerResponse = {
