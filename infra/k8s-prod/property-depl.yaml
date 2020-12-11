@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: property-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: property
+  template:
+    metadata:
+      labels:
+        app: property
+    spec:
+      containers:
+        - name: property
+          image: lanyanxi/property
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_SECRET
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: http://nats-service:4222
+            - name: NATS_CLUSTER_ID
+              value: letitfly
+            - name: MONGO_CONNECTION_URI
+              value: "mongodb://property-mongo-service:27017/property"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: property-service
+spec:
+  selector:
+    app: property
+  ports:
+    - name: property
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
