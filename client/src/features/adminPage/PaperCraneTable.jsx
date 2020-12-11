@@ -1,6 +1,5 @@
 import React from "react";
 import Table from "./CraneExpandable";
-import { loadPaperCraneTable } from "../../services/serverApi/adminApi";
 
 const loadPaperCraneTable = () => {
   return axios.get("/api/paper-cranes").then(
