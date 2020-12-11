@@ -24,6 +24,9 @@ app.use(
 
 app.use("/api/users", Object.values(routes));
 
+// Health check
+app.use("/healthz", (req, res) => res.send({}));
+
 app.all("*", () => {
   throw new NotFoundError();
 });
