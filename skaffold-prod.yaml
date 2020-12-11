@@ -8,14 +8,14 @@ build:
   googleCloudBuild:
     projectId: let-it-fly-298204
   artifacts:
-    - image: us.gcr.io/let-it-fly-298204/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.js"
-            dest: .
+#    - image: us.gcr.io/let-it-fly-298204/client
+#      context: client
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: "src/**/*.js"
+#            dest: .
     - image: us.gcr.io/let-it-fly-298204/auth
       context: auth
       docker:
