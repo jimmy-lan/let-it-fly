@@ -3,8 +3,8 @@
  * Creation Date: 2020-10-25
  * Description: Server APIs for user-authentication related queries
  */
-import { getFakeServerCall } from './helpers';
-import { ServerResponse, UserRole } from './models';
+import { getFakeServerCall } from "./helpers";
+import { ServerResponse, UserRole } from "./models";
 
 /**
  * A response returned from sign in or sign up actions
@@ -23,7 +23,7 @@ export interface AuthResponse extends ServerResponse {
  * A fake token generated with "sub" equal to "user@user.com"
  */
 const fakeToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHVzZXIuY29tIiwibmFtZSI6IldpbGxpYW0gSm95Y2UiLCJpYXQiOjE1MTYyMzkwMjJ9.gSBKHwOWcwi3Lgz_ONbckfnf83Jv1tGi9XFvjqbuaBA';
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHVzZXIuY29tIiwibmFtZSI6IldpbGxpYW0gSm95Y2UiLCJpYXQiOjE1MTYyMzkwMjJ9.gSBKHwOWcwi3Lgz_ONbckfnf83Jv1tGi9XFvjqbuaBA";
 
 /**
  * Send sign in request to server
@@ -32,8 +32,8 @@ const fakeToken =
  */
 export const signIn = (email: string, password: string) => {
   const loginInfo = [
-    { email: 'admin@admin.com', password: 'admin', role: UserRole.admin },
-    { email: 'user@user.com', password: 'user', role: UserRole.user },
+    { email: "admin@admin.com", password: "admin", role: UserRole.admin },
+    { email: "user@user.com", password: "user", role: UserRole.user },
   ];
 
   const currentUser = loginInfo.filter(
@@ -45,7 +45,7 @@ export const signIn = (email: string, password: string) => {
   if (currentUser.length === 0) {
     response = {
       success: false,
-      errorMessage: 'Incorrect email or password!',
+      errorMessage: "Incorrect email or password!",
     };
   } else {
     response = {
@@ -53,8 +53,8 @@ export const signIn = (email: string, password: string) => {
       data: {
         token: fakeToken,
         email,
-        role: email === 'admin@admin.com' ? UserRole.admin : UserRole.user,
-        avatarLink: 'https://via.placeholder.com/150/0000FF/808080?Text=User',
+        role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
+        avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
         coins: 1000,
       },
     };
@@ -78,8 +78,8 @@ export const signUp = (email: string, password: string) => {
     data: {
       token: fakeToken,
       email,
-      role: email === 'admin@admin.com' ? UserRole.admin : UserRole.user,
-      avatarLink: 'https://via.placeholder.com/150/0000FF/808080?Text=User',
+      role: email === "admin@admin.com" ? UserRole.admin : UserRole.user,
+      avatarLink: "https://via.placeholder.com/150/0000FF/808080?Text=User",
       coins: 1000,
     },
   };
@@ -113,25 +113,25 @@ export const loadUsersTable = () => {
     success: true,
     data: [
       {
-        nickname: 'Tim123',
-        accounttype: 'Admin',
-        email: '12213@mail.utoronto.ca',
-        name: 'Tim Kang',
+        nickname: "Tim123",
+        accounttype: "Admin",
+        email: "12213@mail.utoronto.ca",
+        name: "Tim Kang",
         coins: 1200,
-        joindate: 'Oct 31 2020',
-        dateofbirth: 'Jan 1 1970',
-        contactinformation: 'Tel:647-123-4567\n Facebook: Willian Joyce\n LinkedIn:willian-joyce-2be4ry\n',
+        joindate: "Oct 31 2020",
+        dateofbirth: "Jan 1 1970",
+        contactinformation:
+          "Tel:647-123-4567\n Facebook: Willian Joyce\n LinkedIn:willian-joyce-2be4ry\n",
       },
       {
-        nickname: 'TomHandsome',
-        accounttype: 'Regular',
-        email: '12315@mail.utoronto.ca',
-        name: 'Tom Clarsion',
+        nickname: "TomHandsome",
+        accounttype: "Regular",
+        email: "12315@mail.utoronto.ca",
+        name: "Tom Clarsion",
         coins: 900,
-        joindate: 'Oct 31 2020',
-        dateofbirth: 'Jan 1 1970',
-        contactinformation: '12312313',
-
+        joindate: "Oct 31 2020",
+        dateofbirth: "Jan 1 1970",
+        contactinformation: "12312313",
       },
     ],
   };
@@ -143,16 +143,16 @@ export const loadPaperCraneTable = () => {
     success: true,
     data: [
       {
-        from: '12213@mail.utoronto.ca',
-        to: '12213@mail.utoronto.ca',
-        title: 'Hello world',
-        date: '2020-05-15',
+        from: "12213@mail.utoronto.ca",
+        to: "12213@mail.utoronto.ca",
+        title: "Hello world",
+        date: "2020-05-15",
       },
       {
-        from: '1223@mail.utoronto.ca',
-        to: '898913@mail.utoronto.ca',
-        title: 'Hello world',
-        date: '2020-05-15',
+        from: "1223@mail.utoronto.ca",
+        to: "898913@mail.utoronto.ca",
+        title: "Hello world",
+        date: "2020-05-15",
       },
     ],
   };
@@ -164,14 +164,14 @@ export const loadActivityTable = () => {
     success: true,
     data: [
       {
-        performedBy: '12213@mail.utoronto.ca',
-        discription: 'login',
-        date: '2020-05-15',
+        performedBy: "12213@mail.utoronto.ca",
+        discription: "login",
+        date: "2020-05-15",
       },
       {
-        performedBy: '12213@mail.utoronto.ca',
-        discription: 'created accout',
-        date: '2020-05-15',
+        performedBy: "12213@mail.utoronto.ca",
+        discription: "created accout",
+        date: "2020-05-15",
       },
     ],
   };
@@ -183,13 +183,13 @@ export const loadStoreTable = () => {
     success: true,
     data: [
       {
-        itemID: 'bsdcieuwb73289ewbhdsbc',
-        description: 'PeachcolorPaper',
+        itemID: "bsdcieuwb73289ewbhdsbc",
+        description: "PeachcolorPaper",
         price: 100,
       },
       {
-        itemID: 'ckjwbfy74928uhfrgyw8iu',
-        description: 'PeachcolorPaper',
+        itemID: "ckjwbfy74928uhfrgyw8iu",
+        description: "PeachcolorPaper",
         price: 500,
       },
     ],

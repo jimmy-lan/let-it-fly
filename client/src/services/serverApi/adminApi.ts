@@ -59,9 +59,11 @@ import axios from "axios";
 //   // };
 //   return getFakeServerCall(response, 0.5);
 // };
-export const updateUsersTable = (id:any, newData:any) => {
-  const url = 'https://letitfly.dev/api/profiles/'+id+'/data';
-  fetch(url,{body: JSON.stringify(newData),  method:'patch'}).then(res => res.json())
+export const updateUsersTable = (id: any, newData: any) => {
+  const url = "https://letitfly.dev/api/profiles/" + id + "/data";
+  fetch(url, { body: JSON.stringify(newData), method: "patch" }).then((res) =>
+    res.json()
+  );
 };
 
 // export const signupUsersTale = (newData:any) => {
@@ -158,23 +160,23 @@ export const loadUsersChat = () => {
     success: true,
     data: [
       {
-        type: 'last month',
+        type: "last month",
         value: 27,
       },
       {
-        type: 'last half month',
+        type: "last half month",
         value: 25,
       },
       {
-        type: 'last week',
+        type: "last week",
         value: 18,
       },
       {
-        type: 'last day',
+        type: "last day",
         value: 15,
       },
       {
-        type: 'today',
+        type: "today",
         value: 5,
       },
     ],
@@ -186,23 +188,23 @@ export const loadCranesChat = () => {
     success: true,
     data: [
       {
-        type: 'last month',
+        type: "last month",
         value: 88,
       },
       {
-        type: 'last half month',
-        value:56,
+        type: "last half month",
+        value: 56,
       },
       {
-        type: 'last week',
+        type: "last week",
         value: 44,
       },
       {
-        type: 'last day',
+        type: "last day",
         value: 32,
       },
       {
-        type: 'today',
+        type: "today",
         value: 7,
       },
     ],
