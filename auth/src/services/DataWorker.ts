@@ -11,7 +11,15 @@ import {
 } from "../messages/senders";
 import { natsWrapper } from "./NatsWrapper";
 
-const defaultUserAccounts = [
+interface AccountEntry {
+  email: string;
+  password: string;
+  role: UserRole;
+  firstName: string;
+  lastName: string;
+}
+
+const defaultUserAccounts: AccountEntry[] = [
   {
     email: "admin@admin.com",
     password: "admin",
@@ -35,6 +43,45 @@ export class DataWorker {
   static onStart = async () => {
     console.log("[Data Worker] On instance start.");
     await DataWorker.ensureDefaultUserAccounts();
+  };
+
+  private static registerAccountMessageEmission = (
+    entry: AccountEntry,
+    accountId: string
+  ) => {
+    // Wait a few seconds, allowing other services to start.
+    // This is very hacky, but since the purpose of this function
+    // is only to populate some initial values, we are okay with this for now.
+    setTimeout(async () => {
+      const { email } = entry;
+      try {
+        await new AccountSignUpMsgSender(natsWrapper.client).send({
+          id: accountId,
+          email,
+        });
+        console.log(
+          `[Background Task] Emitted account sign up message for user${accountId}.`
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }, 5000);
+
+    setTimeout(async () => {
+      const { firstName, lastName } = entry;
+      try {
+        await new AccountRoleUpdateUserMsgSender(natsWrapper.client).send({
+          id: accountId,
+          firstName,
+          lastName,
+        });
+        console.log(
+          `[Background Task] Emitted account role update message for user ${accountId}.`
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }, 6000);
   };
 
   /**
@@ -66,16 +113,7 @@ export class DataWorker {
         console.log(`[Data Worker] Added user ${email}. Emitting events...`);
 
         // Emit proper events
-        await new AccountSignUpMsgSender(natsWrapper.client).send({
-          id: user.id!,
-          email,
-        });
-
-        await new AccountRoleUpdateUserMsgSender(natsWrapper.client).send({
-          id: user.id!,
-          firstName,
-          lastName,
-        });
+        DataWorker.registerAccountMessageEmission(userEntry, user.id!);
       } catch (error) {
         console.error(error);
         throw new Error("Data worker failed to initialize data.");
