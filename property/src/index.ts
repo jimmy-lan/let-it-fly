@@ -53,9 +53,8 @@ const start = async () => {
     });
     console.log("Connected to MongoDB.");
 
-    // Ensure default values are added in the database
-    await DataWorker.ensureDefaultStoreItem();
-    console.log("Data worker: ensureDefaultStoreItem ran successfully.");
+    // Ensure instance has proper data
+    await DataWorker.onStart();
   } catch (error) {
     console.error(error);
   }
