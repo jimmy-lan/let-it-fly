@@ -26,9 +26,8 @@ const PaperCraneTable = () => (
   <Table
     columns={[
       { title: "From", field: "from" },
-      { title: "To", field: "to" },
       { title: "Title", field: "title" },
-      { title: "Date", field: "date" },
+      { title: "Style", field: "style" },
     ]}
     getData={loadPaperCraneTable}
     title={"Paper Cranes"}
