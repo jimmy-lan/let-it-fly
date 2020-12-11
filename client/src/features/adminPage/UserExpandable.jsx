@@ -18,7 +18,7 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import { isEmailPattern, isEqual } from "../../common/util";
-
+import {updateUsersTable, signupUsersTale} from "../../services/serverApi/adminApi.ts"
 const tableIcons = {
   Add: AddBox,
   Check: Check,
@@ -83,36 +83,38 @@ export default function Usertable({ columns, getData, title }) {
       tableRef={ref}
       options={{ search: true }}
       editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              setData([...data, newData]);
-
-              resolve();
-            }, 1000);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              const dataUpdate = [...data];
-              const index = oldData.tableData.id;
-              dataUpdate[index] = newData;
-              setData([...dataUpdate]);
-
-              resolve();
-            }, 1000);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              const dataDelete = [...data];
-              const index = oldData.tableData.id;
-              dataDelete.splice(index, 1);
-              setData([...dataDelete]);
-
-              resolve();
-            }, 1000);
-          }),
+        // onRowAdd: (newData) =>
+        //   new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //       setData([...data, newData]);
+        //       console.log(newData);
+        //       resolve();
+        //
+        //     }, 1000);
+        //   }),
+        // onRowUpdate: (newData, oldData) =>
+        //   new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //       const dataUpdate = [...data];
+        //       const index = oldData.tableData.id;
+        //       dataUpdate[index] = newData;
+        //       setData([...dataUpdate]);
+        //       resolve();
+              // let id = dataUpdate[index]['id'];
+              // updateUsersTable(id, dataUpdate[index]);
+          //   }, 1000);
+          // }),
+        // onRowDelete: (oldData) =>
+        //   new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //       const dataDelete = [...data];
+        //       const index = oldData.tableData.id;
+        //       dataDelete.splice(index, 1);
+        //       setData([...dataDelete]);
+        //
+        //       resolve();
+        //     }, 1000);
+        //   }),
       }}
       detailPanel={(rowData) => {
         const handleChange = (event) => {
