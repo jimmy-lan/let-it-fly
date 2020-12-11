@@ -1,6 +1,6 @@
 import React from "react";
 import Table from "./CraneExpandable";
-
+import axios from "axios";
 const loadPaperCraneTable = () => {
   return axios.get("/api/paper-cranes").then(
       res => {

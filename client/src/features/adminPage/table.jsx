@@ -89,8 +89,8 @@ export default function Usertable({ columns, getData, title }) {
         //
         //       resolve();
         //     }, 1000);
-          }),
-      }}
+          }
+      }
     />
   );
 }
