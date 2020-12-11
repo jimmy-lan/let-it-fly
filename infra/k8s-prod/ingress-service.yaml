@@ -10,12 +10,10 @@ spec:
       http:
         paths:
           - path: /api/profiles
-            pathType: Prefix
             backend:
               serviceName: profile-service
               servicePort: 3000
           - path: /api/property
-            pathType: Prefix
             backend:
               serviceName: property-service
               servicePort: 3000
@@ -27,22 +25,18 @@ spec:
 #                port:
 #                  number: 3000
           - path: /api/friends
-            pathType: Prefix
             backend:
               serviceName: friends-service
               servicePort: 3000
           - path: /api/paper-cranes
-            pathType: Prefix
             backend:
               serviceName: paper-cranes-service
               servicePort: 3000
           - path: /api/users
-            pathType: Prefix
             backend:
               serviceName: auth-service
               servicePort: 3000
           - path: /
-            pathType: Prefix
             backend:
               serviceName: client-service
               servicePort: 80
