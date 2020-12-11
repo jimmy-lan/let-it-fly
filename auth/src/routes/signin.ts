@@ -38,15 +38,15 @@ router.post(
 
     // Emit user sign in message
     await new AccountSignInMsgSender(natsWrapper.client).send({
-      id: existingUser.id,
-      email: existingUser.email,
+      id: existingUser.id!,
+      email: existingUser.email!,
     });
 
     generateJwtWithSession(
       {
-        id: existingUser.id,
-        email: existingUser.email,
-        role: existingUser.role,
+        id: existingUser.id!,
+        email: existingUser.email!,
+        role: existingUser.role!,
       },
       req
     );

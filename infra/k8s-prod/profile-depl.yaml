@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: profile-depl
+  name: profiles-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: profile
+      app: profiles
   template:
     metadata:
       labels:
-        app: profile
+        app: profiles
     spec:
       containers:
-        - name: profile
-          image: gcr.io/let-it-fly-298204/profiles
+        - name: profiles
+          image: us.gcr.io/let-it-fly-298204/profiles
           env:
             - name: JWT_SECRET
               valueFrom:
@@ -30,18 +30,18 @@ spec:
             - name: NATS_CLUSTER_ID
               value: letitfly
             - name: MONGO_CONNECTION_URI
-              value: "mongodb://profile-mongo-service:27017/profile"
+              value: "mongodb://profiles-mongo-service:27017/profiles"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: profile-service
+  name: profiles-service
 spec:
   selector:
-    app: profile
+    app: profiles
   ports:
-    - name: profile
+    - name: profiles
       protocol: TCP
       port: 3000
       targetPort: 3000

@@ -58,7 +58,3 @@ spec:
                 name: client-service
                 port:
                   number: 3000
-#          - path: /?(.*)
-#            backend:
-#              serviceName: client-service
-#              servicePort: 3000
