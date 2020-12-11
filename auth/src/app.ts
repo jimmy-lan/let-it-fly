@@ -7,12 +7,17 @@ import express from "express";
 import { json } from "body-parser";
 import "express-async-errors";
 import cookieSession from "cookie-session";
+import cors from "cors";
 
 import { NotFoundError, handleErrors } from "@ly-letitfly/common";
 import * as routes from "./routes";
 
 const app = express();
 
+// @ts-ignore
+app.use(cors());
+
+// Other
 app.set("trust proxy", true);
 app.use(json());
 app.use(
