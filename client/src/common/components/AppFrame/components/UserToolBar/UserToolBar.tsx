@@ -69,7 +69,7 @@ const UserToolBar: FunctionComponent<Props> = (props) => {
           <NotificationsIcon />
         </Badge>
       </IconButton>
-      <AvatarButton onClick={handleUserMenuToggle} ref={menuRef} />
+      <AvatarButton onClick={handleUserMenuToggle} menuRef={menuRef} />
 
       {/*User menu*/}
       <Popper

@@ -24,7 +24,7 @@ const CoinsContainer: FunctionComponent<Props> = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUserCoinsAsync);
+    dispatch(fetchUserCoinsAsync());
   }, [dispatch, coins]);
 
   return (

@@ -13,12 +13,15 @@ import { fetchUserAvatarAsync } from "../../../../../app/redux/userProfileSlice"
 
 interface OwnProps {
   onClick?: () => void;
-  ref?: RefObject<HTMLButtonElement>;
+  menuRef?: RefObject<HTMLButtonElement>;
 }
 
 type Props = OwnProps;
 
-const AvatarButton: FunctionComponent<Props> = ({ onClick, ref }: Props) => {
+const AvatarButton: FunctionComponent<Props> = ({
+  onClick,
+  menuRef,
+}: Props) => {
   const classes = useStyles();
 
   const { avatar } = useSelector(
@@ -27,11 +30,11 @@ const AvatarButton: FunctionComponent<Props> = ({ onClick, ref }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUserAvatarAsync);
+    dispatch(fetchUserAvatarAsync());
   }, [avatar, dispatch]);
 
   return (
-    <IconButton color="inherit" onClick={onClick} ref={ref}>
+    <IconButton color="inherit" onClick={onClick} ref={menuRef}>
       {avatar ? (
         <Avatar alt="avatar" src={avatar} className={classes.userProfileIcon} />
       ) : (
