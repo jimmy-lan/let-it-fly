@@ -60,7 +60,7 @@ export class DataWorker {
           email,
         });
         console.log(
-          `[Background Task] Emitted account sign up message for user${accountId}.`
+          `[Background Task] Emitted account sign up message for user ${accountId}.`
         );
       } catch (error) {
         console.error(error);
