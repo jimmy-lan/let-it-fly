@@ -3,7 +3,7 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./infra/k8s/*
+      - ./infra/k8s-dev/*
 build:
   local:
     push: false
@@ -32,8 +32,8 @@ build:
       context: friends
       docker:
         dockerfile: Dockerfile
-    - image: lanyanxi/user-property
-      context: user-property
+    - image: lanyanxi/property
+      context: property
       docker:
         dockerfile: Dockerfile
     - image: lanyanxi/user-activities

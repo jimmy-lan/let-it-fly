@@ -17,7 +17,7 @@ import { natsWrapper } from "../services";
 
 const router = express.Router();
 
-const updateUserInfo = async (req: Request, res: Response) => {
+const patchUserData = async (req: Request, res: Response) => {
   const body = req.body;
   const { userId } = req.params;
 
@@ -36,6 +36,7 @@ const updateUserInfo = async (req: Request, res: Response) => {
   // during this request
   if (req.user?.role !== UserRole.admin) {
     delete body.contact?.email?.primary;
+    delete body.avatar;
   }
   delete body.dateJoined;
   delete body.id;
@@ -79,7 +80,7 @@ router.patch(
 
     next();
   },
-  updateUserInfo
+  patchUserData
 );
 
 router.patch(
@@ -90,7 +91,7 @@ router.patch(
     req.params.userId = req.user!.id;
     next();
   },
-  updateUserInfo
+  patchUserData
 );
 
-export { router as updateInfoRouter };
+export { router as dataRouter };

@@ -63,7 +63,7 @@ const start = async () => {
   const port = process.env.PORT || 3000;
   app.listen(port, () => {
     console.log(
-      `Successfully initialized User Property service (label=[user-property]) on port ${port}.`
+      `Successfully initialized Property service (label=[property]) on port ${port}.`
     );
   });
 };

@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-property-mongo-depl
+  name: paper-cranes-mongo-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-property-mongo-db
+      app: paper-cranes-mongo-db
   template:
     metadata:
       labels:
-        app: user-property-mongo-db
+        app: paper-cranes-mongo-db
     spec:
       containers:
-        - name: user-property-mongo-db
+        - name: paper-cranes-mongo-db
           image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-property-mongo-service
+  name: paper-cranes-mongo-service
 spec:
   selector:
-    app: user-property-mongo-db
+    app: paper-cranes-mongo-db
   ports:
     - name: db
       protocol: TCP
