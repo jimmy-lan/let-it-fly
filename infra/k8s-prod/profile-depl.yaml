@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: profile
-          image: lanyanxi/profile
+          image: gcr.io/let-it-fly-298204/profile
           env:
             - name: JWT_SECRET
               valueFrom:

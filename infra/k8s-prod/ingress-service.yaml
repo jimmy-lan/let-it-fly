@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: letitfly.dev
+    - host: letitfly.net
       http:
         paths:
           - path: /api/profiles
