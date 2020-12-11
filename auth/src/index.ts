@@ -6,7 +6,7 @@
 import mongoose from "mongoose";
 import { verifyEnvVariables } from "@ly-letitfly/common";
 import { app } from "./app";
-import { natsWrapper } from "./services";
+import { DataWorker, natsWrapper } from "./services";
 
 const start = async () => {
   verifyEnvVariables([
@@ -43,6 +43,9 @@ const start = async () => {
       useCreateIndex: true,
     });
     console.log("Connected to MongoDB.");
+
+    // Ensure instance has proper data
+    await DataWorker.onStart();
   } catch (error) {
     console.error(error);
   }

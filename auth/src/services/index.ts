@@ -5,3 +5,4 @@
 
 export * from "./PasswordEncoder";
 export * from "./NatsWrapper";
+export * from "./DataWorker";
