@@ -75,9 +75,7 @@ export const fetchUserCoinsAsync = (): AppThunk => async (dispatch) => {
     if (body.errors) {
       dispatch(setError(body.errors[0].message));
     } else {
-      dispatch(
-        setError("Sorry, the profile service is temporarily unavailable.")
-      );
+      dispatch(setError("Sorry, property service is temporarily unavailable."));
     }
   }
 };
