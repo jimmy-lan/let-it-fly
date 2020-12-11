@@ -14,7 +14,13 @@ spec:
     spec:
       containers:
         - name: auth
-          image: lanyanxi/auth
+          image: us.gcr.io/let-it-fly-298204/auth
+#          livenessProbe:
+#            httpGet:
+#              path: /api/users/healthz
+#              port: 3000
+#            initialDelaySeconds: 10
+#            periodSeconds: 3
           env:
             - name: JWT_SECRET
               valueFrom:
@@ -43,5 +49,5 @@ spec:
   ports:
     - name: auth
       protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 3000
+      targetPort: 3000

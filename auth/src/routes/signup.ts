@@ -37,15 +37,15 @@ router.post(
 
     // Emit sign up message
     await new AccountSignUpMsgSender(natsWrapper.client).send({
-      id: user.id,
-      email: user.email,
+      id: user.id!,
+      email: user.email!,
     });
 
     await generateJwtWithSession(
       {
-        id: user.id,
-        email: user.email,
-        role: user.role,
+        id: user.id!,
+        email: user.email!,
+        role: user.role!,
       },
       req
     );

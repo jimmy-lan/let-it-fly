@@ -61,9 +61,9 @@ router.post(
 
     // Send message
     await new AccountRoleUpdateUserMsgSender(natsWrapper.client).send({
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      id: user.id!,
+      firstName: user.firstName!,
+      lastName: user.lastName!,
     });
 
     // Set a new cookie with updated role

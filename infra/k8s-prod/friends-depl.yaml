@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: friends
-          image: lanyanxi/friends
+          image: us.gcr.io/let-it-fly-298204/friends
           env:
             - name: JWT_SECRET
               valueFrom:
