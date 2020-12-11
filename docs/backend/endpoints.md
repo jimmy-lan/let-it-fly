@@ -7,6 +7,7 @@
 | WARNING: Due to scope, we did not make a separate service for admin users (i.e. the management service). Instead, we add some temporary routes on other services to allow access for admin users. This is in no way a good practice, so please be aware that admin users can be calling routes "in a weired way" in order to update resources. |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
+
 ### Before You Continue
 
 Please note the following:
@@ -36,19 +37,19 @@ Route prefix: `/api/users`
 
 #### Routes for Regular User
 
-| Route Name     | Method | Short Description                        | Additional Information        |
-| -------------- | ------ | ---------------------------------------- | ----------------------------- |
-| /signin        | POST   | Sign in user                             | Req body: email, password     |
-| /signup        | POST   | Sign up user                             | Req body: email, password     |
-| /current       | GET    | Get signed in user                       |                               |
-| /roles/upgrade | GET    | Upgrade current user from guest to admin | Req body: firstName, lastName |
+| Route Name     | Method | Short Description                               | Additional Information        |
+| -------------- | ------ | ----------------------------------------------- | ----------------------------- |
+| /signin        | POST   | Sign in user                                    | Req body: email, password     |
+| /signup        | POST   | Sign up user                                    | Req body: email, password     |
+| /current       | GET    | Get signed in user                              |                               |
+| /roles/upgrade | POST   | Upgrade current user from guest to regular user | Req body: firstName, lastName |
 
 #### Routes for Admin User
 
-| Route Name            | Method | Short Description                  | Additional Information               |
-| --------------------- | ------ | ---------------------------------- | ------------------------------------ |
-| /                     | GET    | Get a list of users                | id, email, role, firstName, lastName |
-| /roles/:userId/change | PATCH  | Update role for user with <userId> | Req body: role                       |
+| Route Name            | Method | Short Description                | Additional Information               |
+| --------------------- | ------ | -------------------------------- | ------------------------------------ |
+| /                     | GET    | Get a list of users              | id, email, role, firstName, lastName |
+| /roles/:userId/change | PATCH  | Update role for user with userId | Req body: role                       |
 
 #### Notes for admin routes
 
@@ -72,19 +73,20 @@ Route prefix: `/api/profiles`
 
 #### Routes for Regular User
 
-| Route Name      | Method | Short Description                             | Additional Information |
-| --------------- | ------ | --------------------------------------------- | ---------------------- |
-| /data           | GET    | Get profile data of the signed in user        |                        |
-| /:userId/data   | GET    | Get profile data of the user with <userId>    | Has permission checks  |
-| /data           | PATCH  | Update profile data of the signed in user     | See model for req body |
-| /:userId/data   | PATCH  | Update profile data of the user with <userId> | Has permission checks  |
-| /avatar         | GET    | Get avatar of the signed in user              |                        |
-| /:userId/avatar | GET    | Get avatar of the user with <userId>          | Has permission checks  |
-| /avatar         | PATCH  | Upload avatar for the signed in user          |                        |
-| /:userId/avatar | PATCH  | Upload avatar for the the user with <userId>  | Has permission checks  |
+| Route Name      | Method | Short Description                           | Additional Information |
+| --------------- | ------ | ------------------------------------------- | ---------------------- |
+| /data           | GET    | Get profile data of the signed in user      |                        |
+| /:userId/data   | GET    | Get profile data of the user with userId    | Has permission checks  |
+| /data           | PATCH  | Update profile data of the signed in user   | See model for req body |
+| /:userId/data   | PATCH  | Update profile data of the user with userId | Has permission checks  |
+| /avatar         | GET    | Get avatar of the signed in user            |                        |
+| /:userId/avatar | GET    | Get avatar of the user with userId          | Has permission checks  |
+| /avatar         | PATCH  | Upload avatar for the signed in user        |                        |
+| /:userId/avatar | PATCH  | Upload avatar for the the user with userId  | Has permission checks  |
 
 | WARNING: You will not be able to upload an avatar during your local testing. This is because the key file used to access GCS is ignored for security reasons. Please test the avatar upload functionality on the production API only. |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
 
 #### Permission Checks
 
@@ -116,7 +118,7 @@ Route prefix: `/api/property`
 
 | Route Name        | Method | Short Description                                     | Additional Information          |
 | ----------------- | ------ | ----------------------------------------------------- | ------------------------------- |
-| /:userId/items    | GET    | Get items owned by <userId>                           | Has permission checks           |
+| /:userId/items    | GET    | Get items owned by userId                             | Has permission checks           |
 | /items            | GET    | Get items owned by signed in user                     |                                 |
 | /items/coins      | GET    | Get coins owned by signed in user                     |                                 |
 | /inventory        | GET    | Get list of inventory **NOT** owned by signed in user | Returns all inventory for admin |
@@ -171,11 +173,11 @@ Route prefix: `/api/friends`
 
 #### Routes for Regular User
 
-| Route Name | Method | Short Description                                    | Additional Information |
-| ---------- | ------ | ---------------------------------------------------- | ---------------------- |
-| /          | GET    | Get a list of friends for signed in user             |                        |
-| /:userId   | GET    | Get a list of friends for user with <userId>         | Has permission checks  |
-| /:friendId | DELETE | Delete friend with <friendId> for the signed in user |                        |
+| Route Name | Method | Short Description                                  | Additional Information |
+| ---------- | ------ | -------------------------------------------------- | ---------------------- |
+| /          | GET    | Get a list of friends for signed in user           |                        |
+| /:userId   | GET    | Get a list of friends for user with userId         | Has permission checks  |
+| /:friendId | DELETE | Delete friend with friendId for the signed in user |                        |
 
 #### Query Parameters
 
