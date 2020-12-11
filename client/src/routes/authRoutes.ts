@@ -4,20 +4,20 @@
  * Description: Routes for authentication.
  */
 
-import { RouteEntry } from './index';
-import { ForgotPassword, SignIn, SignUp } from '../features';
+import { RouteEntry } from "./index";
+import { ForgotPassword, SignIn, SignUp } from "../features";
 
 export const authRoutes: RouteEntry[] = [
   {
-    path: '/login',
+    path: "/login",
     Component: SignIn,
   },
   {
-    path: '/signup',
+    path: "/signup",
     Component: SignUp,
   },
   {
-    path: '/forgot-password',
+    path: "/forgot-password",
     Component: ForgotPassword,
   },
 ];

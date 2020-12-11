@@ -5,9 +5,9 @@
  *    Routes that can only be seen by authenticated users.
  *    This includes regular user and admin.
  */
-import {RouteEntry} from "./models";
-import {AppFrame} from "../common/components/AppFrame";
-import {UserRole} from "../services/serverApi";
+import { RouteEntry } from "./models";
+import { AppFrame } from "../common/components/AppFrame";
+import { UserRole } from "../services/serverApi";
 
 import {
   AccountSettings,
@@ -20,10 +20,15 @@ import {
   UserStore,
 } from "../features";
 
-import {ActivityTable, PaperCraneTable, StoreTable, UserTable} from "../features/adminPage";
-import {PaperCraneCompose} from "../features/PaperCraneSpace/PaperCraneCompose";
-import {UserFriendsPage} from "../features/UserFriendsPage";
-import {Chart} from "../features/adminPage/Chart";
+import {
+  ActivityTable,
+  PaperCraneTable,
+  StoreTable,
+  UserTable,
+} from "../features/adminPage";
+import { PaperCraneCompose } from "../features/PaperCraneSpace/PaperCraneCompose";
+import { UserFriendsPage } from "../features/UserFriendsPage";
+import { Chart } from "../features/adminPage/Chart";
 
 export const userRoutes: RouteEntry[] = [
   {
@@ -108,7 +113,7 @@ export const userRoutes: RouteEntry[] = [
         Component: Chart,
         exact: true,
         isProtected: [UserRole.admin],
-      }
+      },
     ],
   },
 ];
