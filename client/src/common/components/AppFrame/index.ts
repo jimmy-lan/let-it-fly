@@ -4,4 +4,4 @@
  */
 
 export * from "./AppFrame";
-export * from "./appFrameSlice";
+export * from "../../../app/redux/appFrameSlice";

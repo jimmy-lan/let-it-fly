@@ -31,7 +31,7 @@ export class AccountSignUpMsgReceiver extends MsgReceiver<AccountSignUp> {
       return;
     }
 
-    const friendRelation = Friend.build({ user: user.id, friends: [] });
+    const friendRelation = Friend.build({ user: user.id!, friends: [] });
     await friendRelation.save();
 
     msg.ack();

@@ -4,6 +4,7 @@ import {
   MultiplePaperCraneResponse,
   PaperCraneInfo,
 } from "../../../services/serverApi";
+import { AxiosResponse } from "axios";
 
 /**
  * Created by Jimmy Lan
@@ -18,17 +19,26 @@ export const usePaperCraneList = (
   const fetchNextData = async () => {
     const fetchCount = 10;
 
-    const response: MultiplePaperCraneResponse = await fetchPaperCraneListShallow(
-      fetchCount,
-      list.length,
-      fetchCategory
-    );
+    let response: AxiosResponse<MultiplePaperCraneResponse>;
 
-    // TODO check for failure
+    try {
+      response = await fetchPaperCraneListShallow(
+        fetchCount,
+        list.length,
+        fetchCategory
+      );
+    } catch (error) {
+      alert("Sorry, the paper crane service is currently unavailable.");
+      console.log(error);
+      setHasMore(false);
+      return;
+    }
 
-    setList((prevState: PaperCraneInfo[]) => prevState.concat(response.data!));
+    const body = response.data;
 
-    if (!response.data?.length || response.data?.length < fetchCount) {
+    setList((prevState: PaperCraneInfo[]) => prevState.concat(body.data!));
+
+    if (!body.data?.length || body.data?.length < fetchCount) {
       setHasMore(false);
       return;
     }

@@ -12,8 +12,9 @@ import { store } from "../../app/store";
 
 export const useRoutes = (routes: RouteEntry[]) => {
   const currentUser = store.getState().userAuth;
+
   // if currentUser is authenticated
-  if (currentUser.token) {
+  if (currentUser.email) {
     // return routes that are relevant to the role.
     return routes.filter((route: RouteEntry) => {
       if (route.isProtected) {

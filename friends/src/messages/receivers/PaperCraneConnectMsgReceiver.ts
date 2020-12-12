@@ -13,7 +13,9 @@ import { Message } from "node-nats-streaming";
 import { Friend, User } from "../../models";
 import { FriendCreateMsgSender } from "../senders";
 
-export class PaperCraneConnectMsgReceiver extends MsgReceiver<PaperCraneUserConnect> {
+export class PaperCraneConnectMsgReceiver extends MsgReceiver<
+  PaperCraneUserConnect
+> {
   subject: Subjects.PaperCraneUserConnect = Subjects.PaperCraneUserConnect;
   queueGroup = queueGroup;
 
@@ -40,8 +42,8 @@ export class PaperCraneConnectMsgReceiver extends MsgReceiver<PaperCraneUserConn
       throw new Error(`User ${userId2} is not found!`);
     }
 
-    const userRelation1 = await Friend.findOne({ user: user1.id });
-    const userRelation2 = await Friend.findOne({ user: user2.id });
+    const userRelation1 = await Friend.findOne({ user: user1.id! });
+    const userRelation2 = await Friend.findOne({ user: user2.id! });
 
     if (!userRelation1 || !userRelation2) {
       throw new Error("User relation for corresponding users not found!");

@@ -8,6 +8,7 @@ import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface UserProps {
   id?: string;
+  avatar?: string;
   personal?: {
     name?: {
       first: string;

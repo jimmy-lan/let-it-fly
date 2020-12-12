@@ -60,12 +60,12 @@ export class DataWorker {
           email,
         });
         console.log(
-          `[Background Task] Emitted account sign up message for user${accountId}.`
+          `[Background Task] Emitted account sign up message for user ${accountId}.`
         );
       } catch (error) {
         console.error(error);
       }
-    }, 5000);
+    }, 11 * 1000);
 
     setTimeout(async () => {
       const { firstName, lastName } = entry;
@@ -81,7 +81,7 @@ export class DataWorker {
       } catch (error) {
         console.error(error);
       }
-    }, 6000);
+    }, 12 * 1000);
   };
 
   /**

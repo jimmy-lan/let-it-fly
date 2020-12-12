@@ -6,14 +6,11 @@
  *    notifications icon button.
  */
 import React, { FunctionComponent, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../../app/store";
+import { useDispatch } from "react-redux";
 import {
-  Avatar,
   Badge,
   IconButton,
   Popper,
-  Typography,
   Paper,
   ClickAwayListener,
   MenuList,
@@ -23,25 +20,22 @@ import {
 import {
   AccountCircleTwoTone as AccountIcon,
   Notifications as NotificationsIcon,
-  MonetizationOn as CoinIcon,
   PowerSettingsNewTwoTone as SignOutIcon,
 } from "@material-ui/icons";
 import { useStyles } from "./UserToolBar.style";
-import { formatNumber } from "../../../../util";
 import { useHistory } from "../../../../../hooks/useHistory";
 import { signOutAsync } from "../../../../../features/authentication";
+import { CoinsContainer } from "./CoinsContainer";
+import { AvatarButton } from "./AvatarButton";
 
 interface OwnProps {}
 
 type Props = OwnProps;
 
 const UserToolBar: FunctionComponent<Props> = (props) => {
-  const { avatarLink, coins } = useSelector(
-    (state: RootState) => state.userAuth
-  );
   const classes = useStyles();
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
-  const userMenuAnchorRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLButtonElement>(null);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -50,7 +44,7 @@ const UserToolBar: FunctionComponent<Props> = (props) => {
   };
 
   const handleUserMenuClose = (event: React.MouseEvent<EventTarget>) => {
-    if (userMenuAnchorRef.current?.contains(event.target as HTMLElement)) {
+    if (menuRef.current?.contains(event.target as HTMLElement)) {
       return;
     }
 
@@ -69,37 +63,18 @@ const UserToolBar: FunctionComponent<Props> = (props) => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.coinsContainer}>
-        <CoinIcon className={classes.coinIcon} />
-        <Typography variant="subtitle1" className={classes.coinsLabel}>
-          {formatNumber(coins!)}
-        </Typography>
-      </div>
+      <CoinsContainer />
       <IconButton color="inherit">
         <Badge badgeContent={17} color="secondary">
           <NotificationsIcon />
         </Badge>
       </IconButton>
-      <IconButton
-        color="inherit"
-        onClick={handleUserMenuToggle}
-        ref={userMenuAnchorRef}
-      >
-        {avatarLink ? (
-          <Avatar
-            alt="avatar"
-            src={avatarLink}
-            className={classes.userProfileIcon}
-          />
-        ) : (
-          <AccountIcon className={classes.userProfileIcon} />
-        )}
-      </IconButton>
+      <AvatarButton onClick={handleUserMenuToggle} menuRef={menuRef} />
 
       {/*User menu*/}
       <Popper
         open={isUserMenuOpen}
-        anchorEl={userMenuAnchorRef.current}
+        anchorEl={menuRef.current}
         placement="bottom-end"
         role={undefined}
         disablePortal

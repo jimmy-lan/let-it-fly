@@ -12,7 +12,11 @@ import { ControlButtons } from "../components/ControlButtons";
 import { useHistory } from "../../../hooks/useHistory";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import { changeEmail, setError, UserErrorObject } from "../userAuthSlice";
+import {
+  changeEmail,
+  setError,
+  UserErrorObject,
+} from "../../../app/redux/userAuthSlice";
 import { useError } from "../hooks";
 import { Alert } from "@material-ui/lab";
 import { isEmailPattern } from "../../../common/util";

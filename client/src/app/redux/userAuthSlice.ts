@@ -20,16 +20,15 @@ import {
   signUp as signUpRequest,
   signOut as signOutRequest,
 } from "../../services/serverApi";
-import { AppThunk } from "../../app/store";
+import { AppThunk } from "../store";
+import { AxiosResponse } from "axios";
 
 export interface UserState {
-  /** If token is empty, user is not authenticated */
-  token: string;
   email: string;
   error?: UserErrorObject;
   role?: UserRole;
-  avatarLink?: string;
-  coins?: number;
+  firstName?: string;
+  lastName?: string;
 }
 
 export interface UserErrorObject {
@@ -49,15 +48,17 @@ export interface UserErrorObject {
 }
 
 export interface AuthPayload {
-  token: string;
+  id: string;
+  /**
+   * If email is empty, the user may not be authenticated
+   */
   email: string;
   role: UserRole;
-  avatarLink: string;
-  coins: number;
+  firstName: string;
+  lastName: string;
 }
 
 const initialState: UserState = {
-  token: "",
   email: "",
 };
 
@@ -68,14 +69,13 @@ const userAuthSlice = createSlice({
     authenticate: (
       state: UserState,
       {
-        payload: { token, email, role, avatarLink, coins },
+        payload: { email, role, firstName, lastName },
       }: PayloadAction<AuthPayload>
     ) => {
       state.email = email;
-      state.token = token;
       state.role = role;
-      state.avatarLink = avatarLink;
-      state.coins = coins;
+      state.firstName = firstName;
+      state.lastName = lastName;
     },
     changeEmail: (state: UserState, { payload }: PayloadAction<string>) => {
       state.email = payload;
@@ -118,19 +118,20 @@ export const authenticateAsync = (
   password: string,
   authFunc: typeof signInRequest | typeof signUpRequest
 ): AppThunk => async (dispatch) => {
-  let response: AuthResponse;
+  let response: AxiosResponse<AuthResponse>;
   try {
     response = await authFunc(email, password);
   } catch (error) {
     handleServerError(dispatch, error);
     return error;
   }
-  if (response.success) {
+  const body = response.data;
+  if (body.success) {
     dispatch(clearError());
-    dispatch(authenticate(response.data!));
+    dispatch(authenticate(body.data!));
   } else {
-    if (response.errorMessage) {
-      dispatch(setError({ server: response.errorMessage }));
+    if (body.errors) {
+      dispatch(setError({ server: body.errors[0].message }));
     } else {
       dispatch(
         setError({

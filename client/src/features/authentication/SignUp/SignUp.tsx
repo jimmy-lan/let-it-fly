@@ -27,7 +27,7 @@ import {
   changeEmail,
   setError,
   UserErrorObject,
-} from "../userAuthSlice";
+} from "../../../app/redux/userAuthSlice";
 import { useError } from "../hooks";
 import { isEmailPattern, isEqual } from "../../../common/util";
 import { signUp } from "../../../services/serverApi";
