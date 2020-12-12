@@ -16,5 +16,5 @@ export interface AvatarResponse extends ServerResponse {
 }
 
 export const fetchAvatar = () => {
-  return axios.get<AvatarResponse>("/api/profiles/data/avatar");
+  return axios.get<AvatarResponse>("/api/profiles/avatar");
 };

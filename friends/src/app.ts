@@ -7,6 +7,7 @@ import express from "express";
 import { json } from "body-parser";
 import "express-async-errors";
 import cookieSession from "cookie-session";
+import cors from "cors";
 
 import {
   NotFoundError,
@@ -17,6 +18,9 @@ import {
 import * as routes from "./routes";
 
 const app = express();
+
+// @ts-ignore
+app.use(cors({ origin: true, credentials: true }));
 
 app.set("trust proxy", true);
 app.use(json());

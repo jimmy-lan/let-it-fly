@@ -78,7 +78,7 @@ const patchUserAvatar = async (req: Request, res: Response) => {
 
   // Emit event
   await new UserInfoUpdateMsgSender(natsWrapper.client).send({
-    id: user.id,
+    id: user.id!,
     avatar: user.avatar,
     firstName: user.personal.name.first,
     lastName: user.personal.name.last,

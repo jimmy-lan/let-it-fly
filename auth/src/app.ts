@@ -15,7 +15,7 @@ import * as routes from "./routes";
 const app = express();
 
 // @ts-ignore
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 
 // Other
 app.set("trust proxy", true);

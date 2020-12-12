@@ -4,15 +4,20 @@
  * Description: Server APIs for paper crane space requests.
  */
 import { ServerResponse } from "./models";
-import { getFakeServerCall } from "./helpers";
-import { fakePaperCraneList } from "./paperCraneSpaceApi.fakeData";
+import { axios } from "../axios";
 
 export interface PaperCraneInfo {
+  id: string;
   title: string;
+  style: string;
   content?: string;
-  replies?: { sender: string; date: string; content: string }[];
-  starred?: boolean;
-  unread?: boolean;
+  replies?: {
+    sender: string | { id: string; firstName: string; lastName: string };
+    content: string;
+    isWishToConnect: boolean;
+  }[];
+  isStarred?: boolean;
+  isUnread?: boolean;
 }
 
 export interface SinglePaperCraneResponse extends ServerResponse {
@@ -35,15 +40,50 @@ export interface MultiplePaperCraneResponse extends ServerResponse {
 export const fetchPaperCraneListShallow = (
   limit: number,
   skip: number,
-  fetchCategory: "received" | "sent" | "starred"
+  fetchCategory: "received" | "sent" | "starred" | "unread"
 ) => {
-  const response: MultiplePaperCraneResponse = {
-    success: true,
-    data: fakePaperCraneList.slice(skip, skip + limit).map((entry) => ({
-      title: entry.title,
-      unread: entry.unread,
-      starred: entry.starred,
-    })),
-  };
-  return getFakeServerCall(response, 1);
+  return axios.get<MultiplePaperCraneResponse>(
+    "/api/paper-cranes/" + fetchCategory,
+    {
+      params: { limit, skip },
+    }
+  );
+};
+
+export const fetchPaperCrane = (id: string) => {
+  return axios.get("/api/paper-cranes/" + id + "/info");
+};
+
+export const markPaperCrane = (
+  id: string,
+  markings: { isUnread: boolean; isStarred: boolean }
+) => {
+  return axios.patch("/api/paper-cranes/" + id + "/marking", markings);
+};
+
+export const searchPaperCrane = () => {
+  return axios.get("/api/paper-cranes");
+};
+
+export const composePaperCrane = (data: {
+  title: string;
+  content: string;
+  style: string;
+}) => {
+  return axios.post("/api/paper-cranes", data);
+};
+
+export const deletePaperCrane = (id: string) => {
+  return axios.delete("/api/paper-cranes/" + id + "/delete");
+};
+
+export const replyPaperCrane = (
+  id: string,
+  content: string,
+  isWishToConnect: boolean
+) => {
+  return axios.post("/api/paper-cranes/" + id + "/reply", {
+    content,
+    isWishToConnect,
+  });
 };

@@ -16,6 +16,38 @@ build:
 #        manual:
 #          - src: "src/**/*.js"
 #            dest: .
+    - image: us.gcr.io/let-it-fly-298204/profiles
+      context: profile
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: us.gcr.io/let-it-fly-298204/friends
+      context: friends
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: us.gcr.io/let-it-fly-298204/property
+      context: property
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: us.gcr.io/let-it-fly-298204/paper-cranes
+      context: paper-cranes
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: us.gcr.io/let-it-fly-298204/auth
       context: auth
       docker:
@@ -24,20 +56,4 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/let-it-fly-298204/profiles
-      context: profile
-      docker:
-        dockerfile: Dockerfile
-    - image: us.gcr.io/let-it-fly-298204/friends
-      context: friends
-      docker:
-        dockerfile: Dockerfile
-    - image: us.gcr.io/let-it-fly-298204/property
-      context: property
-      docker:
-        dockerfile: Dockerfile
-    - image: us.gcr.io/let-it-fly-298204/paper-cranes
-      context: paper-cranes
-      docker:
-        dockerfile: Dockerfile
 

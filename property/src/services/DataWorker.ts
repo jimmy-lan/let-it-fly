@@ -10,9 +10,12 @@ import { defaultUserProperties, StoreItemCategory } from "@ly-letitfly/common";
  * Utility service to perform operations on data.
  */
 export class DataWorker {
+  static hasCompleted: boolean = false;
+
   static onStart = async () => {
     console.log("[Data Worker] On instance start.");
     await DataWorker.ensureDefaultStoreItem();
+    DataWorker.hasCompleted = true;
   };
 
   /**
