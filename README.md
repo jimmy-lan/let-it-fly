@@ -12,11 +12,14 @@ Team members: **Jimmy Lan** ([@lanyanxiang](https://github.com/lanyanxiang)),
 
 ## Documentation
 
-Please find a menu of documentation here: [Documentation Menu](/docs)/.
+Please find a menu of documentation here: [Documentation Menu](/docs).
 
-## Marking Guide for TA and Professor
+## Note
 
-- [Phase 1](/docs/marking/phase1.md)
+This repo has been reset back to a state before the significant frontend and backend integration work done during the course term of CSC309.
+Because everyone was rushing towards the end of term, the frontend and backend integration done previously
+was not perfect and was lacking quality control.
+You may find this version of the app different from other distributions due to this reason.
 
 ## Project Setup
 
