@@ -13,9 +13,7 @@ import { Message } from "node-nats-streaming";
 import { Friend, User } from "../../models";
 import { FriendCreateMsgSender } from "../senders";
 
-export class PaperCraneConnectMsgReceiver extends MsgReceiver<
-  PaperCraneUserConnect
-> {
+export class PaperCraneConnectMsgReceiver extends MsgReceiver<PaperCraneUserConnect> {
   subject: Subjects.PaperCraneUserConnect = Subjects.PaperCraneUserConnect;
   queueGroup = queueGroup;
 
