@@ -18,7 +18,7 @@ You may be tempted to ask why we chose a micro-services architecture. Please rea
 
 You may wonder why we did not have time to finish off the integration between backend and frontend, when this task seems to be much, much easier than creating a microservices architecture and handling a bunch of concurrency issues. This is because one of our team members got too excited writing the services so that unfortunately, he felt very tired during the last a few days and was lacking sleep. This was an unexpected event, and so the productivity dropped by a bit.
 
-We apologize for not being able to present the project in full to you, despite that we have all the exciting features. You can visit our deployed site at https://letitfly.net.
+We apologize for not being able to present the project in full to you, despite that we have all the exciting features. You can visit our deployed site at **[link removed]**. (Note: **Due to the cost of running a kubernetes cluster, I shutted down the services as soon as the project is marked. I might upload some GIFs to show-case the project in the future, but in the main time, you can always run a local copy of this app.**)
 
 Finally, please allow me to run the last command for this project. It's about microservices, of course!
 
