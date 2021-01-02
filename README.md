@@ -21,6 +21,11 @@ Because everyone was rushing towards the end of term, the frontend and backend i
 was not perfect and was lacking quality control.
 You may find this version of the app different from other distributions due to this reason.
 
+## Marking Guide for TA and Professor
+
+- [Phase 1](/docs/marking/phase1.md)
+- [Phase 2](/docs/marking/phase2.md)
+
 ## Project Setup
 
 If you are new to this project, please follow [this setup guide](/docs/setup) to run
