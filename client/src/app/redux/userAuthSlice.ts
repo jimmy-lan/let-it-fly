@@ -95,13 +95,8 @@ const userAuthSlice = createSlice({
   },
 });
 
-export const {
-  authenticate,
-  changeEmail,
-  setError,
-  clearError,
-  signOut,
-} = userAuthSlice.actions;
+export const { authenticate, changeEmail, setError, clearError, signOut } =
+  userAuthSlice.actions;
 
 const handleServerError = (
   dispatch: ThunkDispatch<CombinedState<unknown>, unknown, Action<string>>,
@@ -113,34 +108,36 @@ const handleServerError = (
   );
 };
 
-export const authenticateAsync = (
-  email: string,
-  password: string,
-  authFunc: typeof signInRequest | typeof signUpRequest
-): AppThunk => async (dispatch) => {
-  let response: AxiosResponse<AuthResponse>;
-  try {
-    response = await authFunc(email, password);
-  } catch (error) {
-    handleServerError(dispatch, error);
-    return error;
-  }
-  const body = response.data;
-  if (body.success) {
-    dispatch(clearError());
-    dispatch(authenticate(body.data!));
-  } else {
-    if (body.errors) {
-      dispatch(setError({ server: body.errors[0].message }));
-    } else {
-      dispatch(
-        setError({
-          server: "Authentication not successful due to unknown error.",
-        })
-      );
+export const authenticateAsync =
+  (
+    email: string,
+    password: string,
+    authFunc: typeof signInRequest | typeof signUpRequest
+  ): AppThunk =>
+  async (dispatch) => {
+    let response: AxiosResponse<AuthResponse>;
+    try {
+      response = await authFunc(email, password);
+    } catch (error) {
+      handleServerError(dispatch, error);
+      return error;
     }
-  }
-};
+    const body = response.data;
+    if (body.success) {
+      dispatch(clearError());
+      dispatch(authenticate(body.data!));
+    } else {
+      if (body.errors) {
+        dispatch(setError({ server: body.errors[0].message }));
+      } else {
+        dispatch(
+          setError({
+            server: "Authentication not successful due to unknown error.",
+          })
+        );
+      }
+    }
+  };
 
 export const signOutAsync = (): AppThunk => async (dispatch) => {
   try {
